@@ -9,9 +9,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -33,11 +30,10 @@ use App\Models\Shared\Traits\HasMetaFields;
  * @copyright 2020 MdRepTime, LLC
  * @package App\Models\System
  */
-class User extends Authenticatable implements HasMedia, Searchable
+class User extends Authenticatable implements Searchable
 {
     use Notifiable,
         Billable,
-        InteractsWithMedia,
         HasRoles,
         HasMetaFields,
         HasOrders,
