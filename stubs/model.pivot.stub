@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\QueryException;
+use Exception;
+
+/**
+ * {{ class }} Eloquent Pivot
+ *
+ * @author Antonio Vargas <localhost.80@gmail.com>
+ * @copyright 2020 MdRepTime, LLC
+ * @package {{ namespace }}
+ */
+class {{ class }} extends Pivot
+{
+    //
+}
