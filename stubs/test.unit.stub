@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use PHPUnit\Framework\TestCase;
+
+/**
+ * {{ class }} Unit
+ *
+ * @author Antonio Vargas <localhost.80@gmail.com>
+ * @copyright 2020 MdRepTime, LLC
+ * @package {{ namespace }}
+ */
+class {{ class }} extends TestCase
+{
+    /**
+     * A basic unit test example.
+     *
+     * @return void
+     */
+    public function testExample()
+    {
+        $this->assertTrue(true);
+    }
+}

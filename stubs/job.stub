@@ -1,0 +1,42 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Database\QueryException;
+use Exception;
+
+/**
+ * {{ class }} Job
+ *
+ * @author Antonio Vargas <localhost.80@gmail.com>
+ * @copyright 2020 MdRepTime, LLC
+ * @package {{ namespace }}
+ */
+class {{ class }}
+{
+    use Dispatchable, Queueable;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        //
+    }
+}
