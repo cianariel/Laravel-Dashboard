@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
  * Redirect If Authenticated Middleware
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 GeekBidz, LLC
+ * @copyright 2020 MDRepTime, LLC
  * @package App\Http\Middleware
  */
 class RedirectIfAuthenticated

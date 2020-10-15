@@ -10,7 +10,7 @@ use Illuminate\Database\Seeder;
  * PermissionsTableSeeder Seeder
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 GeekBidz, LLC
+ * @copyright 2020 MDRepTime, LLC
  */
 class PermissionsTableSeeder extends Seeder
 {

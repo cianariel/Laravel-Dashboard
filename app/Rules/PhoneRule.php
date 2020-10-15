@@ -11,7 +11,7 @@ use Illuminate\Contracts\Validation\Rule;
  * Phone Validation Rule
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 GeekBidz, LLC
+ * @copyright 2020 MDRepTime, LLC
  * @package App\Rules
  */
 class PhoneRule extends LVRPhone

@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-sm-10">
                             @component('components.forms.form', ['method' => 'PUT', 'action' => route('admin.users.update', $user), 'confirmed' => true])
-                                @component('components.forms.input', ['type' => 'email', 'name' => 'email', 'label' => 'Email', 'value' => old('email')?? $user->email, 'placeholder' => 'user@geekbidz.com', 'readonly' => true])
+                                @component('components.forms.input', ['type' => 'email', 'name' => 'email', 'label' => 'Email', 'value' => old('email')?? $user->email, 'placeholder' => 'user@MDRepTime.com', 'readonly' => true])
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -34,7 +34,7 @@
                                         </span>
                                     @enderror
                                 @endcomponent
-                                @component('components.forms.input', ['type' => 'text', 'name' => 'company', 'label' => 'Company', 'value' => old('company') ?? $user->company, 'placeholder' => 'GeekBidz, LLC'])
+                                @component('components.forms.input', ['type' => 'text', 'name' => 'company', 'label' => 'Company', 'value' => old('company') ?? $user->company, 'placeholder' => 'MDRepTime, LLC'])
                                     @error('company')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

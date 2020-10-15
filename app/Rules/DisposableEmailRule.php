@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
  * Rule for disposable email checking
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 GeekBidz, LLC
+ * @copyright 2020 MDRepTime, LLC
  * @package  App\Rules
  */
 class DisposableEmailRule implements Rule

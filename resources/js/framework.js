@@ -2,15 +2,15 @@
  |--------------------------------------------------------------------------
  | File:      Framework.js
  | Author:    Antonio Vargas <localhost.80@gmail.com>
- | Copyright: GeekBidz, LLC
+ | Copyright: MDRepTime, LLC
  |--------------------------------------------------------------------------
  */
 // phpcs:ignoreFile
-if(!window.GeekBidz && window.jQuery && window.Cookies && window.axios) {
+if(!window.MDRepTime && window.jQuery && window.Cookies && window.axios) {
 
     // Namespace for framework
     //-----------------------------------//
-    window.GeekBidz = (function(){
+    window.MDRepTime = (function(){
 
         let instance;
 

@@ -25,7 +25,7 @@ body[id^="page-admin"]
 
     // Breadcrumbs
     //---------------------------------//
-    .gb-breadcrumbs
+    .md-breadcrumbs
     {
         position: relative;
         top: 0;
@@ -89,7 +89,7 @@ body[id^="page-admin"]
     overflow: hidden;
 
     // Toggler
-    .gb-sidebar-toggler
+    .md-sidebar-toggler
     {
         color: $light-grey-color;
         font-size: rem(28);

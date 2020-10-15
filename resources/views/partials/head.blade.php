@@ -8,7 +8,7 @@
     @hasSection('meta-keywords')<meta name="keywords" content="@yield('meta-keywords')">@endif
     @hasSection('meta-robots')<meta name="robots" content="@yield('meta-robots')">@endif
     {{--
-    <meta name="author" content="GeekBidz, LLC">
+    <meta name="author" content="MDRepTime, LLC">
     <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
@@ -35,7 +35,7 @@
     <link rel="canonical" href="@yield('canonical-url', config('app.url'))" />
     {{--[/canonical]--}}
     {{--[title]--}}
-    <title>@yield('html-title')@hasSection('html-title') - @endif{{ config('app.name', 'GeekBidz') }}</title>
+    <title>@yield('html-title')@hasSection('html-title') - @endif{{ config('app.name', 'MDRepTime') }}</title>
     {{--[/title]--}}
     {{--[scripts]--}}
     {{--@component('components.elements.script', ['src' => 'https://js.stripe.com/v3/'])@endcomponent--}}

@@ -13,7 +13,7 @@ use Closure;
  * Check User Status Middleware
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 GeekBidz, LLC
+ * @copyright 2020 MDRepTime, LLC
  * @package App\Http\Middleware
  */
 class CheckUser

@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-sm-10">
                             @component('components.forms.form', ['method' => 'POST', 'action' => route('admin.users.store'), 'confirmed' => false])
-                                @component('components.forms.input', ['type' => 'email', 'name' => 'email', 'label' => 'Email', 'value' => old('email'), 'placeholder' => 'user@geekbidz.com'])
+                                @component('components.forms.input', ['type' => 'email', 'name' => 'email', 'label' => 'Email', 'value' => old('email'), 'placeholder' => 'user@MDRepTime.com'])
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -33,7 +33,7 @@
                                         </span>
                                     @enderror
                                 @endcomponent
-                                @component('components.forms.input', ['type' => 'text', 'name' => 'company', 'label' => 'Company', 'value' => old('company'), 'placeholder' => 'GeekBidz, LLC'])
+                                @component('components.forms.input', ['type' => 'text', 'name' => 'company', 'label' => 'Company', 'value' => old('company'), 'placeholder' => 'MDRepTime, LLC'])
                                     @error('company')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
