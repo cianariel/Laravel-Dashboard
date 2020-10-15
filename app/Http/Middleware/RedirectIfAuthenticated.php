@@ -1,12 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Redirect If Authenticated Middleware
+ *
+ * @author Antonio Vargas <localhost.80@gmail.com>
+ * @copyright 2020 GeekBidz, LLC
+ * @package App\Http\Middleware
+ */
 class RedirectIfAuthenticated
 {
     /**
@@ -14,17 +21,14 @@ class RedirectIfAuthenticated
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  ...$guards
+     * @param  string|null  $guard
      * @return mixed
+     * @access public
      */
-    public function handle(Request $request, Closure $next, ...$guards)
+    public function handle($request, Closure $next, $guard = null)
     {
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
-            }
+        if (auth()->guard($guard)->check()) {
+             return redirect('/');
         }
 
         return $next($request);

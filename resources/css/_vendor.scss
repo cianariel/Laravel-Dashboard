@@ -1,0 +1,44 @@
+// Vendor style imports
+
+//------------------------------------//
+// Bootstrap
+//------------------------------------//
+@import '~bootstrap/scss/bootstrap';
+
+//------------------------------------//
+// FontAweomse
+//------------------------------------//
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+//------------------------------------//
+// Owl Carousel
+//-------------------------------------//
+@import '~owl.carousel/src/scss/owl.carousel';
+@import '~owl.carousel/src/scss/owl.theme.default';
+
+//------------------------------------//
+// Date
+//------------------------------------//
+@import '~daterangepicker/daterangepicker.css';
+
+
+//------------------------------------//
+// Chart.js
+//------------------------------------//
+@import '~chart.js/dist/Chart.min.css';
+
+
+//------------------------------------//
+// Dragula - Drag and Drop
+//------------------------------------//
+@import '~dragula/dist/dragula.css';
+
+
+//------------------------------------//
+// Summernote
+//------------------------------------//
+@import '~summernote/dist/summernote.css';
+@import '~summernote/dist/summernote-bs4.css';

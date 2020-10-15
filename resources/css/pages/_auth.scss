@@ -1,0 +1,88 @@
+// Authorization Pages
+//----------------------------------//
+
+body[id="page-login"],
+body[id="page-register"] {
+
+    #gb-app,
+    #gb-main,
+    #primary-card {
+        background: $light-grey-color;
+    }
+}
+
+// Register
+//-----------------------------------------//
+#register-section {
+
+    .card-register {
+
+        .card-body {
+
+            position: relative;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+
+            .overlay {
+                background: rgba($white, 0.9);
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: 999;
+                top: 0;
+                left: 0;
+
+                .icon
+                {
+                    font-size: rem(64);
+                }
+            }
+        }
+    }
+}
+
+// Login
+//-----------------------------------------//
+#login-section
+{
+    @include media-breakpoint-up(lg)
+    {
+        .card-login-right {
+
+            max-width: 40%;
+        }
+    }
+
+    .social-logins {
+
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+
+            padding: 0;
+            display: inline-block;
+            margin-right: rem(10);
+
+            &:last-child {
+                margin-right: rem(0) !important;
+            }
+
+            &:first-child {
+
+                a {
+                    padding: rem(5) rem(10);
+                }
+            }
+
+            a {
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

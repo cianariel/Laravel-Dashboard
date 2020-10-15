@@ -1,0 +1,1 @@
+{{-- Stored in /resources/views/components/elements/menu.blade.php --}}

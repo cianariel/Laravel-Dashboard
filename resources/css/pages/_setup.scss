@@ -1,0 +1,139 @@
+// Setup
+//------------------------------------//
+
+
+// Index
+//------------------------------------//
+
+body[id^="page-setup"] {
+
+    background: $light-grey-color;
+
+    // Admin App Override
+    //---------------------------------//
+    #gb-app
+    {
+        padding-bottom: 0 !important;
+        display: flex;
+        width: 100%;
+    }
+
+    // Admin Main Override
+    //---------------------------------//
+    #gb-main
+    {
+        display: flex;
+        width: 100%;
+        min-height: 100vh !important;
+        background: $light-grey-color;
+    }
+}
+
+#setup-profile-section {
+
+    .card-group {
+
+        .card-profile {
+
+        }
+
+        .card-portal-details {
+
+            // Desktop
+            @include media-breakpoint-up(md) {
+                max-width: 40%;
+            }
+
+            // Mobile
+            @include media-breakpoint-down(md) {
+                display: none !important;
+            }
+
+            .card-body
+            {
+                .portal-icon
+                {
+                    max-width: 50% !important;
+                    margin: 0 auto;
+                }
+
+                .portal-details
+                {
+                    display: block;
+                    width: 100%;
+                    margin: 0 auto;
+
+                    ul {
+                        li {
+                            padding:rem(5) rem(5);
+                            border-bottom:rem(3) solid $white;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+
+// Setup Settings Page
+//-----------------------------------------//
+#setup-setting-section {
+
+    .card-group {
+
+        .card-sidebar {
+
+            // Desktop
+            @include media-breakpoint-up(md) {
+                max-width: 40%;
+            }
+
+            // Mobile
+            @include media-breakpoint-down(md) {
+                display: none !important;
+            }
+        }
+    }
+}
+
+// Setup Packages Page
+//-----------------------------------------//
+#setup-package-section {
+
+    .card-package {
+
+        .package-image  {
+
+            min-width: rem(200);
+            max-width: rem(200);
+            min-height: rem(200);
+            max-height: rem(200);
+            margin: 0 auto;
+            overflow: hidden;
+
+            .image {
+                display: block;
+                text-align: center;
+                width: auto;
+                min-height: rem(200);
+                max-height: rem(200);
+
+            }
+        }
+    }
+
+
+
+    .card-logos {
+
+        .card-logo-item {
+            color: $light-grey-color-alt;
+        }
+
+        .selected {
+            color: $blue-color !important;
+        }
+    }
+}

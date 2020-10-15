@@ -1,0 +1,199 @@
+// _overrides.scss
+
+//------------------------------------------//
+// General
+//------------------------------------------//
+html {
+
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: $body-bg;
+    position: relative;
+}
+
+// Body
+body,
+.body {
+
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background: $body-bg;
+    font-family: $font-family-sans-serif;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+}
+
+* {
+
+  &:focus {
+
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  &:active {
+
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+
+a {
+    &:hover {
+        cursor: pointer !important;
+    }
+}
+
+//------------------------------------------//
+// Buttons
+//------------------------------------------//
+
+// Buttons.
+button,
+.btn,
+.btn-primary {
+
+    border-radius: 0 !important;
+
+    &:focus {
+
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+.btn-unstyled {
+
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+
+section,
+.section {
+
+    width: 100%;
+}
+
+//------------------------------------------//
+// Form Control
+//------------------------------------------//
+.form-control {
+
+    border-radius: 0;
+
+    &:focus {
+
+        box-shadow: none;
+        background: none;
+    }
+
+    &:active {
+
+        box-shadow: none;
+        background: none;
+    }
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+
+    &:focus {
+
+        background: $light-grey-color;
+        color: $grey-color;
+    }
+
+    &:active {
+        background: $light-grey-color;
+        color: $grey-color;
+    }
+}
+
+.input-group-text {
+
+}
+
+//------------------------------------------//
+// Pretty Checkboxes
+//------------------------------------------//
+.form-check {
+
+    padding-left: rem(0);
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.gb-checkbox {
+
+    display: inline-block;
+
+    input {
+        display: none;
+    }
+}
+
+//------------------------------------------//
+// Alerts
+//------------------------------------//
+.alert {
+
+    border-radius: rem(0) !important;
+}
+
+
+// File Input
+//------------------------------------//
+.custom-file {
+
+  input {
+
+    &:hover {
+      cursor: pointer !important;
+    }
+  }
+
+  &:hover {
+
+    cursor: pointer !important;
+  }
+
+  .custom-file-label {
+
+    box-shadow: none !important;
+    border-radius: 0;
+
+    &:hover {
+
+      cursor: pointer !important;
+      border: rem(1) solid $black !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
+    &:after {
+
+    }
+
+    &:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    &:active {
+
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+  }
+}
