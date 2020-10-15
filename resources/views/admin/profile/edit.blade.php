@@ -48,14 +48,14 @@
                                         </span>
                                     @enderror
                                 @endcomponent
-                                @component('components.forms.input', ['type' => 'email', 'name' => 'email', 'label' => 'Email', 'value' => old('email')?? $user->email, 'placeholder' => 'user@geekbidz.com'])
+                                @component('components.forms.input', ['type' => 'email', 'name' => 'email', 'label' => 'Email', 'value' => old('email')?? $user->email, 'placeholder' => 'user@MDRepTime.com'])
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 @endcomponent
-                                @component('components.forms.input', ['type' => 'text', 'name' => 'company', 'label' => 'Company', 'value' => old('company') ?? $user->company, 'placeholder' => 'GeekBidz, LLC'])
+                                @component('components.forms.input', ['type' => 'text', 'name' => 'company', 'label' => 'Company', 'value' => old('company') ?? $user->company, 'placeholder' => 'MDRepTime, LLC'])
                                     @error('company')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

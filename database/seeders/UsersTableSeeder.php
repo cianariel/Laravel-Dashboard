@@ -24,13 +24,13 @@ class UsersTableSeeder extends Seeder
             $site = Site::where('domain', config('app.base_domain'))->firstOrFail();
 
             // Create admin user.
-            if (!User::where('email', 'avargas@geekbidz.com')->exists()) {
+            if (!User::where('email', 'avargas@MDRepTime.com')->exists()) {
                 $user = new User;
                 $user->uuid = Str::uuid();
-                $user->email = 'avargas@geekbidz.com';
+                $user->email = 'avargas@MDRepTime.com';
                 $user->username = unique_username(Role::SUPER_ADMIN);
                 $user->password = Hash::make('ax71bzld'); // Hash::make('xiuZ7Lo^p1vighii');
-                $user->company  = 'GeekBidz, LLC';
+                $user->company  = 'MDRepTime, LLC';
                 $user->first_name = 'Antonio';
                 $user->last_name = 'Vargas';
                 $user->address = '2233 Broderick Ave';
@@ -54,13 +54,13 @@ class UsersTableSeeder extends Seeder
             }
 
             // Create admin user.
-            if (!User::where('email', 'akirkwood@geekbidz.com')->exists()) {
+            if (!User::where('email', 'akirkwood@MDRepTime.com')->exists()) {
                 $user = new User;
                 $user->uuid = Str::uuid();
-                $user->email = 'akirkwood@geekbidz.com';
+                $user->email = 'akirkwood@MDRepTime.com';
                 $user->username = unique_username(Role::SUPER_ADMIN);
                 $user->password = Hash::make('bsPXkpuc');
-                $user->company  = 'GeekBidz, LLC';
+                $user->company  = 'MDRepTime, LLC';
                 $user->first_name = 'Anthony';
                 $user->last_name = 'Kirkwood';
                 $user->address = '123 St.';
@@ -84,13 +84,13 @@ class UsersTableSeeder extends Seeder
                 $site->assignUser($user);
             }
 
-            if (!User::where('email', 'tlatino@geekbidz.com')->exists()) {
+            if (!User::where('email', 'tlatino@MDRepTime.com')->exists()) {
                 $user = new User;
                 $user->uuid = Str::uuid();
-                $user->email = 'tlatino@geekbidz.com';
+                $user->email = 'tlatino@MDRepTime.com';
                 $user->username = unique_username(Role::SUPER_ADMIN);
                 $user->password = Hash::make('bsPXkpuc');
-                $user->company  = 'GeekBidz, LLC';
+                $user->company  = 'MDRepTime, LLC';
                 $user->first_name = 'Tony';
                 $user->last_name = 'Latino';
                 $user->address = '123 St.';

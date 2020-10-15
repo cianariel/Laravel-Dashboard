@@ -9,7 +9,7 @@ use Illuminate\Contracts\Validation\Rule;
 /**
  * Rule for lowercase rule
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 GeekBidz, LLC
+ * @copyright 2020 MDRepTime, LLC
  * @package  App\Rules
  */
 class LowerCaseRule implements Rule

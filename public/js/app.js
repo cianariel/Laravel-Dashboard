@@ -30108,7 +30108,7 @@ window.dialog = function (title, message) {
 //-----------------------------------------------//
 
 
-window.wvPrettyCheckboxes = function ($) {
+window.mdPrettyCheckboxes = function ($) {
   var checkboxes = $('input[type=checkbox]');
   checkboxes.each(function (i) {
     var el = $(this);
@@ -30124,7 +30124,7 @@ window.wvPrettyCheckboxes = function ($) {
       }
     }
   }).promise().done(function () {
-    $('.gb-checkbox').on('click touchend', function (e) {
+    $('.md-checkbox').on('click touchend', function (e) {
       e.preventDefault();
       e.stopPropagation();
       var el = $(this);
@@ -30149,8 +30149,8 @@ window.wvPrettyCheckboxes = function ($) {
 //-----------------------------------------------//
 
 
-window.wvMultiSelectInputComponent = function ($) {
-  var components = $('.gb-multi-select');
+window.mdMultiSelectInputComponent = function ($) {
+  var components = $('.md-multi-select');
 
   if (components.length != 0) {
     components.each(function (i) {
@@ -30214,7 +30214,7 @@ window.wvMultiSelectInputComponent = function ($) {
 //-----------------------------------------------//
 
 
-window.wvFormAutoSubmitHandler = function ($) {
+window.mdFormAutoSubmitHandler = function ($) {
   if ($('.form-auto-submit').length !== 0) {
     var forms = $('.form-auto-submit');
     forms.change(function (e) {
@@ -30226,7 +30226,7 @@ window.wvFormAutoSubmitHandler = function ($) {
 //-----------------------------------------------//
 
 
-window.wvChooseFileHandler = function ($) {
+window.mdChooseFileHandler = function ($) {
   $('.custom-file-input').change(function (e) {
     var filename = e.target.files[0].name;
     $(this).parent().find('.custom-file-label').text(filename);
@@ -30235,18 +30235,18 @@ window.wvChooseFileHandler = function ($) {
 //-----------------------------------------------//
 
 
-window.wvDisableInputAutoFill = function ($) {//$('form').disableAutoFill();
+window.mdDisableInputAutoFill = function ($) {//$('form').disableAutoFill();
 }; // Remove input auto focus
 //-----------------------------------------------//
 
 
-window.wvRemoveInputAutoFocus = function ($) {
+window.mdRemoveInputAutoFocus = function ($) {
   $('input').removeAttr('autofocus');
 }; // Autosize Textarea boxes
 //-----------------------------------------------//
 
 
-window.wvTextAreaAutoSize = function ($) {
+window.mdTextAreaAutoSize = function ($) {
   if ($('textarea').length !== 0) {
     autosize($('textarea'));
   }
@@ -30254,14 +30254,14 @@ window.wvTextAreaAutoSize = function ($) {
 //-----------------------------------------------//
 
 
-window.wvEditor = function ($) {
+window.mdEditor = function ($) {
   var editor = $('.editor');
 
   if (editor) {
     editor.each(function (index) {
       var _editor = $(this);
 
-      var id = _editor.parent().find('.gb-editor-content').attr('id');
+      var id = _editor.parent().find('.md-editor-content').attr('id');
 
       var config = {
         tabsize: 2,
@@ -30269,11 +30269,11 @@ window.wvEditor = function ($) {
         toolbar: [['style', ['style']], ['font', ['bold', 'underline', 'clear']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video']]]
       };
 
-      var parent = _editor.closest('.gb-editor');
+      var parent = _editor.closest('.md-editor');
 
       var form = parent.closest('.form');
-      var input = parent.find('.gb-editor-content');
-      var toggler = parent.find('.gb-editor-toggler');
+      var input = parent.find('.md-editor-content');
+      var toggler = parent.find('.md-editor-toggler');
       input.summernote(config);
       toggler.on('click touchend', function (e) {
         e.preventDefault();
@@ -30307,7 +30307,7 @@ window.wvEditor = function ($) {
 //-----------------------------------------------//
 
 
-window.wvStateCountryHandler = function ($) {
+window.mdStateCountryHandler = function ($) {
   if ($('#country') !== 0 && $('#usa-states') !== 0 && $('#other-state') !== 0) {
     var country = $('#country');
     var usa_states = $('#usa-states');
@@ -30333,9 +30333,9 @@ window.wvStateCountryHandler = function ($) {
 //-----------------------------------------------//
 
 
-window.wvSideBarMenu = function ($) {
-  var sideBar = $('.gb-sidebar');
-  var toggler = $('.gb-sidebar-toggler');
+window.mdSideBarMenu = function ($) {
+  var sideBar = $('.md-sidebar');
+  var toggler = $('.md-sidebar-toggler');
   var card_group = $('.card-main-group');
   var card_main_content = card_group.find('.card-main-content');
 
@@ -30343,7 +30343,7 @@ window.wvSideBarMenu = function ($) {
     // Toggeler Click Event
     toggler.on('click touchend', function (e) {
       e.preventDefault();
-      var sideBar = $('.gb-sidebar');
+      var sideBar = $('.md-sidebar');
       var hidden = sideBar.data('hidden');
 
       if (hidden) {
@@ -30363,9 +30363,9 @@ window.wvSideBarMenu = function ($) {
 //-----------------------------------------------//
 
 
-window.wvTables = function ($) {
-  if ($('.gb-table').length !== 0) {
-    var tables = $('.gb-table');
+window.mdTables = function ($) {
+  if ($('.md-table').length !== 0) {
+    var tables = $('.md-table');
     var tr = tables.find('tbody tr');
 
     var _links = tables.find('a');
@@ -30401,7 +30401,7 @@ window.wvTables = function ($) {
 //-----------------------------------------------//
 
 
-window.wvInputMasks = function ($) {
+window.mdInputMasks = function ($) {
   if ($('input').length !== 0) {
     if (_typeof($('input').attr('data-inputmask')) != undefined) {
       Inputmask().mask(document.querySelectorAll('input'));
@@ -30417,7 +30417,7 @@ window.wvInputMasks = function ($) {
 //-----------------------------------------------//
 
 
-window.wvFormUpdateBtnHandler = function ($) {
+window.mdFormUpdateBtnHandler = function ($) {
   if ($('.form').length !== 0) {
     var forms = $('.form');
     forms.each(function (i) {
@@ -30435,9 +30435,9 @@ window.wvFormUpdateBtnHandler = function ($) {
 //-----------------------------------------//
 
 
-window.wvConfirmedActionLink = function ($) {
-  if ($('.gb-confirm-action-link').length !== 0) {
-    var btn = $('.gb-confirm-action-link');
+window.mdConfirmedActionLink = function ($) {
+  if ($('.md-confirm-action-link').length !== 0) {
+    var btn = $('.md-confirm-action-link');
     var dialog_modal = $('#dialog-modal');
     var dialog_footer = dialog_modal.find('.modal-footer');
     var html = '';
@@ -30463,7 +30463,7 @@ window.wvConfirmedActionLink = function ($) {
               response = true;
 
               if (response == true) {
-                GB.redirect(href);
+                MD.redirect(href);
               }
             });
           }
@@ -30476,16 +30476,16 @@ window.wvConfirmedActionLink = function ($) {
 //-----------------------------------------//
 
 
-window.wvConfirmedActionForm = function ($) {
-  if ($('.gb-confirm-action-form').length !== 0) {
-    var forms = $('.gb-confirm-action-form');
+window.mdConfirmedActionForm = function ($) {
+  if ($('.md-confirm-action-form').length !== 0) {
+    var forms = $('.md-confirm-action-form');
     var dialog_modal = $('#dialog-modal');
     var dialog_footer = dialog_modal.find('.modal-footer');
     var html = '';
     forms.find('button[type="submit"]').on('click touchend', function (e) {
       e.preventDefault();
       e.stopImmediatePropagation();
-      var form = $(this).closest('.gb-confirm-action-form');
+      var form = $(this).closest('.md-confirm-action-form');
       var type = form.data('type');
       var title = form.data('dialog-title');
       var message = form.data('dialog-message');
@@ -30510,9 +30510,9 @@ window.wvConfirmedActionForm = function ($) {
 //-----------------------------------------//
 
 
-window.wvFixedButtonBar = function ($) {
-  if ($('.gb-btn-fixed-bar').length !== 0) {
-    var btnBar = $('.gb-btn-fixed-bar');
+window.mdFixedButtonBar = function ($) {
+  if ($('.md-btn-fixed-bar').length !== 0) {
+    var btnBar = $('.md-btn-fixed-bar');
     $(window).scroll(function (e) {
       var current_position = btnBar.position();
 
@@ -30528,8 +30528,8 @@ window.wvFixedButtonBar = function ($) {
     });
   }
 
-  if ($('.gb-btn-fixed-bar-alt').length !== 0) {
-    var _btnBar = $('.gb-btn-fixed-bar-alt');
+  if ($('.md-btn-fixed-bar-alt').length !== 0) {
+    var _btnBar = $('.md-btn-fixed-bar-alt');
 
     var parent = _btnBar.parent();
 
@@ -30558,9 +30558,9 @@ window.wvFixedButtonBar = function ($) {
 //----------------------------------------//
 
 
-window.wvRequireIfFormInput = function ($) {
-  if ($('.gb-required-if-input').length != 0) {
-    var input = $('.gb-required-if-input');
+window.mdRequireIfFormInput = function ($) {
+  if ($('.md-required-if-input').length != 0) {
+    var input = $('.md-required-if-input');
     var require_input = $('#' + input.data('required-if'));
     var require_value = input.data('required-if-value');
 
@@ -30582,9 +30582,9 @@ window.wvRequireIfFormInput = function ($) {
 //-----------------------------------------//
 
 
-window.wvFormInputToggler = function ($) {
-  if ($('.gb-toggler').length > 0) {
-    var togglers = $('.gb-toggler');
+window.mdFormInputToggler = function ($) {
+  if ($('.md-toggler').length > 0) {
+    var togglers = $('.md-toggler');
     var toggle_icon_on = 'fa-toggle-on';
     var toggle_icon_off = 'fa-toggle-off';
     togglers.each(function (i) {
@@ -30647,15 +30647,15 @@ window.wvFormInputToggler = function ($) {
 }; // Feather Icons
 
 
-window.wvFeatherIcons = function () {
+window.mdFeatherIcons = function () {
   feather.replace();
 }; // Vertical Tabs
 
 
-window.wvVerticalTabs = function ($) {
-  var nav = $('.gb-nav-vertical-tabs');
+window.mdVerticalTabs = function ($) {
+  var nav = $('.md-nav-vertical-tabs');
   links = nav.find('.nav-link');
-  var tabsContentBlocks = $('.gb-nav-vertical-tabs-content .gb-tab-block');
+  var tabsContentBlocks = $('.md-nav-vertical-tabs-content .md-tab-block');
 
   if (links.length !== 0 && tabsContentBlocks.length !== 0) {
     links.on('click touchend', function (e) {
@@ -30678,44 +30678,44 @@ window.wvVerticalTabs = function ($) {
 
 jQuery(document).ready(function ($) {
   // PrettyCheckboxes
-  wvPrettyCheckboxes($); // State/Country Handler
+  mdPrettyCheckboxes($); // State/Country Handler
 
-  wvStateCountryHandler($); // Textarea boxes
+  mdStateCountryHandler($); // Textarea boxes
 
-  wvTextAreaAutoSize($); // Side Bar Menu Handler
+  mdTextAreaAutoSize($); // Side Bar Menu Handler
 
-  wvSideBarMenu($); // File handler
+  mdSideBarMenu($); // File handler
 
-  wvChooseFileHandler($); // Disable auto fill
-  // wvDisableInputAutoFill($);
+  mdChooseFileHandler($); // Disable auto fill
+  // mdDisableInputAutoFill($);
   // Remove auto focus
 
-  wvRemoveInputAutoFocus($); // Multiselect input component
+  mdRemoveInputAutoFocus($); // Multiselect input component
 
-  wvMultiSelectInputComponent($); // Forms Auto Submit
+  mdMultiSelectInputComponent($); // Forms Auto Submit
 
-  wvFormAutoSubmitHandler($); // Forms Update Button Handler
+  mdFormAutoSubmitHandler($); // Forms Update Button Handler
 
-  wvFormUpdateBtnHandler($); // Confirmed Form
+  mdFormUpdateBtnHandler($); // Confirmed Form
 
-  wvConfirmedActionForm($); // Confirmed Dialog
+  mdConfirmedActionForm($); // Confirmed Dialog
 
-  wvConfirmedActionLink($); // WYSIWYG Editor
+  mdConfirmedActionLink($); // WYSIWYG Editor
 
-  wvEditor($); // Tables
+  mdEditor($); // Tables
 
-  wvTables($); // Input Masks
+  mdTables($); // Input Masks
 
-  wvInputMasks($); // Fixed Button Bar
+  mdInputMasks($); // Fixed Button Bar
 
-  wvFixedButtonBar($); // Required if input
+  mdFixedButtonBar($); // Required if input
 
-  wvRequireIfFormInput($); // Toggler
+  mdRequireIfFormInput($); // Toggler
 
-  wvFormInputToggler($); // Feather Icons
+  mdFormInputToggler($); // Feather Icons
 
-  wvFeatherIcons();
-  wvVerticalTabs($);
+  mdFeatherIcons();
+  mdVerticalTabs($);
 });
 
 /***/ }),

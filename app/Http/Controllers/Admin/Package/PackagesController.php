@@ -18,7 +18,7 @@ use App\Rules\SanitizeHtml;
  * Packages Controller
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 GeekBidz, LLC
+ * @copyright 2020 MDRepTime, LLC
  * @package App\Http\Controllers\Admin\Package
  */
 class PackagesController extends AdminController

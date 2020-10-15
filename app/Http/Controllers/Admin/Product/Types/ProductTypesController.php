@@ -15,7 +15,7 @@ use App\Rules\SanitizeHtml;
  * Admin Product Types Resource Controller
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 GeekBidz, LLC
+ * @copyright 2020 MDRepTime, LLC
  * @package App\Http\Controllers\Admin\Product
  */
 class ProductTypesController extends AdminController

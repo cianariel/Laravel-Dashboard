@@ -219,7 +219,7 @@ window.dialog = function (title, message) {
 
 // Pretty Checkbox
 //-----------------------------------------------//
-window.wvPrettyCheckboxes = function ($) {
+window.mdPrettyCheckboxes = function ($) {
     var checkboxes = $('input[type=checkbox]');
     checkboxes.each(function (i) {
         var el = $(this);
@@ -236,7 +236,7 @@ window.wvPrettyCheckboxes = function ($) {
         }
 
     }).promise().done(function () {
-        $('.gb-checkbox').on('click touchend', function (e) {
+        $('.md-checkbox').on('click touchend', function (e) {
             e.preventDefault();
             e.stopPropagation();
 
@@ -262,9 +262,9 @@ window.wvPrettyCheckboxes = function ($) {
 
 // Component Multiselect Buttons Handler
 //-----------------------------------------------//
-window.wvMultiSelectInputComponent = function ($) {
+window.mdMultiSelectInputComponent = function ($) {
 
-    let components = $('.gb-multi-select');
+    let components = $('.md-multi-select');
 
     if (components.length != 0) {
         components.each(function (i) {
@@ -336,7 +336,7 @@ window.wvMultiSelectInputComponent = function ($) {
 
 // Form Auto Submit Handler
 //-----------------------------------------------//
-window.wvFormAutoSubmitHandler = function ($) {
+window.mdFormAutoSubmitHandler = function ($) {
 
     if ($('.form-auto-submit').length !== 0) {
         let forms = $('.form-auto-submit');
@@ -350,7 +350,7 @@ window.wvFormAutoSubmitHandler = function ($) {
 
 // Fileupload Choose File Handler
 //-----------------------------------------------//
-window.wvChooseFileHandler = function ($) {
+window.mdChooseFileHandler = function ($) {
     $('.custom-file-input').change(function (e) {
         var filename = e.target.files[0].name;
         $(this).parent().find('.custom-file-label').text(filename);
@@ -359,19 +359,19 @@ window.wvChooseFileHandler = function ($) {
 
 // Disable auto fill
 //-----------------------------------------------//
-window.wvDisableInputAutoFill = function ($) {
+window.mdDisableInputAutoFill = function ($) {
     //$('form').disableAutoFill();
 }
 
 // Remove input auto focus
 //-----------------------------------------------//
-window.wvRemoveInputAutoFocus = function ($) {
+window.mdRemoveInputAutoFocus = function ($) {
     $('input').removeAttr('autofocus');
 }
 
 // Autosize Textarea boxes
 //-----------------------------------------------//
-window.wvTextAreaAutoSize = function ($) {
+window.mdTextAreaAutoSize = function ($) {
 
     if ($('textarea').length !== 0) {
         autosize($('textarea'));
@@ -380,7 +380,7 @@ window.wvTextAreaAutoSize = function ($) {
 
 // WYSIWYG Editor
 //-----------------------------------------------//
-window.wvEditor = function ($) {
+window.mdEditor = function ($) {
 
     let editor = $('.editor');
 
@@ -388,7 +388,7 @@ window.wvEditor = function ($) {
         editor.each(function (index) {
 
             let _editor = $(this);
-            let id = _editor.parent().find('.gb-editor-content').attr('id');
+            let id = _editor.parent().find('.md-editor-content').attr('id');
             let config = {
                 tabsize: 2,
                 height: 250,
@@ -402,10 +402,10 @@ window.wvEditor = function ($) {
                 ]
             };
 
-            let parent = _editor.closest('.gb-editor');
+            let parent = _editor.closest('.md-editor');
             let form = parent.closest('.form');
-            let input = parent.find('.gb-editor-content');
-            let toggler = parent.find('.gb-editor-toggler');
+            let input = parent.find('.md-editor-content');
+            let toggler = parent.find('.md-editor-toggler');
                 input.summernote(config);
 
             toggler.on('click touchend', function (e) {
@@ -444,7 +444,7 @@ window.wvEditor = function ($) {
 
 // State and Country Handler
 //-----------------------------------------------//
-window.wvStateCountryHandler = function ($) {
+window.mdStateCountryHandler = function ($) {
 
     if ($('#country') !== 0  && $('#usa-states') !== 0  && $('#other-state') !== 0 ) {
         let country = $('#country');
@@ -473,9 +473,9 @@ window.wvStateCountryHandler = function ($) {
 
 // Sidebar Menu
 //-----------------------------------------------//
-window.wvSideBarMenu = function ($) {
-    let sideBar = $('.gb-sidebar');
-    let toggler = $('.gb-sidebar-toggler');
+window.mdSideBarMenu = function ($) {
+    let sideBar = $('.md-sidebar');
+    let toggler = $('.md-sidebar-toggler');
     let card_group = $('.card-main-group');
     let card_main_content = card_group.find('.card-main-content');
 
@@ -484,7 +484,7 @@ window.wvSideBarMenu = function ($) {
         toggler.on('click touchend', function (e) {
             e.preventDefault();
 
-            let sideBar = $('.gb-sidebar');
+            let sideBar = $('.md-sidebar');
             let hidden = sideBar.data('hidden');
 
 
@@ -505,10 +505,10 @@ window.wvSideBarMenu = function ($) {
 
 // Tables
 //-----------------------------------------------//
-window.wvTables = function ($) {
+window.mdTables = function ($) {
 
-    if ($('.gb-table').length !== 0) {
-        let tables = $('.gb-table');
+    if ($('.md-table').length !== 0) {
+        let tables = $('.md-table');
         let tr = tables.find('tbody tr');
         let links = tables.find('a');
         let btns = tables.find('button[type="submit"]');
@@ -543,7 +543,7 @@ window.wvTables = function ($) {
 
 // Input Masking
 //-----------------------------------------------//
-window.wvInputMasks = function ($) {
+window.mdInputMasks = function ($) {
 
     if ($('input').length !== 0) {
         if (typeof $('input').attr('data-inputmask') != undefined) {
@@ -560,7 +560,7 @@ window.wvInputMasks = function ($) {
 
 // Forms
 //-----------------------------------------------//
-window.wvFormUpdateBtnHandler = function ($) {
+window.mdFormUpdateBtnHandler = function ($) {
 
     if ($('.form').length !== 0) {
         let forms = $('.form');
@@ -581,10 +581,10 @@ window.wvFormUpdateBtnHandler = function ($) {
 
 // Confirm Action Link
 //-----------------------------------------//
-window.wvConfirmedActionLink = function ($) {
+window.mdConfirmedActionLink = function ($) {
 
-    if ($('.gb-confirm-action-link').length !== 0) {
-        let btn = $('.gb-confirm-action-link');
+    if ($('.md-confirm-action-link').length !== 0) {
+        let btn = $('.md-confirm-action-link');
         let dialog_modal = $('#dialog-modal');
         let dialog_footer = dialog_modal.find('.modal-footer');
         let html = '';
@@ -613,7 +613,7 @@ window.wvConfirmedActionLink = function ($) {
                             response = true;
 
                             if (response == true) {
-                                GB.redirect(href);
+                                MD.redirect(href);
                             }
                         });
                     }
@@ -628,10 +628,10 @@ window.wvConfirmedActionLink = function ($) {
 
 // Confirm Action Form
 //-----------------------------------------//
-window.wvConfirmedActionForm = function ($) {
+window.mdConfirmedActionForm = function ($) {
 
-    if ($('.gb-confirm-action-form').length !== 0) {
-        let forms = $('.gb-confirm-action-form');
+    if ($('.md-confirm-action-form').length !== 0) {
+        let forms = $('.md-confirm-action-form');
         let dialog_modal = $('#dialog-modal');
         let dialog_footer = dialog_modal.find('.modal-footer');
         let html = '';
@@ -640,7 +640,7 @@ window.wvConfirmedActionForm = function ($) {
             e.preventDefault();
             e.stopImmediatePropagation();
 
-            let form = $(this).closest('.gb-confirm-action-form');
+            let form = $(this).closest('.md-confirm-action-form');
             let type = form.data('type');
             let title = form.data('dialog-title');
             let message = form.data('dialog-message');
@@ -670,10 +670,10 @@ window.wvConfirmedActionForm = function ($) {
 
 // Fixed Button Bar
 //-----------------------------------------//
-window.wvFixedButtonBar = function ($) {
+window.mdFixedButtonBar = function ($) {
 
-    if ($('.gb-btn-fixed-bar').length !== 0) {
-        let btnBar = $('.gb-btn-fixed-bar');
+    if ($('.md-btn-fixed-bar').length !== 0) {
+        let btnBar = $('.md-btn-fixed-bar');
 
         $(window).scroll(function (e) {
 
@@ -691,8 +691,8 @@ window.wvFixedButtonBar = function ($) {
         });
     }
 
-    if ($('.gb-btn-fixed-bar-alt').length !== 0) {
-        let btnBar = $('.gb-btn-fixed-bar-alt');
+    if ($('.md-btn-fixed-bar-alt').length !== 0) {
+        let btnBar = $('.md-btn-fixed-bar-alt');
         let parent = btnBar.parent();
 
         console.log('exists');
@@ -718,10 +718,10 @@ window.wvFixedButtonBar = function ($) {
 
 // Require If Form Input Show/Hide
 //----------------------------------------//
-window.wvRequireIfFormInput = function ($) {
+window.mdRequireIfFormInput = function ($) {
 
-    if ($('.gb-required-if-input').length != 0) {
-        let input = $('.gb-required-if-input');
+    if ($('.md-required-if-input').length != 0) {
+        let input = $('.md-required-if-input');
         let require_input = $('#'+input.data('required-if'));
         let require_value = input.data('required-if-value');
 
@@ -744,10 +744,10 @@ window.wvRequireIfFormInput = function ($) {
 
 // Form Toggler
 //-----------------------------------------//
-window.wvFormInputToggler = function ($) {
+window.mdFormInputToggler = function ($) {
 
-    if ($('.gb-toggler').length > 0) {
-        let togglers = $('.gb-toggler');
+    if ($('.md-toggler').length > 0) {
+        let togglers = $('.md-toggler');
         let toggle_icon_on = 'fa-toggle-on';
         let toggle_icon_off = 'fa-toggle-off';
 
@@ -816,16 +816,16 @@ window.wvFormInputToggler = function ($) {
 }
 
 // Feather Icons
-window.wvFeatherIcons = function () {
+window.mdFeatherIcons = function () {
     feather.replace();
 }
 
 // Vertical Tabs
-window.wvVerticalTabs = function ($) {
+window.mdVerticalTabs = function ($) {
 
-    let nav = $('.gb-nav-vertical-tabs');
+    let nav = $('.md-nav-vertical-tabs');
         links = nav.find('.nav-link');
-    let tabsContentBlocks = $('.gb-nav-vertical-tabs-content .gb-tab-block');
+    let tabsContentBlocks = $('.md-nav-vertical-tabs-content .md-tab-block');
 
     if (links.length !== 0 && tabsContentBlocks.length !== 0) {
         links.on('click touchend', function (e) {
@@ -852,61 +852,61 @@ window.wvVerticalTabs = function ($) {
 jQuery(document).ready(function ($) {
 
     // PrettyCheckboxes
-    wvPrettyCheckboxes($);
+    mdPrettyCheckboxes($);
 
     // State/Country Handler
-    wvStateCountryHandler($);
+    mdStateCountryHandler($);
 
     // Textarea boxes
-    wvTextAreaAutoSize($);
+    mdTextAreaAutoSize($);
 
     // Side Bar Menu Handler
-    wvSideBarMenu($);
+    mdSideBarMenu($);
 
     // File handler
-    wvChooseFileHandler($);
+    mdChooseFileHandler($);
 
     // Disable auto fill
-    // wvDisableInputAutoFill($);
+    // mdDisableInputAutoFill($);
 
     // Remove auto focus
-    wvRemoveInputAutoFocus($);
+    mdRemoveInputAutoFocus($);
 
     // Multiselect input component
-    wvMultiSelectInputComponent($);
+    mdMultiSelectInputComponent($);
 
     // Forms Auto Submit
-    wvFormAutoSubmitHandler($);
+    mdFormAutoSubmitHandler($);
 
     // Forms Update Button Handler
-    wvFormUpdateBtnHandler($);
+    mdFormUpdateBtnHandler($);
 
     // Confirmed Form
-    wvConfirmedActionForm($);
+    mdConfirmedActionForm($);
 
     // Confirmed Dialog
-    wvConfirmedActionLink($);
+    mdConfirmedActionLink($);
 
     // WYSIWYG Editor
-    wvEditor($);
+    mdEditor($);
 
     // Tables
-    wvTables($);
+    mdTables($);
 
     // Input Masks
-    wvInputMasks($);
+    mdInputMasks($);
 
     // Fixed Button Bar
-    wvFixedButtonBar($);
+    mdFixedButtonBar($);
 
     // Required if input
-    wvRequireIfFormInput($);
+    mdRequireIfFormInput($);
 
     // Toggler
-    wvFormInputToggler($);
+    mdFormInputToggler($);
 
     // Feather Icons
-    wvFeatherIcons();
+    mdFeatherIcons();
 
-    wvVerticalTabs($);
+    mdVerticalTabs($);
 });

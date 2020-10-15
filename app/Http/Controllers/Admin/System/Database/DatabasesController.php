@@ -16,7 +16,7 @@ use App\Models\System\Role;
  * DatabasesController
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 GeekBidz, LLC
+ * @copyright 2020 MDRepTime, LLC
  * @package App\Http\Controllers\Admin\System\Database
  */
 class DatabasesController extends AdminController

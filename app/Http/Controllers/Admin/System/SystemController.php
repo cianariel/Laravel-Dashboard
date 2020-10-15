@@ -15,7 +15,7 @@ use Illuminate\Support\Carbon;
  * System Controller
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 GeekBidz, LLC
+ * @copyright 2020 MDRepTime, LLC
  * @package App\Http\Controllers\Admin\System
  */
 class SystemController extends AdminController

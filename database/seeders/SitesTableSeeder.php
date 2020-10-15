@@ -24,7 +24,7 @@ class SitesTableSeeder extends Seeder
             $site = new Site;
             $site->uuid = Str::uuid();
             $site->name = Str::slug(config('app.name'));
-            $site->domain = env('APP_DOMAIN', 'geekbidz.com');
+            $site->domain = env('APP_DOMAIN', 'MDRepTime.com');
             $site->status = Site::ACTIVE;
             $site->created_at = now();
             $site->saveOrFail();

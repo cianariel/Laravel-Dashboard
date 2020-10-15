@@ -15,7 +15,7 @@ use App\Rules\SanitizeHtml;
  * Currencies Resource Controller
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 GeekBidz, LLC
+ * @copyright 2020 MDRepTime, LLC
  * @package App\Http\Controllers\Admin\Currency
  */
 class CurrenciesController extends AdminController

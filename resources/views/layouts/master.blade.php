@@ -26,8 +26,8 @@
             stripe_pk: @json(env('STRIPE_API_KEY'))
           };
 
-          const GB = GeekBidz.getInstance();
-          GB.init(config);
+          const MD = MDRepTime.getInstance();
+          MD.init(config);
         //-->
         </script>
         {{--[/scripts]--}}

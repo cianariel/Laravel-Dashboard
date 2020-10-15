@@ -3,7 +3,7 @@
 //---------------------------------//
 // Breadcrumbs
 //---------------------------------//
-.gb-breadcrumbs
+.md-breadcrumbs
 {
     position: relative;
     top: 0;
@@ -63,7 +63,7 @@
 //---------------------------------//
 // Cards
 //---------------------------------//
-.gb-card,
+.md-card,
 .card {
 
     border-radius: rem(0);
@@ -85,7 +85,7 @@
 //---------------------------------//
 // Modal
 //---------------------------------//
-.gb-dialog-modal
+.md-dialog-modal
 {
     border: rem(1) solid $blue-color;
     border-radius: rem(0) !important;
@@ -132,7 +132,7 @@
 //---------------------------------//
 // Multiselect Buttons
 //---------------------------------//
-.gb-multi-select
+.md-multi-select
 {
     ul
     {
@@ -167,7 +167,7 @@
 //---------------------------------//
 // Carousel
 //---------------------------------//
-.gb-carousel {
+.md-carousel {
 
     @media(min-width: rem(967)) {
         max-width: rem(400);
@@ -186,7 +186,7 @@
                 background: rgba($blue-color, 0.7) !important;
                 z-index: 999;
 
-                .gb-confirm-action-link {
+                .md-confirm-action-link {
 
                     color: $white;
                     text-decoration: none;
@@ -206,11 +206,11 @@
 //---------------------------------//
 // WYSIWYG Editor
 //---------------------------------//
-.gb-editor {
+.md-editor {
 
     color: $black;
 
-    .gb-editor-toggler {
+    .md-editor-toggler {
 
         background: none !important;
         border: none !important;
@@ -277,7 +277,7 @@
 //---------------------------------//
 // Pagination
 //---------------------------------//
-.gb-pagination {
+.md-pagination {
 
     .pagination {
 
@@ -319,7 +319,7 @@
 //---------------------------------//
 // Tables
 //---------------------------------//
-.gb-table {
+.md-table {
 
     tbody {
 
@@ -382,7 +382,7 @@
 //---------------------------------//
 // Fixed Button Bar
 //---------------------------------//
-.gb-btn-fixed-bar
+.md-btn-fixed-bar
 {
     position: absolute;
     top: rem(40);
@@ -400,7 +400,7 @@
     }
 }
 
-.gb-btn-fixed-bar-scrolled
+.md-btn-fixed-bar-scrolled
 {
     top:rem(0);
     width: 100%;
@@ -469,7 +469,7 @@
         background: $dark-puple-color;
 
         // Navbar
-        .gb-navbar {
+        .md-navbar {
 
             // Brand
             .navbar-brand {
@@ -673,7 +673,7 @@
 //-------------------------------//
 // Toggler
 //-------------------------------//
-.gb-toggler
+.md-toggler
 {
     line-height: 1;
 
