@@ -52,48 +52,6 @@ class Role extends SpatieRole
     const ADMIN = 'admin';
 
     /**
-     * Role editor for blog posts, and pages users
-     *
-     * @var string EDITOR
-     */
-    const EDITOR = 'editor';
-
-    /**
-     * Role author for blog posts, and pages users
-     *
-     * @var string AUTHOR
-     */
-    const AUTHOR = 'author';
-
-    /**
-     * Role for support tickets users
-     *
-     * @var string SUPPORT
-     */
-    const SUPPORT = 'support';
-
-    /**
-     * Role for sales users
-     *
-     * @var string SALES
-     */
-    const SALES = 'sales';
-
-    /**
-     * Role for billing users
-     *
-     * @var string BILLING
-     */
-    const BILLING = 'billing';
-
-    /**
-     * Role manager users
-     *
-     * @var string MANAGER
-     */
-    const MANAGER = 'manager';
-
-    /**
      * Role for generic users
      *
      * @var string USER
@@ -114,16 +72,6 @@ class Role extends SpatieRole
     const UNASSIGNED = 'unassigned';
 
     /**
-     * @var string PARTNER
-     */
-    const PARTNER = 'partner';
-
-    /**
-     * @var string GEEK
-     */
-    const GEEK = 'geek';
-
-    /**
      * List of ROLES
      *
      * @var array roles
@@ -133,14 +81,7 @@ class Role extends SpatieRole
         self::UNASSIGNED,
         self::SUPER_ADMIN,
         self::ADMIN,
-        self::EDITOR,
-        self::AUTHOR,
-        self::SUPPORT,
-        self::SALES,
-        self::BILLING,
-        self::MANAGER,
-        self::PARTNER,
-        self::GEEK
+        self::USER
     ];
 
     /**

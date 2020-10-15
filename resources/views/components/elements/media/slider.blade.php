@@ -1,0 +1,1 @@
+{{-- Stored in /resources/components/media/slider.blade.php --}}

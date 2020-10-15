@@ -1,0 +1,14 @@
+// Convert Pixels to REM
+
+@function rem($px)
+{
+    @if $px == 0
+    {
+        @return 0rem;
+    }
+    @else
+    {
+        @return unquote(($px * 0.0625) + 'rem');
+    }
+
+}

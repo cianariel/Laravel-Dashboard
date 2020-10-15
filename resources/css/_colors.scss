@@ -1,0 +1,131 @@
+// Colors
+//-------------------------------------------//
+
+$light-blue-color: #0a8cbf;
+$blue-color: #153d77;
+$blue-color-alt: #0879a6;
+$baby-blue-color: #46b1db;
+$dark-blue-color: #4e8df0;
+$light-grey-color: #e2e2e2;
+$light-grey-color-alt: #e9eff5;
+$grey-color: #3d3d3d;
+$dark-grey-color: #262626;
+$lighter-grey: #fafbfd;
+$red-color: #c90610;
+$white: #fff;
+$black: #000;
+$dark-puple-color: #101626;
+
+// Theme Colors
+$gb-primary-color: $blue-color;
+
+.bg-none {
+    background: none !important;
+}
+
+.bg-white {
+    background: $white !important;
+}
+
+.bg-black {
+    background: $black !important;
+}
+
+.fg-black
+{
+    color: $black !important;
+}
+
+.fg-white {
+    color: $white !important;
+}
+
+.bg-light-blue {
+    background: $light-blue-color !important;
+}
+
+.fg-light-blue {
+    color: $light-blue-color !important;
+}
+
+.bg-blue {
+    background: $blue-color !important;
+}
+
+.fg-blue {
+    color: $blue-color !important;
+}
+
+.bg-baby-blue {
+    background: $baby-blue-color !important;
+}
+
+.fg-baby-blue {
+    color: $baby-blue-color !important;
+}
+
+.bg-dark-blue {
+    background: $dark-blue-color !important;
+}
+
+.fg-dark-blue {
+    color: $dark-blue-color !important;
+}
+
+.bg-light-grey {
+    background: $light-grey-color !important;
+}
+
+.fg-light-grey {
+    color: $light-grey-color !important;
+}
+
+.bg-light-grey-alt {
+    background: $light-grey-color-alt !important;
+}
+
+.fg-light-grey-alt {
+    color: $light-grey-color-alt !important;
+}
+
+.bg-lighter-grey
+{
+    background: $lighter-grey !important;
+}
+
+.fg-lighter-grey {
+    color: $lighter-grey !important;
+}
+
+.bg-grey {
+    background: $grey-color !important;
+}
+
+.fg-grey {
+    color: $grey-color !important;
+}
+
+.bg-dark-grey {
+    background: $dark-grey-color !important;
+}
+
+.fg-dark-grey {
+
+    color: $dark-grey-color !important;
+}
+
+.bg-red {
+    background: $red-color !important;
+}
+
+.fg-red {
+    color: $red-color !important;
+}
+
+.bg-dark-purple {
+    background: $dark-puple-color !important;
+}
+
+.fg-dark-purple {
+    background: $dark-puple-color !important;
+}

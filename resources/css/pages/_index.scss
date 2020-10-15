@@ -1,0 +1,26 @@
+// Index
+//------------------------------------//
+
+body[id="page-index-welcome"] {
+
+    #gb-app,
+    #gb-main,
+    #primary-card {
+        background: $light-grey-color;
+
+    }
+
+    // Index
+    .index-header-waver-overlay
+    {
+        position: absolute;
+        bottom: rem(-3);
+        left: 0;
+        width: 100%;
+    }
+
+    .index-header-top
+    {
+        min-height: rem(325);
+    }
+}

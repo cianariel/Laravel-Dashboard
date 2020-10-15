@@ -1,0 +1,43 @@
+@mixin hidden
+{
+  display: none !important;
+}
+
+@mixin desktop-only
+{
+  @include media-breakpoint-down(lg)
+  {
+    display: none !important;
+  }
+}
+
+@mixin tablet-only
+{
+  @include media-breakpoint-down(md)
+  {
+    display: none !important;
+  }
+
+  @include media-breakpoint-up(lg)
+  {
+    display: none !important;
+  }
+}
+
+@mixin mobile-only
+{
+  @include media-breakpoint-up(sm)
+  {
+    display: none;
+  }
+}
+
+@mixin full-width
+{
+  width: 100% !important;
+}
+
+@mixin full-height
+{
+  height: 100% !important;
+}

@@ -1,0 +1,2 @@
+{{-- Stored in /resources/views/components/forms/hidden.blade.php --}}
+<input id="{{ $id?? $name }}" @if(isset($attrs) && filled($attrs)) @foreach($attrs as $attr => $attr_value) {{ $attr }}="{{ $attr_value }}" @endforeach @endif name="{{ $name }}" type="hidden" class="@if(isset($classes) && filled($classes) && count($classes) !=0) {{ implode(' ', $classes) }} @endif" value="{{ $value }}">

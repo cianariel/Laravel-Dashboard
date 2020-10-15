@@ -1,0 +1,2 @@
+{{-- Stored in / resources/views/components/elements/image.blade.php --}}
+<img id="{{ $id ?? uniqid('gb-image-', false) }}" class="@if(isset($classes) && filled($classes) && is_array($classes)) {{ implode(' ', $classes) }} @endif" src="{{ $src }}" @if(isset($attrs) && filled($attrs)) @foreach($attrs as $attr => $attr_value) {{ $attr }}="{{ $attr_value }}" @endforeach @endif>

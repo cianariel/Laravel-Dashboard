@@ -1,0 +1,50 @@
+// Typography
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');                     //  'PT Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,500,600,700');              //  'Oswald', sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,600,700');              //  'Nunito', sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700');         //  'Raleway', sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');              //  'Roboto', sans-serif;
+
+$font-pt-sans: 'PT Sans', sans-serif;
+$font-oswald: 'Oswald', sans-serif;
+$font-nunito: 'Nunito', sans-serif;
+$font-raleway: 'Raleway', sans-serif;
+$font-roboto: 'Raleway', sans-serif;
+
+
+//----------------------------------//
+// Font Sizes
+//----------------------------------//
+
+.font-xxs-size {
+
+    font-size: rem(10);
+}
+
+.font-xs-size {
+
+    font-size: rem(12);
+}
+
+.font-sm-size {
+
+    font-size: rem(16);
+}
+
+.font-md-size {
+
+    font-size: rem(18);
+}
+
+.font-lg-size {
+
+    font-size: rem(24);
+}
+
+.font-xl-size {
+    font-size: rem(32);
+}
+
+.font-xxl-size {
+    font-size: rem(48);
+}

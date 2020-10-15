@@ -1,0 +1,685 @@
+// _theme.scss
+
+//---------------------------------//
+// Breadcrumbs
+//---------------------------------//
+.gb-breadcrumbs
+{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    .breadcrumb
+    {
+        padding:0;
+        background: $blue-color;
+        border-radius: 0;
+
+        a {
+            color: $light-grey-color;
+        }
+
+        .breadcrumb-item
+        {
+            &:first-child
+            {
+                &:before
+                {
+                    display: none;
+                }
+            }
+
+            &:before
+            {
+                font-family: 'Font Awesome 5 Free' !important;
+                color: $dark-blue-color;
+                content: '\f054';
+                font-weight: 900;
+
+            }
+        }
+    }
+}
+
+//---------------------------------//
+// Overlays
+//---------------------------------//
+.overlay {
+    background: rgba($white, 0.9);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    top: 0;
+    left: 0;
+
+    .icon
+    {
+        font-size: rem(64);
+    }
+}
+
+//---------------------------------//
+// Cards
+//---------------------------------//
+.gb-card,
+.card {
+
+    border-radius: rem(0);
+}
+
+.card-main-content {
+
+}
+
+.card-main-content-sidebar-open {
+
+    @include media-breakpoint-down(sm) {
+        position: absolute;
+        top: 0;
+        right: rem(-280);
+    }
+}
+
+//---------------------------------//
+// Modal
+//---------------------------------//
+.gb-dialog-modal
+{
+    border: rem(1) solid $blue-color;
+    border-radius: rem(0) !important;
+
+    .modal-header
+    {
+        background: $blue-color;
+        border-bottom: rem(1) solid $blue-color;
+        border-radius: rem(0) !important;
+
+        .modal-title
+        {
+            color: $white;
+            text-transform: uppercase;
+        }
+    }
+
+    .modal-footer
+    {
+        border-top: rem(1) solid $light-grey-color;
+        border-radius: rem(0) !important;
+    }
+
+    .close-icon
+    {
+        color: $black;
+        text-shadow: none !important;
+    }
+
+    .modal-content
+    {
+        background: $white;
+        color: $dark-grey-color;
+        border-radius: rem(0) !important;
+
+        .modal-body
+        {
+            color: $dark-grey-color;
+            border-radius: rem(0) !important;
+        }
+    }
+}
+
+//---------------------------------//
+// Multiselect Buttons
+//---------------------------------//
+.gb-multi-select
+{
+    ul
+    {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li
+        {
+            display: inline-block;
+            margin-bottom: rem(5);
+
+            .btn-option
+            {
+                font-size: rem(13);
+                color: $white;
+
+                &:hover
+                {
+                    cursor: pointer;
+                }
+            }
+
+            .selected
+            {
+                //background: $primary-color !important;
+            }
+        }
+    }
+}
+
+//---------------------------------//
+// Carousel
+//---------------------------------//
+.gb-carousel {
+
+    @media(min-width: rem(967)) {
+        max-width: rem(400);
+    }
+
+    .carousel-inner {
+
+        .carousel-item {
+
+            .overlay {
+
+                &:hover {
+                    display: flex;
+                }
+
+                background: rgba($blue-color, 0.7) !important;
+                z-index: 999;
+
+                .gb-confirm-action-link {
+
+                    color: $white;
+                    text-decoration: none;
+                    vertical-align: middle;
+
+                    &:hover {
+
+                        cursor: pointer;
+                        text-decoration: none !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//---------------------------------//
+// WYSIWYG Editor
+//---------------------------------//
+.gb-editor {
+
+    color: $black;
+
+    .gb-editor-toggler {
+
+        background: none !important;
+        border: none !important;
+        color: $gb-primary-color;
+        font-size: rem(18);
+    }
+
+    #editor {
+
+        //background: $sw-dark-color;
+        //color: $white;
+        //border: rem(1) solid $black !important;
+
+    }
+}
+
+//---------------------------------//
+// Media
+//---------------------------------//
+.remove-image-block {
+
+    position: relative;
+    max-width: rem(150);
+    width: rem(150);
+    text-align: center;
+
+    .overlay {
+        background: rgba($blue-color,0.8);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+        display: none;
+    }
+
+    &:hover {
+
+
+        color: $white;
+
+        .overlay {
+
+            display: block;
+
+            a {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                bottom: rem(15);
+                color: $white;
+                text-align: center;
+
+                &:hover {
+                    color: $white;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
+//---------------------------------//
+// Pagination
+//---------------------------------//
+.gb-pagination {
+
+    .pagination {
+
+        display: inline;
+
+        .page-item {
+            display: inline-block;
+        }
+    }
+}
+
+//---------------------------------//
+// Logo
+//---------------------------------//
+
+.logo-block {
+
+    position: relative;
+
+    .logo-icon {
+
+        color: $white;
+        background: $light-blue-color;
+        font-weight: 700;
+        display: inline-block;
+        padding: rem(1) rem(5);
+        border-radius: rem(5);
+    }
+
+    .site-name {
+
+        position: relative;
+        top: rem(3);
+    }
+}
+
+
+
+//---------------------------------//
+// Tables
+//---------------------------------//
+.gb-table {
+
+    tbody {
+
+        tr[data-redirect-url] {
+
+            &:hover
+            {
+                cursor: pointer;
+            }
+
+            td {
+
+                &:first-child {
+                    padding-left: rem(25);
+                }
+
+                &:last-child {
+                    padding-right: rem(25);
+                }
+            }
+        }
+
+        tr {
+
+            td {
+
+                &:first-child {
+                    padding-left: rem(25);
+                }
+
+                &:last-child {
+                    padding-right: rem(25);
+                }
+            }
+        }
+
+    }
+
+    // Table Header
+    thead {
+
+        tr {
+
+            th {
+
+                &:first-child {
+                    padding-left: rem(25);
+                }
+
+                &:last-child {
+                    padding-right: rem(25);
+                    text-align: right;
+                }
+            }
+        }
+
+    }
+}
+
+//---------------------------------//
+// Fixed Button Bar
+//---------------------------------//
+.gb-btn-fixed-bar
+{
+    position: absolute;
+    top: rem(40);
+    text-align: right;
+    border-bottom:rem(1) solid rgba($grey-color, 0.3);
+
+    @include media-breakpoint-up(md)
+    {
+        width: 97.5%;
+    }
+
+    @include media-breakpoint-down(md)
+    {
+        width: 94%;
+    }
+}
+
+.gb-btn-fixed-bar-scrolled
+{
+    top:rem(0);
+    width: 100%;
+    left: 0;
+    z-index: 999;
+    padding-right: rem(20);
+    background: rgba($white, 0.7);
+    @include media-breakpoint-down(md)
+    {
+        text-align: center;
+        .btn-primary
+        {
+            display: block !important;
+            width: 100%;
+        }
+    }
+}
+
+// Badges
+//-----------------------------------//
+.badge-theme
+{
+    background: $blue-color;
+    color: $white;
+}
+
+// Overlay
+//--------------------------------/
+.overlay-white-bg
+{
+    background: rgba(255,255,255,0.9);
+}
+
+.overlay-black-bg
+{
+    background: rgba(0,0,0,0.7);
+}
+
+// Alerts
+//----------------------------------//
+.alert
+{
+    text-align: center;
+    margin-bottom: rem(0) !important;
+}
+
+// App
+//----------------------------------//
+#gb-app {
+
+    @include full-width;
+    min-height: 100vh;
+    position: relative;
+
+}
+
+// Header
+//----------------------------------//
+#gb-header {
+
+    width: 100%;
+
+    // Navigation
+    .vw-navigation {
+
+        background: $dark-puple-color;
+
+        // Navbar
+        .gb-navbar {
+
+            // Brand
+            .navbar-brand {
+
+                position: relative;
+                color: $white;
+
+                &:hover {
+                    color: $white;
+                }
+
+                .logo {
+
+                    color: $white;
+                    background: $light-blue-color;
+                    font-size: rem(15);
+                    font-weight: 700;
+                    display: inline-block;
+                    padding: rem(2) rem(5);
+                    border-radius: rem(5);
+                }
+
+                .site-name {
+
+                    position: relative;
+                    top: rem(1);
+                }
+            }
+
+            // Toggler
+            .navbar-toggler {
+
+                .icon {
+
+                    color: $white;
+                }
+            }
+
+            // Collapse
+            .navbar-frontend-collapse {
+
+                .navbar-nav {
+
+                    .nav-item {
+
+                        .nav-link {
+                            color: $white;
+
+                            &:hover {
+
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Main
+//----------------------------------//
+#gb-main {
+
+    width: 100%;
+
+    /*
+    @include media-breakpoint-up(md) {
+         min-height: calc(100vh - 402px);
+    }
+
+    @include media-breakpoint-down(md) {
+         min-height: calc(100vh - 402px);
+    }
+
+    @include media-breakpoint-down(sm) {
+         min-height: calc(100vh - 888px);
+    }*/
+}
+
+// Footer
+//----------------------------------//
+#gb-footer {
+
+
+
+    // Container
+    .container-fluid,
+    .container
+    {
+        background: $dark-grey-color;
+    }
+
+    /*
+    // Heights
+    @include media-breakpoint-up(md) {
+        min-height: rem(344px);
+    }
+
+    @include media-breakpoint-down(md) {
+        min-height: rem(347);
+    }
+
+    @include media-breakpoint-down(sm) {
+        min-height: rem(524);
+    }*/
+
+    .links-block {
+
+        h4,
+        h5 {
+
+            color: lighten($grey-color, 40%);
+            text-transform: capitalize;
+        }
+
+        .links {
+
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+
+                a {
+                    color: lighten($grey-color, 50%);
+
+                    &:hover {
+
+                        color: lighten($grey-color, 50%);
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        .links-inline {
+
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                display: inline-block;
+
+                &:after {
+                    content: '|';
+                    display: inline-block;
+                    color: $white;
+                    padding-left: rem(4);
+                }
+
+                &:last-child {
+
+                    &:after {
+
+                        display: none;
+                    }
+                }
+
+                a {
+                    color: lighten($grey-color, 45%);
+
+                    &:hover {
+
+                        color: lighten($grey-color, 45%);
+                    }
+                }
+            }
+        }
+    }
+
+    // Social Links
+    .social-block {
+
+        .links {
+
+            li {
+                display: inline-block !important;
+                font-size: rem(32);
+                padding-right: rem(10);
+
+                a {
+
+                    &:hover {
+                        color: $blue-color;
+                    }
+                }
+            }
+        }
+    }
+
+    // Copyright
+    .copyright {
+
+        color: lighten($grey-color, 40%);
+    }
+}
+
+
+//-------------------------------//
+// Toggler
+//-------------------------------//
+.gb-toggler
+{
+    line-height: 1;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+
