@@ -7,7 +7,6 @@ declare(strict_types=1);
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use App\Models\System\Site;
-use App\Models\System\Blog;
 use App\Models\System\Post;
 use App\Models\System\Group;
 use App\Models\System\Setting;
@@ -171,55 +170,6 @@ class SettingsTableSeeder extends Seeder
                         $setting->saveOrFail();
                         $setting->assignGroup($group);
                         $site->assignSetting($setting);
-                    }
-                }
-            }
-
-            // Blog settings.
-            if (Group::where('name', 'blog')->exists()) {
-                $group = Group::where('name', 'blog')->firstOrFail();
-
-                $blogs = [
-                    Blog::where('name', 'public')->select(['id', 'name'])->firstOrFail(),
-                    Blog::where('name', 'private')->select(['id', 'name'])->firstOrFail()
-                ];
-
-                $settings = [
-                    'title'                 => ['type' => Setting::INPUT_TEXT,          'required' => Setting::REQUIRED,        'value' => 'Blog'],
-                    'meta_keywords'         => ['type' => Setting::INPUT_TEXTAREA,      'required' => Setting::NOT_REQUIRED,    'value' => null],
-                    'meta_description'      => ['type' => Setting::INPUT_TEXTAREA,      'required' => Setting::NOT_REQUIRED,    'value' => null],
-                    'meta_robots'           => ['type' => Setting::INPUT_MULTISELECT,   'required' => Setting::NOT_REQUIRED,    'value' => 'NONE',  'options' => serialize(Blog::META_ROBOTS)],
-                    'tagline'               => ['type' => Setting::INPUT_TEXT,          'required' => Setting::NOT_REQUIRED,    'value' => null],
-                    'language'              => ['type' => Setting::INPUT_SELECT,        'required' => Setting::REQUIRED,        'value' => env('DEFAULT_LOCALE'),   'options' => serialize(['en', 'es'])],
-                    'posts_per_page'        => ['type' => Setting::INPUT_NUMBER,        'required' => Setting::REQUIRED,        'value' => 10],
-                    'show_newest_first'     => ['type' => Setting::INPUT_SELECT,        'required' => Setting::REQUIRED,        'value' => 'true',                  'options' => serialize(['true', 'false'])],
-                    'show_last_updated'     => ['type' => Setting::INPUT_SELECT,        'required' => Setting::REQUIRED,        'value' => 'true',                  'options' => serialize(['true', 'false'])],
-                ];
-
-                foreach ($blogs as $blog) {
-                    if ($site->hasBlog($blog)) {
-                        if (filled($settings)) {
-                            foreach ($settings as $key => $value) {
-                                $key = $domain . '_' . 'blog_' . $blog->name . '_' . $key;
-
-                                if (!Setting::where('key', $key)->exists()) {
-                                    $setting = new Setting;
-                                    $setting->key = $key;
-                                    $setting->value = $value['value'];
-                                    $setting->type = $value['type'];
-
-                                    if (array_key_exists('options', $value)) {
-                                        $setting->options = $value['options'];
-                                    }
-
-                                    $setting->status = Setting::LOCKED;
-                                    $setting->required = $value['required'];
-                                    $setting->saveOrFail();
-                                    $setting->assignGroup($group);
-                                    $blog->assignSetting($setting);
-                                }
-                            }
-                        }
                     }
                 }
             }

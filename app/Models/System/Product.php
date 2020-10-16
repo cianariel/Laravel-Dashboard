@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Models\System;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\System\Traits\HasProductAttributes;
 use App\Models\Shared\Traits\HasMetaFields;
@@ -25,7 +25,7 @@ class Product extends Model implements HasMedia, Searchable
 {
     use HasMetaFields,
         HasProductAttributes,
-        InteractsWithMedia,
+        HasMediaTrait,
         SoftDeletes;
 
     /**

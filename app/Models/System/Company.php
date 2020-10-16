@@ -6,9 +6,9 @@ namespace App\Models\System;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 
@@ -21,7 +21,7 @@ use Spatie\Searchable\SearchResult;
  */
 class Company extends Model implements HasMedia, Searchable
 {
-    use InteractsWithMedia,
+    use HasMediaTrait,
         SoftDeletes;
 
     /**

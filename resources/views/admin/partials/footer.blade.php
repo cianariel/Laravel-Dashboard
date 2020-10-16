@@ -1,5 +1,5 @@
  {{-- Stored in /resources/views/admin/partials/footer.blade.php --}}
-<div id="gb-admin-footer">
+<div id="md-admin-footer">
     <div class="container-fluid">
         <div class="row mb-2 mt-2">
             <div class="col-md-8 text-center text-md-left">

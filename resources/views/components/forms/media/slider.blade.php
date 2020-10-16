@@ -3,7 +3,7 @@
 <div class="form-group row">
      @if(isset($label))<label for="{{ $name }}" class="col-sm-4 col-form-label text-md-right">{{ __($label?? '') }}</label>@endif
      <div class="{{ isset($label)? 'col-sm-8' : 'col-sm-12' }}">
-        <div id="{{ $id }}" class="gb-carousel carousel slide" data-ride="carousel">
+        <div id="{{ $id }}" class="md-carousel carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 @if(isset($images) && count($images) !== 0)
                     @foreach($images as $index => $image)

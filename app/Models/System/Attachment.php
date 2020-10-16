@@ -6,9 +6,9 @@ namespace App\Models\System;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * Attachments Eloquent Model
@@ -19,7 +19,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  */
 class Attachment extends Model implements HasMedia
 {
-    use InteractsWithMedia;
+    use HasMediaTrait;
 
     /**
      * The database table used by the model.

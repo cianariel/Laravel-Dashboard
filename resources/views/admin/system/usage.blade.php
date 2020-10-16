@@ -20,7 +20,7 @@
                     <div class="card-body p-0 pt-5 pb-5">
                         <div class="mt-3 row justify-content-center">
                             <div class="col-6">
-                                <canvas id="gb-cpu-usage-chart" width="250" height="250"></canvas>
+                                <canvas id="md-cpu-usage-chart" width="250" height="250"></canvas>
                             </div>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                     <div class="card-body p-0 pt-5 pb-5">
                         <div class="mt-3 row justify-content-center">
                             <div class="col-6">
-                                <canvas id="gb-memory-usage-chart" width="250" height="250"></canvas>
+                                <canvas id="md-memory-usage-chart" width="250" height="250"></canvas>
                             </div>
                         </div>
                     </div>
@@ -58,8 +58,8 @@
     jQuery(document).ready(function($) {
 
         let data = [{{ ceil(server_cpu_usage()) }}, {{ 100 - ceil(server_cpu_usage()) }}];
-        let wv_cpu_usage_chart = document.getElementById('gb-cpu-usage-chart').getContext('2d');
-        let wv_memory_usage_chart = document.getElementById('gb-memory-usage-chart').getContext('2d');
+        let wv_cpu_usage_chart = document.getElementById('md-cpu-usage-chart').getContext('2d');
+        let wv_memory_usage_chart = document.getElementById('md-memory-usage-chart').getContext('2d');
 
         let cpuChart = new Chart(wv_cpu_usage_chart, {
             type: 'doughnut',

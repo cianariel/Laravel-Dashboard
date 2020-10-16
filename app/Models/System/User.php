@@ -22,6 +22,9 @@ use App\Models\System\Traits\HasSettings;
 use App\Models\System\Traits\HasMessages;
 use App\Models\System\Traits\HasSupportTickets;
 use App\Models\Shared\Traits\HasMetaFields;
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * User Eloquent Model
@@ -30,7 +33,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  * @copyright 2020 MdRepTime, LLC
  * @package App\Models\System
  */
-class User extends Authenticatable implements Searchable
+class User extends Authenticatable implements Searchable, HasMedia
 {
     use Notifiable,
         Billable,
@@ -41,6 +44,7 @@ class User extends Authenticatable implements Searchable
         HasPayments,
         HasReviews,
         HasSettings,
+        HasMediaTrait,
         HasMessages,
         HasSupportTickets,
         SoftDeletes;

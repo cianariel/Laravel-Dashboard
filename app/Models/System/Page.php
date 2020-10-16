@@ -3,10 +3,9 @@
 namespace App\Models\System;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use \Venturecraft\Revisionable\RevisionableTrait;
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Shared\Traits\HasMetaFields;
 
@@ -20,8 +19,7 @@ use App\Models\Shared\Traits\HasMetaFields;
 class Page extends Model implements HasMedia
 {
     use HasMetaFields,
-        InteractsWithMedia,
-        RevisionableTrait,
+        HasMediaTrait,
         SoftDeletes;
 
     /**

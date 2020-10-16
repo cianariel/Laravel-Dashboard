@@ -1,5 +1,5 @@
 {{-- Stored in /resources/views/components/elements/accordion.blade.php --}}
-<div class="gb-accordion accordion" id="gb-accordion-{{ $id }}">
+<div class="md-accordion accordion" id="md-accordion-{{ $id }}">
     @if(isset($parent) && isset($children))
         <div class="card">
             <div class="card-header">{{ $parent->label?? ''}}</div>

@@ -143,7 +143,7 @@
                     <div class="card-body pt-5 pb-5">
                         <div class="row justify-content-center">
                             <div class="col-sm-10">
-                                @component('components.forms.input', ['type' => 'text', 'name' => 'skype', 'label' => 'Skype', 'value' => old('skype') ?? $user->getMetaField('skype')?? '', 'placeholder' => '@workvision'])
+                                @component('components.forms.input', ['type' => 'text', 'name' => 'skype', 'label' => 'Skype', 'value' => old('skype') ?? $user->getMetaField('skype')?? '', 'placeholder' => '@mdreptime'])
                                     @error('skype')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -164,7 +164,7 @@
                                         </span>
                                     @enderror
                                 @endcomponent
-                                @component('components.forms.input', ['type' => 'text', 'name' => 'twitter', 'label' => 'Twitter', 'value' => old('twitter') ?? $user->getMetaField('twitter')?? '', 'placeholder' => '@workvision'])
+                                @component('components.forms.input', ['type' => 'text', 'name' => 'twitter', 'label' => 'Twitter', 'value' => old('twitter') ?? $user->getMetaField('twitter')?? '', 'placeholder' => '@mdreptime'])
                                     @error('twitter')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -234,7 +234,7 @@
                     </div>
                 </div>
                 {{--[/other-details]--}}
-                <div class="gb-btn-fixed-bar pt-1 pb-1">
+                <div class="md-btn-fixed-bar pt-1 pb-1">
                     @component('components.forms.button', ['name' => 'submit', 'type' => 'submit', 'classes' => ['btn-primary', 'fg-white'], 'label' => 'Save <i class="fas fa-save"></i>'])
                         <a class="btn btn-secondary" href="{{ admin_url() }}">{{ __('Cancel') }}</a>
                     @endcomponent

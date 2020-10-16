@@ -1,5 +1,5 @@
 {{-- Stored in /resources/views/components/bootstrap/modal.blade.php --}}
-<div id="{{ $id?? uniqid('gb-modal-btn', false) }}" class="gb-modal modal {{ $modal_effect?? 'fade' }} @if(isset($classes) && is_array($classes) && filled($classes)) {{ implode(' ', $classes) }} @endif" tabindex="-1" role="dialog">
+<div id="{{ $id?? uniqid('md-modal-btn', false) }}" class="md-modal modal {{ $modal_effect?? 'fade' }} @if(isset($classes) && is_array($classes) && filled($classes)) {{ implode(' ', $classes) }} @endif" tabindex="-1" role="dialog">
     <div class="modal-dialog {{ $size?? '' }} {{ $alignment?? 'modal-dialog-centered' }}" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -46,7 +46,7 @@
                     @else
                         @component('components.forms.button', [
                             'type'      => 'button',
-                            'name'      => uniqid('gb-modal-btn', false),
+                            'name'      => uniqid('md-modal-btn', false),
                             'value'     => $value?? '',
                             'label'     => $label?? __('Close'),
                             'classes'   => (is_array($button_classes)? $button_classes : ['btn', 'btn-secondary'])

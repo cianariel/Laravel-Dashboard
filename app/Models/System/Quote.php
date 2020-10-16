@@ -7,9 +7,9 @@ namespace App\Models\System;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use App\Models\System\Traits\HasQuoteItems;
 use App\Models\Shared\Traits\HasMetaFields;
 
@@ -22,7 +22,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Quote extends Model implements HasMedia, Searchable
 {
-    use InteractsWithMedia,
+    use HasMediaTrait,
         HasMetaFields,
         HasQuoteItems;
 
