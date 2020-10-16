@@ -7,7 +7,7 @@
             {!! $js !!}
         @endif
         @yield('scripts_start')
-        @component('components.bootstrap.card', ['id' => 'gb-app', 'classes' => ['border-0']])
+        @component('components.bootstrap.card', ['id' => 'md-app', 'classes' => ['border-0']])
             <div class="card-body border-0 p-0">
                  @yield('header')
                  @yield('content')

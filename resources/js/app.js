@@ -229,9 +229,9 @@ window.mdPrettyCheckboxes = function ($) {
             el.attr('data-prettycheckbox', 'true');
 
             if (checked) {
-                el.wrap('<div class="gb-checkbox" data-checked="true"><i class="fas fa-check-square"></i></div>');
+                el.wrap('<div class="md-checkbox" data-checked="true"><i class="fas fa-check-square"></i></div>');
             } else {
-                el.wrap('<div class="gb-checkbox" data-checked="false"><i class="far fa-square"></i></div>');
+                el.wrap('<div class="md-checkbox" data-checked="false"><i class="far fa-square"></i></div>');
             }
         }
 
@@ -682,11 +682,11 @@ window.mdFixedButtonBar = function ($) {
             if ($(window).scrollTop() > current_position.top) {
                 btnBar.css('top','0px');
                 btnBar.addClass('position-fixed');
-                btnBar.addClass('gb-btn-fixed-bar-scrolled');
+                btnBar.addClass('md-btn-fixed-bar-scrolled');
             } else {
                 btnBar.removeAttr('style');
                 btnBar.removeClass('position-fixed');
-                btnBar.removeClass('gb-btn-fixed-bar-scrolled');
+                btnBar.removeClass('md-btn-fixed-bar-scrolled');
             }
         });
     }
@@ -704,13 +704,13 @@ window.mdFixedButtonBar = function ($) {
 
             if ($(this).scrollTop() > current_position.top) {
                 btnBar.css('top', '0px');
-                btnBar.css('height', $('#gb-tenants-header').height() + 'px');
+                btnBar.css('height', $('#md-tenants-header').height() + 'px');
                 btnBar.addClass('position-fixed');
-                btnBar.addClass('gb-btn-fixed-bar-scrolled-alt');
+                btnBar.addClass('md-btn-fixed-bar-scrolled-alt');
             } else {
                 btnBar.removeAttr('style');
                 btnBar.removeClass('position-fixed');
-                btnBar.removeClass('gb-btn-fixed-bar-scrolled-alt');
+                btnBar.removeClass('md-btn-fixed-bar-scrolled-alt');
             }
         });
     }

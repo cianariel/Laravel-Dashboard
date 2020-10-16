@@ -7,8 +7,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Models\System\Attachment;
 use App\Models\System\Tag;
-use App\Models\System\Blog;
-use App\Models\System\BlogCategory;
 use App\Models\System\Cart;
 use App\Models\System\CartLine;
 use App\Models\System\Comment;
@@ -32,7 +30,6 @@ use App\Models\System\QuoteItem;
 use App\Models\System\Package;
 use App\Models\System\Page;
 use App\Models\System\Payment;
-use App\Models\System\Post;
 use App\Models\System\Product;
 use App\Models\System\ProductAttribute;
 use App\Models\System\ProductType;
@@ -45,7 +42,6 @@ use App\Models\System\State;
 use App\Models\System\SupportTicket;
 use App\Models\System\TimeZone;
 use App\Models\System\User;
-use App\Models\System\Usage;
 use App\Models\System\Translation;
 
 /**
@@ -338,156 +334,6 @@ class CreateSitesTable extends Migration
                   ->onDelete('cascade');
 
             $table->primary(['site_id', 'user_id']);
-        });
-
-        // Site Blogs
-        //----------------------------------------------------------//
-        Schema::create('blogs', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->uuid('uuid')->unique();
-            $table->string('slug')->unique();
-            $table->string('name')->index();
-            $table->string('title', 150);
-            $table->string('status', 25)->default(Blog::INACTIVE);
-            $table->string('visible', 25)->default(Blog::HIDDEN);
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        Schema::create('blog_categories', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('parent_id');
-            $table->string('slug');
-            $table->string('name')->index();
-            $table->string('title', 100);
-            $table->text('description')->nullable();
-            $table->string('status', 25)->default(BlogCategory::INACTIVE);
-            $table->timestamps();
-        });
-
-        Schema::create('blog_category', function (Blueprint $table) {
-            $table->unsignedBigInteger('blog_id');
-            $table->unsignedBigInteger('blog_category_id');
-
-            $table->foreign('blog_id')
-                  ->references('id')
-                  ->on('blogs')
-                  ->onDelete('cascade');
-
-            $table->foreign('blog_category_id')
-                  ->references('id')
-                  ->on('blog_categories')
-                  ->onDelete('cascade');
-
-            $table->primary(['blog_id', 'blog_category_id'], 'fk_blog_categories');
-        });
-
-        Schema::create('blog_tag', function (Blueprint $table) {
-            $table->unsignedBigInteger('blog_id');
-            $table->unsignedBigInteger('tag_id');
-
-            $table->foreign('blog_id')
-                  ->references('id')
-                  ->on('blogs')
-                  ->onDelete('cascade');
-
-            $table->foreign('tag_id')
-                  ->references('id')
-                  ->on('tags')
-                  ->onDelete('cascade');
-
-            $table->primary(['blog_id', 'tag_id']);
-        });
-
-        // Site Blog Posts
-        //----------------------------------------------------------//
-        Schema::create('posts', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->string('title', 150);
-            $table->string('slug')->unique();
-            $table->longText('content')->nullable();
-            $table->string('excerpt', 150)->nullable();
-            $table->string('seo_title', 100)->nullable();
-            $table->string('meta_keywords', 150)->nullable();
-            $table->string('meta_description', 150)->nullable();
-            $table->string('meta_robots', 150)->nullable();
-            $table->json('meta_fields')->nullable();
-            $table->string('status', 25)->default(Post::INACTIVE);
-            $table->string('visible', 25)->default(Post::HIDDEN);
-            $table->unsignedBigInteger('views')->default(0);
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        Schema::create('post_tag', function (Blueprint $table) {
-            $table->unsignedBigInteger('post_id');
-            $table->unsignedBigInteger('tag_id');
-
-            $table->foreign('post_id')
-                  ->references('id')
-                  ->on('posts')
-                  ->onDelete('cascade');
-
-            $table->foreign('tag_id')
-                  ->references('id')
-                  ->on('tags')
-                  ->onDelete('cascade');
-
-            $table->primary(['post_id', 'tag_id']);
-        });
-
-        Schema::create('site_tag', function (Blueprint $table) {
-            $table->unsignedBigInteger('site_id');
-            $table->unsignedBigInteger('tag_id');
-
-            $table->foreign('site_id')
-                  ->references('id')
-                  ->on('sites')
-                  ->onDelete('cascade');
-
-            $table->foreign('tag_id')
-                  ->references('id')
-                  ->on('tags')
-                  ->onDelete('cascade');
-
-            $table->primary(['site_id', 'tag_id']);
-        });
-
-        Schema::create('blog_post', function (Blueprint $table) {
-
-            $table->unsignedBigInteger('blog_id');
-            $table->unsignedBigInteger('post_id');
-
-            $table->foreign('blog_id')
-                  ->references('id')
-                  ->on('blogs')
-                  ->onDelete('cascade');
-
-            $table->foreign('post_id')
-                  ->references('id')
-                  ->on('posts')
-                  ->onDelete('cascade');
-
-            $table->primary(['blog_id', 'post_id']);
-        });
-
-        Schema::create('blog_site', function (Blueprint $table) {
-            $table->unsignedBigInteger('blog_id');
-            $table->unsignedBigInteger('site_id');
-
-            $table->foreign('blog_id')
-                  ->references('id')
-                  ->on('blogs')
-                  ->onDelete('cascade');
-
-            $table->foreign('site_id')
-                  ->references('id')
-                  ->on('sites')
-                  ->onDelete('cascade');
-
-            $table->primary(['blog_id', 'site_id']);
         });
 
         // Site Pages
@@ -1260,25 +1106,6 @@ class CreateSitesTable extends Migration
             $table->primary(['setting_id', 'site_id']);
         });
 
-        // Blog Settings
-        //----------------------------------------------------------//
-        Schema::create('blog_setting', function (Blueprint $table) {
-            $table->unsignedBigInteger('blog_id');
-            $table->unsignedBigInteger('setting_id');
-
-            $table->foreign('blog_id')
-                  ->references('id')
-                  ->on('blogs')
-                  ->onDelete('cascade');
-
-            $table->foreign('setting_id')
-                  ->references('id')
-                  ->on('settings')
-                  ->onDelete('cascade');
-
-            $table->primary(['blog_id', 'setting_id']);
-        });
-
         // Menu
         //----------------------------------------------------------//
         // Menus
@@ -1663,11 +1490,6 @@ class CreateSitesTable extends Migration
         // Pivots
         //-----------------------------------//
         Schema::dropIfExists('attachment_message');
-        Schema::dropIfExists('blog_category');
-        Schema::dropIfExists('blog_post');
-        Schema::dropIfExists('blog_setting');
-        Schema::dropIfExists('blog_site');
-        Schema::dropIfExists('blog_tag');
         Schema::dropIfExists('cart_cart_line');
         Schema::dropIfExists('cart_site');
         Schema::dropIfExists('comment_forum_post');
@@ -1721,8 +1543,6 @@ class CreateSitesTable extends Migration
         // Tables
         //-----------------------------------//
         Schema::dropIfExists('attachments');
-        Schema::dropIfExists('blog_categories');
-        Schema::dropIfExists('blogs');
         Schema::dropIfExists('cart_lines');
         Schema::dropIfExists('carts');
         Schema::dropIfExists('comments');

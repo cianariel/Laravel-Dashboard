@@ -2,7 +2,7 @@
 @if(isset($paged) && filled($paged))
 <div class="row">
     <div class="col-6">
-        <div class="gb-pagination-show-select pl-4">
+        <div class="md-pagination-show-select pl-4">
             <span>{{ __('Show') }}</span>
             <form class="form form-auto-submit d-inline" action="{{ url()->current() }}" method="GET">
                 @csrf
@@ -25,8 +25,8 @@
     </div>
 </div>
 @endif
-<div class="gb-table table-responsive">
-    <table id="{{ $id?? uniqid('gb-table-', false) }}" class="table @if(isset($classes) && filled($classes) && count($classes) !=0) {{ implode(' ', $classes) }}@endif" @if(isset($attrs) && filled($attrs)) @foreach($attrs as $attr => $attr_value) {{ $attr }}="{{ $attr_value }}" @endforeach @endif>
+<div class="md-table table-responsive">
+    <table id="{{ $id?? uniqid('md-table-', false) }}" class="table @if(isset($classes) && filled($classes) && count($classes) !=0) {{ implode(' ', $classes) }}@endif" @if(isset($attrs) && filled($attrs)) @foreach($attrs as $attr => $attr_value) {{ $attr }}="{{ $attr_value }}" @endforeach @endif>
         @if(isset($headers) && filled($headers))
             <thead>
                 <tr>
@@ -42,7 +42,7 @@
     </table>
 </div>
 @if(isset($paged) && filled($paged))
-<div class="gb-pagination text-right pr-4">
+<div class="md-pagination text-right pr-4">
     @if(isset($query) && filled($query))
         {{ $paged->appends($query)->links() }}
     @else

@@ -21,6 +21,7 @@ class PackagesTableSeeder extends Seeder
     {
         $site = site(config('app.base_domain'));
 
+        /*
         $json = [];
         $error = false;
         $stripe_error = null;
@@ -41,50 +42,8 @@ class PackagesTableSeeder extends Seeder
             'status'        => Package::ACTIVE
         ];
 
-        $single_package = [
-            'name'          => 'single',
-            'label'         => 'Single Package',
-            'type'          => Package::LINKED_PRODUCT,
-            'slug'          => 'single',
-            'description'   => '',
-            'price'         => cents(199),
-            'trial_enabled' => Package::TRIAL_ENABLED,
-            'interval'      => Package::MONTHLY,
-            'featured'      => Package::FEATURED,
-            'status'        => Package::ACTIVE
-        ];
-
-        $growth_package = [
-            'name'          => 'growth',
-            'label'         => 'Growth Package',
-            'type'          => Package::LINKED_PRODUCT,
-            'slug'          => 'growth',
-            'description'   => '',
-            'price'         => cents(499),
-            'trial_enabled' => Package::TRIAL_ENABLED,
-            'interval'      => Package::MONTHLY,
-            'featured'      => Package::FEATURED,
-            'status'        => Package::ACTIVE
-        ];
-
-        $scale_package = [
-            'name'          => 'scale',
-            'label'         => 'Scale Package',
-            'type'          => Package::LINKED_PRODUCT,
-            'slug'          => 'scale',
-            'description'   => '',
-            'price'         => cents(999),
-            'trial_enabled' => Package::TRIAL_ENABLED,
-            'interval'      => Package::MONTHLY,
-            'featured'      => Package::FEATURED,
-            'status'        => Package::ACTIVE
-        ];
-
         $packages = [
-            $free_package,
-            $single_package,
-            $growth_package,
-            $scale_package
+
         ];
 
         //-------------------------//
@@ -179,6 +138,6 @@ class PackagesTableSeeder extends Seeder
 
                 $site->assignPackage($_package);
             }
-        }
+        }*/
     }
 }

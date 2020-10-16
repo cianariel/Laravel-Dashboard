@@ -6,7 +6,7 @@ body[id^="page-admin"]
 
     // Admin App Override
     //---------------------------------//
-    #gb-app
+    #md-app
     {
         padding-bottom: 0 !important;
         display: flex;
@@ -15,7 +15,7 @@ body[id^="page-admin"]
 
     // Admin Main Override
     //---------------------------------//
-    #gb-main
+    #md-main
     {
         display: flex;
         width: 100%;
@@ -35,7 +35,7 @@ body[id^="page-admin"]
         .breadcrumb
         {
             padding:0;
-            background: $black;
+            background: #07b152;
             border-radius: 0;
 
             a {
@@ -55,7 +55,7 @@ body[id^="page-admin"]
                 &:before
                 {
                     font-family: 'Font Awesome 5 Free' !important;
-                    color: $dark-blue-color;
+                    color: $white;
                     content: '\f054';
                     font-weight: 900;
                     position: relative;
@@ -64,7 +64,7 @@ body[id^="page-admin"]
                 }
 
                 .active {
-                    color: $baby-blue-color !important;
+                    color: $black !important;
                 }
             }
         }
@@ -81,9 +81,9 @@ body[id^="page-admin"]
 
 // Header
 //---------------------------------//
-#gb-admin-header
+#md-admin-header
 {
-    background: $black;
+    background: $md-primary-color;
     max-height: rem(68);
     height: 100%;
     overflow: hidden;
@@ -157,14 +157,14 @@ body[id^="page-admin"]
 // Sidebar
 //---------------------------------//
 
-#gb-admin-sidebar.toggled
+#md-admin-sidebar.toggled
 {
      margin-left: -15.6rem !important;
 }
 
-#gb-admin-sidebar
+#md-admin-sidebar
 {
-    background: $black;
+    background: $md-primary-color;
     color: $white;
     z-index: 1;
     min-width: rem(250);
@@ -236,11 +236,6 @@ body[id^="page-admin"]
             padding: rem(5) rem(0);
         }
 
-        .sidebar-item
-        {
-
-        }
-
         .logo-block
         {
             position: relative;
@@ -283,7 +278,7 @@ body[id^="page-admin"]
 
         .role-name
         {
-            background: $black;
+            background: $md-primary-color;
             color: $white;
             padding: rem(10) rem(0);
             padding-left: rem(25);
@@ -324,14 +319,14 @@ body[id^="page-admin"]
         left: 0;
         content: ' ';
         width: 100%;
-        background: $black;
+        background: #07b152;
         height: rem(264);
     }
 }
 
 // Footer
 //---------------------------------------//
-#gb-admin-footer {
+#md-admin-footer {
 
     // Links
     .links {

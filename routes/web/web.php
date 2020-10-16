@@ -49,19 +49,3 @@ Route::domain(config('app.base_domain'))->group(function () use (&$routes) {
     })->where('any', '.*')->middleware('force.https');
 });
 
-Route::domain(config('app.www_domain'))->group(function () use (&$routes) {
-
-    if (filled($routes)) {
-        foreach ($routes as $index => $route) {
-            create_route($route['path'], $route);
-        }
-    }
-
-    // Authentication Routes
-    Auth::routes(['verify'=>true]);
-
-    // Catch All Route
-    Route::any('{any}', function () {
-        abort(404);
-    })->where('any', '.*')->middleware('force.https');
-});

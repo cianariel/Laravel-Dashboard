@@ -406,18 +406,3 @@ Route::domain(config('app.base_domain'))->name('admin.')->group(function () use 
     });
 });
 
-Route::domain(config('app.www_domain'))->name('admin.')->group(function () use (&$routes) {
-    Route::prefix('admin')->group(function () use (&$routes) {
-
-        if (filled($routes)) {
-            foreach ($routes as $index => $route) {
-                 create_route($route['path'], $route);
-            }
-        }
-
-        // Catch All Route
-        Route::any('{any}', function () {
-            abort(404);
-        })->where('any', '.*')->middleware('force.https');
-    });
-});

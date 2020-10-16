@@ -1,5 +1,5 @@
 {{-- Stored in resources/views/admin/partials/sidebar.blade.php --}}
-<nav id="gb-admin-sidebar" class="card gb-sidebar border-0 mt-0 mb-0 mr-0" data-hidden="false">
+<nav id="md-admin-sidebar" class="card gb-sidebar border-0 mt-0 mb-0 mr-0" data-hidden="false">
     <div class="card-body p-0">
         <div class="row h-100">
             {{--[menu]--}}
@@ -100,17 +100,6 @@
                         </ul>
                     </li>
                     {{--[/pages]--}}
-                    {{--[blogs]--}}
-                    <li class="sidebar-item sidebar-item-parent">
-                        <a href="#admin-blog" data-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
-                            <i class="align-middle mr-2 fas fa-blog"></i> <span class="align-middle">{{ __('Blog') }}</span>
-                        </a>
-                        <ul id="admin-blog" class="dropdown list-unstyled collapse pl-4 pt-2">
-                            <li class="sidebar-item pl-1"><a href="{{ route('admin.blogs.create') }}">{{ __('Add Blog') }}</a></li>
-                            <li class="sidebar-item pl-1"><a href="{{ route('admin.blogs.index') }}">{{ __('All Blogs') }}</a></li>
-                        </ul>
-                    </li>
-                    {{--[/blogs]--}}
                     {{--[packages]--}}
                     <li class="sidebar-item sidebar-item-parent">
                         <a href="#admin-packages" data-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">

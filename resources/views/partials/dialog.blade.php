@@ -1,6 +1,6 @@
 {{-- Stored in resources/views/layouts/partials/dialog.blade.php --}}
 {{--[modal]--}}
-<div class="gb-dialog-modal modal fade" id="dialog-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div class="md-dialog-modal modal fade" id="dialog-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
