@@ -61,8 +61,8 @@ class UsersTableSeeder extends Seeder
                 $user->username = unique_username(Role::SUPER_ADMIN);
                 $user->password = Hash::make('xiuZ7Lo^p1vighii');
                 $user->company  = 'MDRepTime, LLC';
-                $user->first_name = 'Anthony';
-                $user->last_name = '';
+                $user->first_name = 'Ian';
+                $user->last_name = 'Hutchinson';
                 $user->address = '123 St.';
                 $user->address_2 = '';
                 $user->city = 'Phoneix';
