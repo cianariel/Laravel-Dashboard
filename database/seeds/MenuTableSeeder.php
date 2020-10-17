@@ -23,7 +23,6 @@ class MenuTableSeeder extends Seeder
         // Header Menu
         //------------------------------------------------//
 
-        /**
         $menu = new Menu;
         $menu->type = Menu::NAVIGATION;
         $menu->name = 'primary-menu';
@@ -36,10 +35,47 @@ class MenuTableSeeder extends Seeder
 
         // Menu Items
         $items = [
-            'Pricing'   => ['type' => MenuItem::PARENT_ITEM, 'name' => 'pricing',   'title' => 'Pricing',   'label' => 'Pricing',   'url' => '#',               'target' => MenuItem::TARGET_SELF],
-            'Support'   => ['type' => MenuItem::PARENT_ITEM, 'name' => 'support',   'title' => 'Support',   'label' => 'Support',   'url' => '#',               'target' => MenuItem::TARGET_SELF],
-            'Login'     => ['type' => MenuItem::PARENT_ITEM, 'name' => 'login',     'title' => 'Login',     'label' => 'Login',     'url' => route('login'),    'target' => MenuItem::TARGET_SELF],
-            'Sign Up'   => ['type' => MenuItem::PARENT_ITEM, 'name' => 'sign-up',   'title' => 'Sign Up',   'label' => 'Sign Up',   'url' => route('register'), 'target' => MenuItem::TARGET_SELF]
+            'For Practices' => [
+                'type'      => MenuItem::PARENT_ITEM,
+                'name'      => 'for-practices',
+                'title'     => 'Practices',
+                'label'     => 'Practices',
+                'url'       => '#',
+                'target'    => MenuItem::TARGET_SELF
+            ],
+            'For Reps'      => [
+                'type'      => MenuItem::PARENT_ITEM,
+                'name'      => 'for-reps',
+                'title'     => 'For Reps',
+                'label'     => 'For Reps',
+                'url'       => '#',
+                'target'    => MenuItem::TARGET_SELF
+            ],
+            'Resources'     => [
+                'type'      => MenuItem::PARENT_ITEM,
+                'name'      => 'resource',
+                'title'     => 'Resources',
+                'label'     => 'Resources',
+                'url'       => '#',
+                'target'    => MenuItem::TARGET_SELF
+            ],
+            'Company'       => [
+                'type'      => MenuItem::PARENT_ITEM,
+                'name'      => 'company',
+                'title'     => 'Company',
+                'label'     => 'Company',
+                'url'       => '#',
+                'target'    => MenuItem::TARGET_SELF
+            ],
+            'Request a Demo'    => [
+                'type'          => MenuItem::PARENT_ITEM,
+                'name'          => 'request-a-demo',
+                'title'         => 'Request a Demo',
+                'label'         => 'Request a Demo',
+                'url'           => '#',
+                'target'        => MenuItem::TARGET_SELF
+            ],
+
         ];
 
         foreach ($items as $index => $item) {
@@ -52,6 +88,6 @@ class MenuTableSeeder extends Seeder
             $menuItem->target = $item['target'];
             $menuItem->saveOrFail();
             $menu->assignMenuItem($menuItem);
-        }**/
+        }
     }
 }

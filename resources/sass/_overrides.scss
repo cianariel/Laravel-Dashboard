@@ -8,7 +8,7 @@ html {
     width: 100%;
     min-height: 100vh;
     overflow-x: hidden;
-    background: $body-bg;
+    background: $md-primary-color;
     position: relative;
 }
 
@@ -20,8 +20,8 @@ body,
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
-    background: $body-bg;
-    font-family: $font-family-sans-serif;
+    background: $md-primary-color;
+    font-family: $font-poppins;
     font-size: $font-size-base;
     line-height: $line-height-base;
 }

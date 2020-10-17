@@ -454,6 +454,7 @@
     @include full-width;
     min-height: 100vh;
     position: relative;
+    background: $md-primary-color;
 
 }
 
@@ -464,9 +465,9 @@
     width: 100%;
 
     // Navigation
-    .vw-navigation {
+    .md-navigation {
 
-        background: $dark-puple-color;
+        background: $white;
 
         // Navbar
         .md-navbar {
@@ -475,27 +476,26 @@
             .navbar-brand {
 
                 position: relative;
-                color: $white;
+                color: $md-primary-color;
 
                 &:hover {
-                    color: $white;
-                }
-
-                .logo {
-
-                    color: $white;
-                    background: $light-blue-color;
-                    font-size: rem(15);
-                    font-weight: 700;
-                    display: inline-block;
-                    padding: rem(2) rem(5);
-                    border-radius: rem(5);
+                    color: $md-primary-color;
                 }
 
                 .site-name {
 
+                    display: block;
                     position: relative;
                     top: rem(1);
+                    width: rem(250);
+                    overflow: hidden;
+
+                    .logo {
+
+                        width: rem(250);
+                        height: auto;
+
+                    }
                 }
             }
 
@@ -504,7 +504,7 @@
 
                 .icon {
 
-                    color: $white;
+                    color: $md-primary-color;
                 }
             }
 
@@ -516,11 +516,11 @@
                     .nav-item {
 
                         .nav-link {
-                            color: $white;
+                            color: $md-primary-color;
 
                             &:hover {
 
-                                color: $white;
+                                color: $md-primary-color;
                             }
                         }
                     }
@@ -553,8 +553,6 @@
 // Footer
 //----------------------------------//
 #md-footer {
-
-
 
     // Container
     .container-fluid,

@@ -24,46 +24,45 @@ class Role extends SpatieRole
     protected $table = 'roles';
 
     /**
-     * Status Active
-     *
      * @var string ACTIVE
      */
     const ACTIVE = 'active';
 
     /**
-     * Status Inactive
      * @var string INACTIVE
      */
     const INACTIVE = 'inactive';
 
 
     /**
-     * Role super admin users
-     *
      * @var string SUPER_ADMIN
      */
     const SUPER_ADMIN = 'super_admin';
 
     /**
-     * Role admin users
-     *
      * @var string ADMIN
      */
     const ADMIN = 'admin';
 
     /**
-     * Role for generic users
-     *
-     * @var string USER
-     */
-    const USER = 'user';
-
-    /**
-     * Role for API users
-     *
      * @var string API
      */
     const API = 'api';
+
+    /**
+     * @var string OWNER
+     */
+    const OWNER = 'owner';
+
+    /**
+     * @var string GUEST
+     */
+    const GUEST = 'guest';
+
+    /**
+     * @var string USER
+     */
+    const USER = 'user';
 
     /**
      * Role for UNASSIGNED users
@@ -81,6 +80,8 @@ class Role extends SpatieRole
         self::UNASSIGNED,
         self::SUPER_ADMIN,
         self::ADMIN,
+        self::OWNER,
+        self::GUEST,
         self::USER
     ];
 

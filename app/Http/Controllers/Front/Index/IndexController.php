@@ -28,6 +28,6 @@ class IndexController extends Controller
      */
     public function index(Request $requst)
     {
-        //
+        return view('frontend.index.index');
     }
 }
