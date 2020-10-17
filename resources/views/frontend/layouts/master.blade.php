@@ -1,0 +1,23 @@
+{{-- Stored in resources/frontend/layouts/master.blade.php --}}
+@extends('layouts.master')
+{{--[head]--}}
+@section('head')
+    @include('frontend.partials.head')
+@endsection
+{{--[/head]--}}
+{{--[header]--}}
+@section('header')
+    @include('frontend.partials.notify')
+    @include('frontend.partials.header')
+@endsection
+{{--[/header]--}}
+{{--[content]--}}
+@section('content')
+    @yield('content-body');
+@endsection
+{{--[/content]--}}
+{{--[footer]--}}
+@section('footer')
+    @include('frontend.partials.footer')
+@endsection
+{{--[/footer]--}}

@@ -38,11 +38,9 @@ use App\Models\System\Traits\HasIndustries;
  */
 class Site extends Model
 {
-    use HasBlogs,
-        HasCarts,
+    use HasCarts,
         HasCountries,
         HasForums,
-        HasIndustries,
         HasInvoiceItems,
         HasMenus,
         HasNotes,

@@ -41,6 +41,8 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapAdminRoutes();    // Administrator routes
+        $this->mapOfficeRoutes();   // Office routes
+        $this->mapUserRoutes();     // User routes
         $this->mapRedirectRoutes(); // Redirect routes
         $this->mapApiRoutes();      // API routes
         $this->mapWebRoutes();      // Web generic routes
@@ -60,6 +62,37 @@ class RouteServiceProvider extends ServiceProvider
              ->namespace($this->namespace)
              ->group(base_path('routes/web/admin.php'));
     }
+
+    /**
+     * Define the "office" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     * @access protected
+     */
+    protected function mapOfficeRoutes()
+    {
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/web/office.php'));
+    }
+
+    /**
+     * Define the "user" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     * @access protected
+     */
+    protected function mapUserRoutes()
+    {
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/web/user.php'));
+    }
+
 
     /**
      * Define the "web" routes for the application.

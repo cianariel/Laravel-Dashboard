@@ -17153,7 +17153,7 @@ html {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  background: #fff;
+  background: #034ea2;
   position: relative;
 }
 
@@ -17163,8 +17163,8 @@ body,
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  background: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background: #034ea2;
+  font-family: "Poppins", sans-serif;
   font-size: 0.9375rem;
   line-height: 1.6;
 }
@@ -17540,42 +17540,41 @@ input[type=checkbox] {
   width: 100% !important;
   min-height: 100vh;
   position: relative;
+  background: #034ea2;
 }
 
 #md-header {
   width: 100%;
 }
-#md-header .vw-navigation {
-  background: #101626;
+#md-header .md-navigation {
+  background: #fff;
 }
-#md-header .vw-navigation .md-navbar .navbar-brand {
+#md-header .md-navigation .md-navbar .navbar-brand {
   position: relative;
-  color: #fff;
+  color: #034ea2;
 }
-#md-header .vw-navigation .md-navbar .navbar-brand:hover {
-  color: #fff;
+#md-header .md-navigation .md-navbar .navbar-brand:hover {
+  color: #034ea2;
 }
-#md-header .vw-navigation .md-navbar .navbar-brand .logo {
-  color: #fff;
-  background: #0a8cbf;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  display: inline-block;
-  padding: 0.125rem 0.3125rem;
-  border-radius: 0.3125rem;
-}
-#md-header .vw-navigation .md-navbar .navbar-brand .site-name {
+#md-header .md-navigation .md-navbar .navbar-brand .site-name {
+  display: block;
   position: relative;
   top: 0.0625rem;
+  width: 15.625rem;
+  overflow: hidden;
 }
-#md-header .vw-navigation .md-navbar .navbar-toggler .icon {
-  color: #fff;
+#md-header .md-navigation .md-navbar .navbar-brand .site-name .logo {
+  width: 15.625rem;
+  height: auto;
 }
-#md-header .vw-navigation .md-navbar .navbar-frontend-collapse .navbar-nav .nav-item .nav-link {
-  color: #fff;
+#md-header .md-navigation .md-navbar .navbar-toggler .icon {
+  color: #034ea2;
 }
-#md-header .vw-navigation .md-navbar .navbar-frontend-collapse .navbar-nav .nav-item .nav-link:hover {
-  color: #fff;
+#md-header .md-navigation .md-navbar .navbar-frontend-collapse .navbar-nav .nav-item .nav-link {
+  color: #034ea2;
+}
+#md-header .md-navigation .md-navbar .navbar-frontend-collapse .navbar-nav .nav-item .nav-link:hover {
+  color: #034ea2;
 }
 
 #md-main {
