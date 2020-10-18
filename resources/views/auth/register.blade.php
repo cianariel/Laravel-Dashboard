@@ -24,7 +24,10 @@
                                 'id'        => 'account_type',
                                 'name'      => 'account_type',
                                 'label'     => 'Account Type',
-                                'options'   => ['Office', 'Rep'],
+                                'options'   => [
+                                    __('Medical Office'),
+                                    __('Industry representative')
+                                ],
                                 'value'     => old('account_type')
                             ])
                                 @error('account_type')
@@ -48,7 +51,7 @@
                                 'name'          => 'first_name',
                                 'label'         => __('First Name'),
                                 'value'         => old('first_name'),
-                                'placeholder'   => __('John / Jane')
+                                'placeholder'   =>__('Enter your first name')
                             ])
                             @endcomponent
                             @component('components.forms.input', [
@@ -57,7 +60,7 @@
                                 'name'          => 'last_name',
                                 'label'         => __('Last Name'),
                                 'value'         => old('last_name'),
-                                'placeholder'   => __('Doe')
+                                'placeholder'   => __('Enter your last name')
                             ])
                             @endcomponent
                             @component('components.forms.input', [
@@ -66,9 +69,44 @@
                                 'name'          => 'email',
                                 'label'         => __('Email Address'),
                                 'value'         => old('email'),
-                                'placeholder'   => __('me@mdreptime.com')
+                                'placeholder'   => __('Enter your email address')
                             ])
                             @endcomponent
+                            @component('components.forms.password', [
+                                'type'          => 'password',
+                                'name'          => 'password',
+                                'label'         => __('Password'),
+                                'value'         => '',
+                                'placeholder'   => __('Enter a password')
+                            ])
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            @endcomponent
+                            @component('components.forms.recaptcha', [
+                                'label'         => 'Human Verfication',
+                                'name'          => 'g-recaptcha'
+                            ])
+                                @error('g-recaptcha')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            @endcomponent
+                            <div class="row">
+                                <div class="col-12 offset-md-4">
+                                    @component('components.forms.button', [
+                                        'id'        => 'signup-btn',
+                                        'type'      => 'submit',
+                                        'name'      => 'signup-btn',
+                                        'label'     => __('Sign up'),
+                                        'classes'   => ['btn', 'btn-primary', 'bg-green']
+                                    ])
+                                    @endcomponent
+                                </div>
+                            </div>
                         @endcomponent
                     </div>
                 @endcomponent
