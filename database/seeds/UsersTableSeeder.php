@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
                 $user = new User;
                 $user->uuid = Str::uuid();
                 $user->email = 'localhost.80@gmail.com';
-                $user->username = unique_username(Role::ADMIN);
+                $user->username = unique_username(Role::SUPER_ADMIN);
                 $user->password = Hash::make('ax71bzld'); // Hash::make('xiuZ7Lo^p1vighii');
                 $user->company  = 'SolidWolves, LLC';
                 $user->first_name = 'Antonio';
@@ -47,7 +47,7 @@ class UsersTableSeeder extends Seeder
                 $user->save();
 
                 // Assign role admin.
-                $user->assignRole([Role::ADMIN]);
+                $user->assignRole([Role::ADMIN, Role::SUPER_ADMIN]);
 
                 // Assign user to site.
                 $site->assignUser($user);
@@ -58,7 +58,7 @@ class UsersTableSeeder extends Seeder
                 $user = new User;
                 $user->uuid = Str::uuid();
                 $user->email = 'ian@mdreptime.com';
-                $user->username = unique_username(Role::ADMIN);
+                $user->username = unique_username(Role::SUPER_ADMIN);
                 $user->password = Hash::make('xiuZ7Lo^p1vighii');
                 $user->company  = 'MDRepTime, LLC';
                 $user->first_name = 'Ian';
@@ -78,7 +78,7 @@ class UsersTableSeeder extends Seeder
                 $user->save();
 
                 // Assign role admin.
-                $user->assignRole([Role::ADMIN]);
+                $user->assignRole([Role::ADMIN, Role::SUPER_ADMIN]);
 
                 // Assign user to site.
                 $site->assignUser($user);

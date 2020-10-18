@@ -1,8 +1,8 @@
 @extends('frontend.layouts.master')
-
-@section('content')
+@section('html-title', 'Reset Password')
+@section('content-body')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-3">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>

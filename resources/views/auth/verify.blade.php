@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
-
-@section('content')
+@section('html-title', 'Verify')
+@section('content-body')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
