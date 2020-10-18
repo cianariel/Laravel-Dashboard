@@ -47,7 +47,7 @@ class UsersTableSeeder extends Seeder
                 $user->save();
 
                 // Assign role admin.
-                $user->assignRole([Role::SUPER_ADMIN, Role::ADMIN]);
+                $user->assignRole([Role::ADMIN]);
 
                 // Assign user to site.
                 $site->assignUser($user);
@@ -78,7 +78,7 @@ class UsersTableSeeder extends Seeder
                 $user->save();
 
                 // Assign role admin.
-                $user->assignRole([Role::SUPER_ADMIN, Role::ADMIN]);
+                $user->assignRole([Role::ADMIN]);
 
                 // Assign user to site.
                 $site->assignUser($user);

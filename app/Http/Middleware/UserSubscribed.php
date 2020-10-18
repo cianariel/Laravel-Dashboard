@@ -30,11 +30,6 @@ class UserSubscribed
             if ($usre->setup_completed == User::SETUP_INCOMPLETE) {
                 return redirect('setup');
             }
-
-            // Redirect if already to subscribed.
-            if ($user->setup_completed == User::SETUP_COMPLETED && $user->subscribed('default')) {
-                return redirect()->to(portal_url($user));
-            }
         }
 
         return $next($request);

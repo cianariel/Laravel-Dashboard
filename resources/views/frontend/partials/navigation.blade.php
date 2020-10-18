@@ -40,10 +40,10 @@
                 {{--[/guest]--}}
                 {{--[auth]--}}
                 @auth
-                    <li class="nav-item"><a class="nav-link" href="{{ portal_url(Auth::user()) }}">{{ __('Dashboard') }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ secure_url(role(Auth::user())) }}">{{ __('Dashboard') }}</a></li>
                     <li class="nav-item">
-                        @component('components.forms.form', ['classes' => ['nav-link'], 'method' => 'POST', 'action' => route('logout') ])
-                            <button type="submit" class="btn-unstyled fg-white">{{ __('Logout') }} <i class="fas fa-sign-out-alt"></i></button>
+                        @component('components.forms.form', ['classes' => ['nav-link', 'fg-blue'], 'method' => 'POST', 'action' => route('logout') ])
+                            <button type="submit" class="btn-unstyled fg-blue">{{ __('Logout') }} <i class="fas fa-sign-out-alt"></i></button>
                         @endcomponent
                     </li>
                 @endauth
