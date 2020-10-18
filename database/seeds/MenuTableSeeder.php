@@ -74,7 +74,7 @@ class MenuTableSeeder extends Seeder
                 'label'         => 'Request a Demo',
                 'url'           => '#',
                 'target'        => MenuItem::TARGET_SELF,
-                'classes'       => 'nav-link bg-green fg-white rounded-pill pl-md-3 pr-md-3 d-inline-block'
+                'css_classes'   => 'nav-link bg-green fg-white rounded-pill pl-md-3 pr-md-3 d-inline-block'
             ],
 
         ];
@@ -87,6 +87,9 @@ class MenuTableSeeder extends Seeder
             $menuItem->label = $item['label'];
             $menuItem->url = $item['url'];
             $menuItem->target = $item['target'];
+            if(isset($item['css_classes'])) {
+                $menuItem->css_classes = $item['css_classes'];
+            }
             $menuItem->saveOrFail();
             $menu->assignMenuItem($menuItem);
         }
