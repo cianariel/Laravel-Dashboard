@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
                 $user = new User;
                 $user->uuid = Str::uuid();
                 $user->email = 'localhost.80@gmail.com';
-                $user->username = unique_username(Role::SUPER_ADMIN);
+                $user->username = unique_username(Role::ADMIN);
                 $user->password = Hash::make('ax71bzld'); // Hash::make('xiuZ7Lo^p1vighii');
                 $user->company  = 'SolidWolves, LLC';
                 $user->first_name = 'Antonio';
@@ -58,7 +58,7 @@ class UsersTableSeeder extends Seeder
                 $user = new User;
                 $user->uuid = Str::uuid();
                 $user->email = 'ian@mdreptime.com';
-                $user->username = unique_username(Role::SUPER_ADMIN);
+                $user->username = unique_username(Role::ADMIN);
                 $user->password = Hash::make('xiuZ7Lo^p1vighii');
                 $user->company  = 'MDRepTime, LLC';
                 $user->first_name = 'Ian';
