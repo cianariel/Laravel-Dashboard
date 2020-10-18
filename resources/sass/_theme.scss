@@ -554,17 +554,13 @@
 //----------------------------------//
 #md-footer {
 
-    // Container
-    .container-fluid,
-    .container
-    {
-        background: $dark-grey-color;
-    }
+    background: $md-secondary-color;
 
-    /*
-    // Heights
+    // Container
+
+    /* Heights
     @include media-breakpoint-up(md) {
-        min-height: rem(344px);
+        min-height: rem(344);
     }
 
     @include media-breakpoint-down(md) {
@@ -573,14 +569,14 @@
 
     @include media-breakpoint-down(sm) {
         min-height: rem(524);
-    }*/
+    } */
 
     .links-block {
 
         h4,
         h5 {
 
-            color: lighten($grey-color, 40%);
+            color: $white;
             text-transform: capitalize;
         }
 
@@ -593,11 +589,11 @@
             li {
 
                 a {
-                    color: lighten($grey-color, 50%);
+                    color: $white;
 
                     &:hover {
 
-                        color: lighten($grey-color, 50%);
+                        color: $white;
                         text-decoration: underline;
                     }
                 }
@@ -629,11 +625,11 @@
                 }
 
                 a {
-                    color: lighten($grey-color, 45%);
+                    color: $white;
 
                     &:hover {
 
-                        color: lighten($grey-color, 45%);
+                        color: $white;
                     }
                 }
             }
@@ -653,7 +649,7 @@
                 a {
 
                     &:hover {
-                        color: $blue-color;
+                        color: $white;
                     }
                 }
             }
@@ -662,8 +658,7 @@
 
     // Copyright
     .copyright {
-
-        color: lighten($grey-color, 40%);
+        color: $white;
     }
 }
 

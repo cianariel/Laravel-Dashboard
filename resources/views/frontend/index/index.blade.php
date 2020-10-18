@@ -19,12 +19,3 @@
         </div>
     @endcomponent
 @endsection
-@section('scripts_end')
-<script type="text/javascript">
-<!--
-    jQuery(document).ready(function($){
-
-    });
-//-->
-</script>
-@endsection
