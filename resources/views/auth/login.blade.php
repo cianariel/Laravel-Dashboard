@@ -13,6 +13,12 @@
                     <div class="card-body bg-white">
                         <h3 class="mb-1">{{ __('Sign in') }}</h3>
                         <p>{{ __('to access MD Rep Time Account') }}</p>
+                        <div class="d-block mb-4">
+                            @component('components.elements.image',[
+                                'src'       => asset('images/login_graphic.png'),
+                                'classes'   => ['w-100']
+                            ])@endcomponent
+                        </div>
                         @component('components.forms.form', [
                             'id'        => 'register-form',
                             'method'    => 'POST',

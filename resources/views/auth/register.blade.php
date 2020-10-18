@@ -57,6 +57,11 @@
                                     'value'         => old('company'),
                                     'placeholder'   => __('MD Rep Time, LLC')
                                 ])
+                                    @error('company')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 @endcomponent
                                 @component('components.forms.input', [
                                     'type'          => 'text',
@@ -66,6 +71,11 @@
                                     'value'         => old('first_name'),
                                     'placeholder'   =>__('Enter your first name')
                                 ])
+                                    @error('first_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 @endcomponent
                                 @component('components.forms.input', [
                                     'type'          => 'text',
@@ -75,6 +85,11 @@
                                     'value'         => old('last_name'),
                                     'placeholder'   => __('Enter your last name')
                                 ])
+                                    @error('last_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 @endcomponent
                                 @component('components.forms.input', [
                                     'type'          => 'email',
@@ -84,6 +99,11 @@
                                     'value'         => old('email'),
                                     'placeholder'   => __('Enter your email address')
                                 ])
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 @endcomponent
                                 @component('components.forms.password', [
                                     'type'          => 'password',
@@ -132,7 +152,7 @@
                         <div class="card-body bg-white">
                             <h3 class="mb-1">{{ __('Sign in') }}</h3>
                             <p>{{ __('to access MD Rep Time Account') }}</p>
-                            <div class="d-block mb-5">
+                            <div class="d-block mb-4">
                                 @component('components.elements.image',[
                                     'src'       => asset('images/login_graphic.png'),
                                     'classes'   => ['w-100']
