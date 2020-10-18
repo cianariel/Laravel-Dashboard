@@ -14,7 +14,9 @@
             <div class="card-body border-0 p-0">
                  @yield('header')
                  @yield('content')
-                 @yield('footer')
+            </div>
+            <div class="card-footer border-0 p-0">
+                @yield('footer')
             </div>
         @endcomponent
         <script type="text/javascript">

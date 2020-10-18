@@ -15,9 +15,19 @@ $red-color: #c90610;
 $white: #fff;
 $black: #000;
 $dark-puple-color: #101626;
+$green-color: #07b152;
 
 // Theme Colors
 $md-primary-color: $blue-color;
+$md-secondary-color: $green-color;
+
+.bg-green {
+    background: $md-secondary-color !important;;
+}
+
+.fg-green {
+    color: $md-secondary-color !important;;
+}
 
 .bg-none {
     background: none !important;

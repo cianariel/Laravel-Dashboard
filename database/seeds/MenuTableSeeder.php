@@ -73,7 +73,8 @@ class MenuTableSeeder extends Seeder
                 'title'         => 'Request a Demo',
                 'label'         => 'Request a Demo',
                 'url'           => '#',
-                'target'        => MenuItem::TARGET_SELF
+                'target'        => MenuItem::TARGET_SELF,
+                'classes'       => 'nav-link bg-green fg-white rounded-pill pl-md-3 pr-md-3 d-inline-block'
             ],
 
         ];
