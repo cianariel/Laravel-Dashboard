@@ -11,10 +11,8 @@
                     'id'        => 'register-card',
                     'classes'   => ['mt-3']
                 ])
-                    <div class="card-header">
-                        {{ __('Register') }}
-                    </div>
                     <div class="card-body bg-white">
+                        <h3 class="mb-3">{{ __('Register') }}</h3>
                         @component('components.forms.form', [
                             'id'        => 'register-form',
                             'method'    => 'POST',
@@ -116,11 +114,10 @@
                         'id'        => 'register-card',
                         'classes'   => ['mt-3']
                     ])
-                        <div class="card-header">
-                            {{ __('Login') }}
-                        </div>
                         <div class="card-body bg-white">
-                             @component('components.forms.form', [
+                            <h3 class="mb-1">{{ __('Sign in') }}</h3>
+                            <p>{{ __('to access MD Rep Time Account') }}</p>
+                            @component('components.forms.form', [
                                 'id'        => 'register-form',
                                 'method'    => 'POST',
                                 'action'    => route('login')
