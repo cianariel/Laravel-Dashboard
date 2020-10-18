@@ -35,6 +35,19 @@
                                 @enderror
                             @endcomponent
                             @component('components.forms.input', [
+                                'id'            => 'title',
+                                'name'          => 'title',
+                                'label'         => __('Title'),
+                                'value'         => old('title'),
+                                'placeholder'   => __('Title')
+                            ])
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            @endcomponent
+                            @component('components.forms.input', [
                                 'type'          => 'text',
                                 'id'            => 'company',
                                 'name'          => 'company',
@@ -116,6 +129,7 @@
                 ])
                     <div class="card-body bg-white">
                         <h3 class="mb-1">{{ __('Sign in') }}</h3>
+                        <p>{{ __('to access MD Rep Time Account') }}</p>
                         @component('components.forms.form', [
                             'id'        => 'register-form',
                             'method'    => 'POST',
