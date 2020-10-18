@@ -34,6 +34,11 @@ class Role extends SpatieRole
     const INACTIVE = 'inactive';
 
     /**
+     * @var SUPER_ADMIN
+     */
+    const SUPER_ADMIN = 'super_admin';
+
+    /**
      * @var string ADMIN
      */
     const ADMIN = 'admin';
@@ -72,6 +77,7 @@ class Role extends SpatieRole
     const ROLES = [
         self::API,
         self::UNASSIGNED,
+        self::SUPER_ADMIN,
         self::ADMIN,
         self::OWNER,
         self::GUEST,
