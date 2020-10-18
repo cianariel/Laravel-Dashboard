@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 use App\Models\System\Role;
 use App\Models\System\User;
 use App\Rules\SanitizeHtml;
@@ -53,7 +54,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $rules = [
-            'account_type'      => ['required', 'string', Rule::in(Role::OWNER, Role::USER)],
+            'account_type'          => ['required', 'string', Rule::in(Role::OWNER, Role::USER)],
+            'title'                 => ['required', 'string', 'max:100', new SanitizeHtml],
+            'company'               => ['required', 'string', 'max:150', new SanitizeHtml],
+            'first_name'            => ['required', 'string', 'max:50', new SanitizeHtml],
+            'last_name'             => ['required', 'string', 'max:50', new SanitizeHtml],
+            'email'                 => ['required', 'email', 'unique:system.users,email'],
+            'password'              => ['required', 'max:16', 'confirmed'],
+            'g-recaptcha-response'  => ['required', 'captcha']
         ];
 
         return Validator::make($data, $rules);
@@ -67,10 +75,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $site = site();
+
+        $role = Role::where('name', $data['account_type'])->first();
+
+        $user = new User;
+        $user->uuid = Str::uuid();
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->username = unique_username($role->name);
+        $user->company = $data['company'];
+        $user->first_name = $data['first_name'];
+        $user->last_name = $data['last_name'];
+        $user->setMetaField('title', $data['title'], false);
+        $user->save();
+
+        $user->assignRole($role);
+
+        return $user;
     }
 }
