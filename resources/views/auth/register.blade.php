@@ -24,9 +24,10 @@
                                     'name'      => 'account_type',
                                     'label'     => 'Account Type',
                                     'options'   => [
-                                        __('Medical Office'),
-                                        __('Industry representative')
+                                        'owner' => __('Medical Office'),
+                                        'user'  => __('Industry representative')
                                     ],
+                                    'withIndex' => true,
                                     'value'     => old('account_type')
                                 ])
                                     @error('account_type')
@@ -131,6 +132,12 @@
                         <div class="card-body bg-white">
                             <h3 class="mb-1">{{ __('Sign in') }}</h3>
                             <p>{{ __('to access MD Rep Time Account') }}</p>
+                            <div class="d-block mb-5">
+                                @component('components.elements.image',[
+                                    'src'       => asset('images/login_graphic.png'),
+                                    'classes'   => ['w-100']
+                                ])@endcomponent
+                            </div>
                             @component('components.forms.form', [
                                 'id'        => 'register-form',
                                 'method'    => 'POST',
