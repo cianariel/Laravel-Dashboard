@@ -30,6 +30,10 @@ class OfficeController extends BaseController
         if($user) {
 
             $breadcrumbs = breadcrumbs([
+                __('Office')        => [
+                    'path'          => secure_url('office'),
+                    'active'        => false
+                ],
                 __('Dashboard')     => [
                     'path'          => route('office.dashboard'),
                     'active'        => true
