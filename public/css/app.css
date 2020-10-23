@@ -17931,6 +17931,19 @@ body[id^=page-admin] .md-breadcrumbs .breadcrumb .breadcrumb-item .active {
   color: #303030;
 }
 
+body[id^=page-office] #office-content-body {
+  background: #034ea2;
+}
+body[id^=page-office] .md-breadcrumbs .breadcrumb {
+  background: #034ea2;
+}
+body[id^=page-office] .md-breadcrumbs .breadcrumb .breadcrumb-item {
+  color: #fff;
+}
+body[id^=page-office] .md-breadcrumbs .breadcrumb .breadcrumb-item .active {
+  color: #0a8cbf;
+}
+
 body[id=page-login] #md-app,
 body[id=page-login] #md-main,
 body[id=page-login] #primary-card,

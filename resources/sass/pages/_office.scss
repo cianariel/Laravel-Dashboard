@@ -1,6 +1,30 @@
-// Admin
+// Office Panel
+
+
 //----------------------------//
 body[id^="page-office"]
 {
 
+    // Main Body Content
+    #office-content-body {
+
+        background: $blue-color;
+    }
+
+    // Breadcrumbs
+    .md-breadcrumbs {
+
+        .breadcrumb {
+            background: $blue-color;
+
+            .breadcrumb-item {
+
+                color: $white;
+
+                .active {
+                    color: $light-blue-color;
+                }
+            }
+        }
+    }
 }
