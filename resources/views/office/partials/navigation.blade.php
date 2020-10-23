@@ -21,4 +21,55 @@
         <i class="icon fas fa-bars"></i>
     </button>
     {{--[/toggler]--}}
+    <div class="collapse navbar-collapse navbar-frontend-collapse" id="navbar-frontend-collapse">
+        <div class="d-block w-100">
+            <ul class="navbar-nav mr-auto justify-content-end">
+                <li class="nav-item">
+                    @component('components.elements.link', [
+                        'href'      => '#',
+                        'classes'   => ['nav-link']
+                    ])
+                        {{ __('Calendar') }}
+                    @endcomponent
+                </li>
+                <li class="nav-item">
+                    @component('components.elements.link', [
+                        'href'      => '#',
+                        'classes'   => ['nav-link']
+                    ])
+                        {{ __('Messages') }}
+                    @endcomponent
+                </li>
+                <li class="nav-item">
+                    @component('components.elements.link', [
+                        'href'      => '#',
+                        'classes'   => ['nav-link']
+                    ])
+                        {{ __('Rep Database') }}
+                    @endcomponent
+                </li>
+                <li class="nav-item">
+                    @component('components.elements.link', [
+                        'href'      => '#',
+                        'classes'   => ['nav-link']
+                    ])
+                        {{ __('Staff') }}
+                    @endcomponent
+                </li>
+                <li class="nav-item">
+                    @component('components.elements.link', [
+                        'href'      => '#',
+                        'classes'   => ['nav-link']
+                    ])
+                        {{ __('Settings') }}
+                    @endcomponent
+                </li>
+                <li class="nav-item">
+                    @component('components.forms.form', ['classes' => ['nav-link', 'fg-blue'], 'method' => 'POST', 'action' => route('logout') ])
+                        <button type="submit" class="btn-unstyled fg-blue">{{ __('Logout') }} <i class="fas fa-sign-out-alt"></i></button>
+                    @endcomponent
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
