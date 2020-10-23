@@ -15,7 +15,13 @@ declare(strict_types=1);
 
 
 $routes = [
-
+    [
+        'path'          => '/',
+        'type'          => 'get',
+        'controller'    => 'Office\OfficeController',
+        'method'        => 'index',
+        'name'          => 'dashboard'
+    ],
 ];
 
 Route::domain(config('app.base_domain'))->name('office.')->group(function () use (&$routes) {

@@ -2,33 +2,29 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Office;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\System\Role;
 use App\Models\System\User;
 
 /**
- * Admin Controller
+ * Office BaseController
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin
+ * @copyright 2020 MdRepTime, LLC
+ * @package App\Http\Controllers\Office
  */
-class AdminController extends Controller
+class BaseController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Constructor
      *
-     * @return void
-     * @access public
+     * @return App\Http\Office\BaseController
      */
     public function __construct()
     {
-        $roles = [Role::ADMIN];
+        $roles = [Role::OWNER, Role::GUEST];
         $this->middleware('force.https');
         $this->middleware('auth');
         $this->middleware('role:' . implode('|', $roles));
