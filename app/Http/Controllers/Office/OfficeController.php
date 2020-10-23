@@ -2,23 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Owner;
+namespace App\Http\Controllers\Office;
 
-use App\Http\Controllers\Controller;
-use Exception;
-use Illuminate\Database\QueryException;
+use App\Http\Controllers\Office\BaseController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 
 /**
- * OwnersController
+ * OfficeController
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Http\Controllers\Owner
+ * @package App\Http\Controllers\Office
  */
-class OwnersController extends Controller
+class OfficeController extends BaseController
 {
     /**
      * Display a listing of the resource.

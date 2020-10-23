@@ -28,7 +28,18 @@
                         @if($items = $menu->menuItems()->orderBy('position', 'asc')->cursor())
                             @if($items->count() !== 0)
                                 @foreach($items as $item)
-                                    <li class="nav-item"><a title="{{ $item->title }}" target="{{ $item->target }}" class="nav-link {{ $item->css_classes?? implode(' ', explode(',', $item->css_classes)) }}" href="{{ $item->url }}">{!! $item->label !!}</a></li>
+                                    <li class="nav-item">
+                                    @component('components.elements.link', [
+                                        'href'  =>  $item->url,
+                                        'attrs' => [
+                                            'title' => $item->title,
+                                            'target' => $item->target,
+                                        ],
+                                        'classes'   => (filled($item->css_classes))? explode(',', $item->css_classes) : ['nav-link']
+                                    ])
+                                        {!! $item->label !!}
+                                    @endcomponent
+                                    </li>
                                 @endforeach
                             @else
                                 <li class="nav-item"><a class="nav-link" href="{{ secure_url('login') }}">{{ __('Login') }}</a></li>
@@ -40,7 +51,34 @@
                 {{--[/guest]--}}
                 {{--[auth]--}}
                 @auth
-                    <li class="nav-item"><a class="nav-link" href="{{ secure_url(role(Auth::user())) }}">{{ __('Dashboard') }}</a></li>
+                    @if($role = Auth::user()->roles()->first()->name)
+                        <li class="nav-item">
+                            @if($role == App\Models\System\Role::SUPER_ADMIN || $role == App\Models\System\Role::ADMIN)
+                                @component('components.elements.link', [
+                                    'href'      => secure_url('admin'),
+                                    'classes'   => ['nav-link']
+                                ])
+                                    {{ __('Dashboard') }}
+                                @endcomponent
+                            @endif
+                            @if($role == App\Models\System\Role::OWNER || $role == App\Models\System\Role::GUEST)
+                                @component('components.elements.link', [
+                                    'href'      => route('office.dashboard'),
+                                    'classes'   => ['nav-link']
+                                ])
+                                    {{ __('Dashboard') }}
+                                @endcomponent
+                            @endif
+                            @if($role == App\Models\System\Role::USER)
+                                @component('components.elements.link', [
+                                    'href'      => secure_url('user'),
+                                    'classes'   => ['nav-link']
+                                ])
+                                    {{ __('Dashboard') }}
+                                @endcomponent
+                            @endif
+                        </li>
+                    @endif
                     <li class="nav-item">
                         @component('components.forms.form', ['classes' => ['nav-link', 'fg-blue'], 'method' => 'POST', 'action' => route('logout') ])
                             <button type="submit" class="btn-unstyled fg-blue">{{ __('Logout') }} <i class="fas fa-sign-out-alt"></i></button>
