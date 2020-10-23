@@ -24,6 +24,22 @@ class OfficeController extends BaseController
      */
     public function index(Request $requst)
     {
-        //
+        $site = site(config('app.base_domain'));
+        $user = auth()->user();
+
+        if($user) {
+
+            $breadcrumbs = breadcrumbs([
+                __('Dashboard')     => [
+                    'path'          => route('office.dashboard'),
+                    'active'        => true
+                ]
+            ]);
+
+            return view('office.dashboard.index', compact('site', 'user', 'breadcrumbs'));
+        }
+
+        flash(__('Unauthorized Access.'))->error();
+        return redirect()->route('login');
     }
 }
