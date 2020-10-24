@@ -88,6 +88,8 @@ class RegisterController extends Controller
         $user->first_name = $data['first_name'];
         $user->last_name = $data['last_name'];
         $user->setMetaField('title', $data['title'], false);
+        $user->status = User::ACTIVE;
+        $user->setup_completed = User::SETUP_INCOMPLETE;
         $user->save();
 
         $user->assignRole($role);

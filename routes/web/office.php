@@ -22,6 +22,13 @@ $routes = [
         'method'        => 'index',
         'name'          => 'dashboard'
     ],
+    [
+        'path'          => 'setup',
+        'type'          => 'get',
+        'controller'    => 'Office\Setup\SetupController',
+        'method'        => 'index',
+        'name'          => 'setup.account'
+    ]
 ];
 
 Route::domain(config('app.base_domain'))->name('office.')->group(function () use (&$routes) {

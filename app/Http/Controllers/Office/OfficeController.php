@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Office;
 
 use App\Http\Controllers\Office\BaseController;
 use Illuminate\Http\Request;
+use App\Models\System\User;
 
 /**
  * OfficeController
@@ -27,7 +28,7 @@ class OfficeController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->user();
 
-        if($user) {
+        if($user->setup_completed == User::SETUP_INCOMPLETE) {
 
             $breadcrumbs = breadcrumbs([
                 __('Office')        => [
@@ -41,6 +42,8 @@ class OfficeController extends BaseController
             ]);
 
             return view('office.dashboard.index', compact('site', 'user', 'breadcrumbs'));
+        } else {
+            return redirect()->route('office.setup.account');
         }
 
         flash(__('Unauthorized Access.'))->error();

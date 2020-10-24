@@ -20,6 +20,7 @@ use App\Models\System\Traits\HasPayments;
 use App\Models\System\Traits\HasReviews;
 use App\Models\System\Traits\HasSettings;
 use App\Models\System\Traits\HasMessages;
+use App\Models\System\Traits\HasOffices;
 use App\Models\System\Traits\HasSupportTickets;
 use App\Models\Shared\Traits\HasMetaFields;
 use Spatie\MediaLibrary\Models\Media;
@@ -39,6 +40,7 @@ class User extends Authenticatable implements Searchable, HasMedia
         Billable,
         HasRoles,
         HasMetaFields,
+        HasOffices,
         HasOrders,
         HasCarts,
         HasPayments,
