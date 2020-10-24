@@ -93,7 +93,7 @@
                                         'type'          => 'text',
                                         'id'            => 'address_2',
                                         'name'          => 'address_2',
-                                        'label'         => 'Unit/Apt',
+                                        'label'         => 'Unit #',
                                         'value'         => old('address_2')?? $user->address_2,
                                         'placeholder'   => ''
                                     ])
@@ -109,7 +109,7 @@
                                         'type'          => 'text',
                                         'id'            => 'city',
                                         'name'          => 'city',
-                                        'label'         => 'City/Town',
+                                        'label'         => 'City',
                                         'value'         => old('city')?? $user->city,
                                         'placeholder'   => ''
                                     ])
@@ -124,7 +124,7 @@
                                     @component('components.forms.input', [
                                         'type'          => 'text',
                                         'name'          => 'zipcode',
-                                        'label'         => 'Zipcode/Postal Code',
+                                        'label'         => 'Zipcode',
                                         'value'         => old('zipcode')?? $user->zipcode,
                                         'placeholder'   => '91234'
                                     ])
@@ -136,7 +136,7 @@
                                     @endcomponent
                                     {{--[/zipcode]--}}
                                     @component('components.forms.states', [
-                                        'label'         => __('State/Province'),
+                                        'label'         => __('State'),
                                         'name'          => 'state',
                                         'value'         => old('state')?? $user->state ?? 'CA'
                                     ])
