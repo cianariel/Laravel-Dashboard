@@ -37,7 +37,7 @@
                         'href'      => '#',
                         'classes'   => ['nav-link']
                     ])
-                        {{ __('Messages') }}
+                        {{ __('Messages') }} <span class="badge badge-secondary">0</span>
                     @endcomponent
                 </li>
                 <li class="nav-item">

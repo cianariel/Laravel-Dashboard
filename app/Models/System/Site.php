@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\System\Traits\HasBlogs;
 use App\Models\System\Traits\HasCarts;
 use App\Models\System\Traits\HasCountries;
+use App\Models\System\Traits\HasOffices;
 use App\Models\System\Traits\HasForums;
 use App\Models\System\Traits\HasInvoiceItems;
 use App\Models\System\Traits\HasMenus;
@@ -38,7 +39,8 @@ use App\Models\System\Traits\HasIndustries;
  */
 class Site extends Model
 {
-    use HasCarts,
+    use HasOffices,
+        HasCarts,
         HasCountries,
         HasForums,
         HasInvoiceItems,
