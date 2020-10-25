@@ -31,6 +31,7 @@ use App\Models\System\Folder;
 use App\Models\System\User;
 use App\Models\System\Role;
 use App\Models\System\Menu;
+use App\Models\System\Office;
 use App\Models\System\Package;
 use App\Models\System\Product;
 use App\Models\System\Site;
@@ -1355,6 +1356,36 @@ if (! function_exists('unique_slug')) {
         }
 
         return $slug;
+    }
+}
+
+/**
+ * Returns a unique name
+ *
+ * @author Antonio Vargas <localhost.80@gmail.com>
+ * @copyright 2020 MdRepTime, LLC
+ *
+ * @param  string $type
+ * @param  string $name
+ * @return string
+ */
+if (! function_exists('unique_name')) {
+    function unique_name(string $type, string $name): string
+    {
+        $prefix = Str::snake(trim($name));
+        $name = $prefix;
+        $i = 1;
+
+        switch($type) {
+            case 'office':
+                while(Office::where('name', $name)->exists()) {
+                    $name = $prefix . '_' . $i;
+                    $i++;
+                }
+                break;
+        }
+
+        return $name;
     }
 }
 

@@ -10,9 +10,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\System\Country;
+use App\Models\System\Office;
 use App\Models\System\State;
 use App\Models\System\Role;
 use App\Models\System\User;
+use App\Rules\SanitizeHtml;
+use App\Rules\PhoneRule;
 use Exception;
 
 /**
@@ -75,11 +78,52 @@ class SetupController extends BaseController
         if($user->hasRole(Role::OWNER) && $user->setup_completed != User::SETUP_COMPLETED) {
 
             $rules = [
-
+                'office'        => ['required', 'string', 'max:100', new SanitizeHtml],
+                'first_name'    => ['required', 'string', 'max:100', new SanitizeHtml],
+                'last_name'     => ['required', 'string', 'max:100', new SanitizeHtml],
+                'address'       => ['required', 'string', 'max:100', new SanitizeHtml],
+                'address_2'     => ['required', 'string', 'max:100', new SanitizeHtml],
+                'city'          => ['required', 'string', 'max:100', new SanitizeHtml],
+                'zipcode'       => ['required', 'string', 'max:25', new SanitizeHtml],
+                'state'         => ['required', 'string', 'max:100', new SanitizeHtml],
+                'country'       => ['required', 'string', 'exists:system.countries,code', Rule::in(['US'])],
+                'phone'         => ['required', 'string', new PhoneRule, new SanitizeHtml],
+                'mobile_phone'  => ['required', 'string', new PhoneRule, new SanitizeHtml]
             ];
 
             $validatedData = $request->validate($rules);
 
+            $office = new Office;
+            $office->uuid = Str::uuid();
+            $office->name = unique_name('office', $request->input('office'));
+            $office->label = $request->input('office');
+            $office->status = Office::ACTIVE;
+            $office->save();
+
+            // References
+            $user->assignOffice($office);
+            $site->assignOffice($office);
+
+            // Add office profile details
+            $office->setMetaField('owner', ['first_name' => $request->input('first_name'), 'last_name' => $request->input('last_name')], false);
+            $address = [
+                'address'   => $request->input('address'),
+                'address_2' => $request->input('address_2'),
+                'city'      => $request->input('city'),
+                'zipcode'   => $request->input('zipcode'),
+                'state'     => $request->input('state'),
+                'country'   => $request->input('country')
+            ];
+
+            $office->setMetaField('location', $address, false);
+            $office->setMetaField('phone', clean_phone($request->input('phone')), false);
+            $office->setMetaField('phone', clean_phone($request->input('mobile_phone')), false);
+            $office->save();
+
+            $user->setup_completed = User::SETUP_COMPLETED;
+            $user->save();
+
+            return redirect()->route('office.dashboard');
         }
 
         flash(__('Unauthorized access.'));
