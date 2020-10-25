@@ -423,7 +423,7 @@ class SettingsController extends AdminController
                             break;
                         case Setting::INPUT_SELECT:
                             if (filled($setting->options)) {
-                                $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string', Rule::in(array_keys(unserialize($setting->options)))];
+                                $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string', Rule::in(unserialize($setting->options))];
                             } else {
                                 $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string'];
                             }

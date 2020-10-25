@@ -1095,7 +1095,7 @@ if (! function_exists('parse_host_url')) {
  * @return App\Model\Site
  */
 if (! function_exists('site')) {
-    function site($cached = false, string $domain = ''): ?Site
+    function site(string $domain = '', $cached = false): ?Site
     {
         if (!filled($domain)) {
             $domain = config('app.base_domain');
@@ -1137,19 +1137,19 @@ if (! function_exists('site')) {
  * @return \Illuminate\Support\Collection
  */
 if (! function_exists('settings')) {
-    function settings(bool $cached = false, string $domain = '')
+    function settings(string $domain = '', bool $cached = false)
     {
         if (!filled($domain)) {
             $domain = config('app.base_domain');
         }
 
         if ($cached) {
-            return Cache::rememberForever('settings', function () use (&$cached, &$domain) {
+            return Cache::rememberForever('settings', function () use (&$domain, &$cached) {
 
-                return site($cached, $domain)->settings()->get();
+                return site($domain, $cached)->settings()->get();
             });
         } else {
-            return site($cached, $domain)->settings()->cursor();
+            return site($domain, $cached)->settings()->cursor();
         }
     }
 }
@@ -1172,7 +1172,7 @@ if (! function_exists('setting')) {
         }
 
         // Get Site
-        $settings = settings($cache, $domain);
+        $settings = settings($domain, $cache);
 
         if ($settings) {
             $name = $domain . '_' . $name;
@@ -1210,7 +1210,7 @@ if (! function_exists('menu')) {
             $domain = strip_tags(config('app.base_domain'));
         }
 
-        $site = site($cached, $domain);
+        $site = site($domain, $cached);
 
         if ($site && filled($name) && Menu::where('name', $name)->exists()) {
             if ($cached === true) {

@@ -60,4 +60,29 @@ class SetupController extends BaseController
         flash(__('Unauthorized access.'));
         return redirect('/');
     }
+
+    /**
+     * Save office profile
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function saveOfficeProfile(Request $request)
+    {
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        if($user->hasRole(Role::OWNER) && $user->setup_completed != User::SETUP_COMPLETED) {
+
+            $rules = [
+
+            ];
+
+            $validatedData = $request->validate($rules);
+
+        }
+
+        flash(__('Unauthorized access.'));
+        return redirect('/');
+    }
 }

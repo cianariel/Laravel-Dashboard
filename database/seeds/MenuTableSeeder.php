@@ -37,18 +37,18 @@ class MenuTableSeeder extends Seeder
         $items = [
             'For Practices' => [
                 'type'      => MenuItem::PARENT_ITEM,
-                'name'      => 'for-practices',
+                'name'      => 'practices',
                 'title'     => 'Practices',
                 'label'     => 'Practices',
-                'url'       => '#',
+                'url'       => '/pages/practices',
                 'target'    => MenuItem::TARGET_SELF
             ],
             'For Reps'      => [
                 'type'      => MenuItem::PARENT_ITEM,
-                'name'      => 'for-reps',
-                'title'     => 'For Reps',
-                'label'     => 'For Reps',
-                'url'       => '#',
+                'name'      => 'representatives',
+                'title'     => 'Representatives',
+                'label'     => 'Representatives',
+                'url'       => '/pages/representatives',
                 'target'    => MenuItem::TARGET_SELF
             ],
             'Resources'     => [
@@ -64,7 +64,7 @@ class MenuTableSeeder extends Seeder
                 'name'      => 'company',
                 'title'     => 'Company',
                 'label'     => 'Company',
-                'url'       => '#',
+                'url'       => '/pages/company',
                 'target'    => MenuItem::TARGET_SELF
             ],
             'Request a Demo'    => [
@@ -72,7 +72,7 @@ class MenuTableSeeder extends Seeder
                 'name'          => 'request-a-demo',
                 'title'         => 'Request a Demo',
                 'label'         => 'Request a Demo',
-                'url'           => '#',
+                'url'           => '/pages/request-a-demo',
                 'target'        => MenuItem::TARGET_SELF,
                 'css_classes'   => 'nav-link bg-green fg-white rounded-pill pl-md-3 pr-md-3 d-inline-block'
             ],
