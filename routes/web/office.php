@@ -36,6 +36,13 @@ $routes = [
         'method'        => 'saveOfficeProfile',
         'name'          => 'setup.account.office.store'
     ],
+    [
+        'path'          => 'settings',
+        'type'          => 'get',
+        'controller'    => 'Office\Setting\SettingsController',
+        'method'        => 'edit',
+        'name'          => 'settings.edit'
+    ]
 ];
 
 Route::domain(config('app.base_domain'))->name('office.')->group(function () use (&$routes) {
