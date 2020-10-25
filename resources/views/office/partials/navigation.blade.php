@@ -58,7 +58,7 @@
                 </li>
                 <li class="nav-item">
                     @component('components.elements.link', [
-                        'href'      => '#',
+                        'href'      => route('office.settings.edit'),
                         'classes'   => ['nav-link']
                     ])
                         {{ __('Settings') }}

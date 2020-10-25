@@ -26,15 +26,12 @@ class OfficeController extends BaseController
     public function index(Request $requst)
     {
         $site = site(config('app.base_domain'));
-        $user = auth()->user();
+        $user = auth()->guard(User::GUARD)->user();
 
-        if($user->setup_completed == User::SETUP_INCOMPLETE) {
+        if($user->setup_completed == User::SETUP_COMPLETED
+            || $user->setup_completed == User::SETUP_IGNORED) {
 
             $breadcrumbs = breadcrumbs([
-                __('Office')        => [
-                    'path'          => secure_url('office'),
-                    'active'        => false
-                ],
                 __('Dashboard')     => [
                     'path'          => route('office.dashboard'),
                     'active'        => true

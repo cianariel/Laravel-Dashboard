@@ -727,7 +727,7 @@ if (! function_exists('state')) {
  * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param  int $id user id
+ * @param  int $id
  * @param  array $columns selected columns names for user table
  * @return \App\Models\System\User
  */
@@ -751,6 +751,41 @@ if (! function_exists('user')) {
         return $user;
     }
 }
+
+/**
+ * Returns office owner
+ *
+ * @author Antonio Vargas <localhost.80@gmail.com>
+ * @copyright 2020 MdRepTime, LLC
+ *
+ * @param   \App\Models\System\User|int     $user
+ * @return  \App\Models\System\Office|null
+ */
+if(! function_exists('office_owner')) {
+    function office_owner($user) : ?Office
+    {
+        if(is_numeric($user)) {
+            $user = User::where('id', safe_integer($user))->first();
+        }
+
+        if($user instanceof User) {
+            if($user->hasRole(Role::OWNER)){
+                return $user->office()->first();
+            }
+
+            if($user->hasRole(Role::GUEST)) {
+                if($ownerId = $user->getMetaField('owner_id')) {
+                    if($owner = User::where('id', safe_integer($ownerId))) {
+                        return $owner->office()->first();
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+}
+
 
 
 /**

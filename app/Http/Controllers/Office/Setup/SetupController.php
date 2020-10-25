@@ -51,8 +51,19 @@ class SetupController extends BaseController
 
             $countries = $_countries;
 
+            $breadcrumbs = breadcrumbs([
+                __('Dashboard') => [
+                    'path'      => route('office.dashboard'),
+                    'active'    => false
+                ],
+                __('Setup')     => [
+                    'path'      => route('office.setup.account'),
+                    'active'    => true
+                ]
+            ]);
+
             return view('office/setup/profile',
-                        compact('site', 'user', 'countries'));
+                        compact('site', 'user', 'countries', 'breadcrumbs'));
 
         } elseif($user->hasRole(Role::GUEST)) {
 
