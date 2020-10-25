@@ -28,7 +28,14 @@ $routes = [
         'controller'    => 'Office\Setup\SetupController',
         'method'        => 'index',
         'name'          => 'setup.account'
-    ]
+    ],
+    [
+        'path'          => 'setup',
+        'type'          => 'post',
+        'controller'    => 'Office\Setup\SetupController',
+        'method'        => 'saveOfficeProfile',
+        'name'          => 'setup.account.office.store'
+    ],
 ];
 
 Route::domain(config('app.base_domain'))->name('office.')->group(function () use (&$routes) {

@@ -20,7 +20,7 @@
                             <div class="col-12 col-md-9">
                                 @component('components.forms.form', [
                                     'id'            => 'office-setup-form',
-                                    'action'        => '#',
+                                    'action'        => route('office.setup.account.office.store'),
                                     'method'        => 'POST',
                                     'confirmed'     => true,
                                 ])
@@ -31,7 +31,7 @@
                                         'name'          => 'office',
                                         'label'         => 'Office Name',
                                         'value'         => old('office'),
-                                        'placeholder'   => ''
+                                        'placeholder'   => __('MD Rep Office')
                                     ])
                                         @error('office')
                                             <span class="invalid-feedback" role="alert">

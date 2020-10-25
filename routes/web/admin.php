@@ -19,7 +19,6 @@ $routes = [
         'type'          => 'get',
         'controller'    => 'Admin\Dashboard\DashboardController',
         'method'        => 'index',
-        'middleware'    => []
     ],
     [
         'path'          => 'users',
@@ -196,6 +195,12 @@ $routes = [
         'controller'    => 'Admin\Currency\CurrenciesController',
         'method'        => 'forceDelete',
         'name'          => 'currencies.delete.trashed'
+    ],
+    [
+        'path'          => 'offices',
+        'type'          => 'resource',
+        'controller'    => 'Admin\Office\OfficesController',
+        'except'        => ['create', 'store', 'destroy']
     ],
     [
         'path'          => 'products',
