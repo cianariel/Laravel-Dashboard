@@ -12,7 +12,7 @@
             </div>
             <div class="col-md-4 text-center text-md-right">
                 <span class="d-inline-block mr-1">&copy; {{ current_year() }} {{ config('app.name') }}</span>
-                {{--<span class="d-inline-block gb-build-version">{{ __('Build:') }} {{ Version::compact() }}</span>--}}
+                {{--<span class="d-inline-block md-build-version">{{ __('Build:') }} {{ Version::compact() }}</span>--}}
             </div>
         </div>
     </div>

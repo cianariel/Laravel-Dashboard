@@ -1,5 +1,5 @@
 {{-- Stored in resources/views/admin/partials/sidebar.blade.php --}}
-<nav id="md-admin-sidebar" class="card gb-sidebar border-0 mt-0 mb-0 mr-0" data-hidden="false">
+<nav id="md-admin-sidebar" class="card md-sidebar border-0 mt-0 mb-0 mr-0" data-hidden="false">
     <div class="card-body p-0">
         <div class="row h-100">
             {{--[menu]--}}

@@ -19,8 +19,8 @@
                             <div class="col-12 col-md-9">
                                 @component('components.forms.form', [
                                     'id'            => 'office-setup-form',
-                                    'action'        => '#',
-                                    'method'        => 'POST',
+                                    'action'        => route('office.settings.update'),
+                                    'method'        => 'PUT',
                                     'confirmed'     => true,
                                 ])
                                     {{--[office]--}}
@@ -87,22 +87,7 @@
                                         @enderror
                                     @endcomponent
                                     {{--[/address]--}}
-                                    {{--[address_2]--}}
-                                    @component('components.forms.input', [
-                                        'type'          => 'text',
-                                        'id'            => 'address_2',
-                                        'name'          => 'address_2',
-                                        'label'         => 'Unit #',
-                                        'value'         => old('address_2')?? $office->getMetaField('location->address_2'),
-                                        'placeholder'   => ''
-                                    ])
-                                        @error('address_2')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    @endcomponent
-                                    {{--[/address]--}}
+
                                     {{--[city]--}}
                                     @component('components.forms.input', [
                                         'type'          => 'text',
@@ -145,12 +130,12 @@
                                             </span>
                                         @enderror
                                     @endcomponent
-                                    @component('components.forms.select', [
+                                    @component('components.forms.countries', [
                                         'id'            => 'country',
                                         'name'          => 'country',
                                         'label'         => __('Country'),
                                         'options'       => $countries,
-                                        'value'         => old('country')?? $office->getMetaField('location->country') ?? 'US',
+                                        'value'         => old('country')?? $office->getMetaField('location->country')?? 'US',
                                         'withIndex' => true
                                     ])
                                         @error('country')

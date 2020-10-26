@@ -93,7 +93,7 @@ class SetupController extends BaseController
                 'first_name'    => ['required', 'string', 'max:100', new SanitizeHtml],
                 'last_name'     => ['required', 'string', 'max:100', new SanitizeHtml],
                 'address'       => ['required', 'string', 'max:100', new SanitizeHtml],
-                'address_2'     => ['required', 'string', 'max:100', new SanitizeHtml],
+                'address_2'     => ['nullable', 'string', 'max:100', new SanitizeHtml],
                 'city'          => ['required', 'string', 'max:100', new SanitizeHtml],
                 'zipcode'       => ['required', 'string', 'max:25', new SanitizeHtml],
                 'state'         => ['required', 'string', 'max:100', new SanitizeHtml],

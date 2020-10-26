@@ -42,6 +42,13 @@ $routes = [
         'controller'    => 'Office\Setting\SettingsController',
         'method'        => 'edit',
         'name'          => 'settings.edit'
+    ],
+    [
+        'path'          => 'settings',
+        'type'          => 'put',
+        'controller'    => 'Office\Setting\SettingsController',
+        'method'        => 'update',
+        'name'          => 'settings.update'
     ]
 ];
 
