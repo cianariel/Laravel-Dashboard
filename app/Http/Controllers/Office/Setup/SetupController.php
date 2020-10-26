@@ -128,7 +128,7 @@ class SetupController extends BaseController
 
             $office->setMetaField('location', $address, false);
             $office->setMetaField('phone', clean_phone($request->input('phone')), false);
-            $office->setMetaField('phone', clean_phone($request->input('mobile_phone')), false);
+            $office->setMetaField('mobile_phone', clean_phone($request->input('mobile_phone')), false);
             $office->save();
 
             $user->setup_completed = User::SETUP_COMPLETED;
