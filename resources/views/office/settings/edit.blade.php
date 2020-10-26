@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12 col-md-9">
+                            <div class="col-12 col-md-10">
                                 @component('components.forms.form', [
                                     'id'            => 'office-setup-form',
                                     'action'        => route('office.settings.update'),
@@ -87,7 +87,22 @@
                                         @enderror
                                     @endcomponent
                                     {{--[/address]--}}
-
+                                    {{--[address_2]--}}
+                                    @component('components.forms.input', [
+                                        'type'          => 'text',
+                                        'id'            => 'address_2',
+                                        'name'          => 'address_2',
+                                        'label'         => 'Unit #',
+                                        'value'         => old('address_2')?? $office->meta_fields->location->address_2 ?? '',
+                                        'placeholder'   => ''
+                                    ])
+                                        @error('address_2')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    @endcomponent
+                                    {{--[/address_2]--}}
                                     {{--[city]--}}
                                     @component('components.forms.input', [
                                         'type'          => 'text',
