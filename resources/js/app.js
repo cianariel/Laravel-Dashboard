@@ -71,12 +71,9 @@ try {
 } catch (e) {}
 
 try {
-    require('@fullcalendar/core');
+    window.moment = require('moment');
 } catch (e) {}
 
-try {
-    require('@fullcalendar/daygrid');
-} catch (e) {}
 
 // JQuery Extends
 //-----------------------------------------------//

@@ -21,6 +21,8 @@
     @component('components.elements.script', ['src' => mix('js/vendor.js')])@endcomponent
     @component('components.elements.script', ['src' => mix('js/app.js')])@endcomponent
     @component('components.elements.script', ['src' => mix('js/framework.js')])@endcomponent
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/locales-all.min.js"></script>
     {{--[/scripts]--}}
     {{--[prefetch]--}}
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
