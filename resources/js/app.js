@@ -13,43 +13,35 @@ try {
 
 try {
     window.Cookies = require('js-cookie');
-} catch (e) {
-}
+} catch (e) {}
 
 try {
     window.matchHeight = require('jquery-match-height');
-} catch (e) {
-}
+} catch (e) {}
 
 try {
     window.outSideEvents = require('jquery-outside-events');
-} catch (e) {
-}
+} catch (e) {}
 
 try {
     window.slick = require('slick-carousel');
-} catch (e) {
-}
+} catch (e) {}
 
 try {
     window.owlCarousel = require('owl.carousel');
-} catch (e) {
-}
+} catch (e) {}
 
 try {
     window.autosize = require('autosize');
-} catch (e) {
-}
+} catch (e) {}
 
 try {
     window.daterangepicker = require('daterangepicker');
-} catch (e) {
-}
+} catch (e) {}
 
 try {
     window.parsley = require('parsleyjs');
-} catch (e) {
-}
+} catch (e) {}
 
 try {
     require('inputmask');
@@ -59,13 +51,11 @@ try {
         greedy: false,
         removeMaskOnSubmit: true
     });
-} catch (e) {
-}
+} catch (e) {}
 
 try {
     window.Chart = require('chart.js');
-} catch (e) {
-}
+} catch (e) {}
 
 try {
     require('@stripe/stripe-js');
@@ -73,14 +63,20 @@ try {
 
 try {
     window.summernote = require('summernote');
-} catch (e) {
-}
+} catch (e) {}
 
 
 try {
     window.feather = require('feather-icons')
-} catch (e) {
-}
+} catch (e) {}
+
+try {
+    require('@fullcalendar/core');
+} catch (e) {}
+
+try {
+    require('@fullcalendar/daygrid');
+} catch (e) {}
 
 // JQuery Extends
 //-----------------------------------------------//

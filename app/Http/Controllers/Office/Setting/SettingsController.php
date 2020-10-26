@@ -9,9 +9,11 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use App\Models\System\Country;
 use App\Models\System\Office;
-use App\Models\System\User;
+use App\Models\System\State;
 use App\Models\System\Role;
+use App\Models\System\User;
 use App\Rules\SanitizeHtml;
 use App\Rules\PhoneRule;
 use Exception;
@@ -42,9 +44,20 @@ class SettingsController extends BaseController
 
                 $office = $user->offices()->first();
 
+                $countries = countries(false);
+                $_countries = [];
+
+                foreach ($countries as $country) {
+                    if ($countries->status = Country::ACTIVE) {
+                        $_countries[$country->code] = $country->name;
+                    }
+                }
+
+                $countries = $_countries;
+
                 $breadcrumbs = breadcrumbs([
                     __('Dashboard')        => [
-                        'path'          => secure_url('office'),
+                        'path'          => route('office.dashboard'),
                         'active'        => false
                     ],
                     __('Settings')     => [
@@ -54,7 +67,7 @@ class SettingsController extends BaseController
                 ]);
 
                 return view('office.settings.edit',
-                            compact('site', 'user', 'breadcrumbs', 'office'));
+                            compact('site', 'user', 'breadcrumbs', 'countries', 'office'));
             }
 
             return redirect()->route('office.setup.account');
