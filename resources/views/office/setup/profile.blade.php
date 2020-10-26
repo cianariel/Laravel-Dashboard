@@ -17,7 +17,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12 col-md-9">
+                            <div class="col-12 col-md-10">
                                 @component('components.forms.form', [
                                     'id'            => 'office-setup-form',
                                     'action'        => route('office.setup.account.office.store'),
