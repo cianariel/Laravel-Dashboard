@@ -146,7 +146,7 @@
                                             </span>
                                         @enderror
                                     @endcomponent
-                                    @component('components.forms.select', [
+                                    @component('components.forms.countries', [
                                         'id'            => 'country',
                                         'name'          => 'country',
                                         'label'         => __('Country'),

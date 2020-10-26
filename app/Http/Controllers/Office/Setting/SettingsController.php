@@ -76,4 +76,60 @@ class SettingsController extends BaseController
         flash(__('Unauthorized access.'));
         return redirect()->route('office.dashboard');
     }
+
+    /**
+     * Save office settings
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        if($user->hasRole(Role::OWNER)) {
+
+            $rules = [
+                'office'        => ['required', 'string', 'max:100', new SanitizeHtml],
+                'first_name'    => ['required', 'string', 'max:100', new SanitizeHtml],
+                'last_name'     => ['required', 'string', 'max:100', new SanitizeHtml],
+                'address'       => ['required', 'string', 'max:100', new SanitizeHtml],
+                'address_2'     => ['nullable', 'string', 'max:100', new SanitizeHtml],
+                'city'          => ['required', 'string', 'max:100', new SanitizeHtml],
+                'zipcode'       => ['required', 'string', 'max:25', new SanitizeHtml],
+                'state'         => ['required', 'string', 'max:100', new SanitizeHtml],
+                'country'       => ['required', 'string', 'exists:system.countries,code', Rule::in(['US'])],
+                'phone'         => ['required', 'string', new PhoneRule, new SanitizeHtml],
+                'mobile_phone'  => ['required', 'string', new PhoneRule, new SanitizeHtml]
+            ];
+
+            $validatedData = $request->validate($rules);
+
+            $office = $user->offices()->first();
+
+            // Add office profile details
+            $office->setMetaField('owner', ['first_name' => $request->input('first_name'), 'last_name' => $request->input('last_name')], false);
+            $address = [
+                'address'   => $request->input('address'),
+                'address_2' => $request->input('address_2'),
+                'city'      => $request->input('city'),
+                'zipcode'   => $request->input('zipcode'),
+                'state'     => $request->input('state'),
+                'country'   => $request->input('country')
+            ];
+
+            $office->setMetaField('location', $address, false);
+            $office->setMetaField('phone', clean_phone($request->input('phone')), false);
+            $office->setMetaField('mobile_phone', clean_phone($request->input('mobile_phone')), false);
+            $office->save();
+            $user->save();
+
+            flash(__('Successfully updated settings.'));
+            return redirect()->route('office.settings.edit');
+        }
+
+        flash(__('Unauthorized access.'));
+        return redirect('/');
+    }
 }
