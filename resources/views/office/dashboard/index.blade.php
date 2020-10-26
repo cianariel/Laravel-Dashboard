@@ -4,6 +4,31 @@
 @section('page-class', 'office-dashboard')
 {{--[content]--}}
 @section('content-body')
-
+    @component('components.bootstrap.card', [
+        'id'    => 'office-dashboard-card'
+    ])
+        <div class="card-body">
+            @component('components.elements.fullcalendar', [
+                'id'    => 'office-dashboard-calendar'
+            ])@endcomponent
+        </div>
+    @endcomponent
 @endsection
 {{--[/content]--}}
+{{--[scripts]--}}
+@section('scripts_end')
+<script>
+<!--
+    jQuery(document).ready(function($){
+        let mdOfficeFullCalendarBlock = $('#office-dashboard-calendar');
+        let mdFullCalendar = new FullCalendar.Calendar(mdOfficeFullCalendarBlock[0], {
+            themeSystem: 'bootstrap',
+            initialView: 'dayGridMonth'
+        });
+
+        mdFullCalendar.render();
+    });
+//-->
+</script>
+@endsection
+{{--[/scripts]--}}
