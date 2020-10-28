@@ -116,6 +116,12 @@ class Page extends Model implements HasMedia
     ];
 
     /**
+     * Default Meta Robots
+     * @var string DEFAULT_META_ROBOTS
+     */
+    const DEFAULT_META_ROBOTS = 'INDEX,FOLLOW,SNIPPET';
+
+    /**
      * Resized Images
      *
      * @param Media $media
@@ -149,7 +155,6 @@ class Page extends Model implements HasMedia
         'id'                => 'id',
         'uuid'              => 'string',
         'user_id'           => 'integer',
-        'name'              => 'string',
         'title'             => 'string',
         'slug'              => 'string',
         'contnet'           => 'string',
@@ -158,7 +163,7 @@ class Page extends Model implements HasMedia
         'meta_keywords'     => 'string',
         'meta_description'  => 'string',
         'meta_robots'       => 'string',
-        'meta_fields'   => 'object',
+        'meta_fields'       => 'object',
         'status'            => 'string',
         'visible'           => 'string',
         'created_at'        => 'datetime',

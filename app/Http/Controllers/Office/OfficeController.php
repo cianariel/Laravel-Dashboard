@@ -23,7 +23,7 @@ class OfficeController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $requst)
+    public function index(Request $request)
     {
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();

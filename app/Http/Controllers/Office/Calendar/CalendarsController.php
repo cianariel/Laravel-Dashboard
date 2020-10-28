@@ -26,7 +26,7 @@ class CalendarsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $requst)
+    public function index(Request $request)
     {
         //
     }

@@ -35,20 +35,20 @@ class MenuTableSeeder extends Seeder
 
         // Menu Items
         $items = [
-            'For Practices' => [
+            'Offices' => [
                 'type'      => MenuItem::PARENT_ITEM,
-                'name'      => 'practices',
-                'title'     => 'Practices',
-                'label'     => 'Practices',
-                'url'       => '/pages/practices',
+                'name'      => 'offices',
+                'title'     => 'Offices',
+                'label'     => 'Offices',
+                'url'       => '/page/offices',
                 'target'    => MenuItem::TARGET_SELF
             ],
-            'For Reps'      => [
+            'Representatives' => [
                 'type'      => MenuItem::PARENT_ITEM,
                 'name'      => 'representatives',
                 'title'     => 'Representatives',
                 'label'     => 'Representatives',
-                'url'       => '/pages/representatives',
+                'url'       => '/page/representatives',
                 'target'    => MenuItem::TARGET_SELF
             ],
             'Resources'     => [
@@ -64,7 +64,7 @@ class MenuTableSeeder extends Seeder
                 'name'      => 'company',
                 'title'     => 'Company',
                 'label'     => 'Company',
-                'url'       => '/pages/company',
+                'url'       => '/page/company',
                 'target'    => MenuItem::TARGET_SELF
             ],
             'Request a Demo'    => [
@@ -72,7 +72,7 @@ class MenuTableSeeder extends Seeder
                 'name'          => 'request-a-demo',
                 'title'         => 'Request a Demo',
                 'label'         => 'Request a Demo',
-                'url'           => '/pages/request-a-demo',
+                'url'           => '/page/request-a-demo',
                 'target'        => MenuItem::TARGET_SELF,
                 'css_classes'   => 'nav-link bg-green fg-white rounded-pill pl-md-3 pr-md-3 d-inline-block'
             ],
