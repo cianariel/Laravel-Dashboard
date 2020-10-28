@@ -33,11 +33,13 @@ class PagesTableSeeder extends Seeder
             ],
             [
                 'title'     => 'Representatives',
-                'content'   => '<ul><li>Become discoverable in rep database.</li><li>Have access to the provider’s calendar.</li><li>Request meetings based on availability and interest level.</li><li>Easy messaging platform (no more texting).</li><li>More meaningful meetings=Increase in sales.</li><li>Automatically track office staff for Sunshine Act reporting.</li><li>Less time setting meetings -> More time selling.</li></ul>'
+                'content'   => '<ul><li>Become discoverable in rep database.</li><li>Have access to the provider’s calendar.</li><li>Request meetings based on availability and interest level.</li><li>Easy messaging platform (no more texting).</li><li>More meaningful meetings=Increase in sales.</li><li>Automatically track office staff for Sunshine Act reporting.</li><li>Less time setting meetings -> More time selling.</li></ul>',
+                'image'     => public_path('images/rep_graphic.png'),
             ],
             [
                 'title'     => 'Offices',
-                'content'   => '<ul><li>Completely free software.</li><li>Simplify rep appointments to online platform.</li><li>Search rep database for contact information.</li><li>Easy messaging platform (no more texting).</li><li>Ensure reps are compliant with office rules.</li><li>Sign up in 2 minutes!</li></ul>'
+                'content'   => '<ul><li>Completely free software.</li><li>Simplify rep appointments to online platform.</li><li>Search rep database for contact information.</li><li>Easy messaging platform (no more texting).</li><li>Ensure reps are compliant with office rules.</li><li>Sign up in 2 minutes!</li></ul>',
+                'image'     => public_path('images/office_graphic.png'),
             ]
         ];
 
@@ -56,6 +58,14 @@ class PagesTableSeeder extends Seeder
 
                 if($_page->save()) {
                     $site->assignPage($_page);
+                }
+
+                if(isset($page['image'])) {
+                    if(filled($page['image'])) {
+                        $_page->addMedia($page['image'])
+                              ->preservingOriginal()
+                              ->toMediaCollection('images');
+                    }
                 }
             }
         }
