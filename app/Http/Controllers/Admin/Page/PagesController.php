@@ -64,7 +64,7 @@ class PagesController extends AdminController
 
         $breadcrumbs = [
             'Dashboard'     => ['path' => admin_url(),                      'active' => false],
-            'Pages'         => ['path' => route('admin.pages.index'),             'active' => true],
+            'Pages'         => ['path' => route('admin.pages.index'),       'active' => true],
         ];
 
         $breadcrumbs = breadcrumbs($breadcrumbs);
