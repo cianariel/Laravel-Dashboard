@@ -8,7 +8,7 @@
     @component('components.bootstrap.container', [
         'fluid' => false,
     ])
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-12">
                 @component('components.bootstrap.card', [
                     'id'    => 'page-' . $page->slug . '-card'
