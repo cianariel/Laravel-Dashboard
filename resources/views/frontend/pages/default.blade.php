@@ -13,11 +13,19 @@
                 @component('components.bootstrap.card', [
                     'id'    => 'page-' . $page->slug . '-card'
                 ])
-                    <div class="card-body pt-3">
+                    @if($image = $page->getMedia('images')->first())
+                        <img src="{{ $image->getFullUrl() }}" class="card-img-top">
+                    @endif
+                    <div class="card-body pt-3 border-0">
                         <h1 class="card-title">{{ $page->title }}</h1>
                         @if(filled($page->content))
                             {!! $page->content !!}
                         @endif
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <p class="card-text">
+                            <small class="text-muted">Last updated {{ \Carbon\Carbon::parse($page->updated_at)->diffForHumans() }}</small>
+                        </p>
                     </div>
                 @endcomponent
             </div>
