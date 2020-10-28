@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-
-
 use Illuminate\Database\Seeder;
 use App\Models\System\Site;
 use App\Models\System\Product;

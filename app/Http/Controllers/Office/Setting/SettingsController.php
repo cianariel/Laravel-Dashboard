@@ -33,7 +33,7 @@ class SettingsController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $requst)
+    public function edit(Request $request)
     {
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
