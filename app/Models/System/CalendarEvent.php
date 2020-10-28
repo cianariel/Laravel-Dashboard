@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace App\Models\System;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\System\Traits\HasCalendarEvents;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Shared\Traits\HasMetaFields;
 
 /**
- * Office Eloquent Model
+ * CalendarEvent Eloquent Model
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package App\Models\System
  */
-class Office extends Model
+class CalendarEvent extends Model
 {
     use HasMetaFields,
-        HasCalendarEvents;
+        SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -26,7 +26,7 @@ class Office extends Model
      * @var string
      * @access protected
      */
-    protected $table = 'offices';
+    protected $table = 'calendar_events';
 
     /**
      * @var string ACTIVE
@@ -52,10 +52,11 @@ class Office extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'label',
+        'title',
         'meta_fields',
-        'status'
+        'status',
+        'start_at',
+        'ends_at'
     ];
 
     /**
@@ -73,9 +74,10 @@ class Office extends Model
     protected $casts = [
         'id'            => 'integer',
         'uuid'          => 'string',
-        'name'          => 'string',
+        'title'         => 'string',
         'meta_fields'   => 'object',
-        'status'        => 'string',
+        'start_at'      => 'datetime',
+        'ends_at'       => 'datetime',
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime'
     ];
