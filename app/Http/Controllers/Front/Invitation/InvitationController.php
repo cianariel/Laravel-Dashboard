@@ -82,8 +82,6 @@ class InvitationController extends Controller
             $validatedData = $request->validate($rules);
 
             $user = $site->users()->where('invite_code', $invite_code)->first();
-            $owner = office_owner($user);
-            $office = $owner->offices()->first();
 
             $user->password = Hash::make($request->input('password'));
             $user->first_name = $request->input('first_name');
@@ -95,7 +93,7 @@ class InvitationController extends Controller
             $user->zipcode = $request->input('zipcode');
             $user->country = $request->input('country');
             $user->status = User::ACTIVE;
-            $user->setup_completed = true;
+            $user->setup_completed = User::SETUP_COMPLETED;
             $user->invite_code = null;
             $user->user_agent = $request->userAgent();
             $user->ip_address = $request->ip();

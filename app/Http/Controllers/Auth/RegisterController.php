@@ -90,10 +90,20 @@ class RegisterController extends Controller
         $user->setMetaField('title', $data['title'], false);
         $user->status = User::ACTIVE;
         $user->setup_completed = User::SETUP_INCOMPLETE;
+        $user->user_agent = $request->userAgent();
+        $user->ip_address = $request->ip();
+        $user->email_verified_at = now();
+        $user->last_activity_at = now();
         $user->save();
 
         $user->assignRole($role);
 
-        return $user;
+        if($role->name == Role::OWNER) {
+            $this->redirectTo = route('office.setup');
+        } elseif($role->name == Role::GUEST) {
+            $this->redirectTo = route('office.dashboard');
+        } else {
+            return $user;
+        }
     }
 }
