@@ -98,12 +98,6 @@ class RegisterController extends Controller
 
         $user->assignRole($role);
 
-        if($role->name == Role::OWNER) {
-            $this->redirectTo = route('office.setup');
-        } elseif($role->name == Role::GUEST) {
-            $this->redirectTo = route('office.dashboard');
-        } else {
-            return $user;
-        }
+        return $user;
     }
 }
