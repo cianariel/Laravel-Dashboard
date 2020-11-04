@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="@yield('meta-description', setting('site_meta_description', config('app.base_domain'), true))">
     <meta name="keywords" content="@yield('meta-keywords', setting('site_meta_keywords', config('app.base_domain'), true))">
-    <meta name="robots" content="NOINDEX">
+    <meta name="robots" content="NOINDEX, NOFOLLOW">
     @include('partials.twitter_cards')
     {{--[csrf-token]--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">

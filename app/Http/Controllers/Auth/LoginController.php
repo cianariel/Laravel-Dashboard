@@ -36,5 +36,6 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->redirectTo = secure_url(user_panel_url(auth()->guard(User::GUARD)->user()));
     }
 }

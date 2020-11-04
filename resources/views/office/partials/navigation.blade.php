@@ -50,7 +50,7 @@
                 </li>
                 <li class="nav-item">
                     @component('components.elements.link', [
-                        'href'      => '#',
+                        'href'      => route('office.staff.index'),
                         'classes'   => ['nav-link']
                     ])
                         {{ __('Staff') }}

@@ -77,7 +77,7 @@ class StaffsController extends Controller
                 ]
             ]);
 
-            return view('office.staff.index', compact('site', 'user', 'breadcrumbs', 'users'));
+            return view('office.staff.index', compact('site', 'user', 'breadcrumbs', 'users', 'withTrashed', 'query'));
         }
 
         flash(__('Unauthorized Access.'));

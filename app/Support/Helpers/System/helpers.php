@@ -839,10 +839,14 @@ if (! function_exists('user_panel_url')) {
                 return secure_url(Role::ADMIN);
             }
 
-            return secure_url($role);
+            if($role == Role::GUEST) {
+                return secure_url('office.dashboard');
+            } else {
+                return secure_url($role);
+            }
         }
 
-        return '';
+        return '/';
     }
 }
 
