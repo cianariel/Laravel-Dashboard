@@ -15,6 +15,9 @@
                         'mt-3'
                     ]
                 ])
+                    <div class="card-header">
+                        <h5 class="card-text">{{ __('Staff Members') }}</h5>
+                    </div>
                     <div class="card-body">
                         @if($users->count() !==0)
                             @component('components.elements.table_data', [
@@ -36,8 +39,8 @@
                                         <td>{{ $_user->first_name }}</td>
                                         <td>{{ $_user->last_name }}</td>
                                         <td><span class="badge-{{ $_user->status }}">{{ $_user->status }}</span></td>
-                                        <td>
-                                            @if($user->hasRole(App\Models\Role::OWNER))
+                                        <td class="text-right">
+                                            @if($user->hasRole(App\Models\System\Role::OWNER))
                                                 @component('components.forms.form', [
                                                     'method'            => 'DELETE',
                                                     'action'            => route('office.staff.destroy', $_user),

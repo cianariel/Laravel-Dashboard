@@ -90,8 +90,8 @@ class RegisterController extends Controller
         $user->setMetaField('title', $data['title'], false);
         $user->status = User::ACTIVE;
         $user->setup_completed = User::SETUP_INCOMPLETE;
-        $user->user_agent = $request->userAgent();
-        $user->ip_address = $request->ip();
+        $user->user_agent = request()->userAgent();
+        $user->ip_address = request()->ip();
         $user->email_verified_at = now();
         $user->last_activity_at = now();
         $user->save();
