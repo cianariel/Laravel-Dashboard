@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\System\User;
 use App\Models\System\Role;
 use App\Events\Office\Staff\InviteUser;
+use App\Rules\SanitizeHtml;
 use Exception;
 
 /**
@@ -61,9 +62,9 @@ class StaffsController extends Controller
             }
 
             if($withTrashed === true) {
-                $users = $site->users()->where('meta_fields->owner_id', $user->id)->withTrashed()->cursor();
+                $users = $site->users()->where('meta_fields->owner_id', $user->id)->withTrashed()->paginate($perPage);
             } else {
-                $users = $site->users()->where('meta_fields->owner_id', $user->id)->cursor();
+                $users = $site->users()->where('meta_fields->owner_id', $user->id)->paginate($perPage);
             }
 
             $breadcrumbs = breadcrumbs([
@@ -142,6 +143,7 @@ class StaffsController extends Controller
 
             $guestUser = new User;
             $guestUser->uuid = Str::uuid();
+            $guestUser->username = unique_username(Role::GUEST);
             $guestUser->email = $request->input('email');
             $guestUser->password = Hash::make(Str::random(16));
             $guestUser->first_name = $request->input('first_name');
