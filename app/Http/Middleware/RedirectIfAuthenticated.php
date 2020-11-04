@@ -4,16 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use Closure;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Closure;
 
-/**
- * Redirect If Authenticated Middleware
- *
- * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Middleware
- */
 class RedirectIfAuthenticated
 {
     /**
@@ -23,12 +17,11 @@ class RedirectIfAuthenticated
      * @param  \Closure  $next
      * @param  string|null  $guard
      * @return mixed
-     * @access public
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (auth()->guard($guard)->check()) {
-             return redirect('/');
+        if (Auth::guard($guard?? \App\Models\System\User::GUARD)->check()) {
+            return redirect(RouteServiceProvider::HOME);
         }
 
         return $next($request);
