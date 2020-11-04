@@ -30,10 +30,31 @@
                                 'query'     => $query,
                                 'classes'   => ['table-striped', 'table-hover']
                             ])
+                                @foreach($users as $_user)
+                                    <tr data-redirect="{{ route('office.staff.edit', $_user) }}">
+                                        <td>{{ $_user->email }}</td>
+                                        <td>{{ $_user->first_name }}</td>
+                                        <td>{{ $_user->last_name }}</td>
+                                        <td><span class="badge-{{ $user->status }}">{{ $_user->status }}</span></td>
+                                        <td>
+                                            @if($user->hasRole(App\Models\Role::OWNER))
+                                                @component('components.forms.form', [
+                                                    'method'            => 'DELETE',
+                                                    'action'            => route('office.staff.destroy', $_user),
+                                                    'confirmed'         => true,
+                                                    'dialog_message'    => 'Continue to delete staff member?'
+                                                ])
+                                                    <a class="fg-blue" href="{{ route('office.staff.edit', $_user) }}"><i class="fas fa-edit"></i></a>
+                                                    <button class="btn fg-blue btn-unstyled" type="submit"><i class="fas fa-trash-alt"></i></button>
+                                                @endcomponent
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @endcomponent
                         @else
                             <p class="card-text text-center">
-                                <span class="d-block mb-2">{{ __('No staff memembers') }}</span>
+                                <span class="d-block mb-2">{{ __('No staff members') }}</span>
                                 @component('components.elements.link', [
                                     'href'      => route('office.staff.create'),
                                     'classes'   => ['btn', 'btn-primary']
