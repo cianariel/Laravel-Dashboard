@@ -53,7 +53,8 @@ $routes = [
     [
         'path'          => 'staff',
         'type'          => 'resource',
-        'controller'    => 'Office\Staff\StaffsController'
+        'controller'    => 'Office\Staff\StaffsController',
+        'except'        => ['show']
     ]
 ];
 

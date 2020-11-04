@@ -35,7 +35,7 @@
                                         <td>{{ $_user->email }}</td>
                                         <td>{{ $_user->first_name }}</td>
                                         <td>{{ $_user->last_name }}</td>
-                                        <td><span class="badge-{{ $user->status }}">{{ $_user->status }}</span></td>
+                                        <td><span class="badge-{{ $_user->status }}">{{ $_user->status }}</span></td>
                                         <td>
                                             @if($user->hasRole(App\Models\Role::OWNER))
                                                 @component('components.forms.form', [
