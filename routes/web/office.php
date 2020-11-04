@@ -49,6 +49,11 @@ $routes = [
         'controller'    => 'Office\Setting\SettingsController',
         'method'        => 'update',
         'name'          => 'settings.update'
+    ],
+    [
+        'path'          => 'staff',
+        'type'          => 'resource',
+        'controller'    => 'Office\Staff\StaffsController'
     ]
 ];
 
