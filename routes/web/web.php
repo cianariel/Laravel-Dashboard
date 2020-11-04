@@ -29,6 +29,21 @@ $routes = [
         'method'        => 'show',
         'name'          => 'pages.show'
     ],
+    [
+        'path'          => 'invitation/{invite_code}',
+        'type'          => 'get',
+        'controller'    => 'Front\Invitation\InvitationController',
+        'method'        => 'show',
+        'name'          => 'invitation.show',
+    ],
+    [
+        'path'          => 'invitation/{invite_code}',
+        'type'          => 'post',
+        'controller'    => 'Front\Invitation\InvitationController',
+        'method'        => 'accept',
+        'name'          => 'invitation.accept',
+    ],
+
 ];
 
 

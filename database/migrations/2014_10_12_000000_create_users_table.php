@@ -57,6 +57,7 @@ class CreateUsersTable extends Migration
             $table->string('terms', 10)->default(User::TERMS_DECLINED);
             $table->string('marketing', 10)->default(User::MARKETING_DECLINED);
             $table->string('user_agent', 1000)->nullable();
+            $table->string('invite_code', 40)->nullable();
             $table->rememberToken();
             $table->ipAddress('ip_address')->nullable();
             $table->timestamp('trial_ends_at')->nullable();

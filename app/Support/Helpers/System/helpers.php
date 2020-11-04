@@ -770,13 +770,13 @@ if(! function_exists('office_owner')) {
 
         if($user instanceof User) {
             if($user->hasRole(Role::OWNER)){
-                return $user->office()->first();
+                return $user;
             }
 
             if($user->hasRole(Role::GUEST)) {
                 if($ownerId = $user->getMetaField('owner_id')) {
-                    if($owner = User::where('id', safe_integer($ownerId))) {
-                        return $owner->office()->first();
+                    if($owner = User::role(Role::OWNER)->where('id', safe_integer($ownerId))) {
+                        return $owner;
                     }
                 }
             }
@@ -785,8 +785,6 @@ if(! function_exists('office_owner')) {
         return null;
     }
 }
-
-
 
 /**
  * Get user role shortcut
@@ -1452,6 +1450,27 @@ if (! function_exists('unique_payment_reference')) {
         }
 
         return $reference;
+    }
+}
+
+/**
+ * Get user role shortcut
+ *
+ * @author Antonio Vargas <localhost.80@gmail.com>
+ * @copyright 2020 MdRepTime, LLC
+ *
+ * @return string
+ */
+if(! function_exists('unique_invite_code')) {
+    function unique_invite_code(): string
+    {
+        $code = Str::lower(Str::random(40));
+
+        while(User::where('invite_code', $code)->exists()) {
+            $code = Str::lower(Str::random(40));
+        }
+
+        return $code;
     }
 }
 
