@@ -630,6 +630,8 @@ if (! function_exists('currency')) {
                 }
             }
         }
+
+        return null;
     }
 }
 
