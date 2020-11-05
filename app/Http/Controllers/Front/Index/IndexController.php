@@ -28,6 +28,8 @@ class IndexController extends Controller
      */
     public function index(Request $request)
     {
-        return view('frontend.index.index');
+        $site = site(config('app.base_domain'));
+
+        return view('frontend.index.index', compact('site'));
     }
 }

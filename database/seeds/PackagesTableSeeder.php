@@ -19,7 +19,7 @@ class PackagesTableSeeder extends Seeder
     {
         $site = site(config('app.base_domain'));
 
-        /*
+
         $json = [];
         $error = false;
         $stripe_error = null;
@@ -27,21 +27,35 @@ class PackagesTableSeeder extends Seeder
         $stripe_product = false;
         $product = false;
 
-        $free_package = [
-            'name'          => 'free',
-            'label'         => 'Free Package',
+        $single_package = [
+            'name'          => 'single',
+            'label'         => 'Single Office Pass',
             'type'          => Package::LINKED_PRODUCT,
-            'slug'          => 'free',
-            'description'   => '',
-            'price'         => 0,
-            'trial_enabled' => Package::TRIAL_ENABLED,
-            'interval'      => Package::MONTHLY,
+            'slug'          => 'single',
+            'description'   => "Gain access to a single office.\nBecome discoverable in \"Rep Database\" with one office.\nRequest meetings and have access to the provider's calendar.",
+            'price'         => 49,
+            'trial_enabled' => Package::TRIAL_DISABLED,
+            'interval'      => Package::YEARLY,
+            'featured'      => Package::FEATURED,
+            'status'        => Package::ACTIVE
+        ];
+
+        $unlimited_package = [
+            'name'          => 'unlimted',
+            'label'         => 'Unlimited Office Pass',
+            'type'          => Package::LINKED_PRODUCT,
+            'slug'          => 'unlimted',
+            'description'   => "Gain access to unlimited offices.\nBecome discoverable in \"Rep Database\" with all offices.\nRequest meetings and have calendar access to any offices.",
+            'price'         => 199,
+            'trial_enabled' => Package::TRIAL_DISABLED,
+            'interval'      => Package::YEARLY,
             'featured'      => Package::FEATURED,
             'status'        => Package::ACTIVE
         ];
 
         $packages = [
-
+            $single_package,
+            $unlimited_package
         ];
 
         //-------------------------//
@@ -136,6 +150,6 @@ class PackagesTableSeeder extends Seeder
 
                 $site->assignPackage($_package);
             }
-        }*/
+        }
     }
 }

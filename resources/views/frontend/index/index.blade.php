@@ -15,6 +15,9 @@
                         </p>
                     </div>
                 </div>
+                {{--[packages]--}}
+                    @include('frontend.index.partials.packages')
+                {{--[/packages]--}}
             </div>
         </div>
     @endcomponent

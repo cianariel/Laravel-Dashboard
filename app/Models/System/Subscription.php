@@ -18,6 +18,8 @@ use \Stripe\Stripe as Stripe;
 
 class Subscription extends Model
 {
+    use HasMetaFields;
+
     /**
      * The database table used by the model.
      *
@@ -25,7 +27,6 @@ class Subscription extends Model
      * @access protected
      */
     protected $table = 'subscriptions';
-
 
     /**
      * @var string ACTIve
@@ -89,6 +90,7 @@ class Subscription extends Model
         'stripe_status' => 'string',
         'stripe_plan'   => 'string',
         'quantity'      => 'integer',
+        'meta_fields'   => 'object',
         'trial_ends_at' => 'datetime',
         'ends_at'       => 'datetime',
         'created_at'    => 'datetime',
