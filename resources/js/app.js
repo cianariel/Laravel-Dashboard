@@ -111,14 +111,14 @@ try {
     // Class changed event
     (function ( func ) {
         $.fn.addClass = function (n) {
- // replace the existing function on $.fn
+    // replace the existing function on $.fn
             this.each(function (i) {
- // for each element in the collection
+    // for each element in the collection
                 var $this = $(this); // 'this' is DOM element in this context
                 var prevClasses = this.getAttribute('class'); // note its original classes
                 var classNames = $.isFunction(n) ? n(i, prevClasses) : n.toString(); // retain function-type argument support
                 $.each(classNames.split(/\s+/), function (index, className) {
- // allow for multiple classes being added
+    // allow for multiple classes being added
                     if ( !$this.hasClass(className) ) { // only when the class is not already present
                         func.call($this, className); // invoke the original function to add the class
                         $this.trigger('classAdded', className); // trigger a classAdded event

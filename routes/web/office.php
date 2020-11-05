@@ -37,6 +37,27 @@ $routes = [
         'name'          => 'setup.account.office.store'
     ],
     [
+        'path'          => 'setup/subscription',
+        'type'          => 'get',
+        'controller'    => 'Office\Setup\SetupController',
+        'method'        => 'selectSubscription',
+        'name'          => 'setup.account.subscription.signup'
+    ],
+    [
+        'path'          => 'setup/payment/thankyou',
+        'type'          => 'get',
+        'controller'    => 'Office\Setup\SetupController',
+        'method'        => 'thankyou',
+        'name'          => 'office.setup.complete'
+    ],
+    [
+        'path'          => 'setup/subscription',
+        'type'          => 'post',
+        'controller'    => 'Office\Setup\SetupController',
+        'method'        => 'createSubscription',
+        'name'          => 'setup.account.subscription.store'
+    ],
+    [
         'path'          => 'settings',
         'type'          => 'get',
         'controller'    => 'Office\Setting\SettingsController',
