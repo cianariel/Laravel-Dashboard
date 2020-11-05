@@ -19,6 +19,7 @@ class CreateSubscriptionItemsTable extends Migration
             $table->string('stripe_id')->index();
             $table->string('stripe_plan');
             $table->integer('quantity');
+            $table->json('meta_fields')->nullable();
             $table->timestamps();
 
             $table->unique(['subscription_id', 'stripe_plan']);
