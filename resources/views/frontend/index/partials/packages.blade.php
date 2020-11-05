@@ -30,7 +30,7 @@
                                                 @endif
                                             @endif
                                         @endif
-                                        <h3 class="text-center fg-black">${{ $package->price }}</h3>
+                                        <h3 class="text-center fg-black">${{ number_format(dollars($package->price), 0) }}</h3>
                                     </div>
                                     <div class="card-footer text-center">
                                         @component('components.elements.link', [
