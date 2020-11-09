@@ -48,6 +48,11 @@
                                         ])
                                             <i class="fas fa-eye"></i>
                                         @endcomponent
+                                        @component('components.elements.link', [
+                                            'href'  => route('admin.subscriptions.edit', $subscription)
+                                        ])
+                                            <i class="fas fa-edit"></i>
+                                        @endcomponent
                                     </td>
                                 </tr>
                             @endforeach

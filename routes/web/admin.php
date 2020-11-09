@@ -268,7 +268,7 @@ $routes = [
         'path'          => 'subscriptions',
         'type'          => 'resource',
         'controller'    => 'Admin\Subscription\SubscriptionsController',
-        'except'        => ['create', 'store']
+        'except'        => ['create', 'store', 'destroy']
     ],
     [
         'path'          => 'redirects',

@@ -51,11 +51,11 @@ class SubscriptionsController extends AdminController
         $subscriptions = $site->subscriptions()->paginate($perPage);
 
         $breadcrumbs = [
-            'Dashboard'         => [
+            __('Dashboard')     => [
                 'path'          => admin_url(),
                 'active'        => false
             ],
-            'Subscriptions'     => [
+            __('Subscriptions')     => [
                 'path'          => route('admin.subscriptions.index'),
                 'active'        => true
             ]
@@ -78,20 +78,33 @@ class SubscriptionsController extends AdminController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        $breadcrumbs = [
-            'Dashboard'         => [
-                'path'          => admin_url(),
-                'active'        => false
-            ],
-            'Subscriptions'     => [
-                'path'          => route('admin.subscriptions.index'),
-                'active'        => true
-            ]
-        ];
+        if($site->subscriptions()->where('id', $id)->exists()) {
 
-        $breadcrumbs = breadcrumbs($breadcrumbs);
+            $subscription = $site->subscriptions()->where('id', $id)->firstOrFail();
 
-        return view('admin.subscriptions.index', compact('site', 'user','breadcrumbs'));
+            $breadcrumbs = [
+                __('Dashboard')     => [
+                    'path'          => admin_url(),
+                    'active'        => false
+                ],
+                __('Subscriptions') => [
+                    'path'          => route('admin.subscriptions.index'),
+                    'active'        => false
+                ]
+                __('Show')          => [
+                    'path'          => route('admin.subscriptions.show', $subscription),
+                    'active'        => true
+                ]
+            ];
+
+            $breadcrumbs = breadcrumbs($breadcrumbs);
+
+            return view('admin.subscriptions.show',
+                        compact('site', 'user','breadcrumbs', 'subscription'));
+        }
+
+        flash(__('Subscription does not exist.'));
+        return redirect()->route('admin.subscriptions.index');
     }
 
     /**
@@ -103,7 +116,35 @@ class SubscriptionsController extends AdminController
      */
     public function edit(Request $request, $id)
     {
-        //
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        if($site->subscriptions()->where('id', $id)->exists()) {
+
+
+            $breadcrumbs = [
+                __('Dashboard')     => [
+                    'path'          => admin_url(),
+                    'active'        => false
+                ],
+                __('Subscriptions')     => [
+                    'path'          => route('admin.subscriptions.index'),
+                    'active'        => false
+                ],
+                __('Edit')          => [
+                    'path'          => route('admin.subscriptions.edit', $subscription),
+                    'active'        => true
+                ]
+            ];
+
+            $breadcrumbs = breadcrumbs($breadcrumbs);
+
+            return view('admin.subscriptions.edit',
+                        compact('site', 'user','breadcrumbs', 'subscription'));
+        }
+
+        flash(__('Subscription does not exist.'));
+        return redirect()->route('admin.subscriptions.index');
     }
 
     /**
@@ -115,18 +156,26 @@ class SubscriptionsController extends AdminController
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, $id)
-    {
-        //
+        if($site->subscriptions()->where('id', $id)->exists()) {
+            $rules = [
+                'status'    => ['required', 'string', Rule::in(Subscription::STATUS_TYPES)]
+            ];
+
+            $validatedData = $request->validate($rules);
+
+            $subscription = $site->subscriptions()->where('id', $id)->firstOrFail();
+
+            $subscription->status = $request->input('status');
+            $subscription->save();
+
+            flash(__('Subscription successfully updated.'));
+            return redirect()->route('admin.subscriptions.index');
+        }
+
+        flash(__('Subscription does not exist.'));
+        return redirect()->route('admin.subscriptions.index');
     }
 }
