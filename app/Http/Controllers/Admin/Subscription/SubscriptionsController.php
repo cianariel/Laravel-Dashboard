@@ -63,7 +63,7 @@ class SubscriptionsController extends AdminController
 
         $breadcrumbs = breadcrumbs($breadcrumbs);
 
-        return view('admin.subscriptions.index', compact('site', 'user','breadcrumbs'));
+        return view('admin.subscriptions.index', compact('site', 'user','breadcrumbs', 'subscriptions', 'perPage', 'query'));
     }
 
     /**
@@ -75,7 +75,23 @@ class SubscriptionsController extends AdminController
      */
     public function show(Request $request, $id)
     {
-        //
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        $breadcrumbs = [
+            'Dashboard'         => [
+                'path'          => admin_url(),
+                'active'        => false
+            ],
+            'Subscriptions'     => [
+                'path'          => route('admin.subscriptions.index'),
+                'active'        => true
+            ]
+        ];
+
+        $breadcrumbs = breadcrumbs($breadcrumbs);
+
+        return view('admin.subscriptions.index', compact('site', 'user','breadcrumbs'));
     }
 
     /**
