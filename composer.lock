@@ -2970,16 +2970,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.6.0",
+            "version": "3.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "c547f8262a5fa9ff507bd06cc394067b83a75085"
+                "reference": "943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/c547f8262a5fa9ff507bd06cc394067b83a75085",
-                "reference": "c547f8262a5fa9ff507bd06cc394067b83a75085",
+                "url": "https://api.github.com/repos/opis/closure/zipball/943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5",
+                "reference": "943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5",
                 "shasum": ""
             },
             "require": {
@@ -3029,9 +3029,9 @@
             ],
             "support": {
                 "issues": "https://github.com/opis/closure/issues",
-                "source": "https://github.com/opis/closure/tree/3.6.0"
+                "source": "https://github.com/opis/closure/tree/3.6.1"
             },
-            "time": "2020-10-11T21:42:15+00:00"
+            "time": "2020-11-07T02:01:34+00:00"
         },
         {
             "name": "org_heigl/ghostscript",
@@ -4514,16 +4514,16 @@
         },
         {
             "name": "spatie/laravel-searchable",
-            "version": "1.7.0",
+            "version": "1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-searchable.git",
-                "reference": "f30f86d42748a2f2966df1c422d741e0d48030c7"
+                "reference": "6db4b207b99af6eeccd6330330ea5d3e0ef5441d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-searchable/zipball/f30f86d42748a2f2966df1c422d741e0d48030c7",
-                "reference": "f30f86d42748a2f2966df1c422d741e0d48030c7",
+                "url": "https://api.github.com/repos/spatie/laravel-searchable/zipball/6db4b207b99af6eeccd6330330ea5d3e0ef5441d",
+                "reference": "6db4b207b99af6eeccd6330330ea5d3e0ef5441d",
                 "shasum": ""
             },
             "require": {
@@ -4567,7 +4567,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-searchable/issues",
-                "source": "https://github.com/spatie/laravel-searchable/tree/1.7.0"
+                "source": "https://github.com/spatie/laravel-searchable/tree/1.7.1"
             },
             "funding": [
                 {
@@ -4575,7 +4575,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2020-09-09T09:22:26+00:00"
+            "time": "2020-11-09T08:47:53+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
@@ -4634,23 +4634,23 @@
         },
         {
             "name": "spatie/temporary-directory",
-            "version": "1.2.4",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/temporary-directory.git",
-                "reference": "8efe8e61e0ca943d84341f10e51ef3a9606af932"
+                "reference": "f517729b3793bca58f847c5fd383ec16f03ffec6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/8efe8e61e0ca943d84341f10e51ef3a9606af932",
-                "reference": "8efe8e61e0ca943d84341f10e51ef3a9606af932",
+                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/f517729b3793bca58f847c5fd383ec16f03ffec6",
+                "reference": "f517729b3793bca58f847c5fd383ec16f03ffec6",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2"
+                "php": "^7.2|^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.0"
+                "phpunit/phpunit": "^8.0|^9.0"
             },
             "type": "library",
             "autoload": {
@@ -4673,27 +4673,28 @@
             "description": "Easily create, use and destroy temporary directories",
             "homepage": "https://github.com/spatie/temporary-directory",
             "keywords": [
+                "php",
                 "spatie",
                 "temporary-directory"
             ],
             "support": {
                 "issues": "https://github.com/spatie/temporary-directory/issues",
-                "source": "https://github.com/spatie/temporary-directory/tree/master"
+                "source": "https://github.com/spatie/temporary-directory/tree/1.3.0"
             },
-            "time": "2020-09-07T20:41:15+00:00"
+            "time": "2020-11-09T15:54:21+00:00"
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.61.0",
+            "version": "v7.62.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "51c6cd18cb51740101c940a3fefc876ef7cd8cae"
+                "reference": "9c2fc846d5b2719945e825228474f15314c0fed6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/51c6cd18cb51740101c940a3fefc876ef7cd8cae",
-                "reference": "51c6cd18cb51740101c940a3fefc876ef7cd8cae",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/9c2fc846d5b2719945e825228474f15314c0fed6",
+                "reference": "9c2fc846d5b2719945e825228474f15314c0fed6",
                 "shasum": ""
             },
             "require": {
@@ -4703,7 +4704,7 @@
                 "php": ">=5.6.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "2.16.1",
+                "friendsofphp/php-cs-fixer": "2.16.5",
                 "php-coveralls/php-coveralls": "^2.1",
                 "phpunit/phpunit": "^5.7",
                 "squizlabs/php_codesniffer": "^3.3",
@@ -4739,9 +4740,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v7.61.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v7.62.0"
             },
-            "time": "2020-10-20T20:01:45+00:00"
+            "time": "2020-11-09T16:57:44+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -7264,23 +7265,23 @@
         },
         {
             "name": "voku/portable-ascii",
-            "version": "1.5.3",
+            "version": "1.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voku/portable-ascii.git",
-                "reference": "25bcbf01678930251fd572891447d9e318a6e2b8"
+                "reference": "87dc337d4200b32717dd3849fea846319e897658"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/25bcbf01678930251fd572891447d9e318a6e2b8",
-                "reference": "25bcbf01678930251fd572891447d9e318a6e2b8",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/87dc337d4200b32717dd3849fea846319e897658",
+                "reference": "87dc337d4200b32717dd3849fea846319e897658",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.0.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~6.0 || ~7.0"
+                "phpunit/phpunit": "~6.0 || ~7.0 || ~9.0"
             },
             "suggest": {
                 "ext-intl": "Use Intl for transliterator_transliterate() support"
@@ -7310,7 +7311,7 @@
             ],
             "support": {
                 "issues": "https://github.com/voku/portable-ascii/issues",
-                "source": "https://github.com/voku/portable-ascii/tree/master"
+                "source": "https://github.com/voku/portable-ascii/tree/1.5.4"
             },
             "funding": [
                 {
@@ -7334,7 +7335,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-22T23:32:04+00:00"
+            "time": "2020-11-08T21:15:15+00:00"
         }
     ],
     "packages-dev": [
