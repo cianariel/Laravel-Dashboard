@@ -19,7 +19,7 @@
                 <div class="card-header border-0 bg-white"><span class="font-weight-bold">{{ __('All Groups') }}</span></div>
                 <div class="card-body p-0 pt-3 pb-3">
                     @if(isset($groups) && count($groups) !== 0)
-                        @component('components.elements.table_data', ['headers' => ['settings', 'actions'], 'classes' => ['table-striped', 'table-hover']])
+                        @component('components.elements.table_data', ['headers' => ['settings', ''], 'classes' => ['table-striped', 'table-hover']])
                             @foreach($groups as $group)
                                 <tr data-redirect-url="{{ route('admin.settings.group', ['group' => $group->name]) }}">
                                     <td>{{ $group->label }}</td>
