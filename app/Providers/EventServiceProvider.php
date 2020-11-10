@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         // Office Events.
         'App\Events\Office\Staff\InviteUser' => [
             'App\Listeners\Office\Staff\SendStaffInvite'
+        ],
+        'App\Events\Office\Subscription\EventSubscriptionCreated' => [
+            'App\Listeners\Office\Subscription\OfficeSubscriptionCreated'
         ]
     ];
 
