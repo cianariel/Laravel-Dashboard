@@ -41,7 +41,7 @@
                                     @else
                                         <td>-</td>
                                     @endif
-                                    <td><span class="badge badge-{{ $subscription->status }}">{{ $subscription->status }}</span></td>
+                                    <td><span class="badge badge-{{ $subscription->stripe_status }}">{{ $subscription->stripe_status }}</span></td>
                                     <td class="text-right">
                                         @component('components.elements.link', [
                                             'href'  => route('admin.subscriptions.show', $subscription)

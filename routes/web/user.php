@@ -15,7 +15,18 @@ declare(strict_types=1);
 
 
 $routes = [
-
+    [
+        'path'          => '/',
+        'controller'    => 'User/UserController',
+        'method'        => 'index',
+        'name'          => 'dashboard'
+    ],
+    [
+        'path'          => '/',
+        'controller'    => 'User/UserController',
+        'method'        => 'editProfile',
+        'name'          => 'profile.edit'
+    ],
 ];
 
 Route::domain(config('app.base_domain'))->name('user.')->group(function () use (&$routes) {
