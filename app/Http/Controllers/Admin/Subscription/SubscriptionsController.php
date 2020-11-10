@@ -80,7 +80,7 @@ class SubscriptionsController extends AdminController
 
         if($site->subscriptions()->where('id', $id)->exists()) {
 
-            $subscription = $site->subscriptions()->where('id', $id)->firstOrFail();
+            $subscription = $site->subscriptions()->where('id', safe_integer($id))->firstOrFail();
 
             $breadcrumbs = [
                 __('Dashboard')     => [
@@ -90,7 +90,7 @@ class SubscriptionsController extends AdminController
                 __('Subscriptions') => [
                     'path'          => route('admin.subscriptions.index'),
                     'active'        => false
-                ]
+                ],
                 __('Show')          => [
                     'path'          => route('admin.subscriptions.show', $subscription),
                     'active'        => true
@@ -121,6 +121,7 @@ class SubscriptionsController extends AdminController
 
         if($site->subscriptions()->where('id', $id)->exists()) {
 
+            $subscription = $site->subscriptions()->where('id', safe_integer($id))->firstOrFail();
 
             $breadcrumbs = [
                 __('Dashboard')     => [
@@ -166,7 +167,7 @@ class SubscriptionsController extends AdminController
 
             $validatedData = $request->validate($rules);
 
-            $subscription = $site->subscriptions()->where('id', $id)->firstOrFail();
+            $subscription = $site->subscriptions()->where('id', safe_integer($id))->firstOrFail();
 
             $subscription->status = $request->input('status');
             $subscription->save();
