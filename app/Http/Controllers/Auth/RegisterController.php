@@ -75,7 +75,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $site = site();
+        $site = site(config('app.base_domain'));
 
         $role = Role::where('name', $data['account_type'])->first();
 
@@ -97,6 +97,7 @@ class RegisterController extends Controller
         $user->save();
 
         $user->assignRole($role);
+        $site->assignUser($user);
 
         if($role->name == Role::OWNER) {
             $this->redirectTo = route('office.setup.account');
