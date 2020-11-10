@@ -34,7 +34,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  * @copyright 2020 MdRepTime, LLC
  * @package App\Models\System
  */
-class User extends Authenticatable implements Searchable, HasMedia
+class User extends Authenticatable implements Searchable, HasMedia, MustVerifyEmail
 {
     use Notifiable,
         Billable,

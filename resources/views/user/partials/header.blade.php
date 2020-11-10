@@ -1,4 +1,4 @@
-{{-- Stored in resources/views/office/layouts/partials/header.blade.php --}}
+{{-- Stored in resources/views/user/layouts/partials/header.blade.php --}}
 {{--[header]--}}
 <header id="md-header">
     <div class="md-navigation">

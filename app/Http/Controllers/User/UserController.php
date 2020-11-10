@@ -35,6 +35,17 @@ class UserController extends BaseController
             || $user->setup_completed == User::SETUP_IGNORED) {
 
             return redirect()->route('user.profile.edit');
+        } else {
+
+            $breadcrumbs = breadcrumbs([
+                __('Dashboard')     => [
+                    'path'          => route('user.dashboard'),
+                    'active'        => false,
+                ]
+            ]);
+
+            return view('user.dashboard.index',
+                        compact('site', 'user', 'breadcrumbs'));
         }
 
         flash(__('Unauthorized Access.'))->error();
@@ -56,10 +67,18 @@ class UserController extends BaseController
             || $user->setup_completed == User::SETUP_IGNORED) {
 
             $breadcrumbs = breadcrumbs([
-
+                __('Dashboard')     => [
+                    'path'          => route('user.dashboard'),
+                    'active'        => false,
+                ],
+                __('Edit Profile')  => [
+                    'path'          => route('user.profile.edit'),
+                    'active'        => true,
+                ]
             ]);
 
-            return view('');
+            return view('user.profile.edit',
+                        compact('site', 'user', 'breadcrumbs'));
         }
 
         flash(__('Unauthorized Access.'))->error();
