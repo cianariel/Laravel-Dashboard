@@ -43,9 +43,13 @@ $routes = [
         'method'        => 'accept',
         'name'          => 'invitation.accept',
     ],
-
+    [
+        'path'          => 'stripe/webhook',
+        'type'          => 'post',
+        'controller'    => 'WebHook/WebHooksController',
+        'method'        => 'handleWebhook'
+    ]
 ];
-
 
 Route::domain(config('app.base_domain'))->group(function () use (&$routes) {
 

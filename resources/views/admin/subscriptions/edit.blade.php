@@ -26,8 +26,64 @@
                         'confirmed' => true
                     ])
                         <div class="row">
+                            <div class="col-12 col-md-4">
+                                {{ __('User') }}
+                            </div>
+                            <div class="col-12 col-md-8">
+                                @if($_user = user($subscription->user_id, ['id', 'email']))
+                                    @component('components.elements.link', [
+                                        'href'  => route('admin.users.show', $_user)
+                                    ])
+                                        {{ $_user->email }}
+                                    @endcomponent
+                                @endif
+                            </div>
+                        </div>
+                        @component('components.forms.input', [
+                            'id'        => 'stripe_id',
+                            'name'      => 'stripe_id',
+                            'label'     => 'Stripe ID',
+                            'value'     => $subscription->stripe_id,
+                            'readonly'  => true
+                        ])
+                            @error('stripe_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        @endcomponent
+                        @component('components.forms.select', [
+                            'id'        => 'status',
+                            'name'      => 'status',
+                            'label'     => __('Status'),
+                            'value'     => old('status')?? $subscription->status
+                            'options'   => \App\Models\System\Subscription::STATUS_TYPES
+                        ])
+                            @error('status')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        @endcomponent
+                        <div class="row">
                             <div class="col-12 offset-md-4">
-
+                                @component('components.forms.button', [
+                                    'id'        => 'submit-btn'
+                                    'type'      => 'submit',
+                                    'name'      => 'submit-btn',
+                                    'classes'   => ['btn-primary'],
+                                    'label'     => __('Update')
+                                ])
+                                    @component('components.elements.link', [
+                                        'href'      => route('admin.subscriptions.index'),
+                                        'classes'   => [
+                                            'btn',
+                                            'btn-secondary'
+                                        ]
+                                    ])
+                                        {{ __('Cancel') }}
+                                    @endcomponent
+                                @endcomponent
                             </div>
                         </div>
                     @endcomponent
