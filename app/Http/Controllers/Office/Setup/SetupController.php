@@ -214,6 +214,9 @@ class SetupController extends BaseController
 
     /**
      * Save selected subscription
+     *
+     * @param   \Iluminate\Http\Request   $request
+     * @return  \Illuminate\Http\Response
      */
     public function createSubscription(Request $request)
     {
@@ -384,6 +387,46 @@ class SetupController extends BaseController
             }
 
             return redirect()->route('office.setup.complete');
+        }
+
+        flash(__('Unauthorized access.'));
+        return redirect('/');
+    }
+
+    /**
+     * Setup Complete Page
+     *
+     * @param  \Iluminate\Http\Request   $request
+     * @return \Illuminate\Http\Response
+     */
+    public function thankyou(Request $request)
+    {
+
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        if($user->subscribed('default') == true) {
+
+            $breadcrumbs = breadcrumbs([
+                __('Dashboard') => [
+                    'path'      => route('office.dashboard'),
+                    'active'    => false
+                ],
+                __('Setup')     => [
+                    'path'      => route('office.setup.account'),
+                    'active'    => false
+                ]
+                __('Subscription') => [
+                    'path'      => route('office.setup.account.subscription.signup'),
+                    'active'    => false,
+                ]
+                __('Complete')  => [
+                    'path'      => route('office.setup.complete'),
+                    'active'    => true
+                ]
+            ]);
+
+            return view('office.setup.subscription.thankyou', compact('site', 'user', 'breadcrumbs'));
         }
 
         flash(__('Unauthorized access.'));
