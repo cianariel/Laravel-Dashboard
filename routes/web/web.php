@@ -46,7 +46,7 @@ $routes = [
     [
         'path'          => 'stripe/webhook',
         'type'          => 'post',
-        'controller'    => 'WebHook/WebHooksController',
+        'controller'    => 'WebHook\WebHooksController',
         'method'        => 'handleWebhook'
     ]
 ];

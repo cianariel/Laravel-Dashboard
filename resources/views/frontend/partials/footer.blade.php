@@ -1,6 +1,6 @@
 {{-- Stored in resources/views/frontend/layouts/partials/footer.blade.php --}}
 {{--[footer]--}}
-<footer id="md-footer" class="align-self-end w-100 h-100 bg-green fg-white">
+<footer id="md-footer" class="align-self-end w-100 bg-green fg-white">
     <div class="container">
         <div class="row">
             <div class="d-block links-block fg-light-grey-alt text-center pt-3 pb-1">

@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'Illuminate\Auth\Events\Registered' => [
             'Illuminate\Auth\Listeners\SendEmailVerificationNotification'
         ],
+        'Illuminate\Auth\Events\Verified' => [
+            'App\Listeners\LogVerifiedUser',
+        ],
         // Office Events.
         'App\Events\Office\Staff\InviteUser' => [
             'App\Listeners\Office\Staff\SendStaffInvite'

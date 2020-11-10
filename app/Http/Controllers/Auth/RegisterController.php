@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use App\Models\System\Role;
 use App\Models\System\User;
 use App\Rules\SanitizeHtml;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -92,7 +93,6 @@ class RegisterController extends Controller
         $user->setup_completed = User::SETUP_INCOMPLETE;
         $user->user_agent = request()->userAgent();
         $user->ip_address = request()->ip();
-        $user->email_verified_at = now();
         $user->last_activity_at = now();
         $user->save();
 
@@ -102,6 +102,8 @@ class RegisterController extends Controller
         if($role->name == Role::OWNER) {
             $this->redirectTo = route('office.setup.account');
         }
+
+        event(new Registered($user));
 
         return $user;
     }

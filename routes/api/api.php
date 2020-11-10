@@ -16,18 +16,7 @@ use Illuminate\Http\Request;
 */
 
 $routes = [
-    [
-        'path'          => 'api/auth',
-        'type'          => 'post',
-        'controller'    => 'Api\OAuth\OAuthController',
-        'method'        => 'index',
-    ],
-    [
-        'path'          => 'api/status',
-        'type'          => 'post',
-        'controller'    => 'Api\Status\StatusController',
-        'method'        => 'status'
-    ]
+
 ];
 
 Route::domain(config('app.admin_domain'))->name('api.')->group(function () use (&$routes) {
