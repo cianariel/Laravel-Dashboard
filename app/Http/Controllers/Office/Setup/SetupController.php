@@ -379,7 +379,7 @@ class SetupController extends BaseController
                 return redirect()->route('office.setup.account.subscription.signup')->withInput();
             }
 
-            $subscriptions = $user->subscriptions()->cursor();
+            $subscriptions = Subscription::where('user_id', $user->id)->cursor();
 
             foreach ($subscriptions as $subscription) {
                 // Save subscription reference for faster access.
