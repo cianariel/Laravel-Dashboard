@@ -415,11 +415,11 @@ class SetupController extends BaseController
                 __('Setup')     => [
                     'path'      => route('office.setup.account'),
                     'active'    => false
-                ]
+                ],
                 __('Subscription') => [
                     'path'      => route('office.setup.account.subscription.signup'),
                     'active'    => false,
-                ]
+                ],
                 __('Complete')  => [
                     'path'      => route('office.setup.complete'),
                     'active'    => true
