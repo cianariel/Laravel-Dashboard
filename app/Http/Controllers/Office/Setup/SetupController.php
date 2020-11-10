@@ -26,6 +26,7 @@ use \Stripe\Stripe as Stripe;
 use \Stripe\Exception\InvalidRequestException;
 use \Stripe\Exception\CardException;
 use Laravel\Cashier\Exceptions\SubscriptionUpdateFailure;
+use App\Events\Office\Subscription\EventSubscriptionCreated;
 use Exception;
 
 /**
@@ -384,6 +385,7 @@ class SetupController extends BaseController
             foreach ($subscriptions as $subscription) {
                 // Save subscription reference for faster access.
                 $site->assignSubscription($subscription); // Save a copy for faster access
+                event(new EventSubscriptionCreated($user, $subscription));
             }
 
             return redirect()->route('office.setup.complete');
