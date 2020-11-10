@@ -33,7 +33,7 @@
                                     @if($_user = user($subscription->user_id, ['id', 'email']))
                                         <td>
                                             @component('components.elements.link',[
-                                                'href' => route('admin.users.show', $_user)
+                                                'href' => route('admin.users.edit', $_user)
                                             ])
                                                 {{ $_user->email }}
                                             @endcomponent
@@ -46,12 +46,12 @@
                                         @component('components.elements.link', [
                                             'href'  => route('admin.subscriptions.show', $subscription)
                                         ])
-                                            <i class="fas fa-eye"></i>
+                                            <i class="fas fa-eye fg-blue"></i>
                                         @endcomponent
                                         @component('components.elements.link', [
                                             'href'  => route('admin.subscriptions.edit', $subscription)
                                         ])
-                                            <i class="fas fa-edit"></i>
+                                            <i class="fas fa-edit fg-blue"></i>
                                         @endcomponent
                                     </td>
                                 </tr>

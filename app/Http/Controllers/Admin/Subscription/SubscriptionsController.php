@@ -48,7 +48,7 @@ class SubscriptionsController extends AdminController
             }
         }
 
-        $subscriptions = $site->subscriptions()->paginate($perPage);
+        $subscriptions = Subscription::paginate($perPage);
 
         $breadcrumbs = [
             __('Dashboard')     => [
