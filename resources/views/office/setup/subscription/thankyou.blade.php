@@ -1,4 +1,4 @@
-{{-- Stored in /resources/views/partners/setup/subscription/thankyou.blade.php --}}
+{{-- Stored in /resources/views/office/setup/subscription/thankyou.blade.php --}}
 @extends('frontend.layouts.master')
 @section('html-title', __('Thank You.'))
 @section('page-class', 'thank-you')
@@ -12,7 +12,7 @@
                 <span class="text-center d-block w-100"><i class="fg-red fas fa-heart fa-3x"></i></span>
                 <div class="d-block text-center mt-3 mb-3">
                     @component('components.elements.link', [
-                        'href'      => route('partner.dashboard'),
+                        'href'      => route('office.dashboard'),
                         'classes'   => [
                             'btn',
                             'btn-primary'
