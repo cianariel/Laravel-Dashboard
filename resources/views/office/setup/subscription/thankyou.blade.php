@@ -6,7 +6,7 @@
     @component('components.bootstrap.container', [
         'fluid' => false,
     ])
-        <div class="row">
+        <div class="row pt-3 mt-3 bg-white">
             <div class="col-12">
                 <h1 class="text-center">{{ __('Thank You!') }}</h1>
                 <span class="text-center d-block w-100"><i class="fg-red fas fa-heart fa-3x"></i></span>
