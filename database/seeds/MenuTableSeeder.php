@@ -93,5 +93,43 @@ class MenuTableSeeder extends Seeder
             $menuItem->saveOrFail();
             $menu->assignMenuItem($menuItem);
         }
+
+        // Footer Menu
+        $menu = new Menu;
+        $menu->type = Menu::NAVIGATION;
+        $menu->name = 'footer-menu';
+        $menu->label = 'Footer Menu';
+        $menu->location = Menu::FOOTER;
+        $menu->status = Menu::ACTIVE;
+        $menu->saveOrFail();
+
+        $site->assignMenu($menu); // Add to site
+
+        // Menu Items
+        $items = [
+            'Privacy' => [
+                'type'      => MenuItem::PARENT_ITEM,
+                'name'      => 'privacy',
+                'title'     => 'Privacy',
+                'label'     => 'Privacy',
+                'url'       => '/page/privacy',
+                'target'    => MenuItem::TARGET_SELF
+            ],
+        ];
+
+        foreach ($items as $index => $item) {
+            $menuItem = new MenuItem;
+            $menuItem->type = $item['type'];
+            $menuItem->name = $item['name'];
+            $menuItem->title = $item['title'];
+            $menuItem->label = $item['label'];
+            $menuItem->url = $item['url'];
+            $menuItem->target = $item['target'];
+            if(isset($item['css_classes'])) {
+                $menuItem->css_classes = $item['css_classes'];
+            }
+            $menuItem->saveOrFail();
+            $menu->assignMenuItem($menuItem);
+        }
     }
 }
