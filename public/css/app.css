@@ -19145,7 +19145,7 @@ body[id^=page-admin] .md-breadcrumbs {
 }
 body[id^=page-admin] .md-breadcrumbs .breadcrumb {
   padding: 0;
-  background: #07b152;
+  background: #022a57;
   border-radius: 0;
 }
 body[id^=page-admin] .md-breadcrumbs .breadcrumb a {
@@ -19163,7 +19163,7 @@ body[id^=page-admin] .md-breadcrumbs .breadcrumb .breadcrumb-item:before {
   top: 0.125rem;
 }
 body[id^=page-admin] .md-breadcrumbs .breadcrumb .breadcrumb-item .active {
-  color: #000 !important;
+  color: #034ea2 !important;
 }
 
 #admin-section {
@@ -19336,7 +19336,7 @@ body[id^=page-admin] .md-breadcrumbs .breadcrumb .breadcrumb-item .active {
   left: 0;
   content: " ";
   width: 100%;
-  background: #07b152;
+  background: #022a57;
   height: 16.5rem;
 }
 

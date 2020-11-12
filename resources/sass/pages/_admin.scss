@@ -35,7 +35,7 @@ body[id^="page-admin"]
         .breadcrumb
         {
             padding:0;
-            background: #07b152;
+            background: darken($md-primary-color, 15%);
             border-radius: 0;
 
             a {
@@ -64,7 +64,7 @@ body[id^="page-admin"]
                 }
 
                 .active {
-                    color: $black !important;
+                    color: $md-primary-color !important;
                 }
             }
         }
@@ -319,7 +319,7 @@ body[id^="page-admin"]
         left: 0;
         content: ' ';
         width: 100%;
-        background: #07b152;
+        background: darken($md-primary-color, 15%);
         height: rem(264);
     }
 }
