@@ -107,14 +107,22 @@ class MenuTableSeeder extends Seeder
 
         // Menu Items
         $items = [
-            'Privacy' => [
+            'Privacy Policy' => [
                 'type'      => MenuItem::PARENT_ITEM,
                 'name'      => 'privacy',
-                'title'     => 'Privacy',
-                'label'     => 'Privacy',
+                'title'     => 'Privacy Policy',
+                'label'     => 'Privacy Policy',
                 'url'       => '/page/privacy',
                 'target'    => MenuItem::TARGET_SELF
             ],
+            'Terms of Use' => [
+                'type'      => MenuItem::PARENT_ITEM,
+                'name'      => 'terms',
+                'title'     => 'Terms of Use',
+                'label'     => 'Terms of Use',
+                'url'       => '/page/terms',
+                'target'    => MenuItem::TARGET_SELF
+            ]
         ];
 
         foreach ($items as $index => $item) {

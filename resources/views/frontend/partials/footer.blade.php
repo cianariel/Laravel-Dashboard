@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="d-block links-block fg-light-grey-alt text-center pt-3 pb-1">
-                 @component('components.elements.menu_list', ['menu' =>  menu('footer-bottom'), 'heading' => false])@endcomponent
+                 @component('components.elements.menu_list', ['menu' =>  menu('footer-menu'), 'heading' => false])@endcomponent
             </div>
             <div class="col-12 text-center">
                 <span class="fg-white font-xs-size">&copy; {{ current_year() }} {{ __('MD Rep Time, LLC.') }} {{ __('All Rights Reserved.') }}</span>
