@@ -36,7 +36,7 @@
             </div>
             {{--[/content]--}}
             {{--[footer]--}}
-                @include('office.partials.footer')
+            @include('office.partials.footer')
             {{--[/footer]--}}
         </div>
         {{--[/card-group]--}}

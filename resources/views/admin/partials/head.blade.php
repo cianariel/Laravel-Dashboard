@@ -6,6 +6,7 @@
     @hasSection('meta-description')<meta name="description" content="@yield('meta-description')">@endif
     @hasSection('meta-keywords')<meta name="keywords" content="@yield('meta-keywords')">@endif
     <meta name="robots" content="NOINDEX,NOFOLLOW,NOSNIPPET">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     @include('partials.twitter_cards')
     {{--[csrf-token]--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">

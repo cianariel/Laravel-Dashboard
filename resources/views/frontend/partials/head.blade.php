@@ -6,6 +6,7 @@
     <meta name="description" content="@yield('meta-description', setting('site_meta_description', env('APP_DOMAIN'), true))">
     <meta name="keywords" content="@yield('meta-keywords', setting('site_meta_keywords', env('APP_DOMAIN'), true))">
     <meta name="robots" content="@yield('meta-robots', setting('site_meta_robots', env('APP_DOMAIN'), true))">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     @include('partials.twitter_cards')
     {{--[csrf-token]--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
