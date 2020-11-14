@@ -62,12 +62,6 @@ Route::domain(config('app.base_domain'))->group(function () use (&$routes) {
     // Authentication Routes
     Auth::routes(['verify'=>true]);
 
-    Route::get('meta_fields', function(){
-
-
-
-    });
-
     // Catch All Route
     Route::any('{any}', function () {
         abort(404);

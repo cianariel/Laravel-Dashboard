@@ -6,6 +6,7 @@ namespace App\Models\System;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\System\Traits\HasAppointments;
 use App\Models\System\Traits\HasBlogs;
 use App\Models\System\Traits\HasCarts;
 use App\Models\System\Traits\HasCalendarEvents;
@@ -40,7 +41,8 @@ use App\Models\System\Traits\HasIndustries;
  */
 class Site extends Model
 {
-    use HasCalendarEvents,
+    use HasAppointments,
+        HasCalendarEvents,
         HasOffices,
         HasCarts,
         HasCountries,
