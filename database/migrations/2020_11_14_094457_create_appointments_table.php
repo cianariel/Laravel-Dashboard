@@ -25,6 +25,7 @@ class CreateAppointmentsTable extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid');
+            $table->string('user_id');
             $table->unsignedBigInteger('calendar_event_id')->nullable();
             $table->string('reference', 40)->unique();
             $table->string('description', 100)->nullable();
@@ -36,23 +37,6 @@ class CreateAppointmentsTable extends Migration
         });
 
         // Foreign Keys
-        Schema::create('appointment_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('appointment_id');
-            $table->unsignedBigInteger('user_id');
-
-            $table->foreign('appointment_id')
-                  ->references('id')
-                  ->on('appointments')
-                  ->onDelete('cascade');
-
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
-
-            $table->primary(['appointment_id', 'user_id'], 'fk_appointment_user');
-        });
-
         Schema::create('appointment_site', function (Blueprint $table) {
             $table->unsignedBigInteger('appointment_id');
             $table->unsignedBigInteger('site_id');
@@ -78,7 +62,6 @@ class CreateAppointmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointment_user');
         Schema::dropIfExists('appointment_site');
         Schema::dropIfExists('appointments');
     }

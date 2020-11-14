@@ -6,7 +6,6 @@ namespace App\Models\System;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\Traits\HasMetaFields;
-use App\Models\System\Traits\HasUsers;
 
 /**
  * Appointment Eloquent Model
@@ -17,8 +16,7 @@ use App\Models\System\Traits\HasUsers;
  */
 class Appointment extends Model
 {
-    use HasMetaFields,
-        HasUsers;
+    use HasMetaFields;
 
     /**
      * The database table used by the model.
@@ -70,6 +68,7 @@ class Appointment extends Model
      * @var array
      */
     protected $fillable = [
+        'user_id',
         'calendar_event_id',
         'description',
         'status',
@@ -96,7 +95,7 @@ class Appointment extends Model
         'description'   => 'string',
         'status'        => 'string',
         'meta_fields'   => 'object',
-        'on'            => 'datetime',
+        'scheduled_on'  => 'datetime',
         'previous_date' => 'datetime',
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime'
