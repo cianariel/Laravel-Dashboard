@@ -17,10 +17,8 @@ use App\Models\System\Traits\HasUsers;
  */
 class Appointment extends Model
 {
-    use HasMetaFields
+    use HasMetaFields,
         HasUsers;
-
-
 
     /**
      * The database table used by the model.
@@ -75,7 +73,7 @@ class Appointment extends Model
         'calendar_event_id',
         'description',
         'status',
-        'meta_fields'
+        'meta_fields',
         'scheduled_on',
         'previous_date'
     ];

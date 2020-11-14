@@ -1461,7 +1461,7 @@ if(! function_exists('unique_reference')) {
                     $suffix = Str::random(37);
                     $reference = $prefix . $suffix;
                 }
-                break
+                break;
         }
 
         return $reference;
