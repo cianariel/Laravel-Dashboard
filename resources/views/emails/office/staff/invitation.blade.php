@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hi {{ $guestUser->first_name }},
+# {{ __('Hi') }} {{ $guestUser->first_name }},
 
 {{ $office->label }} {{ __('invites you to join MD REP TIME, a website designed to simplify your day to day interactions with industry representatives') }} .
 {{ __('We are revolutionizing the way reps interact with medical practices by providing you with a digital platform to manage meetings and communications') }}.
@@ -8,6 +8,6 @@
 @component('mail::button', ['url' => route('invitation.show', ['invite_code' => $guestUser->invite_code])])
 {{ __('Click Here') }}
 @endcomponent
-Thanks,<br>
+{{ __('Thanks') }},<br>
 {{ config('app.name') }}
 @endcomponent
