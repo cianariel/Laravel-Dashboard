@@ -22,6 +22,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Mail\Mailable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\System\Appointment;
 use App\Models\System\TimeZone;
 use App\Models\System\Currency;
 use App\Models\System\State;
@@ -1429,35 +1430,44 @@ if (! function_exists('unique_name')) {
 }
 
 /**
- * Returns unique payment reference
+ * Returns a unique reference
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param  string $type
- * @param  string $name
  * @return string
  */
-if (! function_exists('unique_payment_reference')) {
-    function unique_payment_reference(string $prefix = 'GB_')
-    {
+if(! function_exists('unique_reference')) {
 
+    function unique_reference($type, string $prefix = 'MD_')
+    {
         if (filled($prefix) && strlen($prefix) !== 3) {
-            $prefix = 'GB_';
+            $prefix = 'MD_';
         }
 
         $prefix = strtoupper($prefix);
         $suffix = Str::random(37);
         $reference = $prefix . $suffix;
 
-        while (Payment::where('reference', $reference)->exists()) {
-            $suffix = Str::random(37);
-            $reference = $prefix . $suffix;
+        switch($type) {
+            case 'appointment':
+                while (Appointment::where('reference', $reference)->exists()) {
+                    $suffix = Str::random(37);
+                    $reference = $prefix . $suffix;
+                }
+                break;
+            case 'payment':
+                while (Payment::where('reference', $reference)->exists()) {
+                    $suffix = Str::random(37);
+                    $reference = $prefix . $suffix;
+                }
+                break
         }
 
         return $reference;
     }
 }
+
 
 /**
  * Get user role shortcut
