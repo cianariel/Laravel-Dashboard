@@ -2,12 +2,11 @@
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Pages Eloquent Model
@@ -18,8 +17,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Page extends Model implements HasMedia
 {
-    use HasMetaFields,
-        HasMediaTrait,
+    use HasMediaTrait,
         SoftDeletes;
 
     /**
@@ -163,7 +161,7 @@ class Page extends Model implements HasMedia
         'meta_keywords'     => 'string',
         'meta_description'  => 'string',
         'meta_robots'       => 'string',
-        'meta_fields'       => 'object',
+        'meta_fields'       => 'array',
         'status'            => 'string',
         'visible'           => 'string',
         'created_at'        => 'datetime',

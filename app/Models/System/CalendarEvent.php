@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Shared\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Shared\Traits\HasMetaFields;
 
 /**
  * CalendarEvent Eloquent Model
@@ -17,8 +16,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class CalendarEvent extends Model
 {
-    use HasMetaFields,
-        SoftDeletes;
+    use SoftDeletes;
 
     /**
      * The database table used by the model.

@@ -2,46 +2,48 @@
 
 namespace App\Models\Shared\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
+use Spatie\SchemalessAttributes\SchemalessAttributes;
+
 /**
  * Has Meta Fields Trait
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 MdRepTime, LLC
+ * @copyright 2020 MDRepTime, LLC
  * @package App\Models\Shared\Traits
  */
 trait HasMetaFields
 {
+
+    /**
+     * @return \Spatie\SchemalessAttributes\SchemalessAttributes
+     */
+    public function getExtraAttributesAttribute(): SchemalessAttributes
+    {
+        return SchemalessAttributes::createForModel($this, 'meta_fields');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithExtraAttributes(): Builder
+    {
+        return SchemalessAttributes::scopeWithSchemalessAttributes('meta_fields');
+    }
+
     /**
      * Returns a meta field
      *
      * @param   string $name
      * @return  mixed
      */
-    public function getMetaField($name)
+    public function getMetaField($name, $defaultValue = null)
     {
-        if (filled($name)) {
-            if (filled($this->meta_fields)) {
-                if (strpos($name, '->') !== false) {
-                    $list = explode('->', $name);
-
-                    $meta_field = $this->meta_fields;
-
-                    foreach ($list as $key) {
-                        if (isset($meta_field->{$key})) {
-                             $meta_field = $meta_field->{$key};
-                        }
-                    }
-
-                    return $meta_field;
-                } else {
-                    if (isset($this->meta_fields->{$name})) {
-                        return $this->meta_fields->{$name};
-                    }
-                }
-            }
+        if(strpos($name, '->') !== false) {
+            $name = str_replace('->', '.', $name);
         }
 
-        return null;
+        return (filled($defaultValue)) ? $this->meta_fields->get($name, $defaultValue) : $this->meta_fields->get($name);
     }
 
     /**
@@ -51,24 +53,16 @@ trait HasMetaFields
      * @param  mixed $value
      * @return bool
      */
-    public function setMetaField($name, $value = null, $autosave = true): bool
+    public function setMetaField($name, $value = null, bool $autosave = false): bool
     {
-        if (filled($name)) {
-            if (filled($this->meta_fields)) {
-                $metaFields = (array) $this->meta_fields;
-                $metaFields[$name] = $value;
-                $this->meta_fields = json_decode(json_encode($metaFields));
-            } else {
-                $this->meta_fields = json_decode(json_encode([$name=>$value]));
-            }
-
-            if ($autosave) {
-                return $this->save();
-            } else {
-                return true;
-            }
+        if(strpos($name, '->') !== false) {
+            $name = str_replace('->', '.', $name);
         }
 
-        return false;
+        $this->meta_fields->set($name, $value);
+
+        if($autosave === true) {
+            $this->save();
+        }
     }
 }

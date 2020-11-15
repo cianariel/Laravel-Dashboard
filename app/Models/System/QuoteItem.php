@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * QuoteItem Eloquent Model
@@ -16,7 +15,6 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class QuoteItem extends Model
 {
-    use HasMetaFields;
 
     /**
      * The database table used by the model.
@@ -46,6 +44,6 @@ class QuoteItem extends Model
         'unit'          => 'string',
         'quantity'      => 'double',
         'price'         => 'integer',
-        'meta_fields'          => 'object'
+        'meta_fields'   => 'array'
     ];
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -13,7 +12,7 @@ use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use App\Models\System\Traits\HasUsers;
 use App\Models\System\Traits\HasMessages;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Campaign Eloquent Model
@@ -25,7 +24,6 @@ use App\Models\Shared\Traits\HasMetaFields;
 class Campaign extends Model implements HasMedia, Searchable
 {
     use HasMediaTrait,
-        HasMetaFields,
         HasUsers,
         SoftDeletes;
 
@@ -106,7 +104,7 @@ class Campaign extends Model implements HasMedia, Searchable
         'label'         => 'string',
         'description'   => 'string',
         'status'        => 'string',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'start_at'      => 'datetime',
         'ends_at'       => 'datetime',
         'created_at'    => 'datetime',

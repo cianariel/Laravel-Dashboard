@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Shared\Traits\HasMetaFields;
 use \Stripe\Stripe as Stripe;
+use App\Models\Shared\Model;
 
 /**
  * Subscription Eloquent Model
@@ -18,8 +17,6 @@ use \Stripe\Stripe as Stripe;
 
 class Subscription extends Model
 {
-    use HasMetaFields;
-
     /**
      * The database table used by the model.
      *
@@ -90,7 +87,7 @@ class Subscription extends Model
         'stripe_status' => 'string',
         'stripe_plan'   => 'string',
         'quantity'      => 'integer',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'trial_ends_at' => 'datetime',
         'ends_at'       => 'datetime',
         'created_at'    => 'datetime',

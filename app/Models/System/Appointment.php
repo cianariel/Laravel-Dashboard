@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Appointment Eloquent Model
@@ -16,8 +15,6 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Appointment extends Model
 {
-    use HasMetaFields;
-
     /**
      * The database table used by the model.
      *
@@ -94,7 +91,7 @@ class Appointment extends Model
         'uuid'          => 'string',
         'description'   => 'string',
         'status'        => 'string',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'scheduled_on'  => 'datetime',
         'previous_date' => 'datetime',
         'created_at'    => 'datetime',

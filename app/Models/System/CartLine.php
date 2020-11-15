@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Cart Lines Eloquent Model
@@ -37,7 +36,7 @@ class CartLine extends Model
         'name'          => 'string',
         'price'         => 'integer',
         'quantity'      => 'integer',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime'
     ];

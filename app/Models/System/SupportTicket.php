@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use App\Models\System\Traits\HasMessages;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Support Tickets Eloquent Model
@@ -19,8 +18,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class SupportTicket extends Model implements Searchable
 {
-    use HasMetaFields,
-        HasMessages;
+    use HasMessages;
 
     /**
      * The database table used by the model.
@@ -120,7 +118,7 @@ class SupportTicket extends Model implements Searchable
         'type'              => 'string',
         'reference'         => 'string',
         'status'            => 'string',
-        'meta_fields'       => 'object',
+        'meta_fields'       => 'array',
         'date_closed_at'    => 'datetime',
         'created_at'        => 'datetime',
         'updated_at'        => 'datetime'

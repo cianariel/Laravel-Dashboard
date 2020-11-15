@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use App\Models\System\Traits\HasForumDiscussions;
 use App\Models\System\Traits\HasForumCategories;
 use App\Models\System\Traits\HasForumPosts;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Forum Eloquent Model
@@ -22,8 +21,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Forum extends Model implements Searchable
 {
-    use HasMetaFields,
-        HasForumDiscussions,
+    use HasForumDiscussions,
         HasForumCategories,
         HasForumPosts,
         SoftDeletes;
@@ -110,7 +108,7 @@ class Forum extends Model implements Searchable
         'slug'          => 'string',
         'title'         => 'string',
         'status'        => 'string',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'visible'       => 'string',
         'created_at'    => 'string',
         'updated_at'    => 'string'

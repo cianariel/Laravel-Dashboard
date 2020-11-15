@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\System\Traits\HasCalendarEvents;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Office Eloquent Model
@@ -17,8 +16,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Office extends Model
 {
-    use HasMetaFields,
-        HasCalendarEvents;
+    use HasCalendarEvents;
 
     /**
      * The database table used by the model.
@@ -74,7 +72,7 @@ class Office extends Model
         'id'            => 'integer',
         'uuid'          => 'string',
         'name'          => 'string',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'status'        => 'string',
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime'

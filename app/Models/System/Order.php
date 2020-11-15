@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use App\Models\System\Traits\HasPayments;
 use App\Models\System\Traits\HasRefunds;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Orders Eloquent Model
@@ -20,8 +19,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Order extends Model implements Searchable
 {
-    use HasMetaFields,
-        HasPayments,
+    use HasPayments,
         HasRefunds;
 
     /**
@@ -107,7 +105,7 @@ class Order extends Model implements Searchable
         'uuid'          => 'string',
         'cart_id'       => 'integer',
         'status'        => 'string',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'completed_at'  => 'datetime',
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime',

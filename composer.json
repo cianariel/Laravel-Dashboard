@@ -36,6 +36,7 @@
         "spatie/laravel-backup": "^6.11",
         "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-permission": "^3.17",
+        "spatie/laravel-schemaless-attributes": "^1.8",
         "spatie/laravel-searchable": "^1.7",
         "stripe/stripe-php": "^7.57"
     },

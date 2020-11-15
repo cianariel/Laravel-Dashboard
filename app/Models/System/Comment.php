@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Comments Eloquent Model
@@ -16,7 +15,6 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Comment extends Model
 {
-    use HasMetaFields;
 
     /**
      * The database table used by the model.
@@ -62,7 +60,7 @@ class Comment extends Model
         'user_id'       => 'integer',
         'title'         => 'string',
         'content'       => 'integer',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'visibility'    => 'string',
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime'

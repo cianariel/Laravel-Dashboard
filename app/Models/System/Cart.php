@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\System\Traits\HasCartLines;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Carts Eloquent Model
@@ -17,8 +16,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Cart extends Model
 {
-    use HasMetaFields,
-        HasCartLines;
+    use HasCartLines;
 
     /**
      * The database table used by the model.
@@ -66,7 +64,7 @@ class Cart extends Model
         'uuid'          => 'string',
         'subtotal'      => 'integer',
         'status'        => 'integer',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime'
     ];
