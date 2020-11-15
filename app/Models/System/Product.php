@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\System\Traits\HasProductAttributes;
-use App\Models\Shared\Traits\HasMetaFields;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
+use App\Models\System\Traits\HasProductAttributes;
+use App\Models\Shared\Model;
 
 /**
  * Products Eloquent Model
@@ -23,8 +22,7 @@ use Spatie\Searchable\SearchResult;
  */
 class Product extends Model implements HasMedia, Searchable
 {
-    use HasMetaFields,
-        HasProductAttributes,
+    use HasProductAttributes,
         HasMediaTrait,
         SoftDeletes;
 
@@ -140,7 +138,7 @@ class Product extends Model implements HasMedia, Searchable
         'price'             => 'integer',
         'featured'          => 'string',
         'status'            => 'string',
-        'meta_fields'       => 'object',
+        'meta_fields'       => 'array',
         'stripe_product'    => 'string',
         'created_at'        => 'datetime',
         'updated_at'        => 'datetime',

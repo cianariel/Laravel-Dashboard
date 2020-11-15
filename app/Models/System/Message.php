@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use App\Models\System\Traits\HasFolders;
 use App\Models\System\Traits\HasAttachments;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Messages Eloquent Model
@@ -20,8 +19,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Message extends Model implements Searchable
 {
-    use HasMetaFields,
-        HasFolders,
+    use HasFolders,
         HasAttachments;
 
     /**
@@ -105,7 +103,7 @@ class Message extends Model implements Searchable
         'type'          => 'string',
         'subject'       => 'string',
         'body'          => 'string',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'status'        => 'string',
         'sent_at'       => 'datetime',
         'read_at'       => 'datetime',

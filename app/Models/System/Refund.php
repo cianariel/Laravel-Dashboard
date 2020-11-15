@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use App\Models\System\Traits\HasComments;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Payment Refunds Eloquent Model
@@ -19,8 +18,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Refund extends Model implements Searchable
 {
-    use HasMetaFields,
-        HasComments;
+    use HasComments;
 
     /**
      * The database table used by the model.
@@ -132,7 +130,7 @@ class Refund extends Model implements Searchable
         'amount'            => 'integer',
         'comment'           => 'string',
         'status'            => 'string',
-        'meta_fields'       => 'object',
+        'meta_fields'       => 'array',
         'email_sent'        => 'string',
         'refunded_at'       => 'datetime',
         'notified_at'       => 'datetime',

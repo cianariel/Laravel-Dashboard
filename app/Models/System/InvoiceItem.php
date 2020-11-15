@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Invoice Items Eloquent Model
@@ -16,8 +15,6 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class InvoiceItem extends Model
 {
-    use HasMetaFields;
-
     /**
      * The database table used by the model.
      *
@@ -64,6 +61,6 @@ class InvoiceItem extends Model
         'quantity'      => 'double',
         'price'         => 'integer',
         'notes'         => 'string',
-        'meta_fields'   => 'object'
+        'meta_fields'   => 'array'
     ];
 }

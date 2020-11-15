@@ -2,15 +2,14 @@
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use \Venturecraft\Revisionable\RevisionableTrait;
-use App\Models\Shared\Traits\HasMetaFields;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Shared\Model;
 
 /**
  * Blog Posts Eloquent Model
@@ -21,8 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Post extends Model implements HasMedia, Searchable
 {
-    use HasMetaFields,
-        HasMediaTrait,
+    use HasMediaTrait,
         RevisionableTrait,
         SoftDeletes;
 
@@ -160,7 +158,7 @@ class Post extends Model implements HasMedia, Searchable
         'meta_keywords'     => 'string',
         'meta_description'  => 'string',
         'meta_rebots'       => 'string',
-        'meta_fields'       => 'object',
+        'meta_fields'       => 'array',
         'status'            => 'string',
         'visible'           => 'string',
         'created_at'        => 'datetime',

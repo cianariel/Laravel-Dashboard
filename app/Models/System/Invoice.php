@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
@@ -12,7 +11,7 @@ use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use App\Models\System\Traits\HasInvoiceItems;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Invoice Eloquent Model
@@ -24,7 +23,6 @@ use App\Models\Shared\Traits\HasMetaFields;
 class Invoice extends Model implements HasMedia, Searchable
 {
     use HasMediaTrait,
-        HasMetaFields,
         HasInvoiceItems,
         SoftDeletes;
 
@@ -165,7 +163,7 @@ class Invoice extends Model implements HasMedia, Searchable
         'notes'                 => 'string',
         'terms'                 => 'string',
         'status'                => 'string',
-        'meta_fields'           => 'object',
+        'meta_fields'           => 'array',
         'due_at'                => 'datetime',
         'paid_at'               => 'datetime',
         'voided_at'             => 'datetime',

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
-use Tenancy\Affects\Connections\Support\Traits\OnTenant;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Note Eloquent Model
@@ -17,8 +15,6 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Note extends Model
 {
-    use HasMetaFields;
-
     /**
      * The database table used by the model.
      *
@@ -38,7 +34,7 @@ class Note extends Model
         'parent_id'     => 'integer',
         'user_id'       => 'integer',
         'content'       => 'string',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime'
     ];

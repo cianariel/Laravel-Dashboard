@@ -14,6 +14,4 @@ use Spatie\Activitylog\Models\Activity as SpatieActivity;
  * @copyright 2020 MdRepTime, LLC
  * @package App\Models\System
  */
-class Activity extends SpatieActivity
-{
-}
+class Activity extends SpatieActivity {}

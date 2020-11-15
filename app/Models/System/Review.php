@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\System\Traits\HasComments;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Reviews Eloquent Model
@@ -17,8 +16,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Review extends Model
 {
-    use HasMetaFields,
-        HasComments;
+    use HasComments;
 
     /**
      * The database table used by the model.
@@ -93,7 +91,7 @@ class Review extends Model
         'rate'          => 'integer',
         'name'          => 'string',
         'status'        => 'string',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'visible'       => 'string',
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime',

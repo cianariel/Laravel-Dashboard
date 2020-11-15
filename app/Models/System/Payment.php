@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use \Stripe\Stripe as Stripe;
 use \Stripe\Exception\InvalidRequestException;
 use \Stripe\Exception\CardException;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use App\Models\System\User;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Payments Eloquent Model
@@ -22,8 +21,6 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Payment extends Model implements Searchable
 {
-    use HasMetaFields;
-
     /**
      * The database table used by the model.
      *
@@ -174,7 +171,7 @@ class Payment extends Model implements Searchable
         'zipcode'           => 'string',
         'country'           => 'string',
         'status'            => 'string',
-        'meta_fields'       => 'object',
+        'meta_fields'       => 'array',
         'amount'            => 'integer',
         'charged'           => 'integer',
         'paid'              => 'integer',

@@ -7,7 +7,6 @@ namespace App\Models\System;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
@@ -26,6 +25,7 @@ use App\Models\Shared\Traits\HasMetaFields;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use App\Models\Shared\Authenticatable;
 
 /**
  * User Eloquent Model
@@ -39,7 +39,6 @@ class User extends Authenticatable implements Searchable, HasMedia, MustVerifyEm
     use Notifiable,
         Billable,
         HasRoles,
-        HasMetaFields,
         HasOffices,
         HasOrders,
         HasCarts,
@@ -286,7 +285,7 @@ class User extends Authenticatable implements Searchable, HasMedia, MustVerifyEm
         'country'           => 'string',
         'phone'             => 'string',
         'mobile_phone'      => 'string',
-        'meta_fields'       => 'object',
+        'meta_fields'       => 'array',
         'stripe_id'         => 'string',
         'payment_method'    => 'string',
         'card_brand'        => 'string',

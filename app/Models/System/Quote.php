@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use App\Models\System\Traits\HasQuoteItems;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Quote Eloquent Model
@@ -23,7 +22,6 @@ use App\Models\Shared\Traits\HasMetaFields;
 class Quote extends Model implements HasMedia, Searchable
 {
     use HasMediaTrait,
-        HasMetaFields,
         HasQuoteItems;
 
     /**
@@ -111,7 +109,7 @@ class Quote extends Model implements HasMedia, Searchable
         'status'            => 'string',
         'notes'             => 'string',
         'private_notes'     => 'string',
-        'meta_fields'       => 'object',
+        'meta_fields'       => 'array',
         'modified_at'       => 'datetime',
         'created_at'        => 'datetime',
         'deleted_at'        => 'datetime'

@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\System\Traits\HasForumDiscussions;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Forum Category Eloquent Model
@@ -18,8 +17,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class ForumCategory extends Model
 {
-    use HasMetaFields,
-        HasForumDiscussions,
+    use HasForumDiscussions,
         SoftDeletes;
 
     /**
@@ -66,7 +64,7 @@ class ForumCategory extends Model
         'name'          => 'string',
         'slug'          => 'string',
         'status'        => 'string',
-        'meta_fields'   => 'object',
+        'meta_fields'   => 'array',
         'sort'          => 'integer',
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime',

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -12,7 +11,7 @@ use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\System\Traits\HasProducts;
-use App\Models\Shared\Traits\HasMetaFields;
+use App\Models\Shared\Model;
 
 /**
  * Packages Eloquent Model
@@ -23,8 +22,7 @@ use App\Models\Shared\Traits\HasMetaFields;
  */
 class Package extends Model implements HasMedia, Searchable
 {
-    use HasMetaFields,
-        HasProducts,
+    use HasProducts,
         HasMediaTrait,
         SoftDeletes;
 
@@ -210,7 +208,7 @@ class Package extends Model implements HasMedia, Searchable
         'interval'       => 'string',
         'featured'       => 'string',
         'status'         => 'string',
-        'meta_fields'    => 'object',
+        'meta_fields'    => 'array',
         'stripe_plan'    => 'string',
         'trial_enabled'  => 'string',
         'created_at'     => 'datetime',
