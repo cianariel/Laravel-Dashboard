@@ -765,7 +765,7 @@ if (! function_exists('user')) {
  * @return  \App\Models\System\Office|null
  */
 if(! function_exists('office_owner')) {
-    function office_owner($user) : ?Office
+    function office_owner($user) : ?User
     {
         if(is_numeric($user)) {
             $user = User::where('id', safe_integer($user))->first();
