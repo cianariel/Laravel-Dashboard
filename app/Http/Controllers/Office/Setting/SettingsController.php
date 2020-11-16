@@ -141,6 +141,29 @@ class SettingsController extends BaseController
      */
     public function editOfficesSettings(Request $request)
     {
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        if($user->hasRole(Role::OWNER) ) {
+
+            $breadcrumbs = breadcrumbs([
+                __('Dashboard')        => [
+                    'path'          => route('office.dashboard'),
+                    'active'        => false
+                ],
+                __('Settings')      => [
+                    'path'          => route('office.settings.edit'),
+                    'active'        => false
+                ],
+                __('Offices')       => [
+                    'path'          => route('office.settings.edit.offices'),
+                    'active'        => true
+                ]
+            ]);
+
+            return view('office.settings.offices', compact('site', 'user', 'breadcrumbs'));
+        }
+
         flash(__('Unauthorized access.'));
         return redirect('/');
     }
@@ -153,6 +176,29 @@ class SettingsController extends BaseController
      */
     public function editCalendarSettings(Request $request)
     {
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        if($user->hasRole(Role::OWNER)) {
+
+            $breadcrumbs = breadcrumbs([
+                __('Dashboard')        => [
+                    'path'          => route('office.dashboard'),
+                    'active'        => false
+                ],
+                __('Settings')      => [
+                    'path'          => route('office.settings.edit'),
+                    'active'        => false
+                ],
+                __('Calendar')      => [
+                    'path'          => route('office.settings.edit.calendar'),
+                    'active'        => true
+                ]
+            ]);
+
+            return view('office.settings.calendar', compact('site', 'user', 'breadcrumbs'));
+        }
+
         flash(__('Unauthorized access.'));
         return redirect('/');
     }
@@ -165,6 +211,29 @@ class SettingsController extends BaseController
      */
     public function editSubscriptionSettings(Request $request)
     {
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        if($user->hasRole(Role::OWNER)) {
+
+            $breadcrumbs = breadcrumbs([
+                __('Dashboard')        => [
+                    'path'          => route('office.dashboard'),
+                    'active'        => false
+                ],
+                __('Settings')      => [
+                    'path'          => route('office.settings.edit'),
+                    'active'        => false
+                ],
+                __('Subscription')  => [
+                    'path'          => route('office.settings.edit.subscription'),
+                    'active'        => true
+                ]
+            ]);
+
+            return view('office.settings.subscription', compact('site', 'user', 'breadcrumbs'));
+        }
+
         flash(__('Unauthorized access.'));
         return redirect('/');
     }
