@@ -37,7 +37,7 @@ class CreateUsersTable extends Migration
             $table->string('mobile_phone', 16)->nullable();
 
             // Metafields
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
 
             // Card Details
             $table->string('stripe_id')->nullable()->index()->collation('utf8mb4_bin');

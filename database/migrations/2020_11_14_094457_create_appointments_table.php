@@ -30,7 +30,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('reference', 40)->unique();
             $table->string('description', 100)->nullable();
             $table->string('status', 40)->default(Appointment::PENDING);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->timestamp('scheduled_on');
             $table->timestamp('previous_date')->nullable();
             $table->timestamps();

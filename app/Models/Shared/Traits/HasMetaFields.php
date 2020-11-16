@@ -18,7 +18,7 @@ trait HasMetaFields
     /**
      * @return \Spatie\SchemalessAttributes\SchemalessAttributes
      */
-    public function getExtraAttributesAttribute(): SchemalessAttributes
+    public function getMetaFieldsAttribute(): SchemalessAttributes
     {
         return SchemalessAttributes::createForModel($this, 'meta_fields');
     }
@@ -26,7 +26,7 @@ trait HasMetaFields
     /**
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeWithExtraAttributes(): Builder
+    public function scopeWithMetaFields(): Builder
     {
         return SchemalessAttributes::scopeWithSchemalessAttributes('meta_fields');
     }
@@ -62,7 +62,9 @@ trait HasMetaFields
         $this->meta_fields->set($name, $value);
 
         if($autosave === true) {
-            $this->save();
+            return $this->save();
         }
+
+        return true;
     }
 }

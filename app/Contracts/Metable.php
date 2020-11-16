@@ -19,10 +19,10 @@ use Spatie\SchemalessAttributes\SchemalessAttributes;
     /**
      * @return \Spatie\SchemalessAttributes\SchemalessAttributes
      */
-    public function getExtraAttributesAttribute() : SchemalessAttributes;
+    public function getMetaFieldsAttribute() : SchemalessAttributes;
 
     /**
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeWithExtraAttributes(): Builder;
+    public function scopeWithMetaFields(): Builder;
  }

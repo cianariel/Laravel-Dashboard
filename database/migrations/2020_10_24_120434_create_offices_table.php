@@ -27,7 +27,7 @@ class CreateOfficesTable extends Migration
             $table->uuid('uuid')->unique();
             $table->string('name', 200)->unique();
             $table->string('label', 150);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->string('status', 25)->default(Office::INACTIVE);
             $table->timestamps();
         });
