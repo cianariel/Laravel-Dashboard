@@ -4,10 +4,13 @@
 {{--[content]--}}
 @section('content-body')
     @component('components.bootstrap.container', [
-        'fluid' => false
+        'fluid'     => true,
+        'classes'   => [
+            'mt-3'
+        ]
     ])
         <div class="row justify-content-center">
-            <div class="col-12 col-md-10">
+            <div class="col-12 col-md-12">
                 @component('components.bootstrap.card', [
                     'id' => 'office-settings-edit-card'
                 ])

@@ -76,6 +76,11 @@ $routes = [
         'type'          => 'resource',
         'controller'    => 'Office\Staff\StaffsController',
         'except'        => ['show']
+    ],
+    [
+        'path'          => 'calendar',
+        'type'          => 'resource',
+        'controller'    => 'Office\Calendar\CalendarController',
     ]
 ];
 

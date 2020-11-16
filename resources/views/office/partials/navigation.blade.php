@@ -26,7 +26,7 @@
             <ul class="navbar-nav mr-auto justify-content-end">
                 <li class="nav-item">
                     @component('components.elements.link', [
-                        'href'      => '#',
+                        'href'      => route('office.calendar.index'),
                         'classes'   => ['nav-link']
                     ])
                         {{ __('Calendar') }}

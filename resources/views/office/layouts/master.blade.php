@@ -11,8 +11,23 @@
     @include('office.partials.header')
 @endsection
 {{--[/header]--}}
+@section('breadcrumbs')
+    @if(isset($breadcrumbs))
+        @section('breadcrumbs')
+            @component('components.elements.breadcrumbs', ['list' => $breadcrumbs])@endcomponent
+        @endsection
+    @endif
+@endsection
 {{--[content]--}}
 @section('content')
+    @component('components.bootstrap.container', [
+        'fluid'     => true,
+        'classes'   => [
+            'mt-3'
+        ]
+    ])
+        {{--[breadcrumbs]--}} @include('partials.breadcrumbs') {{--[/breadcrumbs]--}}
+    @endcomponent
     @yield('content-body');
 @endsection
 {{--[/content]--}}
