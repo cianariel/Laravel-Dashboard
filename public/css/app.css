@@ -19367,6 +19367,11 @@ body[id^=page-admin] .md-breadcrumbs .breadcrumb .breadcrumb-item .active {
 body[id^=page-office] #office-content-body {
   background: #034ea2;
 }
+@media (min-width: 768px) {
+  body[id^=page-office] #office-settings-sidebar-card {
+    max-width: 15.625rem;
+  }
+}
 body[id^=page-office] .md-breadcrumbs .breadcrumb {
   background: #034ea2;
 }

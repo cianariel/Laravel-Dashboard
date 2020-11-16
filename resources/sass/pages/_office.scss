@@ -9,6 +9,14 @@ body[id^="page-office"]
         background: $blue-color;
     }
 
+    #office-settings-sidebar-card
+    {
+        @include media-breakpoint-up(md)
+        {
+            max-width: rem(250);
+        }
+    }
+
     // Breadcrumbs
     .md-breadcrumbs {
 
