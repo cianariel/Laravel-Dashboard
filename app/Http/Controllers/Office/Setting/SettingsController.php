@@ -132,4 +132,40 @@ class SettingsController extends BaseController
         flash(__('Unauthorized access.'));
         return redirect('/');
     }
+
+    /**
+     * Edit offices settings
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function editOfficesSettings(Request $request)
+    {
+        flash(__('Unauthorized access.'));
+        return redirect('/');
+    }
+
+    /**
+     * Edit office calendar settings
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function editCalendarSettings(Request $request)
+    {
+        flash(__('Unauthorized access.'));
+        return redirect('/');
+    }
+
+    /**
+     * Edit office settings
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function editSubscriptionSettings(Request $request)
+    {
+        flash(__('Unauthorized access.'));
+        return redirect('/');
+    }
 }

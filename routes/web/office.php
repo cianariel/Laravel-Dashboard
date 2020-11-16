@@ -72,6 +72,27 @@ $routes = [
         'name'          => 'settings.update'
     ],
     [
+        'path'          => 'settings/offices',
+        'type'          => 'get',
+        'controller'    => 'Office\Setting\SettingsController',
+        'method'        => 'editOfficesSettings',
+        'name'          => 'settings.edit.offices'
+    ],
+    [
+        'path'          => 'settings/calendar',
+        'type'          => 'get',
+        'controller'    => 'Office\Setting\SettingsController',
+        'method'        => 'editCalendarSettings',
+        'name'          => 'settings.edit.calendar'
+    ],
+    [
+        'path'          => 'settings/subscription',
+        'type'          => 'get',
+        'controller'    => 'Office\Setting\SettingsController',
+        'method'        => 'editSubscriptionSettings',
+        'name'          => 'settings.edit.subscription'
+    ],
+    [
         'path'          => 'staff',
         'type'          => 'resource',
         'controller'    => 'Office\Staff\StaffsController',
