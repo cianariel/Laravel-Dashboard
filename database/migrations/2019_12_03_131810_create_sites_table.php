@@ -225,7 +225,7 @@ class CreateSitesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title', 150)->index();
             $table->longText('content')->nullable();
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->string('visibility', 25)->default(Comment::OWNER);
             $table->timestamps();
         });
@@ -240,7 +240,7 @@ class CreateSitesTable extends Migration
             $table->string('subject', 190);
             $table->longText('body');
             $table->string('status', 25)->default(Message::QUEUE);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->timestamp('read_at')->nullable();
             $table->timestamp('sent_at')->nullable();
             $table->timestamps();
@@ -350,7 +350,7 @@ class CreateSitesTable extends Migration
             $table->string('meta_keywords', 150)->nullable();
             $table->string('meta_description', 150)->nullable();
             $table->string('meta_robots', 150)->nullable();
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->mediumText('template')->nullable();
             $table->string('status', 25)->default(Page::INACTIVE);
             $table->string('visible', 25)->default(Page::HIDDEN);
@@ -411,7 +411,7 @@ class CreateSitesTable extends Migration
             $table->string('interval', 25)->default(Package::MONTHLY);
             $table->string('featured', 25)->default(Package::NOT_FEATURED);
             $table->string('status', 25)->default(Package::INACTIVE);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->string('stripe_plan')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -459,7 +459,7 @@ class CreateSitesTable extends Migration
             $table->mediumText('description');
             $table->string('featured', 25)->default(Product::NOT_FEATURED);
             $table->string('status', 25)->default(Product::INACTIVE);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->string('stripe_product')->nullable();
             $table->unsignedBigInteger('views')->default(0);
             $table->timestamps();
@@ -577,7 +577,7 @@ class CreateSitesTable extends Migration
             $table->uuid('uuid')->unique();
             $table->string('status', 25)->default(Cart::CREATED);
             $table->unsignedInteger('subtotal');
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->timestamps();
         });
 
@@ -586,7 +586,7 @@ class CreateSitesTable extends Migration
             $table->string('name', 150)->index();
             $table->unsignedInteger('price');
             $table->unsignedTinyInteger('quantity');
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->timestamps();
         });
 
@@ -635,7 +635,7 @@ class CreateSitesTable extends Migration
             $table->string('reference', 40)->unique();
             $table->unsignedBigInteger('cart_id')->nullable();
             $table->string('status', 25)->default(Order::CREATED);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->timestamp('completed_at')->nullable();
             $table->timestamp('canceled_at')->nullable();
             $table->timestamps();
@@ -693,7 +693,7 @@ class CreateSitesTable extends Migration
             $table->string('zipcode', 25);
             $table->string('country', 2);
             $table->string('status', 25)->default(Payment::UNPAID);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->unsignedInteger('amount');
             $table->unsignedInteger('charged');
             $table->unsignedInteger('paid');
@@ -766,7 +766,7 @@ class CreateSitesTable extends Migration
             $table->string('stripe_token')->index()->collation('utf8mb4_bin');
             $table->unsignedBigInteger('amount');
             $table->string('status', 50)->default(Refund::PENDING);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->string('email_sent', 25)->default(Refund::EMAIL_NOT_SENT);
             $table->timestamp('refunded_at')->nullable();
             $table->timestamp('notified_at')->nullable();
@@ -856,7 +856,7 @@ class CreateSitesTable extends Migration
             $table->string('title', 150)->index();
             $table->string('status', 25)->default(Forum::INACTIVE);
             $table->string('visible', 25)->default(Forum::HIDDEN);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -868,7 +868,7 @@ class CreateSitesTable extends Migration
             $table->string('title', 150);
             $table->string('slug')->unqiue();
             $table->string('status', 25)->default(ForumCategory::INACTIVE);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->unsignedInteger('sort')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -883,7 +883,7 @@ class CreateSitesTable extends Migration
             $table->string('status', 25)->default(ForumDiscussion::OPEN);
             $table->string('sticky', 25)->default(ForumDiscussion::STICKY_DISABLED);
             $table->string('answered', 25)->default(ForumDiscussion::NOT_ANSWERED);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->unsignedBigInteger('views')->nullable();
             $table->unsignedInteger('sort')->nullable();
             $table->timestamps();
@@ -1179,7 +1179,7 @@ class CreateSitesTable extends Migration
             $table->string('type', 150);
             $table->string('reference', 40)->unqiue();
             $table->string('status', 25)->default(SupportTicket::CREATED);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->timestamp('closed_at')->nullable();
             $table->timestamps();
         });
@@ -1230,7 +1230,7 @@ class CreateSitesTable extends Migration
             $table->string('name', 150)->index();
             $table->string('status', 25)->default(Review::CREATED);
             $table->string('visible', 25)->default(Review::HIDDEN);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->timestamps();
         });
 
@@ -1310,7 +1310,7 @@ class CreateSitesTable extends Migration
             $table->longText('terms')->nullable();
             $table->string('allow_partial_payments')->default(Invoice::PARTIAL_PAYMENTS_NOT_ACCEPTED);
             $table->string('status', 25)->default(Invoice::UNPAID);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->timestamp('due_at')->nullable();
             $table->timestamp('paid_at')->nullable();
             $table->timestamp('voided_at')->nullable();
@@ -1329,7 +1329,7 @@ class CreateSitesTable extends Migration
             $table->unsignedDecimal('quantity')->nullable();
             $table->unsignedBigInteger('price')->nullable();
             $table->text('notes')->nullable();
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
         });
 
         Schema::create('invoice_site', function (Blueprint $table) {
@@ -1378,7 +1378,7 @@ class CreateSitesTable extends Migration
                 $table->string('status', 25)->default(Quote::DRAFT);
                 $table->text('notes')->nullable();
                 $table->text('private_notes')->nullable();
-                $table->json('meta_fields')->nullable();
+                $table->schemalessAttributes('meta_fields')->nullable();
                 $table->timestamps();
             });
 
@@ -1389,7 +1389,7 @@ class CreateSitesTable extends Migration
                 $table->string('unit')->nullable();
                 $table->unsignedDecimal('quantity')->nullable();
                 $table->unsignedBigInteger('price')->nullable();
-                $table->json('meta_fields')->nullable();
+                $table->schemalessAttributes('meta_fields')->nullable();
             });
 
             // Foriegn Keys
@@ -1438,7 +1438,7 @@ class CreateSitesTable extends Migration
                 $table->unsignedBigInteger('parent_id')->nullable();
                 $table->unsignedBigInteger('user_id');
                 $table->longText('content');
-                $table->json('meta_fields')->nullable();
+                $table->schemalessAttributes('meta_fields')->nullable();
                 $table->timestamps();
             });
 

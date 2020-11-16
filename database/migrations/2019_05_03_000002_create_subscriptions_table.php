@@ -21,7 +21,7 @@ class CreateSubscriptionsTable extends Migration
             $table->string('stripe_status');
             $table->string('stripe_plan')->nullable();
             $table->integer('quantity')->nullable();
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('ends_at')->nullable();
             $table->timestamps();

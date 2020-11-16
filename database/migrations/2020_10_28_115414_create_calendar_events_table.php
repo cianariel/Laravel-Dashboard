@@ -26,7 +26,7 @@ class CreateCalendarEventsTable extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid');
             $table->string('title', 190);
-            $table->json('meta_fields')->nullable();
+            $table->schemalessAttributes('meta_fields')->nullable();
             $table->string('status', 25)->default(CalendarEvent::ACTIVE);
             $table->timestamp('start_at')->nullable();
             $table->timestamp('ends_at')->nullable();
