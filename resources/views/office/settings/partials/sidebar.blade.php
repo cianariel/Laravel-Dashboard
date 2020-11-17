@@ -9,6 +9,13 @@
         <ul class="list-group">
             <li class="list-group-item">
                 @component('components.elements.link', [
+                    'href'  => route('office.settings.edit.general')
+                ])
+                    {{ __('General') }}
+                @endcomponent
+            </li>
+            <li class="list-group-item">
+                @component('components.elements.link', [
                     'href'  => route('office.settings.edit.offices')
                 ])
                     {{ __('Offices') }}
