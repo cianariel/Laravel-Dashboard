@@ -1,6 +1,7 @@
 {{-- Stored in resources/views/frontend/layouts/partials/header.blade.php --}}
 {{--[header]--}}
 <header id="md-header">
+    @guest
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -27,6 +28,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div class="md-navigation">
         <div class="container-fluid">
             @include('frontend.partials.navigation')

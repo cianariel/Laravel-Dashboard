@@ -23,7 +23,8 @@
                                 @component('components.elements.link', [
                                     'href'      => route('office.settings.edit.general.section', ['section' => 'office_info']),
                                     'classes'   => [
-                                        'nav-link'
+                                        'nav-link',
+                                        ($section == 'office_info')? 'active' : 'inactive'
                                     ]
                                 ])
                                     {{ __('Office Info') }}
@@ -31,7 +32,8 @@
                                 @component('components.elements.link', [
                                     'href'      =>  route('office.settings.edit.general.section', ['section' => 'holidays']),
                                     'classes'   => [
-                                        'nav-link'
+                                        'nav-link',
+                                        ($section == 'holidays')? 'active' : 'inactive'
                                     ]
                                 ])
                                     {{ __('Holidays') }}
@@ -39,7 +41,8 @@
                                 @component('components.elements.link', [
                                     'href'      =>  route('office.settings.edit.general.section', ['section' => 'office_hours']),
                                     'classes'   => [
-                                        'nav-link'
+                                        'nav-link',
+                                        ($section == 'office_hours')? 'active' : 'inactive'
                                     ]
                                 ])
                                     {{ __('Office Hours') }}
@@ -47,7 +50,8 @@
                                 @component('components.elements.link', [
                                     'href'      =>  route('office.settings.edit.general.section', ['section' => 'visitation_rules']),
                                     'classes'   => [
-                                        'nav-link'
+                                        'nav-link',
+                                        ($section == 'visitation_rules')? 'active' : 'inactive'
                                     ]
                                 ])
                                     {{ __('Vistation Rules') }}
@@ -55,7 +59,8 @@
                                 @component('components.elements.link', [
                                     'href'      =>  route('office.settings.edit.general.section', ['section' => 'rep_assignment']),
                                     'classes'   => [
-                                        'nav-link'
+                                        'nav-link',
+                                        ($section == 'rep_assignment')? 'active' : 'inactive'
                                     ]
                                 ])
                                     {{ __('Rep Assignment Tool') }}
@@ -63,7 +68,8 @@
                                 @component('components.elements.link', [
                                     'href'      =>  route('office.settings.edit.general.section', ['section' => 'recurring_appointments']),
                                     'classes'   => [
-                                        'nav-link'
+                                        'nav-link',
+                                        ($section == 'recurring_appointments')? 'active' : 'inactive'
                                     ]
                                 ])
                                     {{ __('Recurring Appointments') }}
@@ -92,6 +98,9 @@
                                         @case('recurring_appointments')
                                             @include('office.settings.partials.office_hours')
                                             @break
+                                        @default
+                                            @include('office.settings.partials.office_info')
+                                            @break;
                                     @endswitch
                                 </div>
                             </div>

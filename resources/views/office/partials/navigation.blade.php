@@ -17,11 +17,11 @@
         </span>
     @endcomponent
     {{--[toggler]--}}
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-frontend-collapse" aria-controls="navbar-frontend-collapse" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-office-collapse" aria-controls="navbar-frontend-collapse" aria-expanded="false" aria-label="Toggle navigation">
         <i class="icon fas fa-bars"></i>
     </button>
     {{--[/toggler]--}}
-    <div class="collapse navbar-collapse navbar-frontend-collapse" id="navbar-frontend-collapse">
+    <div class="collapse navbar-collapse navbar-office-collapse" id="navbar-office-collapse">
         <div class="d-block w-100">
             <ul class="navbar-nav mr-auto justify-content-end">
                 <li class="nav-item">
