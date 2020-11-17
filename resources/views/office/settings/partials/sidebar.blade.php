@@ -9,6 +9,13 @@
         <ul class="list-group">
             <li class="list-group-item">
                 @component('components.elements.link', [
+                    'href'  => route('office.settings.edit.rep.visits')
+                ])
+                    {{ __('Rep Visits') }}
+                @endcomponent
+            </li>
+            <li class="list-group-item">
+                @component('components.elements.link', [
                     'href'  => route('office.settings.edit.general')
                 ])
                     {{ __('General') }}
@@ -33,6 +40,13 @@
                     'href'  => route('office.settings.edit.subscription')
                 ])
                     {{ __('Subscription') }}
+                @endcomponent
+            </li>
+            <li class="list-group-item">
+                @component('components.elements.link', [
+                    'href'  => '#'
+                ])
+                    {{ __('Close Account') }}
                 @endcomponent
             </li>
         </ul>
