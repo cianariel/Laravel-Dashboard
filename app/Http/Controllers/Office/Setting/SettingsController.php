@@ -42,32 +42,7 @@ class SettingsController extends BaseController
 
             if($user->setup_completed == User::SETUP_COMPLETED) {
 
-                $office = $user->offices()->first();
-
-                $countries = countries(false);
-                $_countries = [];
-
-                foreach ($countries as $country) {
-                    if ($countries->status = Country::ACTIVE) {
-                        $_countries[$country->code] = $country->name;
-                    }
-                }
-
-                $countries = $_countries;
-
-                $breadcrumbs = breadcrumbs([
-                    __('Dashboard')        => [
-                        'path'          => route('office.dashboard'),
-                        'active'        => false
-                    ],
-                    __('Settings')     => [
-                        'path'          => route('office.settings.edit'),
-                        'active'        => true
-                    ]
-                ]);
-
-                return view('office.settings.edit',
-                            compact('site', 'user', 'breadcrumbs', 'countries', 'office'));
+                return redirect()->route('office.settings.edit.general.section', ['section' => 'office_info']);
             }
 
             return redirect()->route('office.setup.account');
@@ -127,6 +102,80 @@ class SettingsController extends BaseController
 
             flash(__('Successfully updated settings.'));
             return redirect()->route('office.settings.edit');
+        }
+
+        flash(__('Unauthorized access.'));
+        return redirect('/');
+    }
+
+    /**
+     * Edit offices general settings
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function editGeneralSettings(Request $request, $section = '')
+    {
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        if($user->hasRole(Role::OWNER) ) {
+
+            $breadcrumbs = breadcrumbs([
+                __('Dashboard')        => [
+                    'path'          => route('office.dashboard'),
+                    'active'        => false
+                ],
+                __('Settings')      => [
+                    'path'          => route('office.settings.edit'),
+                    'active'        => false
+                ],
+                __('General')  => [
+                    'path'          => route('office.settings.edit.general'),
+                    'active'        => true
+                ]
+            ]);
+
+            if(filled($section)) {
+                $section = Str::lower(strip_tags(trim($section)));
+            }
+
+            $office = $user->offices()->first();
+
+            switch($section) {
+                case 'office_info':
+                    $countries = countries(false);
+                    $_countries = [];
+
+                    foreach ($countries as $country) {
+                        if ($countries->status = Country::ACTIVE) {
+                            $_countries[$country->code] = $country->name;
+                        }
+                    }
+
+                    $countries = $_countries;
+
+                    return view('office.settings.general',
+                                compact('site', 'user', 'breadcrumbs', 'section', 'office', 'countries'));
+                case 'holidays':
+                    return view('office.settings.general',
+                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
+                case 'appointments':
+                    return view('office.settings.general',
+                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
+                case 'office_hours':
+                    return view('office.settings.general',
+                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
+                case 'visitation_rules':
+                    return view('office.settings.general',
+                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
+                case 'rep_assignment':
+                    return view('office.settings.general',
+                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
+                case 'recurring_appointments':
+                    return view('office.settings.general',
+                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
+            }
         }
 
         flash(__('Unauthorized access.'));

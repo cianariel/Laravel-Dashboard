@@ -14,8 +14,8 @@ use Spatie\SchemalessAttributes\SchemalessAttributes;
  * @copyright   2020 MDRepTime, LLC
  * @package     App\Contracts
  */
- interface Metable
- {
+interface Metable
+{
     /**
      * @return \Spatie\SchemalessAttributes\SchemalessAttributes
      */
@@ -25,4 +25,4 @@ use Spatie\SchemalessAttributes\SchemalessAttributes;
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWithMetaFields(): Builder;
- }
+}

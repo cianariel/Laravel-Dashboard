@@ -72,6 +72,20 @@ $routes = [
         'name'          => 'settings.update'
     ],
     [
+        'path'          => 'settings/general',
+        'type'          => 'get',
+        'controller'    => 'Office\Setting\SettingsController',
+        'method'        => 'editGeneralSettings',
+        'name'          => 'settings.edit.general'
+    ],
+    [
+        'path'          => 'settings/general/{section}',
+        'type'          => 'get',
+        'controller'    => 'Office\Setting\SettingsController',
+        'method'        => 'editGeneralSettings',
+        'name'          => 'settings.edit.general.section'
+    ],
+    [
         'path'          => 'settings/offices',
         'type'          => 'get',
         'controller'    => 'Office\Setting\SettingsController',
