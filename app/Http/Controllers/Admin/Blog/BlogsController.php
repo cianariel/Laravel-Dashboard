@@ -16,9 +16,9 @@ use App\Rules\SanitizeHtml;
 /**
  * Blogs Resource Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 GeekBidz, LLC
- * @package App\Http\Controllers\Admin\Blog
+ * @package   App\Http\Controllers\Admin\Blog
  */
 class BlogsController extends AdminController
 {
@@ -74,7 +74,7 @@ class BlogsController extends AdminController
     /**
      * Show the form for creating a new resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -96,7 +96,7 @@ class BlogsController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -172,7 +172,7 @@ class BlogsController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -183,7 +183,7 @@ class BlogsController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -214,8 +214,8 @@ class BlogsController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -249,8 +249,8 @@ class BlogsController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
@@ -277,8 +277,8 @@ class BlogsController extends AdminController
     /**
      * Restores blog resource from storage
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function restore(Request $request, $id)
@@ -302,8 +302,8 @@ class BlogsController extends AdminController
     /**
      * Deletes blog item from storage forever
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function forceDelete(Request $request, $id)
@@ -348,8 +348,8 @@ class BlogsController extends AdminController
     /**
      * Shows blog settings resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function showSettings(Request $request, $id)
@@ -379,8 +379,8 @@ class BlogsController extends AdminController
     /**
      * Clear blog settings resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function clearSetting(Request $request, $blog, $setting)
@@ -426,8 +426,8 @@ class BlogsController extends AdminController
     /**
      * Shows blog settings resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function updateSettings(Request $request, $id)
@@ -446,38 +446,38 @@ class BlogsController extends AdminController
                 }
 
                 switch ($setting->type) {
-                    case Setting::INPUT_FILE:
-                        if (filled($setting->options)) {
-                            $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'file' ,'mimes:' . implode(',', unserialize($setting->options))];
-                        } else {
-                            $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'file'];
-                        }
-                        break;
-                    case Setting::INPUT_EMAIL:
-                        $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'string', 'email:rfc,dns'];
-                        break;
-                    case Setting::INPUT_TEXT:
+                case Setting::INPUT_FILE:
+                    if (filled($setting->options)) {
+                        $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'file' ,'mimes:' . implode(',', unserialize($setting->options))];
+                    } else {
+                        $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'file'];
+                    }
+                    break;
+                case Setting::INPUT_EMAIL:
+                    $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'string', 'email:rfc,dns'];
+                    break;
+                case Setting::INPUT_TEXT:
+                    $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'string'];
+                    break;
+                case Setting::INPUT_TEXTAREA:
+                    $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'string'];
+                    break;
+                case Setting::INPUT_NUMBER:
+                    $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'numeric'];
+                    break;
+                case Setting::INPUT_RANGE:
+                    $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'numeric'];
+                    break;
+                case Setting::INPUT_SELECT:
+                    if (filled($setting->options)) {
+                        $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'string', Rule::in(unserialize($setting->options))];
+                    } else {
                         $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'string'];
-                        break;
-                    case Setting::INPUT_TEXTAREA:
-                        $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'string'];
-                        break;
-                    case Setting::INPUT_NUMBER:
-                        $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'numeric'];
-                        break;
-                    case Setting::INPUT_RANGE:
-                        $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'numeric'];
-                        break;
-                    case Setting::INPUT_SELECT:
-                        if (filled($setting->options)) {
-                            $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'string', Rule::in(unserialize($setting->options))];
-                        } else {
-                            $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'string'];
-                        }
-                        break;
-                    case Setting::INPUT_MULTISELECT:
-                        $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'string'];
-                        break;
+                    }
+                    break;
+                case Setting::INPUT_MULTISELECT:
+                    $rules[str_replace(config('app.domain').'_', '', $setting->key)] = [$required, 'string'];
+                    break;
                 }
             }
 

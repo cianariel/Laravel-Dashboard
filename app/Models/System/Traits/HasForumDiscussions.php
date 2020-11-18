@@ -9,9 +9,9 @@ use App\Models\System\ForumDiscussion;
 /**
  * Has Forum Discuissions Relation Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasForumDiscussions
 {
@@ -79,12 +79,12 @@ trait HasForumDiscussions
         if (!$this->hasForumDiscussion($forumDiscussion)) {
             if (is_numeric($forumDiscussion) && is_finite(intval($forumDiscussion))) {
                 $forumDiscussion = ForumDiscussion::where('id', intval($forumDiscussion))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($forumDiscussion)) {
                 $forumDiscussion = ForumDiscussion::where('name', $forumDiscussion)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($forumDiscussion instanceof ForumDiscussion) {
@@ -110,12 +110,12 @@ trait HasForumDiscussions
         if ($this->hasForumDiscussion($forumDiscussion)) {
             if (is_numeric($forumDiscussion) && is_finite(intval($forumDiscussion))) {
                 $forumDiscussion = $this->forumDiscussions()->where('id', intval($forumDiscussion))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($forumDiscussion)) {
                 $forumDiscussion = $this->forumDiscussions()->where('name', $forumDiscussion)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($forumDiscussion instanceof ForumDiscussion) {

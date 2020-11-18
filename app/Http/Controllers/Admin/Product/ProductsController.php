@@ -17,16 +17,16 @@ use App\Rules\SanitizeHtml;
 /**
  * Admin Products Resource Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin\Product
+ * @package   App\Http\Controllers\Admin\Product
  */
 class ProductsController extends AdminController
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -113,7 +113,7 @@ class ProductsController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -145,10 +145,12 @@ class ProductsController extends AdminController
             try {
                 \Stripe\Stripe::setApiKey(config('cashier.secret')); // stripe key
 
-                $stripe_product = \Stripe\Product::create([
+                $stripe_product = \Stripe\Product::create(
+                    [
                     'name'      => $name,
                     'active'    => ($request->input('status') == Product::ACTIVE)? true : false
-                ]);
+                    ]
+                );
             } catch (\Stripe\Exception\InvalidRequestException $e) {
                 $json = json_decode(json_encode($e->getJsonBody()), false);
                 $error = $json->error;
@@ -180,7 +182,7 @@ class ProductsController extends AdminController
                     $file = $request->file('media');
 
                     $product->addMedia($file)
-                            ->toMediaCollection('images');
+                        ->toMediaCollection('images');
                 }
 
                 // Save
@@ -204,7 +206,7 @@ class ProductsController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
@@ -232,7 +234,7 @@ class ProductsController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -277,8 +279,8 @@ class ProductsController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -319,10 +321,12 @@ class ProductsController extends AdminController
                 try {
                     \Stripe\Stripe::setApiKey(config('cashier.secret')); // stripe key
 
-                    $stripe_product = \Stripe\Product::update($stripe_id, [
+                    $stripe_product = \Stripe\Product::update(
+                        $stripe_id, [
                         'name'      => $name,
                         'active'    => ($request->input('status') == Product::ACTIVE)? true : false
-                    ]);
+                        ]
+                    );
                 } catch (\Stripe\Exception\InvalidRequestException $e) {
                     $json = json_decode(json_encode($e->getJsonBody()), false);
                     $error = $json->error;
@@ -347,7 +351,7 @@ class ProductsController extends AdminController
                 $file = $request->file('media');
 
                 $product->addMedia($file)
-                        ->toMediaCollection('images');
+                    ->toMediaCollection('images');
             }
 
             // Save
@@ -364,8 +368,8 @@ class ProductsController extends AdminController
     /**
      * Delete the specified media image from product.
      *
-     * @param int $id
-     * @param int $image
+     * @param  int $id
+     * @param  int $image
      * @return \Illuminate\Http\Response
      */
     public function deleteMediaImage(Request $request, $id, $image)
@@ -391,8 +395,8 @@ class ProductsController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
@@ -414,8 +418,8 @@ class ProductsController extends AdminController
     /**
      * Restore the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function restore(Request $request, $id)
@@ -437,8 +441,8 @@ class ProductsController extends AdminController
     /**
      * Delete forever the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function forceDelete(Request $request, $id)

@@ -9,9 +9,9 @@ use App\Models\System\ForumCategory;
 /**
  * Has Forum Category Relation Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits;
+ * @package   App\Models\System\Traits;
  */
 trait HasForumCategories
 {
@@ -79,12 +79,12 @@ trait HasForumCategories
         if (!$this->hasForumCategory($forumCategory)) {
             if (is_numeric($forumCategory) && is_finite(intval($forumCategory))) {
                 $forumCategory = ForumCategory::where('id', intval($forumCategory))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($forumCategory)) {
                 $forumCategory = ForumCategory::where('name', $forumCategory)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($forumCategory instanceof ForumCategory) {
@@ -110,12 +110,12 @@ trait HasForumCategories
         if ($this->hasForumCategory($forumCategory)) {
             if (is_numeric($forumCategory) && is_finite(intval($forumCategory))) {
                 $forumCategory = $this->forumCategories()->where('id', intval($forumCategory))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($forumCategory)) {
                 $forumCategory = $this->forumCategories()->where('name', $forumCategory)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($forumCategory instanceof ForumCategory) {

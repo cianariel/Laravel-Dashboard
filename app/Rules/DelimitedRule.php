@@ -12,13 +12,15 @@ use Illuminate\Support\Str;
 /**
  * Rule for validating delimited values
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package  App\Rules
+ * @package   App\Rules
  */
 class DelimitedRule implements Rule
 {
-    /** @var string|array|\Illuminate\Contracts\Validation\Rule */
+    /**
+     * @var string|array|\Illuminate\Contracts\Validation\Rule 
+     */
     protected $rule;
 
     protected $minimum = null;
@@ -31,10 +33,14 @@ class DelimitedRule implements Rule
 
     protected $separatedBy = ',';
 
-    /** @var bool */
+    /**
+     * @var bool 
+     */
     protected $trimItems = true;
 
-    /** @var string */
+    /**
+     * @var string 
+     */
     protected $validationMessageWord = 'item';
 
     public function __construct($rule)
@@ -91,17 +97,21 @@ class DelimitedRule implements Rule
         }
 
         $items = collect(explode($this->separatedBy, $value))
-            ->filter(function ($item) {
-                return strlen((string) $item) > 0;
-            });
+            ->filter(
+                function ($item) {
+                    return strlen((string) $item) > 0;
+                }
+            );
 
         if (! is_null($this->minimum)) {
             if ($items->count() < $this->minimum) {
-                $this->message = __('validationRules::messages.delimited.min', [
+                $this->message = __(
+                    'validationRules::messages.delimited.min', [
                     'min' => $this->minimum,
                     'actual' => $items->count(),
                     'item' => Str::plural($this->validationMessageWord, $items->count()),
-                ]);
+                    ]
+                );
 
                 return false;
             }
@@ -109,20 +119,24 @@ class DelimitedRule implements Rule
 
         if (! is_null($this->maximum)) {
             if ($items->count() > $this->maximum) {
-                $this->message = __('validationRules::messages.delimited.max', [
+                $this->message = __(
+                    'validationRules::messages.delimited.max', [
                     'max' => $this->maximum,
                     'actual' => $items->count(),
                     'item' => Str::plural($this->validationMessageWord, $items->count()),
-                ]);
+                    ]
+                );
 
                 return false;
             }
         }
 
         if ($this->trimItems) {
-            $items = $items->map(function (string $item) {
-                return trim($item);
-            });
+            $items = $items->map(
+                function (string $item) {
+                    return trim($item);
+                }
+            );
         }
 
         foreach ($items as $item) {

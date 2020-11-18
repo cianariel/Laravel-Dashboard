@@ -59,8 +59,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAdminRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web/admin.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web/admin.php'));
     }
 
     /**
@@ -74,8 +74,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapOfficeRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web/office.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web/office.php'));
     }
 
     /**
@@ -89,8 +89,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapUserRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web/user.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web/user.php'));
     }
 
 
@@ -119,9 +119,9 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api/api.php'));
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api/api.php'));
     }
 
     /**
@@ -135,7 +135,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapRedirectRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web/redirect.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web/redirect.php'));
     }
 }

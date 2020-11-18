@@ -9,9 +9,9 @@ use App\Models\System\Setting;
 /**
  * Has Settings Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasSettings
 {
@@ -40,7 +40,7 @@ trait HasSettings
     /**
      * Determines if the given setting
      *
-     * @param App\Models\System\Setting|int|string $setting
+     * @param  App\Models\System\Setting|int|string $setting
      * @return bool
      * @access public
      */
@@ -49,14 +49,14 @@ trait HasSettings
         if (filled($setting)) {
             if (is_numeric($setting) && is_finite(intval($setting))) {
                 $setting = Setting::where('id', intval($setting))
-                              ->select(['id'])
-                              ->first();
+                    ->select(['id'])
+                    ->first();
             }
 
             if (is_string($setting)) {
                 $setting = Setting::where('key', trim($setting))
-                                  ->select(['id'])
-                                  ->first();
+                    ->select(['id'])
+                    ->first();
             }
 
             if ($setting instanceof Setting) {
@@ -70,7 +70,7 @@ trait HasSettings
     /**
      * Get a single setting
      *
-     * @param App\Models\System\Setting|int|string $setting
+     * @param  App\Models\System\Setting|int|string $setting
      * @return App\Models\System\Setting|null
      */
     public function getSetting($setting): ?Setting
@@ -97,7 +97,7 @@ trait HasSettings
     /**
      * Assign the given setting
      *
-     * @param App\Models\System\Setting|int $setting
+     * @param  App\Models\System\Setting|int $setting
      * @return bool
      * @access public
      */
@@ -106,8 +106,8 @@ trait HasSettings
         if (!$this->hasSetting($setting)) {
             if (is_numeric($setting) && is_finite(intval($setting))) {
                 $setting = Setting::where('id', intval($setting))
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($setting instanceof Setting) {
@@ -123,7 +123,7 @@ trait HasSettings
     /**
      * Unassign the given setting
      *
-     * @param App\Models\System\Setting|int $setting
+     * @param  App\Models\System\Setting|int $setting
      * @return bool
      * @access public
      */
@@ -132,8 +132,8 @@ trait HasSettings
         if ($this->hasSetting($setting)) {
             if (is_numeric($setting) && is_finite(intval($setting))) {
                 $setting = Setting::where('id', intval($setting))
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($setting instanceof Setting) {

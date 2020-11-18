@@ -9,9 +9,9 @@ use App\Models\System\Menu;
 /**
  * Has Menus Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasMenus
 {
@@ -50,12 +50,12 @@ trait HasMenus
         if (filled($menu)) {
             if (is_numeric($menu) && is_finite(intval($menu))) {
                 $menu = Menu::where('id', intval($menu))
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             } elseif (is_string($menu)) {
                 $menu = Menu::where('name', $menu)
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($menu instanceof Menu) {
@@ -69,7 +69,7 @@ trait HasMenus
     /**
      * Assign the given menu
      *
-     * @param App\Model\Menu|int|string $menu
+     * @param  App\Model\Menu|int|string $menu
      * @return bool
      * @access public
      */
@@ -78,12 +78,12 @@ trait HasMenus
         if (!$this->hasMenu($menu)) {
             if (is_numeric($menu) && is_finite(intval($menu))) {
                 $menu = Menu::where('id', intval($menu))
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             } elseif (is_string($menu)) {
                 $menu = Menu::where('name', $menu)
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($menu instanceof Menu) {
@@ -99,7 +99,7 @@ trait HasMenus
     /**
      * Unassign the given menu
      *
-     * @param App\Model\Menu|int|string $menu
+     * @param  App\Model\Menu|int|string $menu
      * @return bool
      * @access public
      */
@@ -108,12 +108,12 @@ trait HasMenus
         if ($this->hasMenu($menu)) {
             if (is_numeric($menu) && is_finite(intval($menu))) {
                 $menu = Menu::where('id', intval($menu))
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             } elseif (is_string($menu)) {
                 $menu = Menu::where('name', $menu)
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($menu instanceof Menu) {

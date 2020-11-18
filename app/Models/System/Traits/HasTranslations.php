@@ -7,9 +7,9 @@ namespace App\Models\System\Traits;
 /**
  * Has Translations Relation Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System
+ * @package   App\Models\System
  */
 trait HasTranslations
 {
@@ -77,12 +77,12 @@ trait HasTranslations
         if (!$this->hasTranslation($translation)) {
             if (is_numeric($translation) && is_finite(intval($translation))) {
                 $translation = Translation::where('id', intval($translation))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($translation)) {
                 $translation = Translation::where('name', $translation)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($translation instanceof Translation) {
@@ -108,12 +108,12 @@ trait HasTranslations
         if ($this->hasTranslation($translation)) {
             if (is_numeric($translation) && is_finite(intval($translation))) {
                 $translation = $this->translations()->where('id', intval($translation))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($translation)) {
                 $translation = $this->translations()->where('name', $translation)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($translation instanceof Translation) {

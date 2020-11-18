@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * CalendarEvent Eloquent Model
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System
+ * @package   App\Models\System
  */
 class CalendarEvent extends Model
 {
@@ -21,7 +21,7 @@ class CalendarEvent extends Model
     /**
      * The database table used by the model.
      *
-     * @var string
+     * @var    string
      * @access protected
      */
     protected $table = 'calendar_events';

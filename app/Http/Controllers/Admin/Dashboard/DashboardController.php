@@ -11,9 +11,9 @@ use App\Models\System\User;
 /**
  * Dashboard Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin\Dashboard
+ * @package   App\Http\Controllers\Admin\Dashboard
  */
 class DashboardController extends AdminController
 {

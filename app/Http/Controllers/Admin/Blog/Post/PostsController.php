@@ -18,9 +18,9 @@ use App\Rules\SanitizeHtml;
 /**
  * Admin Blog Posts Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 GeekBidz, LLC
- * @package App\Http\Controllers\Admin
+ * @package   App\Http\Controllers\Admin
  */
 class PostsController extends AdminController
 {
@@ -96,16 +96,18 @@ class PostsController extends AdminController
             $meta_robots = Post::META_ROBOTS;
 
             $users = User::where('status', User::ACTIVE)
-                     ->whereHas('roles', function ($query) {
-                        $roles = [
+                ->whereHas(
+                    'roles', function ($query) {
+                            $roles = [
                             Role::SUPER_ADMIN,
                             Role::ADMIN,
                             Role::EDITOR,
                             Role::AUTHOR,
                             Role::SUPPORT
-                        ];
-                        $query->whereIn('name', $roles);
-                     })->select(['id', 'first_name', 'last_name'])
+                            ];
+                            $query->whereIn('name', $roles);
+                    }
+                )->select(['id', 'first_name', 'last_name'])
                        ->cursor();
             $_users = [];
 
@@ -135,7 +137,7 @@ class PostsController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $blog)
@@ -180,7 +182,7 @@ class PostsController extends AdminController
                 $file = $request->file('media');
 
                 $post->addMedia($file)
-                     ->toMediaCollection('images');
+                    ->toMediaCollection('images');
             }
 
             // Save
@@ -199,7 +201,7 @@ class PostsController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $blog, $id)
@@ -210,7 +212,7 @@ class PostsController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $blog, $id)
@@ -224,16 +226,18 @@ class PostsController extends AdminController
             $meta_robots = Post::META_ROBOTS;
 
             $users = User::where('status', User::ACTIVE)
-                     ->whereHas('roles', function ($query) {
-                        $roles = [
+                ->whereHas(
+                    'roles', function ($query) {
+                            $roles = [
                             Role::SUPER_ADMIN,
                             Role::ADMIN,
                             Role::EDITOR,
                             Role::AUTHOR,
                             Role::SUPPORT
-                        ];
-                        $query->whereIn('name', $roles);
-                     })->select(['id', 'first_name', 'last_name'])
+                            ];
+                            $query->whereIn('name', $roles);
+                    }
+                )->select(['id', 'first_name', 'last_name'])
                        ->cursor();
             $_users = [];
 
@@ -264,8 +268,8 @@ class PostsController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $blog, $id)
@@ -307,7 +311,7 @@ class PostsController extends AdminController
                 $file = $request->file('media');
 
                 $post->addMedia($file)
-                     ->toMediaCollection('images');
+                    ->toMediaCollection('images');
             }
 
             if ($post->saveOrFail()) {
@@ -323,7 +327,7 @@ class PostsController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $blog, $id)
@@ -350,8 +354,8 @@ class PostsController extends AdminController
     /**
      * Delete the specified media image from posts.
      *
-     * @param int $id
-     * @param int $image
+     * @param  int $id
+     * @param  int $image
      * @return \Illuminate\Http\Response
      */
     public function deleteMediaImage(Request $request, $blog, $id, $image)
@@ -381,8 +385,8 @@ class PostsController extends AdminController
     /**
      * Deletes post from blog resource storage forever
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function forceDelete(Request $request, $blog, $id)
@@ -416,8 +420,8 @@ class PostsController extends AdminController
     /**
      * Restores post from blog resource storage
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function restore(Request $request, $blog, $id)

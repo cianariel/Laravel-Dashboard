@@ -32,9 +32,9 @@ use Exception;
 /**
  * SetupController
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Http\Controllers\Office\Setup
+ * @package   App\Http\Controllers\Office\Setup
  */
 class SetupController extends BaseController
 {
@@ -52,7 +52,7 @@ class SetupController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -73,7 +73,8 @@ class SetupController extends BaseController
 
             $countries = $_countries;
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard') => [
                     'path'      => route('office.dashboard'),
                     'active'    => false
@@ -82,10 +83,13 @@ class SetupController extends BaseController
                     'path'      => route('office.setup.account'),
                     'active'    => true
                 ]
-            ]);
+                ]
+            );
 
-            return view('office/setup/profile',
-                        compact('site', 'user', 'countries', 'breadcrumbs'));
+            return view(
+                'office/setup/profile',
+                compact('site', 'user', 'countries', 'breadcrumbs')
+            );
 
         } elseif($user->hasRole(Role::GUEST)) {
 
@@ -100,7 +104,7 @@ class SetupController extends BaseController
     /**
      * Save office profile
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function saveOfficeProfile(Request $request)
@@ -166,7 +170,7 @@ class SetupController extends BaseController
     /**
      * Select subscription package
      *
-     * @param  \Iluminate\Http\Request   $request
+     * @param  \Iluminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function selectSubscription(Request $request)
@@ -190,7 +194,8 @@ class SetupController extends BaseController
             $packages = $site->packages()->where('status', Package::ACTIVE)->cursor();
             $intent = $user->createSetupIntent();
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard') => [
                     'path'      => route('office.dashboard'),
                     'active'    => false
@@ -203,10 +208,13 @@ class SetupController extends BaseController
                     'path'      => route('office.setup.account.subscription.signup'),
                     'active'    => true
                 ]
-            ]);
+                ]
+            );
 
-            return view('office.setup.subscription.index',
-                        compact('site', 'user', 'breadcrumbs', 'countries', 'packages', 'intent'));
+            return view(
+                'office.setup.subscription.index',
+                compact('site', 'user', 'breadcrumbs', 'countries', 'packages', 'intent')
+            );
         }
 
         flash(__('Unauthorized access.'));
@@ -216,8 +224,8 @@ class SetupController extends BaseController
     /**
      * Save selected subscription
      *
-     * @param   \Iluminate\Http\Request   $request
-     * @return  \Illuminate\Http\Response
+     * @param  \Iluminate\Http\Request $request
+     * @return \Illuminate\Http\Response
      */
     public function createSubscription(Request $request)
     {
@@ -274,9 +282,9 @@ class SetupController extends BaseController
         $user->country = $request->input('country');
 
         $packages = $site->packages()
-                         ->where('status', Package::ACTIVE)
-                         ->whereIn('name', $packagesSelected)
-                         ->cursor();
+            ->where('status', Package::ACTIVE)
+            ->whereIn('name', $packagesSelected)
+            ->cursor();
 
         $cardStripeToken = $request->input('stripeToken');
         $stripePaymentMethod = $request->input('payment_method');
@@ -285,7 +293,8 @@ class SetupController extends BaseController
         $stripe_error = '';
 
         try {
-            $stripeCustomer = $user->createOrGetStripeCustomer([
+            $stripeCustomer = $user->createOrGetStripeCustomer(
+                [
                 'name'              => (filled($user->company))? $user->first_name . ' ' . $user->last_name . '(' . $user->company . ')' : $user->first_name . ' ' . $user->last_name,
                 'description'       => $user->username,
                 'address'           => [
@@ -296,7 +305,8 @@ class SetupController extends BaseController
                     'postal_code'   => $user->zipcode,
                     'country'       => $user->country,
                 ]
-            ]);
+                ]
+            );
         } catch (Exception $e) {
             logger("[App\Http\Controllers\Office\Setup\SetupController] - {$e->getMessage()}");
             flash($e->getMessage());
@@ -346,10 +356,10 @@ class SetupController extends BaseController
                 if (count($stripePlans) == 1) {
                     // Create new Scription
                     $user->newSubscription('default', $stripePlans[0])
-                         ->create($stripePaymentMethod);
+                        ->create($stripePaymentMethod);
                 } else {
                     $user->newSubscription('default', $stripePlans)
-                         ->create($stripePaymentMethod);
+                        ->create($stripePaymentMethod);
                 }
 
                 $subscriptedCreated = true;
@@ -398,7 +408,7 @@ class SetupController extends BaseController
     /**
      * Setup Complete Page
      *
-     * @param  \Iluminate\Http\Request   $request
+     * @param  \Iluminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function thankyou(Request $request)
@@ -409,7 +419,8 @@ class SetupController extends BaseController
 
         if($user->subscribed('default') == true) {
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard') => [
                     'path'      => route('office.dashboard'),
                     'active'    => false
@@ -426,7 +437,8 @@ class SetupController extends BaseController
                     'path'      => route('office.setup.complete'),
                     'active'    => true
                 ]
-            ]);
+                ]
+            );
 
             return view('office.setup.subscription.thankyou', compact('site', 'user', 'breadcrumbs'));
         }

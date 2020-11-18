@@ -9,9 +9,9 @@ use App\Models\System\Folder;
 /**
  * Has Folders Relation Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasFolders
 {
@@ -79,12 +79,12 @@ trait HasFolders
         if (!$this->hasFolder($folder)) {
             if (is_numeric($folder) && is_finite(intval($folder))) {
                 $folder = Folder::where('id', intval($folder))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($folder)) {
                 $folder = Folder::where('name', $folder)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($folder instanceof Folder) {
@@ -110,12 +110,12 @@ trait HasFolders
         if ($this->hasFolder($folder)) {
             if (is_numeric($folder) && is_finite(intval($folder))) {
                 $folder = $this->folders()->where('id', intval($folder))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($folder)) {
                 $folder = $this->folders()->where('name', $folder)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($folder instanceof Folder) {

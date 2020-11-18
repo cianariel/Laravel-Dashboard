@@ -12,16 +12,16 @@ use Carbon\Carbon;
 /**
  * Tracks user activity middleware.
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package  App\Http\Middleware
+ * @package   App\Http\Middleware
  */
 class LastUserActivity
 {
     /**
      * Minutes last user activity cache expires
      *
-     * @var string $expiresMinutes
+     * @var    string $expiresMinutes
      * @access protected
      */
     protected $expiresMinutes = 5;
@@ -29,8 +29,8 @@ class LastUserActivity
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure                 $next
      * @return mixed
      * @access public
      */

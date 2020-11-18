@@ -14,16 +14,16 @@ use Exception;
 /**
  * UserController
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Http\Controllers\User
+ * @package   App\Http\Controllers\User
  */
 class UserController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -32,20 +32,25 @@ class UserController extends BaseController
         $user = auth()->guard(User::GUARD)->user();
 
         if($user->setup_completed == User::SETUP_COMPLETED
-            || $user->setup_completed == User::SETUP_IGNORED) {
+            || $user->setup_completed == User::SETUP_IGNORED
+        ) {
 
             return redirect()->route('user.profile.edit');
         } else {
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard')     => [
                     'path'          => route('user.dashboard'),
                     'active'        => false,
                 ]
-            ]);
+                ]
+            );
 
-            return view('user.dashboard.index',
-                        compact('site', 'user', 'breadcrumbs'));
+            return view(
+                'user.dashboard.index',
+                compact('site', 'user', 'breadcrumbs')
+            );
         }
 
         flash(__('Unauthorized Access.'))->error();
@@ -55,7 +60,7 @@ class UserController extends BaseController
     /**
      * Edit User Profile
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function editProfile(Request $request)
@@ -64,9 +69,11 @@ class UserController extends BaseController
         $user = auth()->guard(User::GUARD)->user();
 
         if($user->setup_completed == User::SETUP_COMPLETED
-            || $user->setup_completed == User::SETUP_IGNORED) {
+            || $user->setup_completed == User::SETUP_IGNORED
+        ) {
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard')     => [
                     'path'          => route('user.dashboard'),
                     'active'        => false,
@@ -75,10 +82,13 @@ class UserController extends BaseController
                     'path'          => route('user.profile.edit'),
                     'active'        => true,
                 ]
-            ]);
+                ]
+            );
 
-            return view('user.profile.edit',
-                        compact('site', 'user', 'breadcrumbs'));
+            return view(
+                'user.profile.edit',
+                compact('site', 'user', 'breadcrumbs')
+            );
         }
 
         flash(__('Unauthorized Access.'))->error();

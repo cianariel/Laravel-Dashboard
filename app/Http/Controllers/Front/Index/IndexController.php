@@ -14,16 +14,16 @@ use Illuminate\Validation\Rule;
 /**
  * IndexController
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Front\Index
+ * @package   App\Http\Controllers\Front\Index
  */
 class IndexController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)

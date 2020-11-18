@@ -9,8 +9,8 @@ use App\Models\System\Subscription;
 /**
  * Has Subscriptions Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 MdRepTime, LLC
+ * @author       Antonio Vargas <localhost.80@gmail.com>
+ * @copyright    2020 MdRepTime, LLC
  * @subscription App\Models\Traits
  */
 trait HasSubscriptions
@@ -40,7 +40,7 @@ trait HasSubscriptions
     /**
      * Determines if has a given subscription
      *
-     * @param App\Models\System\Subscription|int $subscription
+     * @param  App\Models\System\Subscription|int $subscription
      * @return bool
      * @access public
      */
@@ -62,7 +62,7 @@ trait HasSubscriptions
     /**
      * Assign a given subscription
      *
-     * @param App\Models\System\Subscription|int $subscription
+     * @param  App\Models\System\Subscription|int $subscription
      * @return bool
      * @access public
      */
@@ -71,8 +71,8 @@ trait HasSubscriptions
         if (!$this->hasSubscription($subscription)) {
             if (is_numeric($subscription) && is_finite(intval($subscription))) {
                 $subscription = Subscription::where('id', intval($subscription))
-                                  ->select(['id'])
-                                  ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($subscription instanceof Subscription) {
@@ -89,7 +89,7 @@ trait HasSubscriptions
     /**
      * Unassign a given subscription
      *
-     * @param App\Models\System\Subscription|int $subscription
+     * @param  App\Models\System\Subscription|int $subscription
      * @return bool
      * @access public
      */

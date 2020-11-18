@@ -12,9 +12,9 @@ use App\Models\Shared\Model;
 /**
  * Support Tickets Eloquent Model
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System
+ * @package   App\Models\System
  */
 class SupportTicket extends Model implements Searchable
 {
@@ -23,7 +23,7 @@ class SupportTicket extends Model implements Searchable
     /**
      * The database table used by the model.
      *
-     * @var string
+     * @var    string
      * @access protected
      */
     protected $table = 'support_tickets';
@@ -108,7 +108,7 @@ class SupportTicket extends Model implements Searchable
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array $casts Type casting field columns before interting to database.
+     * @var    array $casts Type casting field columns before interting to database.
      * @access protected
      */
     protected $casts = [

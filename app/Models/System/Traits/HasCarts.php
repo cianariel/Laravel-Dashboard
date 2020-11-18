@@ -9,9 +9,9 @@ use App\Models\System\Cart;
 /**
  * Has Cart Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasCarts
 {
@@ -40,7 +40,7 @@ trait HasCarts
     /**
      * Determines if has a given cart
      *
-     * @param App\Models\System\Cart|int $cart
+     * @param  App\Models\System\Cart|int $cart
      * @return bool
      * @access public
      */
@@ -62,7 +62,7 @@ trait HasCarts
     /**
      * Assigns a given cart
      *
-     * @param App\Models\System\Cart|int $cart
+     * @param  App\Models\System\Cart|int $cart
      * @return bool
      * @access public
      */
@@ -71,8 +71,8 @@ trait HasCarts
         if (!$this->hasCart($cart)) {
             if (is_numeric($cart) && is_finite(intval($cart))) {
                 $cart = Cart::where('id', intval($cart))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($cart instanceof Cart) {
@@ -87,7 +87,7 @@ trait HasCarts
     /**
      * Unassign a given cart
      *
-     * @param App\Models\System\Cart|int $cart
+     * @param  App\Models\System\Cart|int $cart
      * @return bool
      * @access public
      */

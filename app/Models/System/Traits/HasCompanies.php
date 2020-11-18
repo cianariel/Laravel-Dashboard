@@ -9,9 +9,9 @@ use App\Models\System\Company;
 /**
  * Has Companies Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasCompanies
 {
@@ -73,8 +73,8 @@ trait HasCompanies
         if (!$this->hasCompany($company)) {
             if (is_numeric($company) && is_finite(intval($company))) {
                 $company = Company::where('id', intval($company))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($company instanceof Company) {

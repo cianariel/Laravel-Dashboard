@@ -9,9 +9,9 @@ use App\Models\System\Message;
 /**
  * Has Messages Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasMessages
 {
@@ -40,7 +40,7 @@ trait HasMessages
     /**
      * Determines if has the given message
      *
-     * @param App\Models\System\Message|int $message
+     * @param  App\Models\System\Message|int $message
      * @return bool
      * @access public
      */
@@ -62,7 +62,7 @@ trait HasMessages
     /**
      * Assign the given message
      *
-     * @param App\Models\System\Message|int $message
+     * @param  App\Models\System\Message|int $message
      * @return bool
      * @access public
      */
@@ -71,8 +71,8 @@ trait HasMessages
         if (!$this->hasMessage($message)) {
             if (is_numeric($message) && is_finite(intval($message))) {
                 $message = Message::where('id', intval($message))
-                                  ->select(['id'])
-                                  ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($message instanceof Message) {
@@ -88,7 +88,7 @@ trait HasMessages
     /**
      * Unassign the given message
      *
-     * @param App\Models\System\Message|int $message
+     * @param  App\Models\System\Message|int $message
      * @return bool
      * @access public
      */

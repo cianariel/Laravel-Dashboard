@@ -9,16 +9,16 @@ use Illuminate\Contracts\Validation\Rule;
 /**
  * Rule for removing html tags
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package  App\Rules
+ * @package   App\Rules
  */
 class SanitizeHtml implements Rule
 {
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
+     * @param  string $attribute
      * @param  mixed  $value
      * @return bool
      */

@@ -9,9 +9,9 @@ use App\Models\System\Post;
 /**
  * Has Posts Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasPosts
 {
@@ -40,7 +40,7 @@ trait HasPosts
     /**
      * Determines if has a given post
      *
-     * @param App\Models\System\Post|int $post
+     * @param  App\Models\System\Post|int $post
      * @return bool
      * @access public
      */
@@ -49,8 +49,8 @@ trait HasPosts
         if (filled($post)) {
             if (is_numeric($post) && is_finite(intval($post))) {
                 $post = Post::where('id', intval($post))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($post instanceof Post) {
@@ -64,7 +64,7 @@ trait HasPosts
     /**
      * Assigns a given post
      *
-     * @param App\Models\System\Post|int $post
+     * @param  App\Models\System\Post|int $post
      * @return bool
      * @access public
      */
@@ -73,8 +73,8 @@ trait HasPosts
         if (!$this->hasPost($post)) {
             if (is_numeric($post) && is_finite(intval($post))) {
                 $post = Post::where('id', intval($post))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($post instanceof Post) {
@@ -90,7 +90,7 @@ trait HasPosts
     /**
      * Unassign a given post
      *
-     * @param App\Models\System\Post|int $post
+     * @param  App\Models\System\Post|int $post
      * @return bool
      * @access public
      */
@@ -99,8 +99,8 @@ trait HasPosts
         if ($this->hasPost($post)) {
             if (is_numeric($post) && is_finite(intval($post))) {
                 $post = Post::where('id', intval($post))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($post instanceof Post) {

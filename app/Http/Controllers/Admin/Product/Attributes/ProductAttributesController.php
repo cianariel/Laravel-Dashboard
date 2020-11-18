@@ -14,9 +14,9 @@ use App\Rules\SanitizeHtml;
 /**
  * Admin Product Attributes Resource Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin\Product\Attributes
+ * @package   App\Http\Controllers\Admin\Product\Attributes
  */
 class ProductAttributesController extends AdminController
 {
@@ -82,7 +82,7 @@ class ProductAttributesController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -125,7 +125,7 @@ class ProductAttributesController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -136,7 +136,7 @@ class ProductAttributesController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -165,8 +165,8 @@ class ProductAttributesController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -209,7 +209,7 @@ class ProductAttributesController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)

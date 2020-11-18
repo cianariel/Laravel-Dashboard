@@ -9,9 +9,9 @@ use App\Models\System\QuoteItem;
 /**
  * Has Quote Items Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasQuoteItems
 {
@@ -73,8 +73,8 @@ trait HasQuoteItems
         if (!$this->hasQuoteItem($quoteItem)) {
             if (is_numeric($quoteItem) && is_finite(intval($quoteItem))) {
                 $quoteItem = QuoteItem::where('id', intval($quoteItem))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($quoteItem instanceof Quote) {

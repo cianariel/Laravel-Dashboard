@@ -9,9 +9,9 @@ use App\Models\System\Form;
 /**
  * Has Forums Relation Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasForums
 {
@@ -79,12 +79,12 @@ trait HasForums
         if (!$this->hasForum($forum)) {
             if (is_numeric($forum) && is_finite(intval($forum))) {
                 $forum = Forum::where('id', intval($forum))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($forum)) {
                 $forum = Forum::where('name', $forum)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($forum instanceof Forum) {
@@ -110,12 +110,12 @@ trait HasForums
         if ($this->hasForum($forum)) {
             if (is_numeric($forum) && is_finite(intval($forum))) {
                 $forum = $this->forums()->where('id', intval($forum))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($forum)) {
                 $forum = $this->forums()->where('name', $forum)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($forum instanceof Forum) {

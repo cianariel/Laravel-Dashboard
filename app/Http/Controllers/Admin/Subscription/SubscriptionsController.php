@@ -16,16 +16,16 @@ use App\Rules\SanitizeHtml;
 /**
  * SubscriptionsController
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin\Subscription
+ * @package   App\Http\Controllers\Admin\Subscription
  */
 class SubscriptionsController extends AdminController
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -63,14 +63,14 @@ class SubscriptionsController extends AdminController
 
         $breadcrumbs = breadcrumbs($breadcrumbs);
 
-        return view('admin.subscriptions.index', compact('site', 'user','breadcrumbs', 'subscriptions', 'perPage', 'query'));
+        return view('admin.subscriptions.index', compact('site', 'user', 'breadcrumbs', 'subscriptions', 'perPage', 'query'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
@@ -99,8 +99,10 @@ class SubscriptionsController extends AdminController
 
             $breadcrumbs = breadcrumbs($breadcrumbs);
 
-            return view('admin.subscriptions.show',
-                        compact('site', 'user','breadcrumbs', 'subscription'));
+            return view(
+                'admin.subscriptions.show',
+                compact('site', 'user', 'breadcrumbs', 'subscription')
+            );
         }
 
         flash(__('Subscription does not exist.'));
@@ -110,8 +112,8 @@ class SubscriptionsController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
@@ -140,8 +142,10 @@ class SubscriptionsController extends AdminController
 
             $breadcrumbs = breadcrumbs($breadcrumbs);
 
-            return view('admin.subscriptions.edit',
-                        compact('site', 'user','breadcrumbs', 'subscription'));
+            return view(
+                'admin.subscriptions.edit',
+                compact('site', 'user', 'breadcrumbs', 'subscription')
+            );
         }
 
         flash(__('Subscription does not exist.'));
@@ -151,8 +155,8 @@ class SubscriptionsController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

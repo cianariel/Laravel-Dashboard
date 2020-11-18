@@ -11,7 +11,7 @@ class OfficeSubscriptionCreated
     /**
      * Handle the event.
      *
-     * @param  EventSubscriptionCreated  $event
+     * @param  EventSubscriptionCreated $event
      * @return void
      */
     public function handle(EventSubscriptionCreated $event)

@@ -11,16 +11,16 @@ use App\Models\System\User;
 /**
  * OfficeController
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Http\Controllers\Office
+ * @package   App\Http\Controllers\Office
  */
 class OfficeController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -29,14 +29,17 @@ class OfficeController extends BaseController
         $user = auth()->guard(User::GUARD)->user();
 
         if($user->setup_completed == User::SETUP_COMPLETED
-            || $user->setup_completed == User::SETUP_IGNORED) {
+            || $user->setup_completed == User::SETUP_IGNORED
+        ) {
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard')     => [
                     'path'          => route('office.dashboard'),
                     'active'        => true
                 ]
-            ]);
+                ]
+            );
 
             return view('office.dashboard.index', compact('site', 'user', 'breadcrumbs'));
         } else {

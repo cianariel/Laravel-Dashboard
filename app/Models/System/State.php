@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * States Eloquent Model
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System
+ * @package   App\Models\System
  */
 class State extends Model
 {
@@ -21,25 +21,28 @@ class State extends Model
     /**
      * Database table for model
      *
-     * @var string $table
+     * @var    string $table
      * @access protected
      */
     protected $table = 'states';
 
     /**
      * Status Active
+     *
      * @var string ACTIVE
      */
     const ACTIVE = 'active';
 
     /**
      * Status Active
+     *
      * @var string INACTIVE
      */
     const INACTIVE = 'inactive';
 
     /**
      * Status types
+     *
      * @var array STATUS_TYPES
      */
     const STATUS_TYPES = [
@@ -50,7 +53,7 @@ class State extends Model
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array Type casting field columns before interting to database.
+     * @var    array Type casting field columns before interting to database.
      * @access protected
      */
     protected $casts = [

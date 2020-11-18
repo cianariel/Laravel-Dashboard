@@ -19,16 +19,16 @@ use Exception;
 /**
  * InvitationController
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Http\Controllers\Front\Invitation
+ * @package   App\Http\Controllers\Front\Invitation
  */
 class InvitationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, string $invite_code = '')
@@ -58,7 +58,7 @@ class InvitationController extends Controller
     /**
      * Accept Invitation
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function accept(Request $request, string $invite_code = '')

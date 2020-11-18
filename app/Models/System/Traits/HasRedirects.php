@@ -9,9 +9,9 @@ use App\Models\System\Redirect;
 /**
  * Has Redirects Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasRedirects
 {
@@ -40,7 +40,7 @@ trait HasRedirects
     /**
      * Checks if has a given redirect
      *
-     * @param \App\Models\System\Redirect|int
+     * @param  \App\Models\System\Redirect|int
      * @return bool
      */
     public function hasRedirect($redirect): bool
@@ -63,7 +63,7 @@ trait HasRedirects
     /**
      * Assigns a given redirect
      *
-     * @param \App\Models\System\Redirect|int $redirect
+     * @param  \App\Models\System\Redirect|int $redirect
      * @return bool
      * @access public
      */
@@ -72,8 +72,8 @@ trait HasRedirects
         if (!$this->hasRedirect($redirect)) {
             if (is_numeric($redirect) && is_finite(intval($redirect))) {
                 $redirect = Redirect::where('id', intval($redirect))
-                                    ->select(['id'])
-                                    ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($redirect instanceof Redirect) {
@@ -89,7 +89,7 @@ trait HasRedirects
     /**
      * Unassign a given redirect
      *
-     * @param \App\Models\System\Redirect|int $redirect
+     * @param  \App\Models\System\Redirect|int $redirect
      * @return bool
      * @access public
      */
@@ -98,8 +98,8 @@ trait HasRedirects
         if ($this->hasRedirect($redirect)) {
             if (is_numeric($redirect) && is_finite(intval($redirect))) {
                 $redirect = Redirect::where('id', intval($redirect))
-                                    ->select(['id'])
-                                    ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($redirect instanceof Redirect) {

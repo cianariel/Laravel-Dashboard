@@ -17,16 +17,16 @@ use App\Models\System\User;
 /**
  * PagesController
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Front\Page
+ * @package   App\Http\Controllers\Front\Page
  */
 class PagesController extends Controller
 {
     /**
      * Display page resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, string $slug='')
@@ -37,8 +37,10 @@ class PagesController extends Controller
             $page = $site->pages()->where('slug', $slug)->first();
 
             if($page->status == Page::ACTIVE) {
-                return view('frontend.pages.default',
-                            compact('site', 'page'));
+                return view(
+                    'frontend.pages.default',
+                    compact('site', 'page')
+                );
             }
         }
 

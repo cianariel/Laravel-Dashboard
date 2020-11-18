@@ -9,9 +9,9 @@ use Illuminate\Contracts\Validation\Rule;
 /**
  * Rule for decimal checking
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package  App\Rules
+ * @package   App\Rules
  */
 class DecimalRule implements Rule
 {
@@ -22,7 +22,6 @@ class DecimalRule implements Rule
      * The rule has two parameters:
      * 1. The maximum number of digits before the decimal point.
      * 2. The maximum number of digits after the decimal point.
-     *
      **/
     public function passes($attribute, $value) : bool
     {
@@ -34,7 +33,6 @@ class DecimalRule implements Rule
 
     /**
      * Get the validation error message.
-     *
      **/
     public function message() : string
     {

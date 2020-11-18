@@ -17,9 +17,9 @@ use App\Rules\SanitizeHtml;
 /**
  * Admin Pages Resource Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin\Page
+ * @package   App\Http\Controllers\Admin\Page
  */
 class PagesController extends AdminController
 {
@@ -83,16 +83,18 @@ class PagesController extends AdminController
         $visible_types = Page::VISIBLE_TYPES;
         $templates = Page::TEMPLATES;
         $users = User::where('status', User::ACTIVE)
-                     ->whereHas('roles', function ($query) {
-                        $roles = [
+            ->whereHas(
+                'roles', function ($query) {
+                            $roles = [
                             Role::SUPER_ADMIN,
                             Role::ADMIN,
                             Role::EDITOR,
                             Role::AUTHOR,
                             Role::SUPPORT
-                        ];
-                        $query->whereIn('name', $roles);
-                     })->select(['id', 'first_name', 'last_name'])
+                            ];
+                            $query->whereIn('name', $roles);
+                }
+            )->select(['id', 'first_name', 'last_name'])
                        ->cursor();
         $_users = [];
 
@@ -115,7 +117,7 @@ class PagesController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -159,7 +161,7 @@ class PagesController extends AdminController
                 $file = $request->file('media');
 
                 $page->addMedia($file)
-                     ->toMediaCollection('images');
+                    ->toMediaCollection('images');
             }
 
             // Save
@@ -179,7 +181,7 @@ class PagesController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -190,7 +192,7 @@ class PagesController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -201,16 +203,18 @@ class PagesController extends AdminController
             $visible_types = Page::VISIBLE_TYPES;
             $templates = Page::TEMPLATES;
             $users = User::where('status', User::ACTIVE)
-                     ->whereHas('roles', function ($query) {
-                        $roles = [
+                ->whereHas(
+                    'roles', function ($query) {
+                            $roles = [
                             Role::SUPER_ADMIN,
                             Role::ADMIN,
                             Role::EDITOR,
                             Role::AUTHOR,
                             Role::SUPPORT
-                        ];
-                        $query->whereIn('name', $roles);
-                     })->select(['id', 'first_name', 'last_name'])
+                            ];
+                            $query->whereIn('name', $roles);
+                    }
+                )->select(['id', 'first_name', 'last_name'])
                        ->cursor();
             $_users = [];
 
@@ -239,8 +243,8 @@ class PagesController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -283,7 +287,7 @@ class PagesController extends AdminController
                 $file = $request->file('media');
 
                 $page->addMedia($file)
-                     ->toMediaCollection('images');
+                    ->toMediaCollection('images');
             }
 
             // Save
@@ -300,7 +304,7 @@ class PagesController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
@@ -326,8 +330,8 @@ class PagesController extends AdminController
     /**
      * Delete the specified media image from page.
      *
-     * @param int $id
-     * @param int $image
+     * @param  int $id
+     * @param  int $image
      * @return \Illuminate\Http\Response
      */
     public function deleteMediaImage($id, $image)
@@ -353,8 +357,8 @@ class PagesController extends AdminController
     /**
      * Restores page resource from storage
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function restore(Request $request, $id)
@@ -378,8 +382,8 @@ class PagesController extends AdminController
     /**
      * Deletes page resource from storage forever
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function forceDelete(Request $request, $id)

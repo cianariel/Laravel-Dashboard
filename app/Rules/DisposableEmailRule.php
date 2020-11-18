@@ -11,9 +11,9 @@ use Illuminate\Support\Str;
 /**
  * Rule for disposable email checking
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package  App\Rules
+ * @package   App\Rules
  */
 class DisposableEmailRule implements Rule
 {
@@ -23,7 +23,6 @@ class DisposableEmailRule implements Rule
      * By default, if the API fails to load, the email will
      * be accepted. However, you can override this by adding
      * a boolean parameter e.g. new DisposableEmail(true).
-     *
      **/
     public function passes($attribute, $value) : bool
     {
@@ -38,7 +37,6 @@ class DisposableEmailRule implements Rule
 
     /**
      * Get the validation error message.
-     *
      **/
     public function message() : string
     {

@@ -14,9 +14,9 @@ use App\Rules\SanitizeHtml;
 /**
  * Admin Menu Resource Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin\Menu
+ * @package   App\Http\Controllers\Admin\Menu
  */
 class MenusController extends AdminController
 {
@@ -81,7 +81,7 @@ class MenusController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -123,8 +123,8 @@ class MenusController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
@@ -170,7 +170,7 @@ class MenusController extends AdminController
      * Show the form for editing the specified resource.
      *
      * @param  \Illuminate\Http\Request
-     * @param  int  $id
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
@@ -200,8 +200,8 @@ class MenusController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -248,7 +248,7 @@ class MenusController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)

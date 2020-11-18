@@ -10,9 +10,9 @@ use Illuminate\Contracts\Validation\Rule;
 /**
  * Rule for credit cards
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package  App\Rules
+ * @package   App\Rules
  */
 class CreditCardRule extends LuhnRule
 {

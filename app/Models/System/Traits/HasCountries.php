@@ -9,9 +9,9 @@ use App\Models\System\Country;
 /**
  * Has Countries Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasCountries
 {
@@ -74,8 +74,8 @@ trait HasCountries
         if (!$this->hasCountry($country)) {
             if (is_numeric($country) && is_finite(intval($country))) {
                 $country = Country::where('id', intval($country))
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($country instanceof Country) {

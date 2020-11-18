@@ -14,9 +14,9 @@ use App\Rules\SanitizeHtml;
 /**
  * Currencies Resource Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin\Currency
+ * @package   App\Http\Controllers\Admin\Currency
  */
 class CurrenciesController extends AdminController
 {
@@ -91,7 +91,7 @@ class CurrenciesController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -131,7 +131,7 @@ class CurrenciesController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -142,7 +142,7 @@ class CurrenciesController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -169,8 +169,8 @@ class CurrenciesController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -209,7 +209,7 @@ class CurrenciesController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
@@ -232,7 +232,7 @@ class CurrenciesController extends AdminController
     /**
      * Restore the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function restore(Request $request, $id)
@@ -256,7 +256,7 @@ class CurrenciesController extends AdminController
     /**
      * Remove the specified resource from storage trash.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function forceDelete(Request $request, $id)

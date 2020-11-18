@@ -20,9 +20,9 @@ use App\Rules\SanitizeHtml;
 /**
  * Edit Profile Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin\Profile
+ * @package   App\Http\Controllers\Admin\Profile
  */
 class ProfileController extends AdminController
 {
@@ -181,7 +181,7 @@ class ProfileController extends AdminController
                 $file = $request->file('profile_image');
 
                 $user->addMedia($file)
-                     ->toMediaCollection('profile_image');
+                    ->toMediaCollection('profile_image');
             }
 
             if ($user->saveOrFail()) {
@@ -198,7 +198,7 @@ class ProfileController extends AdminController
     /**
      * Delete Profile Image from storage resource.
      *
-     * @param int $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function deleteMediaImage(Request $id)
