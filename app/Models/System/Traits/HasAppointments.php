@@ -9,9 +9,9 @@ use App\Models\System\Appointment;
 /**
  * Has Appointments Relation Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasAppointments
 {
@@ -75,8 +75,8 @@ trait HasAppointments
         if (!$this->hasAppointment($appointment)) {
             if (is_numeric($appointment) && is_finite(intval($appointment))) {
                 $appointment = Appointment::where('id', intval($appointment))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             }
 
             if ($appointment instanceof Appointment) {
@@ -102,8 +102,8 @@ trait HasAppointments
         if ($this->hasAppointment($appointment)) {
             if (is_numeric($appointment) && is_finite(intval($appointment))) {
                 $appointment = $this->appointments()->where('id', intval($appointment))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             }
 
             if ($appointment instanceof Appointment) {

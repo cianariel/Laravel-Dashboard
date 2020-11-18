@@ -17,16 +17,16 @@ use App\Rules\SanitizeHtml;
 /**
  * Packages Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin\Package
+ * @package   App\Http\Controllers\Admin\Package
  */
 class PackagesController extends AdminController
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -111,7 +111,7 @@ class PackagesController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -147,7 +147,8 @@ class PackagesController extends AdminController
                 try {
                     \Stripe\Stripe::setApiKey(config('cashier.secret')); // stripe key
 
-                    $stripe_plan = \Stripe\Plan::create([
+                    $stripe_plan = \Stripe\Plan::create(
+                        [
                         'currency'          => 'usd',
                         'interval'          => $request->input('interval'),
                         'interval_count'    => 1,
@@ -155,7 +156,8 @@ class PackagesController extends AdminController
                         'product'           => ['name' => strip_tags($request->input('label'))],
                         'trial_period_days' => ($request->input('trial_enabled') == Package::TRIAL_ENABLED)? 15 : 0,
                         'active'            => ($request->input('status') == Package::ACTIVE)? true : false
-                    ]);
+                        ]
+                    );
                 } catch (\Stripe\Exception\InvalidRequestException $e) {
                     $json = json_decode(json_encode($e->getJsonBody()), false);
                     $error = $json->error;
@@ -168,14 +170,15 @@ class PackagesController extends AdminController
                 }
             } elseif ($type == Package::LINKED_PRODUCT) {
                 $product = $site->products()
-                                ->where('stripe_product', $request->input('stripe_product'))
-                                ->select(['id', 'stripe_product'])
-                                ->firstOrFail();
+                    ->where('stripe_product', $request->input('stripe_product'))
+                    ->select(['id', 'stripe_product'])
+                    ->firstOrFail();
 
                 try {
                     \Stripe\Stripe::setApiKey(config('cashier.secret')); // stripe key
 
-                    $stripe_plan = \Stripe\Plan::create([
+                    $stripe_plan = \Stripe\Plan::create(
+                        [
                         'currency'          => 'usd',
                         'interval'          => $request->input('interval'),
                         'interval_count'    => 1,
@@ -183,7 +186,8 @@ class PackagesController extends AdminController
                         'product'           => $product->stripe_product,
                         'trial_period_days' => ($request->input('trial_enabled') == Package::TRIAL_ENABLED)? 15 : 0,
                         'active'            => ($request->input('status') == Package::ACTIVE)? true : false
-                    ]);
+                        ]
+                    );
                 } catch (\Stripe\Exception\InvalidRequestException $e) {
                     $json = json_decode(json_encode($e->getJsonBody()), false);
                     $error = $json->error;
@@ -218,7 +222,7 @@ class PackagesController extends AdminController
             if ($request->hasFile('media')) {
                 $file = $request->file('media');
                 $package->addMedia($file)
-                        ->toMediaCollection('images');
+                    ->toMediaCollection('images');
             }
 
             // Save
@@ -240,7 +244,7 @@ class PackagesController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -251,7 +255,7 @@ class PackagesController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -297,8 +301,8 @@ class PackagesController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -336,13 +340,15 @@ class PackagesController extends AdminController
                 try {
                     \Stripe\Stripe::setApiKey(config('cashier.secret')); // stripe key
 
-                    $stripe_plan = \Stripe\Plan::update($stripe_plan, [
+                    $stripe_plan = \Stripe\Plan::update(
+                        $stripe_plan, [
                         'interval'          => $request->input('interval'),
                         'amount'            => cents(safe_float($request->input('price'))),
                         'product'           => ['name' => strip_tags($request->input('label'))],
                         'trial_period_days' => ($request->input('trial_enabled') == Package::TRIAL_ENABLED)? 15 : 0,
                         'active'            => ($request->input('status') == Package::ACTIVE)? true : false
-                    ]);
+                        ]
+                    );
                 } catch (\Stripe\Exception\InvalidRequestException $e) {
                     $json = json_decode(json_encode($e->getJsonBody()), false);
                     $error = $json->error;
@@ -362,18 +368,20 @@ class PackagesController extends AdminController
                 }
             } elseif ($type == Package::LINKED_PRODUCT) {
                 $product = $site->products()
-                                ->where('stripe_product', $request->input('stripe_product'))
-                                ->select(['id', 'stripe_product'])
-                                ->firstOrFail();
+                    ->where('stripe_product', $request->input('stripe_product'))
+                    ->select(['id', 'stripe_product'])
+                    ->firstOrFail();
 
                 // Update stripe plan.
                 try {
                     \Stripe\Stripe::setApiKey(config('cashier.secret')); // stripe key
 
-                    $stripe_plan = \Stripe\Plan::update($stripe_plan, [
+                    $stripe_plan = \Stripe\Plan::update(
+                        $stripe_plan, [
                         'product'           => $product->stripe_product,
                         'active'            => ($request->input('status') == Package::ACTIVE)? true : false
-                    ]);
+                        ]
+                    );
                 } catch (\Stripe\Exception\InvalidRequestException $e) {
                     $json = json_decode(json_encode($e->getJsonBody()), false);
                     $error = $json->error;
@@ -410,7 +418,7 @@ class PackagesController extends AdminController
                 if ($request->hasFile('media')) {
                     $file = $request->file('media');
                     $package->addMedia($file)
-                            ->toMediaCollection('images');
+                        ->toMediaCollection('images');
                 }
 
                 // Save
@@ -431,9 +439,9 @@ class PackagesController extends AdminController
     /**
      * Delete the specified media image from package.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
-     * @param int $image
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
+     * @param  int                      $image
      * @return \Illuminate\Http\Response
      */
     public function deleteMediaImage(Request $request, $id, $image)
@@ -459,8 +467,8 @@ class PackagesController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
@@ -481,9 +489,11 @@ class PackagesController extends AdminController
                 try {
                     \Stripe\Stripe::setApiKey(config('cashier.secret')); // stripe key
 
-                    $stripe_plan = \Stripe\Plan::update($stripe_plan, [
+                    $stripe_plan = \Stripe\Plan::update(
+                        $stripe_plan, [
                         'active'            => false
-                    ]);
+                        ]
+                    );
                 } catch (\Stripe\Exception\InvalidRequestException $e) {
                     $json = json_decode(json_encode($e->getJsonBody()), false);
                     $error = $json->error;
@@ -510,8 +520,8 @@ class PackagesController extends AdminController
     /**
      * Restore the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function restore(Request $request, $id)
@@ -533,8 +543,8 @@ class PackagesController extends AdminController
     /**
      * Delete forever the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function forceDelete(Request $request, $id)

@@ -12,7 +12,7 @@ class SendStaffInvite
     /**
      * Handle the event.
      *
-     * @param  InviteUser  $event
+     * @param  InviteUser $event
      * @return void
      */
     public function handle(InviteUser $event)

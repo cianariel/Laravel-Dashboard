@@ -9,9 +9,9 @@ use Illuminate\Contracts\Validation\Rule;
 /**
  * Rule for checking for strong passwords
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package  App\Rules
+ * @package   App\Rules
  */
 class StrongPasswordRule implements Rule
 {
@@ -21,7 +21,6 @@ class StrongPasswordRule implements Rule
      * The password must be 8 - 30 characters in length,
      * and include a number, a symbol, an upper case letter,
      * and a lower case letter.
-     *
      **/
     public function passes($attribute, $value) : bool
     {
@@ -33,7 +32,6 @@ class StrongPasswordRule implements Rule
 
     /**
      * Get the validation error message.
-     *
      **/
     public function message() : string
     {

@@ -21,16 +21,16 @@ use Exception;
 /**
  * SettingsController
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Http\Controllers\Office\Setting
+ * @package   App\Http\Controllers\Office\Setting
  */
 class SettingsController extends BaseController
 {
     /**
      * Edit office settings.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request)
@@ -55,7 +55,7 @@ class SettingsController extends BaseController
     /**
      * Save office settings
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -111,7 +111,7 @@ class SettingsController extends BaseController
     /**
      * Edit rep visits settings
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function editRepVisitsSettings(Request $request, string $view = '')
@@ -127,7 +127,8 @@ class SettingsController extends BaseController
                 $section = Str::lower(strip_tags(trim($section)));
             }
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
                     'active'        => false
@@ -140,10 +141,13 @@ class SettingsController extends BaseController
                     'path'          => route('office.settings.edit.general'),
                     'active'        => true
                 ]
-            ]);
+                ]
+            );
 
-            return view('office.settings.rep_visits',
-                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
+            return view(
+                'office.settings.rep_visits',
+                compact('site', 'user', 'breadcrumbs', 'section', 'office')
+            );
         }
 
         flash(__('Unauthorized access.'));
@@ -154,7 +158,7 @@ class SettingsController extends BaseController
     /**
      * Edit offices general settings
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function editGeneralSettings(Request $request, string $section = '')
@@ -164,7 +168,8 @@ class SettingsController extends BaseController
 
         if($user->hasRole(Role::OWNER) ) {
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
                     'active'        => false
@@ -177,7 +182,8 @@ class SettingsController extends BaseController
                     'path'          => route('office.settings.edit.general'),
                     'active'        => true
                 ]
-            ]);
+                ]
+            );
 
             if(filled($section)) {
                 $section = Str::lower(strip_tags(trim($section)));
@@ -186,52 +192,68 @@ class SettingsController extends BaseController
             $office = $user->offices()->first();
 
             switch($section) {
-                case 'office_info':
-                    $countries = countries(false);
-                    $_countries = [];
+            case 'office_info':
+                $countries = countries(false);
+                $_countries = [];
 
-                    foreach ($countries as $country) {
-                        if ($countries->status = Country::ACTIVE) {
-                            $_countries[$country->code] = $country->name;
-                        }
+                foreach ($countries as $country) {
+                    if ($countries->status = Country::ACTIVE) {
+                        $_countries[$country->code] = $country->name;
                     }
+                }
 
-                    $countries = $_countries;
+                $countries = $_countries;
 
-                    return view('office.settings.general',
-                                compact('site', 'user', 'breadcrumbs', 'section', 'office', 'countries'));
-                case 'holidays':
-                    return view('office.settings.general',
-                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
-                case 'appointments':
-                    return view('office.settings.general',
-                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
-                case 'office_hours':
-                    return view('office.settings.general',
-                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
-                case 'visitation_rules':
-                    return view('office.settings.general',
-                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
-                case 'rep_assignment':
-                    return view('office.settings.general',
-                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
-                case 'recurring_appointments':
-                    return view('office.settings.general',
-                                compact('site', 'user', 'breadcrumbs', 'section', 'office'));
-                default:
-                    $countries = countries(false);
-                    $_countries = [];
+                return view(
+                    'office.settings.general',
+                    compact('site', 'user', 'breadcrumbs', 'section', 'office', 'countries')
+                );
+            case 'holidays':
+                return view(
+                    'office.settings.general',
+                    compact('site', 'user', 'breadcrumbs', 'section', 'office')
+                );
+            case 'appointments':
+                return view(
+                    'office.settings.general',
+                    compact('site', 'user', 'breadcrumbs', 'section', 'office')
+                );
+            case 'office_hours':
+                return view(
+                    'office.settings.general',
+                    compact('site', 'user', 'breadcrumbs', 'section', 'office')
+                );
+            case 'visitation_rules':
+                return view(
+                    'office.settings.general',
+                    compact('site', 'user', 'breadcrumbs', 'section', 'office')
+                );
+            case 'rep_assignment':
+                return view(
+                    'office.settings.general',
+                    compact('site', 'user', 'breadcrumbs', 'section', 'office')
+                );
+            case 'recurring_appointments':
+                return view(
+                    'office.settings.general',
+                    compact('site', 'user', 'breadcrumbs', 'section', 'office')
+                );
+            default:
+                $countries = countries(false);
+                $_countries = [];
 
-                    foreach ($countries as $country) {
-                        if ($countries->status = Country::ACTIVE) {
-                            $_countries[$country->code] = $country->name;
-                        }
+                foreach ($countries as $country) {
+                    if ($countries->status = Country::ACTIVE) {
+                        $_countries[$country->code] = $country->name;
                     }
+                }
 
-                    $countries = $_countries;
+                $countries = $_countries;
 
-                    return view('office.settings.general',
-                                compact('site', 'user', 'breadcrumbs', 'section', 'office', 'countries'));
+                return view(
+                    'office.settings.general',
+                    compact('site', 'user', 'breadcrumbs', 'section', 'office', 'countries')
+                );
             }
         }
 
@@ -242,7 +264,7 @@ class SettingsController extends BaseController
     /**
      * Edit offices settings
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function editOfficesSettings(Request $request)
@@ -252,7 +274,8 @@ class SettingsController extends BaseController
 
         if($user->hasRole(Role::OWNER) ) {
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
                     'active'        => false
@@ -265,7 +288,8 @@ class SettingsController extends BaseController
                     'path'          => route('office.settings.edit.offices'),
                     'active'        => true
                 ]
-            ]);
+                ]
+            );
 
             return view('office.settings.offices', compact('site', 'user', 'breadcrumbs'));
         }
@@ -277,7 +301,7 @@ class SettingsController extends BaseController
     /**
      * Edit office calendar settings
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function editCalendarSettings(Request $request)
@@ -287,7 +311,8 @@ class SettingsController extends BaseController
 
         if($user->hasRole(Role::OWNER)) {
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
                     'active'        => false
@@ -300,7 +325,8 @@ class SettingsController extends BaseController
                     'path'          => route('office.settings.edit.calendar'),
                     'active'        => true
                 ]
-            ]);
+                ]
+            );
 
             return view('office.settings.calendar', compact('site', 'user', 'breadcrumbs'));
         }
@@ -312,7 +338,7 @@ class SettingsController extends BaseController
     /**
      * Edit office settings
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function editSubscriptionSettings(Request $request)
@@ -322,7 +348,8 @@ class SettingsController extends BaseController
 
         if($user->hasRole(Role::OWNER)) {
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
                     'active'        => false
@@ -335,7 +362,8 @@ class SettingsController extends BaseController
                     'path'          => route('office.settings.edit.subscription'),
                     'active'        => true
                 ]
-            ]);
+                ]
+            );
 
             return view('office.settings.subscription', compact('site', 'user', 'breadcrumbs'));
         }

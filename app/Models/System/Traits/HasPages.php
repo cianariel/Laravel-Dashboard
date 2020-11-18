@@ -9,19 +9,19 @@ use App\Models\System\Page;
 /**
  * Has Pages Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasPages
 {
     /**
      * Return give page model relationship
      *
-     * @author Antonio Vargas <localhost.80@gmail.com>
+     * @author    Antonio Vargas <localhost.80@gmail.com>
      * @copyright 2020 MdRepTime, LLC
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     * @access public
+     * @return    \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @access    public
      */
     public function pages()
     {
@@ -41,7 +41,7 @@ trait HasPages
     /**
      * Determins if has a given page
      *
-     * @param App\Models\System\Page|int $page
+     * @param  App\Models\System\Page|int $page
      * @return bool
      */
     public function hasPage($page): bool
@@ -62,7 +62,7 @@ trait HasPages
     /**
      * Assign a given page
      *
-     * @param App\Models\System\Page|int $page
+     * @param  App\Models\System\Page|int $page
      * @return bool
      */
     public function assignPage($page): bool
@@ -70,8 +70,8 @@ trait HasPages
         if (!$this->hasPage($page)) {
             if (is_numeric($page) && is_finite(intval($page))) {
                 $page = Page::where('id', intval($page))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($page instanceof Page) {
@@ -87,7 +87,7 @@ trait HasPages
     /**
      * Unassign a given page
      *
-     * @param App\Models\System\Page|int $page
+     * @param  App\Models\System\Page|int $page
      * @return bool
      */
     public function unassignPage($page): bool
@@ -95,8 +95,8 @@ trait HasPages
         if ($this->hasPage($page)) {
             if (is_numeric($page) && is_finite(intval($page))) {
                 $page = $this->pages()->where('id', intval($page))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($page instanceof Page) {

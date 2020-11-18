@@ -9,9 +9,9 @@ use App\Models\System\Comment;
 /**
  * Has Attachments Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasComments
 {
@@ -74,8 +74,8 @@ trait HasComments
         if (!$this->hasComment($comment)) {
             if (is_numeric($comment) && is_finite(intval($comment))) {
                 $comment = Post::where('id', intval($comment))
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($comment instanceof Comment) {

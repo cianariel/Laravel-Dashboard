@@ -9,9 +9,9 @@ use App\Models\System\SupportTicket;
 /**
  * Has Support Ticket Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasSupportTickets
 {
@@ -40,7 +40,7 @@ trait HasSupportTickets
     /**
      * Determines if has a given support ticket
      *
-     * @param App\Models\System\SupportTicket|int $supportTicket
+     * @param  App\Models\System\SupportTicket|int $supportTicket
      * @return bool
      * @access public
      */
@@ -64,7 +64,7 @@ trait HasSupportTickets
     /**
      * Assigns a given support ticket
      *
-     * @param App\Models\System\SupportTicket|int $supportTicket
+     * @param  App\Models\System\SupportTicket|int $supportTicket
      * @return bool
      * @access public
      */
@@ -73,8 +73,8 @@ trait HasSupportTickets
         if (!$this->hasSupportTicket($supportTicket)) {
             if (is_numeric($supportTicket) && is_finite(intval($supportTicket))) {
                 $supportTicket = SupportTicket::where('id', intval($supportTicket))
-                                              ->select(['id'])
-                                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($supportTicket instanceof SupportTicket) {
@@ -91,7 +91,7 @@ trait HasSupportTickets
     /**
      * Unassign a given support ticket
      *
-     * @param App\Models\System\SupportTicket|int $supportTicket
+     * @param  App\Models\System\SupportTicket|int $supportTicket
      * @return bool
      * @access public
      */

@@ -9,16 +9,16 @@ use App\Models\Shared\Model;
 /**
  * Appointment Eloquent Model
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System
+ * @package   App\Models\System
  */
 class Appointment extends Model
 {
     /**
      * The database table used by the model.
      *
-     * @var string
+     * @var    string
      * @access protected
      */
     protected $table = 'appointments';

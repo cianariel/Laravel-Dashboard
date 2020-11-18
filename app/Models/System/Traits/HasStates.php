@@ -9,9 +9,9 @@ use App\Models\System\State;
 /**
  * Has States Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasStates
 {
@@ -73,8 +73,8 @@ trait HasStates
         if ($this->hasState($state) === false) {
             if (is_numeric($state) && is_finite(intval($state))) {
                 $state = State::where('id', intval($state))
-                                        ->select(['id'])
-                                        ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($state instanceof State) {
@@ -101,8 +101,8 @@ trait HasStates
         if ($this->hasState($state)) {
             if (is_numeric($state) && is_finite(intval($state))) {
                 $state = $this->states()->where('id', intval($state))
-                                   ->select(['id'])
-                                   ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($state instanceof State) {

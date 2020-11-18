@@ -9,9 +9,9 @@ use App\Models\System\ProductAttribute;
 /**
  * Has Product Attributes Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasProductAttributes
 {
@@ -73,8 +73,8 @@ trait HasProductAttributes
         if (!$this->hasProductAttribute($productAttribute)) {
             if (is_numeric($productAttribute) && is_finite(intval($productAttribute))) {
                 $productAttribute = ProductAttribute::where('id', intval($productAttribute))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($productAttribute instanceof ProductAttribute) {

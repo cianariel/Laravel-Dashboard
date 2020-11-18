@@ -9,9 +9,9 @@ use App\Models\System\Tag;
 /**
  * Has Tags Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasTags
 {
@@ -79,12 +79,12 @@ trait HasTags
         if (!$this->hasTag($tag)) {
             if (is_numeric($tag) && is_finite(intval($tag))) {
                 $tag = Tag::where('id', intval($tag))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($tag)) {
                 $tag = Tag::where('name', $tag)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($tag instanceof Tag) {
@@ -110,12 +110,12 @@ trait HasTags
         if ($this->hasTag($tag)) {
             if (is_numeric($tag) && is_finite(intval($tag))) {
                 $tag = $this->tags()->where('id', intval($tag))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($tag)) {
                 $tag = $this->tags()->where('name', $tag)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($tag instanceof Tag) {

@@ -9,9 +9,9 @@ use App\Models\System\Payment;
 /**
  * Has Payment Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasPayments
 {
@@ -40,7 +40,7 @@ trait HasPayments
     /**
      * Determine has a given payment
      *
-     * @param App\Models\System\Payment|int $payment
+     * @param  App\Models\System\Payment|int $payment
      * @return bool
      * @access public
      */
@@ -49,16 +49,16 @@ trait HasPayments
         if (filled($payment)) {
             if (is_numeric($payment) && is_finite(intval($payment))) {
                 return $this->payments()
-                            ->where('id', intval($payment))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->where('id', intval($payment))
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($payment instanceof Payment) {
                 return $this->payments()
-                            ->where('id', $payment)
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->where('id', $payment)
+                    ->select(['id'])
+                    ->firstOrFail();
             } else {
                 return false;
             }
@@ -70,7 +70,7 @@ trait HasPayments
     /**
      * Assigns a given payment
      *
-     * @param App\Models\System\Payment|int $payment
+     * @param  App\Models\System\Payment|int $payment
      * @return bool
      * @access public
      */
@@ -79,8 +79,8 @@ trait HasPayments
         if (!$this->hasPayment($payment)) {
             if (is_numeric($payment) && is_finite(intval($payment))) {
                 $payment = Payment::where('id', $payment)
-                                  ->select(['id'])
-                                  ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($payment instanceof Payment) {
@@ -96,7 +96,7 @@ trait HasPayments
     /**
      * Unassigns a given payment
      *
-     * @param App\Models\System\Payment|int $payment
+     * @param  App\Models\System\Payment|int $payment
      * @return bool
      * @access public
      */

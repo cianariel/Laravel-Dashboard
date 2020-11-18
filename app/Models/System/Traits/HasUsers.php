@@ -9,9 +9,9 @@ use App\Models\System\User;
 /**
  * Has User Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasUsers
 {
@@ -40,7 +40,7 @@ trait HasUsers
     /**
      * Determines if has a given user.
      *
-     * @param \App\Models\System\User|int $user
+     * @param  \App\Models\System\User|int $user
      * @return bool
      * @access public
      */
@@ -62,7 +62,7 @@ trait HasUsers
     /**
      * Assigns a given user.
      *
-     * @param \App\Models\System\User|int $user
+     * @param  \App\Models\System\User|int $user
      * @return bool
      * @access public
      */
@@ -71,8 +71,8 @@ trait HasUsers
         if (!$this->hasUser($user)) {
             if (is_numeric($user) && is_finite(intval($user))) {
                 $user = User::where('id', intval($user))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($user instanceof User) {

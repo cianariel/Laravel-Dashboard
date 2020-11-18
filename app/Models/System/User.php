@@ -30,9 +30,9 @@ use App\Models\Shared\Authenticatable;
 /**
  * User Eloquent Model
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System
+ * @package   App\Models\System
  */
 class User extends Authenticatable implements Searchable, HasMedia, MustVerifyEmail
 {
@@ -53,7 +53,7 @@ class User extends Authenticatable implements Searchable, HasMedia, MustVerifyEm
     /**
      * The database table used by the model.
      *
-     * @var string
+     * @var    string
      * @access protected
      */
     protected $table = 'users';
@@ -66,18 +66,18 @@ class User extends Authenticatable implements Searchable, HasMedia, MustVerifyEm
     /**
      * Resized Images
      *
-     * @param Media $media
+     * @param  Media $media
      * @return void
      * @access public
      */
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-              ->width(150)
-              ->height(150)
-              ->sharpen(10)
-              ->keepOriginalImageFormat()
-              ->nonQueued();
+            ->width(150)
+            ->height(150)
+            ->sharpen(10)
+            ->keepOriginalImageFormat()
+            ->nonQueued();
     }
 
     /**

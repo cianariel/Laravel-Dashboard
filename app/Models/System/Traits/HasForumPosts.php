@@ -9,9 +9,9 @@ use App\Models\System\ForumPost;
 /**
  * Has Forum Posts Relation Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasForumPosts
 {
@@ -79,12 +79,12 @@ trait HasForumPosts
         if (!$this->hasForumPost($forumPost)) {
             if (is_numeric($forumPost) && is_finite(intval($forumPost))) {
                 $forumPost = ForumPost::where('id', intval($forumPost))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($forumPost)) {
                 $forumPost = ForumPost::where('name', $forumPost)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($forumPost instanceof ForumPost) {
@@ -110,12 +110,12 @@ trait HasForumPosts
         if ($this->hasForumPost($forumPost)) {
             if (is_numeric($forumPost) && is_finite(intval($forumPost))) {
                 $forumPost = $this->forumPosts()->where('id', intval($forumPost))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($forumPost)) {
                 $forumPost = $this->forumPosts()->where('name', $forumPost)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($forumPost instanceof ForumPost) {

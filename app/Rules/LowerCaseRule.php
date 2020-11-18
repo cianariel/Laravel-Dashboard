@@ -8,15 +8,15 @@ use Illuminate\Contracts\Validation\Rule;
 
 /**
  * Rule for lowercase rule
- * @author Antonio Vargas <localhost.80@gmail.com>
+ *
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package  App\Rules
+ * @package   App\Rules
  */
 class LowerCaseRule implements Rule
 {
     /**
      * Determine if the validation rule passes.
-     *
      **/
 public function passes($attribute, $value) : bool
 {
@@ -25,7 +25,6 @@ public function passes($attribute, $value) : bool
 
     /**
      * Get the validation error message.
-     *
      **/
 public function message() : string
 {

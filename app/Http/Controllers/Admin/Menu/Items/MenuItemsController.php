@@ -15,17 +15,17 @@ use App\Rules\SanitizeHtml;
 /**
  * Admin Menu Items Resource Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin\Menu\Items
+ * @package   App\Http\Controllers\Admin\Menu\Items
  */
 class MenuItemsController extends AdminController
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request, $id)
@@ -36,8 +36,8 @@ class MenuItemsController extends AdminController
     /**
      * Show the form for creating a new resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request, $id)
@@ -48,8 +48,8 @@ class MenuItemsController extends AdminController
             $menu_item_types = MenuItem::MENU_ITEM_TYPES;
             $target_types = MenuItem::TARGET_TYPES;
             $parents = $menu->menuItems()->whereNull('parent_id')
-                            ->where('type', MenuItem::PARENT_ITEM)
-                            ->select(['id', 'label'])->cursor();
+                ->where('type', MenuItem::PARENT_ITEM)
+                ->select(['id', 'label'])->cursor();
             $_parents = [];
             $_parents = [
                 '' => ''
@@ -80,8 +80,8 @@ class MenuItemsController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $id)
@@ -149,8 +149,8 @@ class MenuItemsController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  int  $menu
-     * @param  int  $id
+     * @param  int $menu
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $menu, $id)
@@ -161,8 +161,8 @@ class MenuItemsController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $menu
-     * @param  int  $id
+     * @param  int $menu
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $menu, $id)
@@ -175,10 +175,10 @@ class MenuItemsController extends AdminController
             $menu_item_types = MenuItem::MENU_ITEM_TYPES;
             $target_types = MenuItem::TARGET_TYPES;
             $parents = $menu->menuItems()
-                            ->whereNull('parent_id')
-                            ->where('type', MenuItem::PARENT_ITEM)
-                            ->where('id', '!=', $menu_item->id)
-                            ->select(['id', 'label'])->cursor();
+                ->whereNull('parent_id')
+                ->where('type', MenuItem::PARENT_ITEM)
+                ->where('id', '!=', $menu_item->id)
+                ->select(['id', 'label'])->cursor();
             $_parents = [];
             $_parents = [
                 '' => ''
@@ -209,8 +209,8 @@ class MenuItemsController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $menu, $id)
@@ -280,8 +280,8 @@ class MenuItemsController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $menu
-     * @param  int  $id
+     * @param  int $menu
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $menu, $id)

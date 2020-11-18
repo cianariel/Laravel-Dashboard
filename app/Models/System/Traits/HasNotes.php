@@ -9,19 +9,19 @@ use App\Models\System\Note;
 /**
  * Has Notes Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasNotes
 {
     /**
      * Return give note model relationship
      *
-     * @author Antonio Vargas <localhost.80@gmail.com>
+     * @author    Antonio Vargas <localhost.80@gmail.com>
      * @copyright 2020 MdRepTime, LLC
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     * @access public
+     * @return    \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @access    public
      */
     public function notes()
     {
@@ -41,7 +41,7 @@ trait HasNotes
     /**
      * Determins if has a given note
      *
-     * @param App\Models\System\Note|int $note
+     * @param  App\Models\System\Note|int $note
      * @return bool
      */
     public function hasNote($note): bool
@@ -62,7 +62,7 @@ trait HasNotes
     /**
      * Assign a given note
      *
-     * @param App\Models\System\Note|int $note
+     * @param  App\Models\System\Note|int $note
      * @return bool
      */
     public function assignNote($note): bool
@@ -70,8 +70,8 @@ trait HasNotes
         if (!$this->hasNote($note)) {
             if (is_numeric($note) && is_finite(intval($note))) {
                 $note = Note::where('id', intval($note))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($note instanceof Note) {
@@ -87,7 +87,7 @@ trait HasNotes
     /**
      * Unassign a given note
      *
-     * @param App\Models\System\Note|int $note
+     * @param  App\Models\System\Note|int $note
      * @return bool
      */
     public function unassignNote($note): bool
@@ -95,8 +95,8 @@ trait HasNotes
         if ($this->hasNote($note)) {
             if (is_numeric($note) && is_finite(intval($note))) {
                 $note = $this->notes()->where('id', intval($note))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($note instanceof Note) {

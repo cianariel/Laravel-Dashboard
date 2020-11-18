@@ -9,9 +9,9 @@ use App\Models\System\Group;
 /**
  * Has Group Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasGroups
 {
@@ -50,12 +50,12 @@ trait HasGroups
         if (filled($group)) {
             if (is_numeric($group) && is_finite(intval($group))) {
                 $group = Group::where('id', intval($group))
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             } elseif (is_string($group)) {
                 $group = Group::where('name', $group)
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($group instanceof Group) {
@@ -69,7 +69,7 @@ trait HasGroups
     /**
      * Assign the given group
      *
-     * @param App\Model\Group|int|string $group
+     * @param  App\Model\Group|int|string $group
      * @return bool
      * @access public
      */
@@ -78,12 +78,12 @@ trait HasGroups
         if (!$this->hasGroup($group)) {
             if (is_numeric($group) && is_finite(intval($group))) {
                 $group = Group::where('id', intval($group))
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             } elseif (is_string($group)) {
                 $group = Group::where('name', $group)
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($group instanceof Group) {
@@ -99,7 +99,7 @@ trait HasGroups
     /**
      * Unassign the given group
      *
-     * @param App\Model\Group|int|string $group
+     * @param  App\Model\Group|int|string $group
      * @return bool
      * @access public
      */
@@ -108,12 +108,12 @@ trait HasGroups
         if ($this->hasGroup($group)) {
             if (is_numeric($group) && is_finite(intval($group))) {
                 $group = Group::where('id', intval($group))
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             } elseif (is_string($group)) {
                 $group = Group::where('name', $group)
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($group instanceof Group) {

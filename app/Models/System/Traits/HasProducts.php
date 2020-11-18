@@ -9,9 +9,9 @@ use App\Models\System\Product;
 /**
  * Has Products Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @product App\Models\Traits
+ * @product   App\Models\Traits
  */
 trait HasProducts
 {
@@ -40,7 +40,7 @@ trait HasProducts
     /**
      * Determines if has a given product
      *
-     * @param App\Models\System\Product|int $product
+     * @param  App\Models\System\Product|int $product
      * @return bool
      * @access public
      */
@@ -62,7 +62,7 @@ trait HasProducts
     /**
      * Assign a given product
      *
-     * @param App\Models\System\Product|int $product
+     * @param  App\Models\System\Product|int $product
      * @return bool
      * @access public
      */
@@ -71,8 +71,8 @@ trait HasProducts
         if (!$this->hasProduct($product)) {
             if (is_numeric($product) && is_finite(intval($product))) {
                 $product = Product::where('id', intval($product))
-                                  ->select(['id'])
-                                  ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($product instanceof Product) {
@@ -89,7 +89,7 @@ trait HasProducts
     /**
      * Unassign a given product
      *
-     * @param App\Models\System\Product|int $product
+     * @param  App\Models\System\Product|int $product
      * @return bool
      * @access public
      */

@@ -15,9 +15,9 @@ use Spatie\Searchable\SearchResult;
 /**
  * Company Eloquent Model
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System
+ * @package   App\Models\System
  */
 class Company extends Model implements HasMedia, Searchable
 {
@@ -27,7 +27,7 @@ class Company extends Model implements HasMedia, Searchable
     /**
      * The database table used by the model.
      *
-     * @var string
+     * @var    string
      * @access protected
      */
     protected $table = 'companies';
@@ -35,18 +35,18 @@ class Company extends Model implements HasMedia, Searchable
     /**
      * Resized Images
      *
-     * @param Media $media
+     * @param  Media $media
      * @return void
      * @access public
      */
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-              ->width(150)
-              ->height(150)
-              ->sharpen(10)
-              ->keepOriginalImageFormat()
-              ->nonQueued();
+            ->width(150)
+            ->height(150)
+            ->sharpen(10)
+            ->keepOriginalImageFormat()
+            ->nonQueued();
     }
 
     /**

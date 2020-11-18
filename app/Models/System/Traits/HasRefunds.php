@@ -9,9 +9,9 @@ use App\Models\System\Refund;
 /**
  * Has Refunds Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasRefunds
 {
@@ -40,7 +40,7 @@ trait HasRefunds
     /**
      * Determines if has assigned refund
      *
-     * @param App\Models\System\Refund|int $refund
+     * @param  App\Models\System\Refund|int $refund
      * @return bool
      * @access public
      */
@@ -49,8 +49,8 @@ trait HasRefunds
         if (filled($refund)) {
             if (is_numeric($refund) && is_finite(intval($refund))) {
                 return $this->refunds()
-                            ->where('id', intval($refund))
-                            ->exists();
+                    ->where('id', intval($refund))
+                    ->exists();
             }
 
             if ($refund instanceof Refund) {
@@ -66,7 +66,7 @@ trait HasRefunds
     /**
      * Assigns a given refund
      *
-     * @param App\Models\System\Refund|int $refund
+     * @param  App\Models\System\Refund|int $refund
      * @return bool
      * @access public
      */
@@ -75,8 +75,8 @@ trait HasRefunds
         if (!$this->hasRefund($refund)) {
             if (is_numeric($refund) && is_finite(intval($refund))) {
                 $refund = Refund::where('id', intval($refund))
-                                ->select(['id'])
-                                ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($refund instanceof Refund) {
@@ -92,7 +92,7 @@ trait HasRefunds
     /**
      * Unassign a given refund
      *
-     * @param App\Models\System\Refund|int $refund
+     * @param  App\Models\System\Refund|int $refund
      * @return bool
      * @access public
      */

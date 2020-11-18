@@ -9,16 +9,16 @@ use Spatie\Permission\Models\Role as SpatieRole;
 /**
  * Roles Eloquent Model
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System
+ * @package   App\Models\System
  */
 class Role extends SpatieRole
 {
     /**
      * The database table used by the model.
      *
-     * @var string
+     * @var    string
      * @access protected
      */
     protected $table = 'roles';
@@ -65,6 +65,7 @@ class Role extends SpatieRole
 
     /**
      * Role for UNASSIGNED users
+     *
      * @var string UNASSIGNED
      */
     const UNASSIGNED = 'unassigned';
@@ -97,7 +98,7 @@ class Role extends SpatieRole
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array $casts Type casting field columns before interting to database.
+     * @var    array $casts Type casting field columns before interting to database.
      * @access protected
      */
     protected $casts = [

@@ -14,9 +14,9 @@ use Illuminate\Support\Carbon;
 /**
  * System Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin\System
+ * @package   App\Http\Controllers\Admin\System
  */
 class SystemController extends AdminController
 {
@@ -64,8 +64,8 @@ class SystemController extends AdminController
         }
 
         $caches = DB::table('cache')
-                    ->select(['key', 'expiration'])
-                    ->paginate($perPage);
+            ->select(['key', 'expiration'])
+            ->paginate($perPage);
 
         $breadcrumbs = [
             'Dashboard'     => ['path' => admin_url(),                      'active' => false],

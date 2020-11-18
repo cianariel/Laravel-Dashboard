@@ -9,16 +9,16 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Product Types Eloquent Model
  *
- * @author  Antonio Vargas <localhost.80@gmail.com>
- * @copyright  MdRepTime, LLC
- * @package App\Models\System
+ * @author    Antonio Vargas <localhost.80@gmail.com>
+ * @copyright MdRepTime, LLC
+ * @package   App\Models\System
  */
 class ProductType extends Model
 {
     /**
      * The database table used by the model.
      *
-     * @var string $table
+     * @var    string $table
      * @access protected
      */
     protected $table = 'product_types';
@@ -26,7 +26,7 @@ class ProductType extends Model
     /**
      * Disable timestamps
      *
-     * @var bool $timestamps
+     * @var    bool $timestamps
      * @access public
      */
     public $timestamps = false;
@@ -58,7 +58,7 @@ class ProductType extends Model
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array $casts Type casting field columns before interting to database.
+     * @var    array $casts Type casting field columns before interting to database.
      * @access protected
      */
     protected $casts = [

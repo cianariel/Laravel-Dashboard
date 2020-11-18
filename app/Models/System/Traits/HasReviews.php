@@ -9,9 +9,9 @@ use App\Models\System\Review;
 /**
  * Has Reviews Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasReviews
 {
@@ -40,7 +40,7 @@ trait HasReviews
     /**
      * Determines if has a given rating
      *
-     * @param App\Models\System\Review|int $rating
+     * @param  App\Models\System\Review|int $rating
      * @return bool
      * @access public
      */
@@ -49,8 +49,8 @@ trait HasReviews
         if (filled($rating)) {
             if (is_numeric($rating) && is_finite(intval($rating))) {
                 $rating = Review::where('id', intval($rating))
-                                ->select(['id'])
-                                ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($rating instanceof Review) {
@@ -66,7 +66,7 @@ trait HasReviews
     /**
      * Assigns a given rating
      *
-     * @param App\Models\System\Review|int $rating
+     * @param  App\Models\System\Review|int $rating
      * @return bool
      * @access public
      */
@@ -75,8 +75,8 @@ trait HasReviews
         if (!$this->hasReview($rating)) {
             if (is_numeric($rating) && is_finite(intval($rating))) {
                 $rating = Review::where('id', intval($rating))
-                                ->select(['id'])
-                                ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($rating instanceof Review) {
@@ -90,7 +90,7 @@ trait HasReviews
     /**
      * Unassign a given rating
      *
-     * @param App\Models\System\Review|int $rating
+     * @param  App\Models\System\Review|int $rating
      * @return bool
      * @access public
      */

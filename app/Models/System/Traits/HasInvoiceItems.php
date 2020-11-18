@@ -9,9 +9,9 @@ use App\Models\System\InvoiceItem;
 /**
  * Has Invoices Items Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasInvoiceItems
 {
@@ -73,8 +73,8 @@ trait HasInvoiceItems
         if (!$this->hasInvoice($invoiceItem)) {
             if (is_numeric($invoiceItem) && is_finite(intval($invoiceItem))) {
                 $invoiceItem = InvoiceItem::where('id', intval($invoiceItem))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($invoiceItem instanceof InvoiceItem) {

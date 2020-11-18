@@ -9,9 +9,9 @@ use App\Models\System\Package;
 /**
  * Has Packages Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasPackages
 {
@@ -40,7 +40,7 @@ trait HasPackages
     /**
      * Determines if has a given package
      *
-     * @param App\Models\System\Package|int $package
+     * @param  App\Models\System\Package|int $package
      * @return bool
      * @access public
      */
@@ -62,7 +62,7 @@ trait HasPackages
     /**
      * Assign a given package
      *
-     * @param App\Models\System\Package|int $package
+     * @param  App\Models\System\Package|int $package
      * @return bool
      * @access public
      */
@@ -71,8 +71,8 @@ trait HasPackages
         if (!$this->hasPackage($package)) {
             if (is_numeric($package) && is_finite(intval($package))) {
                 $package = Package::where('id', intval($package))
-                                  ->select(['id'])
-                                  ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($package instanceof Package) {
@@ -89,7 +89,7 @@ trait HasPackages
     /**
      * Unassign a given package
      *
-     * @param App\Models\System\Package|int $package
+     * @param  App\Models\System\Package|int $package
      * @return bool
      * @access public
      */

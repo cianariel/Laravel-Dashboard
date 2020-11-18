@@ -16,9 +16,9 @@ use App\Models\System\Site;
 /**
  * Settings Controller
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Http\Controllers\Admin\Setting
+ * @package   App\Http\Controllers\Admin\Setting
  */
 class SettingsController extends AdminController
 {
@@ -86,7 +86,7 @@ class SettingsController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -140,8 +140,8 @@ class SettingsController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
@@ -152,8 +152,8 @@ class SettingsController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
@@ -205,8 +205,8 @@ class SettingsController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -273,8 +273,8 @@ class SettingsController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
@@ -303,7 +303,7 @@ class SettingsController extends AdminController
     /**
      * Manage Settings
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function manageSettings(Request $request)
@@ -341,7 +341,7 @@ class SettingsController extends AdminController
     /**
      * Show specified grouped resource from storage.
      *
-     * @param  string  $name
+     * @param  string $name
      * @return \Illuminate\Http\Response
      */
     public function showGroupSetting(Request $request, $name)
@@ -349,9 +349,11 @@ class SettingsController extends AdminController
         if (Group::where('name', $name)->exists()) {
             $site = site();
             $group = Group::where('name', $name)->firstOrFail();
-            $settings = $site->settings()->whereHas('groups', function ($query) use (&$group) {
-                $query->where('name', $group->name);
-            })->cursor();
+            $settings = $site->settings()->whereHas(
+                'groups', function ($query) use (&$group) {
+                    $query->where('name', $group->name);
+                }
+            )->cursor();
 
             if ($settings->count() !== 0) {
                 $breadcrumbs = [
@@ -376,7 +378,7 @@ class SettingsController extends AdminController
     /**
      * Update specified grouped setting resource from storage.
      *
-     * @param  string  $name
+     * @param  string $name
      * @return \Illuminate\Http\Response
      */
     public function updateGroupSetting(Request $request, $name)
@@ -384,9 +386,11 @@ class SettingsController extends AdminController
         if (Group::where('name', $name)->exists()) {
             $site = site();
             $group = Group::where('name', $name)->firstOrFail();
-            $settings = $site->settings()->whereHas('groups', function ($query) use (&$group) {
-                $query->where('name', $group->name);
-            })->cursor();
+            $settings = $site->settings()->whereHas(
+                'groups', function ($query) use (&$group) {
+                    $query->where('name', $group->name);
+                }
+            )->cursor();
 
             if ($settings->count() !== 0) {
                 $rules = [];
@@ -399,38 +403,38 @@ class SettingsController extends AdminController
                     }
 
                     switch ($setting->type) {
-                        case Setting::INPUT_FILE:
-                            if (filled($setting->options)) {
-                                $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'file' ,'mimes:' . implode(',', unserialize($setting->options))];
-                            } else {
-                                $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'file'];
-                            }
-                            break;
-                        case Setting::INPUT_EMAIL:
-                            $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string', 'email:rfc,dns'];
-                            break;
-                        case Setting::INPUT_TEXT:
+                    case Setting::INPUT_FILE:
+                        if (filled($setting->options)) {
+                            $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'file' ,'mimes:' . implode(',', unserialize($setting->options))];
+                        } else {
+                            $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'file'];
+                        }
+                        break;
+                    case Setting::INPUT_EMAIL:
+                        $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string', 'email:rfc,dns'];
+                        break;
+                    case Setting::INPUT_TEXT:
+                        $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string'];
+                        break;
+                    case Setting::INPUT_TEXTAREA:
+                        $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string'];
+                        break;
+                    case Setting::INPUT_NUMBER:
+                        $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'numeric'];
+                        break;
+                    case Setting::INPUT_RANGE:
+                        $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'numeric'];
+                        break;
+                    case Setting::INPUT_SELECT:
+                        if (filled($setting->options)) {
+                            $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string', Rule::in(unserialize($setting->options))];
+                        } else {
                             $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string'];
-                            break;
-                        case Setting::INPUT_TEXTAREA:
-                            $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string'];
-                            break;
-                        case Setting::INPUT_NUMBER:
-                            $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'numeric'];
-                            break;
-                        case Setting::INPUT_RANGE:
-                            $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'numeric'];
-                            break;
-                        case Setting::INPUT_SELECT:
-                            if (filled($setting->options)) {
-                                $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string', Rule::in(unserialize($setting->options))];
-                            } else {
-                                $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string'];
-                            }
-                            break;
-                        case Setting::INPUT_MULTISELECT:
-                            $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string'];
-                            break;
+                        }
+                        break;
+                    case Setting::INPUT_MULTISELECT:
+                        $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string'];
+                        break;
                     }
                 }
 
@@ -454,7 +458,7 @@ class SettingsController extends AdminController
                                 $file = $request->file($key);
 
                                 $setting->addMedia($file)
-                                        ->toMediaCollection('files');
+                                    ->toMediaCollection('files');
 
                                 $path = $setting->getMedia('files')->first()->getPath();
                                 $setting->value = $path;
@@ -482,8 +486,8 @@ class SettingsController extends AdminController
     /**
      * Update specified grouped setting resource from storage.
      *
-     * @param  string  $group
-     * @param  string  $name
+     * @param  string $group
+     * @param  string $name
      * @return \Illuminate\Http\Response
      */
     public function clearGroupSetting(Request $request, $group, $setting)

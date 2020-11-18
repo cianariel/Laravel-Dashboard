@@ -12,9 +12,9 @@ use App\Models\System\Traits\HasComments;
 /**
  * Forum Posts Eloquent Model
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System
+ * @package   App\Models\System
  */
 class ForumPost extends Model implements Searchable
 {
@@ -23,7 +23,7 @@ class ForumPost extends Model implements Searchable
     /**
      * Database table for model
      *
-     * @var string $table
+     * @var    string $table
      * @access protected
      */
     protected $table = 'forum_posts';
@@ -78,7 +78,7 @@ class ForumPost extends Model implements Searchable
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array Type casting field columns before interting to database.
+     * @var    array Type casting field columns before interting to database.
      * @access protected
      */
     protected $casts = [

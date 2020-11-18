@@ -9,9 +9,9 @@ use App\Models\System\Office;
 /**
  * Has Offices Relation Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasOffices
 {
@@ -79,12 +79,12 @@ trait HasOffices
         if (!$this->hasOffice($office)) {
             if (is_numeric($office) && is_finite(intval($office))) {
                 $office = Office::where('id', intval($office))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($office)) {
                 $office = Office::where('name', $office)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($office instanceof Office) {
@@ -110,12 +110,12 @@ trait HasOffices
         if ($this->hasOffice($office)) {
             if (is_numeric($office) && is_finite(intval($office))) {
                 $office = $this->offices()->where('id', intval($office))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             } elseif (is_string($office)) {
                 $office = $this->offices()->where('name', $office)
-                               ->select(['id'])
-                               ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($office instanceof Office) {

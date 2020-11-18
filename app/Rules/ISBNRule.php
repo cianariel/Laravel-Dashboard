@@ -9,15 +9,14 @@ use Illuminate\Contracts\Validation\Rule;
 /**
  * Rule for ISBN Format
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package  App\Rules
+ * @package   App\Rules
  */
 class ISBNRule implements Rule
 {
     /**
      * Determine if the validation rule passes.
-     *
      **/
     public function passes($attribute, $value) : bool
     {
@@ -29,7 +28,6 @@ class ISBNRule implements Rule
 
     /**
      * Get the validation error message.
-     *
      **/
     public function message() : string
     {

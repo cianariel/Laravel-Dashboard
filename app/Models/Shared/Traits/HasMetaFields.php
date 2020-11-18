@@ -8,9 +8,9 @@ use Spatie\SchemalessAttributes\SchemalessAttributes;
 /**
  * Has Meta Fields Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
- * @package App\Models\Shared\Traits
+ * @package   App\Models\Shared\Traits
  */
 trait HasMetaFields
 {
@@ -34,8 +34,8 @@ trait HasMetaFields
     /**
      * Returns a meta field
      *
-     * @param   string $name
-     * @return  mixed
+     * @param  string $name
+     * @return mixed
      */
     public function getMetaField($name, $defaultValue = null)
     {
@@ -50,7 +50,7 @@ trait HasMetaFields
      * Set meta field value
      *
      * @param  string $name
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return bool
      */
     public function setMetaField($name, $value = null, bool $autosave = false): bool

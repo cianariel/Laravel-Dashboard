@@ -9,9 +9,9 @@ use App\Models\System\CalendarEvent;
 /**
  * Has CalendarEvents Relation Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasCalendarEvents
 {
@@ -75,8 +75,8 @@ trait HasCalendarEvents
         if (!$this->hasCalendarEvent($calendarEvent)) {
             if (is_numeric($calendarEvent) && is_finite(intval($calendarEvent))) {
                 $calendarEvent = CalendarEvent::where('id', intval($calendarEvent))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             }
 
             if ($calendarEvent instanceof CalendarEvent) {
@@ -102,8 +102,8 @@ trait HasCalendarEvents
         if ($this->hasCalendarEvent($calendarEvent)) {
             if (is_numeric($calendarEvent) && is_finite(intval($calendarEvent))) {
                 $calendarEvent = $this->calendarEvents()->where('id', intval($calendarEvent))
-                               ->select(['id'])
-                               ->findOrFail();
+                    ->select(['id'])
+                    ->findOrFail();
             }
 
             if ($calendarEvent instanceof CalendarEvent) {

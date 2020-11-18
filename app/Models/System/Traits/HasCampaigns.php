@@ -9,9 +9,9 @@ use App\Models\System\Campaign;
 /**
  * Has Campaigns Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasCampaigns
 {
@@ -73,8 +73,8 @@ trait HasCampaigns
         if (!$this->hasCampaign($campaign)) {
             if (is_numeric($campaign) && is_finite(intval($campaign))) {
                 $campaign = Campaign::where('id', intval($campaign))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($campaign instanceof Campaign) {

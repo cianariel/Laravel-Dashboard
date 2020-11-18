@@ -17,8 +17,8 @@ class StatesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int $country
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $country
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request, $country)
@@ -77,8 +77,8 @@ class StatesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int $country
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $country
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request, $country)
@@ -107,9 +107,9 @@ class StatesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int $country
-     * @param  int $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $country
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $country)
@@ -144,8 +144,8 @@ class StatesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $country
-     * @param  int  $id
+     * @param  int $country
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($country, $id)
@@ -156,9 +156,9 @@ class StatesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int $country
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $country
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $country, $id)
@@ -187,8 +187,8 @@ class StatesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $country, $id)
@@ -221,7 +221,7 @@ class StatesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $country, $id)
@@ -246,8 +246,8 @@ class StatesController extends Controller
     /**
      * Restore the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function restore(Request $request, $country, $id)
@@ -269,8 +269,8 @@ class StatesController extends Controller
     /**
      * Force delete the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function forceDelete(Request $request, $country, $id)

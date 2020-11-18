@@ -19,16 +19,16 @@ use Exception;
 /**
  * StaffsController
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Http\Controllers\Office\Staff
+ * @package   App\Http\Controllers\Office\Staff
  */
 class StaffsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -67,7 +67,8 @@ class StaffsController extends Controller
                 $users = $site->users()->where('meta_fields->owner_id', $user->id)->paginate($perPage);
             }
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard') => [
                     'path'      => route('office.dashboard'),
                     'active'    => false,
@@ -76,7 +77,8 @@ class StaffsController extends Controller
                     'path'      => route('office.staff.index'),
                     'active'    => true
                 ]
-            ]);
+                ]
+            );
 
             return view('office.staff.index', compact('site', 'user', 'breadcrumbs', 'users', 'withTrashed', 'query'));
         }
@@ -88,7 +90,7 @@ class StaffsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -98,7 +100,8 @@ class StaffsController extends Controller
 
         if($user->hasRole(Role::OWNER)) {
 
-            $breadcrumbs = breadcrumbs([
+            $breadcrumbs = breadcrumbs(
+                [
                 __('Dashboard') => [
                     'path'      => route('office.dashboard'),
                     'active'    => false,
@@ -111,7 +114,8 @@ class StaffsController extends Controller
                     'path'      => route('office.staff.create'),
                     'active'    => true
                 ]
-            ]);
+                ]
+            );
 
             return view('office.staff.create', compact('site', 'user', 'breadcrumbs'));
         }
@@ -123,7 +127,7 @@ class StaffsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -168,8 +172,8 @@ class StaffsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
@@ -180,8 +184,8 @@ class StaffsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
@@ -192,8 +196,8 @@ class StaffsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -204,8 +208,8 @@ class StaffsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)

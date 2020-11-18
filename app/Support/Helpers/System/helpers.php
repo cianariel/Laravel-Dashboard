@@ -7,7 +7,7 @@ declare(strict_types=1);
 /**
  * Custom Helpers Functions.
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright MdRepTime, LLC
  */
 
@@ -48,7 +48,7 @@ use Stringy\Stringy;
 /**
  * Shorthand for Stringy
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return string
@@ -64,10 +64,10 @@ if (! function_exists('s')) {
 /**
  * Returns a safe integer Number
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param mixed $value
+ * @param  mixed $value
  * @throws \InvalidArgumentException
  * @return int
  */
@@ -87,10 +87,10 @@ if (! function_exists('safe_integer')) {
 /**
  * Returns a safe float number
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param mixed $value
+ * @param  mixed $value
  * @throws \InvalidArgumentException
  * @return float
  */
@@ -110,10 +110,10 @@ if (! function_exists('safe_float')) {
 /**
  * Returns a safe double number
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param mixed $value
+ * @param  mixed $value
  * @throws \InvalidArgumentException
  * @return double
  */
@@ -133,7 +133,7 @@ if (! function_exists('safe_double')) {
 /**
  * Digits only
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $digits
@@ -150,7 +150,7 @@ if (! function_exists('digits_only')) {
 /**
  * Formats number nicely
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $phone
@@ -171,7 +171,7 @@ if (! function_exists('format_phone')) {
 /**
  * Returns clean phone number
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $phone
@@ -194,7 +194,7 @@ if (! function_exists('clean_phone')) {
 /**
  * Aync and parallel process
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return \Spatie\Async\Pool
@@ -209,10 +209,10 @@ if (! function_exists('pool')) {
 /**
  * Converts USD Dollars to cents
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param float $value dollars amount
+ * @param  float $value dollars amount
  * @return int returns cents amount
  */
 if (! function_exists('cents')) {
@@ -232,10 +232,10 @@ if (! function_exists('cents')) {
 /**
  * Converts cents to USD dollars
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param int $value cents amount
+ * @param  int $value cents amount
  * @return float returns dollar amount
  */
 if (! function_exists('dollars')) {
@@ -256,7 +256,7 @@ if (! function_exists('dollars')) {
 /**
  * Returns the current year.
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return string current year
@@ -272,7 +272,7 @@ if (! function_exists('current_year')) {
 /**
  * Returns the current month
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return int current month
@@ -288,7 +288,7 @@ if (! function_exists('current_month')) {
 /**
  * Checks if is leap year
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return bool returns true if leap year else false if not.
@@ -305,11 +305,11 @@ if (! function_exists('leap_year')) {
 /**
  * Months in a year
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param string $type
- * @param int|array $range
+ * @param  string $type
+ * @param  int|array $range
  * @return array
  */
 if (! function_exists('months')) {
@@ -348,30 +348,30 @@ if (! function_exists('months')) {
         $type = strtolower($type);
 
         switch ($type) {
-            case 'short':
-                for ($m=$start; $m <= $end; $m++) {
-                    $months[] = date('M', mktime(0, 0, 0, $m, 1));
-                }
-                break;
-            case 'full':
-                for ($m=$start; $m <= $end; $m++) {
-                    $months[] = date('F', mktime(0, 0, 0, $m, 1));
-                }
-                break;
-            case 'digit':
-                for ($m=$start; $m <= $end; $m++) {
-                    $months[] = date('n', mktime(0, 0, 0, $m, 1));
-                }
-                break;
-            case 'digits':
-                for ($m=$start; $m <= $end; $m++) {
-                    $months[] = date('m', mktime(0, 0, 0, $m, 1));
-                }
-                break;
-            default:
-                for ($m=$start; $m <= $end; $m++) {
-                    $months[] = date('m', mktime(0, 0, 0, $m, 1));
-                }
+        case 'short':
+            for ($m=$start; $m <= $end; $m++) {
+                $months[] = date('M', mktime(0, 0, 0, $m, 1));
+            }
+            break;
+        case 'full':
+            for ($m=$start; $m <= $end; $m++) {
+                $months[] = date('F', mktime(0, 0, 0, $m, 1));
+            }
+            break;
+        case 'digit':
+            for ($m=$start; $m <= $end; $m++) {
+                $months[] = date('n', mktime(0, 0, 0, $m, 1));
+            }
+            break;
+        case 'digits':
+            for ($m=$start; $m <= $end; $m++) {
+                $months[] = date('m', mktime(0, 0, 0, $m, 1));
+            }
+            break;
+        default:
+            for ($m=$start; $m <= $end; $m++) {
+                $months[] = date('m', mktime(0, 0, 0, $m, 1));
+            }
         }
 
         return $months;
@@ -381,7 +381,7 @@ if (! function_exists('months')) {
 /**
  * Years range
  *
- * @param string $range
+ * @param  string $range
  * @return array
  */
 if (! function_exists('years')) {
@@ -425,10 +425,10 @@ if (! function_exists('years')) {
 /**
  * Gets currently available site lanauges
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @todo Add more langauges.
+ * @todo   Add more langauges.
  * @return array
  */
 if (! function_exists('site_languages')) {
@@ -444,7 +444,7 @@ if (! function_exists('site_languages')) {
 /**
  * Returns url to storage resource
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return string|null
@@ -461,30 +461,32 @@ if (! function_exists('storage_url')) {
 /**
  * Returns all the countries from database or cache.
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param bool $cached
+ * @param  bool $cached
  * @return \Illuminate\Support\Collection returns a collection from database
  */
 if (! function_exists('countries')) {
     function countries(bool $cached = false): ?Collection
     {
         if ($cached == true) {
-            $countries = Cache::rememberForever('countries', function () {
+            $countries = Cache::rememberForever(
+                'countries', function () {
 
-                $columns = [
+                    $columns = [
                     'id',
                     'code',
                     'name',
                     'status'
-                ];
+                    ];
 
-                return Country::where('status', 'active')
-                                ->select($columns)
-                                ->orderBy('name', 'asc')
-                                ->get();
-            });
+                    return Country::where('status', 'active')
+                        ->select($columns)
+                        ->orderBy('name', 'asc')
+                        ->get();
+                }
+            );
         } else {
             $columns = [
                 'id',
@@ -494,9 +496,9 @@ if (! function_exists('countries')) {
             ];
 
             $countries = Country::where('status', 'active')
-                            ->select($columns)
-                            ->orderBy('name', 'asc')
-                            ->get();
+                ->select($columns)
+                ->orderBy('name', 'asc')
+                ->get();
         }
 
         return $countries;
@@ -506,11 +508,11 @@ if (! function_exists('countries')) {
 /**
  * Returns country full name from database.
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param string $code country code
- * @param bool $cached
+ * @param  string $code country code
+ * @param  bool $cached
  * @return string returns full country name.
  */
 if (! function_exists('country')) {
@@ -535,25 +537,27 @@ if (! function_exists('country')) {
 /**
  * Returns all the timezones from database or cache.
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param bool $cached
+ * @param  bool $cached
  * @return Illuminate\Support\Collection returns a collection of timezones
  */
 if (! function_exists('timezones')) {
     function timezones(bool $cached = false): ?Collection
     {
         if ($cached === true) {
-            return Cache::rememberForever('timezones', function () {
+            return Cache::rememberForever(
+                'timezones', function () {
 
-                $columns = [
+                    $columns = [
                     'zone',
                     'status'
-                ];
+                    ];
 
-                return TimeZone::select($columns)->orderBy('zone')->get();
-            });
+                    return TimeZone::select($columns)->orderBy('zone')->get();
+                }
+            );
         } else {
             $columns = [
                 'zone',
@@ -568,19 +572,20 @@ if (! function_exists('timezones')) {
 /**
  * Returns all currencies from database or cache
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param bool $cached
+ * @param  bool $cached
  * @return Illuminate\Support\Collection returns a collection of currencies
  */
 if (! function_exists('currencies')) {
     function currencies(bool $cached = false): ?Collection
     {
         if ($cached === true) {
-            return Cache::rememberForever('currencies', function () {
+            return Cache::rememberForever(
+                'currencies', function () {
 
-                $columns = [
+                    $columns = [
                     'code',
                     'symbol',
                     'name',
@@ -588,10 +593,11 @@ if (! function_exists('currencies')) {
                     'symbol_native',
                     'decimal_digits',
                     'status'
-                ];
+                    ];
 
-                return Currency::select($columns)->orderBy('name')->get();
-            });
+                    return Currency::select($columns)->orderBy('name')->get();
+                }
+            );
         } else {
             $columns = [
                 'code',
@@ -611,11 +617,11 @@ if (! function_exists('currencies')) {
 /**
  * Returns a currency by code
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param string $code
- * @param bool $cached
+ * @param  string $code
+ * @param  bool $cached
  * @return App\Models\System\Currency
  */
 if (! function_exists('currency')) {
@@ -639,7 +645,7 @@ if (! function_exists('currency')) {
 /**
  * Formats Currency Amount
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  int $value cents amount
@@ -664,7 +670,7 @@ if (! function_exists('currency_format')) {
 /**
  * Returns all states from database or cache
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $country
@@ -677,16 +683,18 @@ if (! function_exists('states')) {
         $country = Country::where('code', $country)->firstOrFail();
 
         if ($country && $cached === true) {
-            return Cache::rememberForever($country->code.'_states', function () use ($country) {
+            return Cache::rememberForever(
+                $country->code.'_states', function () use ($country) {
 
-                $columns = [
+                    $columns = [
                     'code',
                     'name',
                     'status'
-                ];
+                    ];
 
-                return $country->states()->select($columns)->orderBy('name')->get();
-            });
+                    return $country->states()->select($columns)->orderBy('name')->get();
+                }
+            );
         } else {
             $columns = [
                 'code',
@@ -702,7 +710,7 @@ if (! function_exists('states')) {
 /**
  * Returns state from cache
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $country
@@ -727,7 +735,7 @@ if (! function_exists('state')) {
 /**
  * Get user by id. (optiona: columns to select from users table)
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  int $id
@@ -740,12 +748,12 @@ if (! function_exists('user')) {
         if (filled($columns)) {
             if (filled('with')) {
                 $user = User::with($with)->where('id', $id)
-                        ->select($columns)
-                        ->first();
+                    ->select($columns)
+                    ->first();
             } else {
                 $user = User::where('id', $id)
-                        ->select($columns)
-                        ->first();
+                    ->select($columns)
+                    ->first();
             }
         } else {
             $user = User::findOrFail($id);
@@ -758,11 +766,11 @@ if (! function_exists('user')) {
 /**
  * Returns office owner
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param   \App\Models\System\User|int     $user
- * @return  \App\Models\System\Office|null
+ * @param  \App\Models\System\User|int     $user
+ * @return \App\Models\System\Office|null
  */
 if(! function_exists('office_owner')) {
     function office_owner($user) : ?User
@@ -772,7 +780,7 @@ if(! function_exists('office_owner')) {
         }
 
         if($user instanceof User) {
-            if($user->hasRole(Role::OWNER)){
+            if($user->hasRole(Role::OWNER)) {
                 return $user;
             }
 
@@ -792,7 +800,7 @@ if(! function_exists('office_owner')) {
 /**
  * Get user role shortcut
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  \App\Models\System\User|int
@@ -856,7 +864,7 @@ if (! function_exists('user_panel_url')) {
 /**
  * Returns profile image or placeholder
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  \App\Models\System\User|int $user
@@ -884,7 +892,7 @@ if (! function_exists('avator')) {
 /**
  * Replaces tenants url media path with systems default path
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $url
@@ -904,7 +912,7 @@ if (! function_exists('system_media_url')) {
 /**
  * Adds menu class 'active' based on the current url
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $path
@@ -928,7 +936,7 @@ if (! function_exists('menu_link_active')) {
 /**
  * Convert byte to megabyte
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  int $size bytes
@@ -941,18 +949,18 @@ if (! function_exists('megabyte_convert')) {
 
         if ($size > 0) {
             switch ($type) {
-                case 'bit':
-                    return $size * (1024);
-                case 'byte':
-                    return $size * (1024 * 1024);
-                case 'kb':
-                    return $size * (1024 * 1024 * 1024);
-                case 'gb':
-                    return (1024 * 1024 * 1024) * $size;
-                case 'tb':
-                    return (1024 * 1024 * 1024 * 1024) * $size;
-                default:
-                    return $size;
+            case 'bit':
+                return $size * (1024);
+            case 'byte':
+                return $size * (1024 * 1024);
+            case 'kb':
+                return $size * (1024 * 1024 * 1024);
+            case 'gb':
+                return (1024 * 1024 * 1024) * $size;
+            case 'tb':
+                return (1024 * 1024 * 1024 * 1024) * $size;
+            default:
+                return $size;
             }
         }
 
@@ -963,7 +971,7 @@ if (! function_exists('megabyte_convert')) {
 /**
  * Memory Size Conversion
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  int|float
@@ -987,18 +995,18 @@ if (! function_exists('bit_convert')) {
             }
 
             switch ($type) {
-                case 'bit':
-                    return $size;
-                case 'byte':
-                    return $size * 8;
-                case 'kb':
-                    return $size * 8000;
-                case 'mb':
-                    return $size * 8e+6;
-                case 'gb':
-                    return $size * 8e+9;
-                case 'tb':
-                    return $size * 8e+12;
+            case 'bit':
+                return $size;
+            case 'byte':
+                return $size * 8;
+            case 'kb':
+                return $size * 8000;
+            case 'mb':
+                return $size * 8e+6;
+            case 'gb':
+                return $size * 8e+9;
+            case 'tb':
+                return $size * 8e+12;
             }
         }
 
@@ -1010,10 +1018,10 @@ if (! function_exists('bit_convert')) {
 /**
  * Ram Memory Size
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param int|float
+ * @param  int|float
  * @return string
  */
 if (! function_exists('memory_convert')) {
@@ -1028,11 +1036,11 @@ if (! function_exists('memory_convert')) {
 /**
  * Determine if all given needles are present in the haystack as array keys.
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param array|string $needles
- * @param array        $haystack
+ * @param  array|string $needles
+ * @param  array        $haystack
  * @return bool
  */
 if (! function_exists('array_keys_exist')) {
@@ -1060,7 +1068,7 @@ if (! function_exists('array_keys_exist')) {
 /**
  * Load JSON configuration file
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $path Path to json file
@@ -1087,7 +1095,7 @@ if (! function_exists('load_json')) {
 /**
  * Valid URL
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $url
@@ -1107,10 +1115,10 @@ if (! function_exists('valid_url')) {
 /**
  * Parses URL to retrieve domain and protocol url
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param string $url
+ * @param  string $url
  * @return string
  */
 if (! function_exists('parse_host_url')) {
@@ -1128,11 +1136,11 @@ if (! function_exists('parse_host_url')) {
 /**
  * Get Site Model
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param mixed  $cache
- * @param string $domain
+ * @param  mixed  $cache
+ * @param  string $domain
  * @return App\Model\Site
  */
 if (! function_exists('site')) {
@@ -1144,10 +1152,12 @@ if (! function_exists('site')) {
 
         if (is_bool($cached)) {
             if ($cached) {
-                return Cache::rememberForever('site', function () use (&$domain) {
+                return Cache::rememberForever(
+                    'site', function () use (&$domain) {
 
-                    return Site::where('domain', $domain)->firstOrFail();
-                });
+                        return Site::where('domain', $domain)->firstOrFail();
+                    }
+                );
             } else {
                 return Site::where('domain', $domain)->firstOrFail();
             }
@@ -1157,10 +1167,12 @@ if (! function_exists('site')) {
             return Site::where('domain', $domain)->firstOrFail();
         } else {
             if ($cached) {
-                return Cache::rememberForever('site', function () use (&$domain) {
+                return Cache::rememberForever(
+                    'site', function () use (&$domain) {
 
-                    return Site::where('domain', $domain)->firstOrFail();
-                });
+                        return Site::where('domain', $domain)->firstOrFail();
+                    }
+                );
             } else {
                 return Site::where('domain', $domain)->firstOrFail();
             }
@@ -1171,10 +1183,10 @@ if (! function_exists('site')) {
 /**
  * Get Site Settings
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param bool $cached
+ * @param  bool $cached
  * @return \Illuminate\Support\Collection
  */
 if (! function_exists('settings')) {
@@ -1185,10 +1197,12 @@ if (! function_exists('settings')) {
         }
 
         if ($cached) {
-            return Cache::rememberForever('settings', function () use (&$domain, &$cached) {
+            return Cache::rememberForever(
+                'settings', function () use (&$domain, &$cached) {
 
-                return site($domain, $cached)->settings()->get();
-            });
+                    return site($domain, $cached)->settings()->get();
+                }
+            );
         } else {
             return site($domain, $cached)->settings()->cursor();
         }
@@ -1198,7 +1212,7 @@ if (! function_exists('settings')) {
 /**
  * Get site setting by name
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $name
@@ -1234,7 +1248,7 @@ if (! function_exists('setting')) {
 /**
  * Returns site menu by name
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $name
@@ -1255,10 +1269,12 @@ if (! function_exists('menu')) {
 
         if ($site && filled($name) && Menu::where('name', $name)->exists()) {
             if ($cached === true) {
-                return Cache::rememberForever(Str::snake('site_menu_' . $name), function () use (&$site) {
+                return Cache::rememberForever(
+                    Str::snake('site_menu_' . $name), function () use (&$site) {
 
-                    return $site->menus()->where('name', $name)->first();
-                });
+                        return $site->menus()->where('name', $name)->first();
+                    }
+                );
             } else {
                 return $site->menus()->where('name', $name)->first();
             }
@@ -1269,8 +1285,8 @@ if (! function_exists('menu')) {
 /**
  * Gets all credits accepted.
  *
- * @author  Antonio Vargas <localhost.80@gmail.com>
- * @copyright  2020 MdRepTime, LLC
+ * @author    Antonio Vargas <localhost.80@gmail.com>
+ * @copyright 2020 MdRepTime, LLC
  *
  * @return array|null
  */
@@ -1296,7 +1312,7 @@ if (! function_exists('cards_accepted')) {
 /**
  * Generate a unique username
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string
@@ -1347,7 +1363,7 @@ if (! function_exists('unique_username')) {
 /**
  * Returns unique slug
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $type
@@ -1363,36 +1379,36 @@ if (! function_exists('unique_slug')) {
         $i = 1;
 
         switch ($type) {
-            case 'page':
-                while (Page::withTrashed()->where('slug', $slug)->exists()) {
-                    $slug = Str::slug($prefix) . '-' . $i;
-                    $i++;
-                }
-                break;
-            case 'product':
-                while (Product::withTrashed()->where('slug', $slug)->exists()) {
-                    $slug = Str::slug($prefix) . '-' . $i;
-                    $i++;
-                }
-                break;
-            case 'package':
-                while (Package::withTrashed()->where('slug', $slug)->exists()) {
-                    $slug = Str::slug($prefix) . '-' . $i;
-                    $i++;
-                }
-                break;
-            case 'blog':
-                while (Blog::withTrashed()->where('slug', $slug)->exists()) {
-                    $slug = Str::slug($prefix) . '-' . $i;
-                    $i++;
-                }
-                break;
-            case 'post':
-                while (Post::withTrashed()->where('slug', $slug)->exists()) {
-                    $slug = Str::slug($prefix) . '-' . $i;
-                    $i++;
-                }
-                break;
+        case 'page':
+            while (Page::withTrashed()->where('slug', $slug)->exists()) {
+                $slug = Str::slug($prefix) . '-' . $i;
+                $i++;
+            }
+            break;
+        case 'product':
+            while (Product::withTrashed()->where('slug', $slug)->exists()) {
+                $slug = Str::slug($prefix) . '-' . $i;
+                $i++;
+            }
+            break;
+        case 'package':
+            while (Package::withTrashed()->where('slug', $slug)->exists()) {
+                $slug = Str::slug($prefix) . '-' . $i;
+                $i++;
+            }
+            break;
+        case 'blog':
+            while (Blog::withTrashed()->where('slug', $slug)->exists()) {
+                $slug = Str::slug($prefix) . '-' . $i;
+                $i++;
+            }
+            break;
+        case 'post':
+            while (Post::withTrashed()->where('slug', $slug)->exists()) {
+                $slug = Str::slug($prefix) . '-' . $i;
+                $i++;
+            }
+            break;
         }
 
         return $slug;
@@ -1402,7 +1418,7 @@ if (! function_exists('unique_slug')) {
 /**
  * Returns a unique name
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $type
@@ -1417,12 +1433,12 @@ if (! function_exists('unique_name')) {
         $i = 1;
 
         switch($type) {
-            case 'office':
-                while(Office::where('name', $name)->exists()) {
-                    $name = $prefix . '_' . $i;
-                    $i++;
-                }
-                break;
+        case 'office':
+            while(Office::where('name', $name)->exists()) {
+                $name = $prefix . '_' . $i;
+                $i++;
+            }
+            break;
         }
 
         return $name;
@@ -1432,7 +1448,7 @@ if (! function_exists('unique_name')) {
 /**
  * Returns a unique reference
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return string
@@ -1450,18 +1466,18 @@ if(! function_exists('unique_reference')) {
         $reference = $prefix . $suffix;
 
         switch($type) {
-            case 'appointment':
-                while (Appointment::where('reference', $reference)->exists()) {
-                    $suffix = Str::random(37);
-                    $reference = $prefix . $suffix;
-                }
-                break;
-            case 'payment':
-                while (Payment::where('reference', $reference)->exists()) {
-                    $suffix = Str::random(37);
-                    $reference = $prefix . $suffix;
-                }
-                break;
+        case 'appointment':
+            while (Appointment::where('reference', $reference)->exists()) {
+                $suffix = Str::random(37);
+                $reference = $prefix . $suffix;
+            }
+            break;
+        case 'payment':
+            while (Payment::where('reference', $reference)->exists()) {
+                $suffix = Str::random(37);
+                $reference = $prefix . $suffix;
+            }
+            break;
         }
 
         return $reference;
@@ -1472,7 +1488,7 @@ if(! function_exists('unique_reference')) {
 /**
  * Get user role shortcut
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return string
@@ -1492,7 +1508,8 @@ if(! function_exists('unique_invite_code')) {
 
 /**
  * Returns admin secure full url
- * @author Antonio Vargas <localhost.80@gmail.com>
+ *
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $path
@@ -1513,7 +1530,7 @@ if (! function_exists('admin_url')) {
 /**
  * Generates a breadcrumbs
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  array $list
@@ -1569,7 +1586,7 @@ if (! function_exists('send_notification_queued')) {
 /**
  * Shortcut to dispatch emails
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  \App\Models\System\User|int
@@ -1599,12 +1616,12 @@ if (! function_exists('send_email')) {
 /**
  * Log users activity
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
- * @param string $message
- * @param mixed  $performedOn
- * @param array  $properties
+ * @param  string $message
+ * @param  mixed  $performedOn
+ * @param  array  $properties
  * @return bool
  */
 if (! function_exists('user_activity')) {
@@ -1618,11 +1635,11 @@ if (! function_exists('user_activity')) {
             if (blank($properties)) {
                 if (filled($performedOn)) {
                     activity()->performedOn($performedOn)
-                              ->causedBy($user)
-                              ->log($message);
+                        ->causedBy($user)
+                        ->log($message);
                 } else {
                     activity()->causedBy($user)
-                              ->log($message);
+                        ->log($message);
                 }
             } else {
                 if (blank($properties) && $performedOn instanceof stdClass) {
@@ -1631,13 +1648,13 @@ if (! function_exists('user_activity')) {
 
                 if (filled($performedOn)) {
                     activity()->performedOn($performedOn)
-                              ->causedBy($user)
-                              ->withProperties($properties)
-                              ->log($message);
+                        ->causedBy($user)
+                        ->withProperties($properties)
+                        ->log($message);
                 } else {
                     activity()->causedBy($user)
-                              ->withProperties($properties)
-                              ->log($message);
+                        ->withProperties($properties)
+                        ->log($message);
                 }
             }
 
@@ -1651,7 +1668,7 @@ if (! function_exists('user_activity')) {
 /**
  * Returns site full url
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $path
@@ -1675,7 +1692,7 @@ if (! function_exists('site_url')) {
 /**
  * Resize image or get path if already resized.
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $path
@@ -1706,9 +1723,11 @@ if (! function_exists('resized_image')) {
                 if (!file_exists($file)) {
                     try {
                         $image = Image::make($real_path);
-                        $image->resize($width, null, function ($constraint) {
-                            $constraint->aspectRatio();
-                        });
+                        $image->resize(
+                            $width, null, function ($constraint) {
+                                $constraint->aspectRatio();
+                            }
+                        );
 
                         if ($image->save($file)) {
                             return Storage::url($storage_directory . DIRECTORY_SEPARATOR . basename($filename));
@@ -1729,7 +1748,7 @@ if (! function_exists('resized_image')) {
 /**
  * Creates a route
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $path
@@ -1752,33 +1771,33 @@ if (! function_exists('create_route')) {
                 if (array_keys_exist($route, ['method', 'name', 'middleware']) === 3) {
                     if (filled($route['middleware'])) {
                         switch ($type) {
-                            case 'any':
-                                return Route::any($path, $controller)->middleware($route['middleware']);
-                            case 'get':
-                                return Route::get($path, $controller)->middleware($route['middleware']);
-                            case 'post':
-                                return Route::post($path, $controller)->middleware($route['middleware']);
-                            case 'put':
-                                return Route::put($path, $controller)->middleware($route['middleware']);
-                            case 'patch':
-                                return Route::patch($path, $controller)->middleware($route['middleware']);
-                            case 'delete':
-                                return Route::delete($path, $controller)->middleware($route['middleware']);
+                        case 'any':
+                            return Route::any($path, $controller)->middleware($route['middleware']);
+                        case 'get':
+                            return Route::get($path, $controller)->middleware($route['middleware']);
+                        case 'post':
+                            return Route::post($path, $controller)->middleware($route['middleware']);
+                        case 'put':
+                            return Route::put($path, $controller)->middleware($route['middleware']);
+                        case 'patch':
+                            return Route::patch($path, $controller)->middleware($route['middleware']);
+                        case 'delete':
+                            return Route::delete($path, $controller)->middleware($route['middleware']);
                         }
                     } else {
                         switch ($type) {
-                            case 'any':
-                                return Route::any($path, $controller);
-                            case 'get':
-                                return Route::get($path, $controller);
-                            case 'post':
-                                return Route::post($path, $controller);
-                            case 'put':
-                                return Route::put($path, $controller);
-                            case 'patch':
-                                return Route::patch($path, $controller);
-                            case 'delete':
-                                return Route::delete($path, $controller);
+                        case 'any':
+                            return Route::any($path, $controller);
+                        case 'get':
+                            return Route::get($path, $controller);
+                        case 'post':
+                            return Route::post($path, $controller);
+                        case 'put':
+                            return Route::put($path, $controller);
+                        case 'patch':
+                            return Route::patch($path, $controller);
+                        case 'delete':
+                            return Route::delete($path, $controller);
                         }
                     }
                 }
@@ -1791,33 +1810,33 @@ if (! function_exists('create_route')) {
 
                         if (array_keys_exist($route, ['middleware'])) {
                             switch ($type) {
-                                case 'any':
-                                    return Route::any($path, $controller)->middleware($route['middleware']);
-                                case 'get':
-                                    return Route::get($path, $controller)->middleware($route['middleware']);
-                                case 'post':
-                                    return Route::post($path, $controller)->middleware($route['middleware']);
-                                case 'put':
-                                    return Route::put($path, $controller)->middleware($route['middleware']);
-                                case 'patch':
-                                    return Route::patch($path, $controller)->middleware($route['middleware']);
-                                case 'delete':
-                                    return Route::delete($path, $controller)->middleware($route['middleware']);
+                            case 'any':
+                                return Route::any($path, $controller)->middleware($route['middleware']);
+                            case 'get':
+                                return Route::get($path, $controller)->middleware($route['middleware']);
+                            case 'post':
+                                return Route::post($path, $controller)->middleware($route['middleware']);
+                            case 'put':
+                                return Route::put($path, $controller)->middleware($route['middleware']);
+                            case 'patch':
+                                return Route::patch($path, $controller)->middleware($route['middleware']);
+                            case 'delete':
+                                return Route::delete($path, $controller)->middleware($route['middleware']);
                             }
                         } else {
                             switch ($type) {
-                                case 'any':
-                                    return Route::any($path, $controller);
-                                case 'get':
-                                    return Route::get($path, $controller);
-                                case 'post':
-                                    return Route::post($path, $controller);
-                                case 'put':
-                                    return Route::put($path, $controller);
-                                case 'patch':
-                                    return Route::patch($path, $controller);
-                                case 'delete':
-                                    return Route::delete($path, $controller);
+                            case 'any':
+                                return Route::any($path, $controller);
+                            case 'get':
+                                return Route::get($path, $controller);
+                            case 'post':
+                                return Route::post($path, $controller);
+                            case 'put':
+                                return Route::put($path, $controller);
+                            case 'patch':
+                                return Route::patch($path, $controller);
+                            case 'delete':
+                                return Route::delete($path, $controller);
                             }
                         }
                     } else {
@@ -1826,33 +1845,33 @@ if (! function_exists('create_route')) {
 
                         if (array_keys_exist($route, ['middleware'])) {
                             switch ($type) {
-                                case 'any':
-                                    return Route::any($path, $controller)->name($name)->middleware($route['middleware']);
-                                case 'get':
-                                    return Route::get($path, $controller)->name($name)->middleware($route['middleware']);
-                                case 'post':
-                                    return Route::post($path, $controller)->name($name)->middleware($route['middleware']);
-                                case 'put':
-                                    return Route::put($path, $controller)->name($name)->middleware($route['middleware']);
-                                case 'patch':
-                                    return Route::patch($path, $controller)->name($name)->middleware($route['middleware']);
-                                case 'delete':
-                                    return Route::delete($path, $controller)->name($name)->middleware($route['middleware']);
+                            case 'any':
+                                return Route::any($path, $controller)->name($name)->middleware($route['middleware']);
+                            case 'get':
+                                return Route::get($path, $controller)->name($name)->middleware($route['middleware']);
+                            case 'post':
+                                return Route::post($path, $controller)->name($name)->middleware($route['middleware']);
+                            case 'put':
+                                return Route::put($path, $controller)->name($name)->middleware($route['middleware']);
+                            case 'patch':
+                                return Route::patch($path, $controller)->name($name)->middleware($route['middleware']);
+                            case 'delete':
+                                return Route::delete($path, $controller)->name($name)->middleware($route['middleware']);
                             }
                         } else {
                             switch ($type) {
-                                case 'any':
-                                    return Route::any($path, $controller)->name($name);
-                                case 'get':
-                                    return Route::get($path, $controller)->name($name);
-                                case 'post':
-                                    return Route::post($path, $controller)->name($name);
-                                case 'put':
-                                    return Route::put($path, $controller)->name($name);
-                                case 'patch':
-                                    return Route::patch($path, $controller)->name($name);
-                                case 'delete':
-                                    return Route::delete($path, $controller)->name($name);
+                            case 'any':
+                                return Route::any($path, $controller)->name($name);
+                            case 'get':
+                                return Route::get($path, $controller)->name($name);
+                            case 'post':
+                                return Route::post($path, $controller)->name($name);
+                            case 'put':
+                                return Route::put($path, $controller)->name($name);
+                            case 'patch':
+                                return Route::patch($path, $controller)->name($name);
+                            case 'delete':
+                                return Route::delete($path, $controller)->name($name);
                             }
                         }
                     }
@@ -1927,7 +1946,7 @@ if (! function_exists('create_route')) {
 /**
  * Returns All The Routes
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $domain
@@ -1988,7 +2007,7 @@ if (! function_exists('routes')) {
 /**
  * Returns Server Operating System
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return string
@@ -2003,7 +2022,8 @@ if (! function_exists('server_os')) {
 
 /**
  * Server CPU Cores
- * @author Antonio Vargas <localhost.80@gmail.com>
+ *
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return int
@@ -2029,7 +2049,7 @@ if (! function_exists('server_cpu_cores')) {
 /**
  * Server Memory Usage
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return int|float
@@ -2061,7 +2081,7 @@ if (! function_exists('server_memory_usage')) {
 /**
  * Server CPU Usage
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return int|float

@@ -9,9 +9,9 @@ use App\Models\System\Invoice;
 /**
  * Has Invoice Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasInvoices
 {
@@ -40,7 +40,7 @@ trait HasInvoices
     /**
      * Determines if has a given invoice
      *
-     * @param App\Models\System\Invoice|int $invoice
+     * @param  App\Models\System\Invoice|int $invoice
      * @return bool
      * @access public
      */
@@ -62,7 +62,7 @@ trait HasInvoices
     /**
      * Assigns a given invoice
      *
-     * @param App\Models\System\Invoice|int $invoice
+     * @param  App\Models\System\Invoice|int $invoice
      * @return bool
      * @access public
      */
@@ -71,8 +71,8 @@ trait HasInvoices
         if (!$this->hasInvoice($invoice)) {
             if (is_numeric($invoice) && is_finite(intval($invoice))) {
                 $invoice = Invoice::where('id', intval($invoice))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($invoice instanceof Invoice) {
@@ -87,7 +87,7 @@ trait HasInvoices
     /**
      * Unassign a given invoice
      *
-     * @param App\Models\System\Invoice|int $invoice
+     * @param  App\Models\System\Invoice|int $invoice
      * @return bool
      * @access public
      */

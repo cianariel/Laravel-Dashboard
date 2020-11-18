@@ -13,9 +13,9 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 /**
  * Attachments Eloquent Model
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System
+ * @package   App\Models\System
  */
 class Attachment extends Model implements HasMedia
 {
@@ -24,13 +24,14 @@ class Attachment extends Model implements HasMedia
     /**
      * The database table used by the model.
      *
-     * @var string $table
+     * @var    string $table
      * @access protected
      */
     protected $table = 'attachments';
 
     /**
      * Status available
+     *
      * @var string STATUS_AVAILABLE
      */
     const AVAILABLE = 'available';
@@ -55,7 +56,7 @@ class Attachment extends Model implements HasMedia
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array $casts Type casting field columns before interting to database.
+     * @var    array $casts Type casting field columns before interting to database.
      * @access protected
      */
     protected $casts = [

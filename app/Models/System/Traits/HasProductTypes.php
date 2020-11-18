@@ -9,9 +9,9 @@ use App\Models\System\ProductType;
 /**
  * Has Product Type Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasProductTypes
 {
@@ -73,8 +73,8 @@ trait HasProductTypes
         if (!$this->hasProductType($productType)) {
             if (is_numeric($productType) && is_finite(intval($productType))) {
                 $productType = ProductType::where('id', intval($productType))
-                            ->select(['id'])
-                            ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($productType instanceof ProductType) {

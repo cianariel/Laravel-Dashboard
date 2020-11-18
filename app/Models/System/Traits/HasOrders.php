@@ -9,9 +9,9 @@ use App\Models\System\Order;
 /**
  * Has Orders Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasOrders
 {
@@ -40,7 +40,7 @@ trait HasOrders
     /**
      * Determines if has the given order
      *
-     * @param App\Models\System\Order|int $order
+     * @param  App\Models\System\Order|int $order
      * @return bool
      * @access public
      */
@@ -62,7 +62,7 @@ trait HasOrders
     /**
      * Assign the given order
      *
-     * @param App\Models\System\Order|int $order
+     * @param  App\Models\System\Order|int $order
      * @return bool
      * @access public
      */
@@ -71,8 +71,8 @@ trait HasOrders
         if (!$this->hasOrder($order)) {
             if (is_numeric($order) && is_finite(intval($order))) {
                 $order = Order::where('id', intval($order))
-                              ->select(['id'])
-                              ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($order instanceof Order) {
@@ -88,7 +88,7 @@ trait HasOrders
     /**
      * Unassign the given order
      *
-     * @param App\Models\System\Order|int $order
+     * @param  App\Models\System\Order|int $order
      * @return bool
      * @access public
      */

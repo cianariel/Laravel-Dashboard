@@ -10,9 +10,9 @@ use App\Models\System\Attachment;
 /**
  * Has Attachments Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasAttachments
 {
@@ -74,8 +74,8 @@ trait HasAttachments
         if ($this->hasAttachment($attachment) === false) {
             if (is_numeric($attachment) && is_finite(intval($attachment))) {
                 $attachment = Attachment::where('id', intval($attachment))
-                                        ->select(['id'])
-                                        ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($attachment instanceof Attachment) {
@@ -102,9 +102,9 @@ trait HasAttachments
         if ($this->hasAttachment($attachment)) {
             if (is_numeric($attachment) && is_finite(intval($attachment))) {
                 $attachment = $this->attachments()
-                                   ->where('id', intval($attachment))
-                                   ->select(['id'])
-                                   ->firstOrFail();
+                    ->where('id', intval($attachment))
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($attachment instanceof Attachment) {

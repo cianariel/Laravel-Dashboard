@@ -15,16 +15,16 @@ use App\Models\Shared\Model;
 /**
  * Payments Eloquent Model
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System
+ * @package   App\Models\System
  */
 class Payment extends Model implements Searchable
 {
     /**
      * The database table used by the model.
      *
-     * @var string
+     * @var    string
      * @access protected
      */
     protected $table = 'payments';
@@ -106,8 +106,8 @@ class Payment extends Model implements Searchable
     /**
      * Get stripe customer payment method card
      *
-     * @param string $payment_method
-     * @param string $stripe_error
+     * @param  string $payment_method
+     * @param  string $stripe_error
      * @return \Stripe\PaymentMethod|null
      */
     public static function getStripePaymentMethod(string $payment_method, string &$stripe_error): ?\Stripe\PaymentMethod
@@ -154,7 +154,7 @@ class Payment extends Model implements Searchable
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array $casts Type casting field columns before interting to database.
+     * @var    array $casts Type casting field columns before interting to database.
      * @access protected
      */
     protected $casts = [

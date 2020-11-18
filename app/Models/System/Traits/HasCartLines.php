@@ -9,9 +9,9 @@ use App\Models\System\CartLine;
 /**
  * Has Cart Lines Relations Trait
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
+ * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Models\System\Traits
+ * @package   App\Models\System\Traits
  */
 trait HasCartLines
 {
@@ -40,7 +40,7 @@ trait HasCartLines
     /**
      * Determines if has given cart line
      *
-     * @param App\Models\System\CartLine|int $cartLine
+     * @param  App\Models\System\CartLine|int $cartLine
      * @return bool
      * @access public
      */
@@ -64,7 +64,7 @@ trait HasCartLines
     /**
      * Assign a given cart line
      *
-     * @param App\Models\System\CartLine|int $cartLine
+     * @param  App\Models\System\CartLine|int $cartLine
      * @return bool
      * @access public
      */
@@ -73,8 +73,8 @@ trait HasCartLines
         if (!$this->hasCartLine($cartLine)) {
             if (is_numeric($cartLine) && is_finite(intval($cartLine))) {
                 $cartLine = CartLine::where('id', intval($cartLine))
-                                    ->select(['id'])
-                                    ->firstOrFail();
+                    ->select(['id'])
+                    ->firstOrFail();
             }
 
             if ($cartLine instanceof CartLine) {
@@ -88,7 +88,7 @@ trait HasCartLines
     /**
      * Unassign a given cart line
      *
-     * @param App\Models\System\CartLine|int $cartLine
+     * @param  App\Models\System\CartLine|int $cartLine
      * @return bool
      * @access public
      */
