@@ -648,9 +648,8 @@ window.mdConfirmedActionForm = function ($) {
                     let btn = dialog_modal.find('#btn-modal-confirmed');
 
                     btn.on('click touchend', function (e) {
-                            dialog_modal.modal('show');
-                            response = true;
-
+                            dialog_modal.modal('hide');
+                            btn.prop('disabled', true);
                             form.submit();
                     });
 

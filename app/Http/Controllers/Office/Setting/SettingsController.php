@@ -273,6 +273,8 @@ class SettingsController extends BaseController
             switch($section) {
                 case 'holidays':
                     return $this->updateHoldaySettings($request, $site, $user, $office);
+                case 'visitation_rules':
+                    return $this->updateVisitationSettings($request, $site, $user, $office);
 
             }
         }
@@ -308,6 +310,35 @@ class SettingsController extends BaseController
             flash(__('Successfully saved'));
             return redirect()->route('office.settings.edit.general.section', 'holidays');
         }
+    }
+
+    /**
+     * Saves visitation settings for office.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\System\Site
+     * @param  \App\Models\System\User
+     * @param  \App\Models\System\Office
+     * @return \Illuminate\Http\Response
+     */
+    private function updateVisitationSettings(Request $request, Site $site, User $user, Office $office)
+    {
+         $rules = [
+            'require_approve_appointments'  => ['nullable', 'string', Rule::in('on')]
+         ];
+
+         $validatedData = $request->validate($rules);
+
+         if($request->input('require_approve_appointments') == 'on') {
+            $office->setMetaField('visitation_rules->require_approve_appointments', 'on');
+         } else {
+            $office->setMetaField('visitation_rules->require_approve_appointments', 'off');
+         }
+
+        $office->save();
+
+        flash(__('Successfully saved'));
+        return redirect()->route('office.settings.edit.general.section', 'visitation_rules');
     }
 
     /**
