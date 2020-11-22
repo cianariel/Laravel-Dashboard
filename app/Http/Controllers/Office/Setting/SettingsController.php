@@ -272,7 +272,7 @@ class SettingsController extends BaseController
 
             switch($section) {
                 case 'holidays':
-                    return $this->updateHoldaySettings($request);
+                    return $this->updateHoldaySettings($request, $site, $user, $office);
 
             }
         }
@@ -302,8 +302,11 @@ class SettingsController extends BaseController
         if(filled($request->input('holidays'))) {
             $holidays = $request->input('holidays');
 
-            dump($holidays);
-            exit;
+            $office->setMetaField('holidays_closed', $holidays);
+            $office->save();
+
+            flash(__('Successfully saved'));
+            return redirect()->route('office.settings.edit.general.section', 'holidays');
         }
     }
 
