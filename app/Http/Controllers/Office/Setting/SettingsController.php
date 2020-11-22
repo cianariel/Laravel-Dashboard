@@ -313,6 +313,20 @@ class SettingsController extends BaseController
     }
 
     /**
+     * Saves office hours settings for office.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\System\Site
+     * @param  \App\Models\System\User
+     * @param  \App\Models\System\Office
+     * @return \Illuminate\Http\Response
+     */
+    private function updateOfficeHours(Request $request, Site $site, User $user, Office $office)
+    {
+
+    }
+
+    /**
      * Saves visitation settings for office.
      *
      * @param  \Illuminate\Http\Request $request
