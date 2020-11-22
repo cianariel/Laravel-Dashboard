@@ -10,7 +10,7 @@
             'id'        => 'office-settings-holiday-form',
             'action'    => route('office.settings.update.general.section', 'visitation_rules'),
             'method'    => 'PUT',
-            'confirmed' => true
+            'confirmed' => true,
         ])
             <h4 class="card-title mb-3 text-center">
                 {{ __('Would you like to approve reps before they can book appointments at your office?') }}
@@ -30,6 +30,18 @@
                         'value'     => 'on',
                         'size'      => '2x',
                         'selected'  => (old('require_approve_appointments') == 'on' || $office->getMetaField('visitation_rules->require_approve_appointments') == 'on')? true : false
+                    ])@endcomponent
+                </div>
+            </div>
+            {{--[submit-btn]--}}
+            <div class="form-group row">
+                <div class="col-12 text-right">
+                    @component('components.forms.button',[
+                        'id'        => 'update-btn',
+                        'type'      => 'submit',
+                        'name'      => 'update-btn',
+                        'label'     => __('Update'),
+                        'classes'   => ['btn', 'btn-primary']
                     ])@endcomponent
                 </div>
             </div>
