@@ -5,13 +5,24 @@
 {{--[content]--}}
 @section('content-body')
     @component('components.bootstrap.card', [
-        'id'    => 'office-dashboard-card'
+        'layout'    => 'card-deck'
     ])
-        <div class="card-body">
-            @component('components.elements.fullcalendar', [
-                'id'    => 'office-dashboard-calendar'
-            ])@endcomponent
-        </div>
+        @component('components.bootstrap.card', [
+            'id'    => 'office-calendar-card'
+        ])
+            <div class="card-body">
+                @component('components.elements.fullcalendar', [
+                    'id'    => 'office-dashboard-calendar'
+                ])@endcomponent
+            </div>
+        @endcomponent
+        @component('components.bootstrap.card', [
+            'id'    => 'office-calendar-sidebar-card'
+        ])
+            <div class="card-body">
+
+            </div>
+        @endcomponent
     @endcomponent
 @endsection
 {{--[/content]--}}
