@@ -5,9 +5,9 @@
         <div class="md-toggler d-inline @if(isset($classes) && filled($classes) && count($classes) !=0) {{ implode(' ', $classes) }} @endif @error($error_name?? $name) is-invalid @enderror" data-id="{{ $id }}" data-value="{{ $value }}" data-selected="{{ $selected?  'true' : 'false' }}">
             @component('components.forms.hidden', ['id' => $id, 'name' => $name, 'value' => $value])@endcomponent
             @if($selected === true)
-                <i class="icon fas fa-toggle-on"></i>
+                <i class="icon fas fa-toggle-on {{ $size? 'fa-'.$size : ''}}"></i>
             @else
-                <i class="icon fas fa-toggle-off"></i>
+                <i class="icon fas fa-toggle-off {{ $size? 'fa-'.$size : ''}}"></i>
             @endif
         </div>
         @if(isset($help_text))
