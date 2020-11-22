@@ -654,6 +654,17 @@
                     @endcomponent
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12 text-right">
+                    @component('components.forms.button',[
+                        'id'        => 'update-btn',
+                        'type'      => 'submit',
+                        'name'      => 'update-btn',
+                        'label'     => __('Update'),
+                        'classes'   => ['btn', 'btn-primary']
+                    ])@endcomponent
+                </div>
+            </div>
         @endcomponent
     </div>
 @endcomponent
