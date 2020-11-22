@@ -14,6 +14,7 @@ use App\Models\System\Office;
 use App\Models\System\State;
 use App\Models\System\Role;
 use App\Models\System\User;
+use App\Models\System\Site;
 use App\Rules\SanitizeHtml;
 use App\Rules\PhoneRule;
 use Exception;
@@ -127,8 +128,7 @@ class SettingsController extends BaseController
                 $section = Str::lower(strip_tags(trim($section)));
             }
 
-            $breadcrumbs = breadcrumbs(
-                [
+            $breadcrumbs = breadcrumbs([
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
                     'active'        => false
@@ -141,8 +141,7 @@ class SettingsController extends BaseController
                     'path'          => route('office.settings.edit.general'),
                     'active'        => true
                 ]
-                ]
-            );
+            ]);
 
             return view(
                 'office.settings.rep_visits',
@@ -168,8 +167,7 @@ class SettingsController extends BaseController
 
         if($user->hasRole(Role::OWNER) ) {
 
-            $breadcrumbs = breadcrumbs(
-                [
+            $breadcrumbs = breadcrumbs([
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
                     'active'        => false
@@ -182,8 +180,7 @@ class SettingsController extends BaseController
                     'path'          => route('office.settings.edit.general'),
                     'active'        => true
                 ]
-                ]
-            );
+            ]);
 
             if(filled($section)) {
                 $section = Str::lower(strip_tags(trim($section)));
@@ -192,73 +189,122 @@ class SettingsController extends BaseController
             $office = $user->offices()->first();
 
             switch($section) {
-            case 'office_info':
-                $countries = countries(false);
-                $_countries = [];
+                case 'office_info':
+                    $countries = countries(false);
+                    $_countries = [];
 
-                foreach ($countries as $country) {
-                    if ($countries->status = Country::ACTIVE) {
-                        $_countries[$country->code] = $country->name;
+                    foreach ($countries as $country) {
+                        if ($countries->status = Country::ACTIVE) {
+                            $_countries[$country->code] = $country->name;
+                        }
                     }
-                }
 
-                $countries = $_countries;
+                    $countries = $_countries;
 
-                return view(
-                    'office.settings.general',
-                    compact('site', 'user', 'breadcrumbs', 'section', 'office', 'countries')
-                );
-            case 'holidays':
-                return view(
-                    'office.settings.general',
-                    compact('site', 'user', 'breadcrumbs', 'section', 'office')
-                );
-            case 'appointments':
-                return view(
-                    'office.settings.general',
-                    compact('site', 'user', 'breadcrumbs', 'section', 'office')
-                );
-            case 'office_hours':
-                return view(
-                    'office.settings.general',
-                    compact('site', 'user', 'breadcrumbs', 'section', 'office')
-                );
-            case 'visitation_rules':
-                return view(
-                    'office.settings.general',
-                    compact('site', 'user', 'breadcrumbs', 'section', 'office')
-                );
-            case 'rep_assignment':
-                return view(
-                    'office.settings.general',
-                    compact('site', 'user', 'breadcrumbs', 'section', 'office')
-                );
-            case 'recurring_appointments':
-                return view(
-                    'office.settings.general',
-                    compact('site', 'user', 'breadcrumbs', 'section', 'office')
-                );
-            default:
-                $countries = countries(false);
-                $_countries = [];
+                    return view('office.settings.general',
+                        compact('site', 'user', 'breadcrumbs', 'section', 'office', 'countries')
+                    );
+                case 'holidays':
+                    return view('office.settings.general',
+                        compact('site', 'user', 'breadcrumbs', 'section', 'office')
+                    );
+                case 'appointments':
+                    return view('office.settings.general',
+                        compact('site', 'user', 'breadcrumbs', 'section', 'office')
+                    );
+                case 'office_hours':
+                    return view('office.settings.general',
+                        compact('site', 'user', 'breadcrumbs', 'section', 'office')
+                    );
+                case 'visitation_rules':
+                    return view('office.settings.general',
+                        compact('site', 'user', 'breadcrumbs', 'section', 'office')
+                    );
+                case 'rep_assignment':
+                    return view('office.settings.general',
+                        compact('site', 'user', 'breadcrumbs', 'section', 'office')
+                    );
+                case 'recurring_appointments':
+                    return view('office.settings.general',
+                        compact('site', 'user', 'breadcrumbs', 'section', 'office')
+                    );
+                default:
+                    $countries = countries(false);
+                    $_countries = [];
 
-                foreach ($countries as $country) {
-                    if ($countries->status = Country::ACTIVE) {
-                        $_countries[$country->code] = $country->name;
+                    foreach ($countries as $country) {
+                        if ($countries->status = Country::ACTIVE) {
+                            $_countries[$country->code] = $country->name;
+                        }
                     }
-                }
 
-                $countries = $_countries;
+                    $countries = $_countries;
 
-                return view(
-                    'office.settings.general',
-                    compact('site', 'user', 'breadcrumbs', 'section', 'office', 'countries')
-                );
+                    return view('office.settings.general',
+                        compact('site', 'user', 'breadcrumbs', 'section', 'office', 'countries')
+                    );
             }
         }
 
         flash(__('Unauthorized access.'));
         return redirect('/');
+    }
+
+    /**
+     * Update general setting handler
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string $section
+     * @return \Illuminate\Http\Response
+     */
+    public function updateGeneralSettings(Request $request, string $section = '')
+    {
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        if($user->hasRole(Role::OWNER) ) {
+
+            if(filled($section)) {
+                $section = Str::lower(strip_tags(trim($section)));
+            }
+
+            $office = $user->offices()->first();
+
+            switch($section) {
+                case 'holidays':
+                    return $this->updateHoldaySettings($request);
+
+            }
+        }
+
+        flash(__('Unauthorized access.'));
+        return redirect('/');
+    }
+
+    /**
+     * Saves holiday settings for office.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\System\Site
+     * @param  \App\Models\System\User
+     * @param  \App\Models\System\Office
+     * @return \Illuminate\Http\Response
+     */
+    private function updateHoldaySettings(Request $request, Site $site, User $user, Office $office)
+    {
+        $rules = [
+            'holidays'      => ['nullable', 'array'],
+            'holidays.*'    => ['nullable', 'string', Rule::in(['on'])]
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        if(filled($request->input('holidays'))) {
+            $holidays = $request->input('holidays');
+
+            dump($holidays);
+            exit;
+        }
     }
 
     /**
@@ -274,8 +320,7 @@ class SettingsController extends BaseController
 
         if($user->hasRole(Role::OWNER) ) {
 
-            $breadcrumbs = breadcrumbs(
-                [
+            $breadcrumbs = breadcrumbs([
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
                     'active'        => false
@@ -288,8 +333,7 @@ class SettingsController extends BaseController
                     'path'          => route('office.settings.edit.offices'),
                     'active'        => true
                 ]
-                ]
-            );
+            ]);
 
             return view('office.settings.offices', compact('site', 'user', 'breadcrumbs'));
         }
@@ -311,8 +355,7 @@ class SettingsController extends BaseController
 
         if($user->hasRole(Role::OWNER)) {
 
-            $breadcrumbs = breadcrumbs(
-                [
+            $breadcrumbs = breadcrumbs([
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
                     'active'        => false
@@ -325,8 +368,7 @@ class SettingsController extends BaseController
                     'path'          => route('office.settings.edit.calendar'),
                     'active'        => true
                 ]
-                ]
-            );
+            ]);
 
             return view('office.settings.calendar', compact('site', 'user', 'breadcrumbs'));
         }
@@ -348,8 +390,7 @@ class SettingsController extends BaseController
 
         if($user->hasRole(Role::OWNER)) {
 
-            $breadcrumbs = breadcrumbs(
-                [
+            $breadcrumbs = breadcrumbs([
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
                     'active'        => false
@@ -362,8 +403,7 @@ class SettingsController extends BaseController
                     'path'          => route('office.settings.edit.subscription'),
                     'active'        => true
                 ]
-                ]
-            );
+            ]);
 
             return view('office.settings.subscription', compact('site', 'user', 'breadcrumbs'));
         }

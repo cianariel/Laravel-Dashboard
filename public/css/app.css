@@ -19368,7 +19368,8 @@ body[id^=page-office] #office-content-body {
   background: #034ea2;
 }
 @media (min-width: 768px) {
-  body[id^=page-office] #office-settings-sidebar-card {
+  body[id^=page-office] #office-settings-sidebar-card,
+body[id^=page-office] #office-calendar-sidebar-card {
     max-width: 15.625rem;
   }
 }
