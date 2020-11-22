@@ -45,6 +45,14 @@ class Office extends Model
     ];
 
     /**
+     * @var array MERIDIUM_TYPES
+     */
+    const MERIDIUM_TYPES = [
+        'am' => 'AM',
+        'pm' => 'PM'
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
