@@ -45,6 +45,247 @@ class CalendarEvent extends Model
     ];
 
     /**
+     * @var string NEW_YEARS_EVE
+     */
+    const NEW_YEARS_EVE = '12/31';
+
+    /**
+     * @var string NEW_YEARS_DAY
+     */
+    const NEW_YEARS_DAY = '01/1';
+
+    /**
+     * @var string MLK_DAY
+     */
+    const MLK_DAY = '01/18';
+
+    /**
+     * @var string EASTER DAY
+     */
+    const EASTER_DAY = 'last sunday of march';
+
+    /**
+     * @var string GOOD_FRIDAY
+     */
+    const GOOD_FRIDAY = '04/2';
+
+    /**
+     * @var string PRESIDENTS_DAY
+     */
+    const PRESIDENTS_DAY = 'third monday/OD February';
+
+    /**
+     * @var string MEMORIAL_DAY
+     */
+    const MEMORIAL_DAY = '5/31';
+
+    /**
+     * @var string INDEPENDENCE_DAY
+     */
+    const INDEPENDENCE_DAY = '06/4';
+
+    /**
+     * @var string LABOR_DAY
+     */
+    const LABOR_DAY = '09/6';
+
+    /**
+     * @var string COLUMBUS_DAY
+     */
+    const COLUMBUS_DAY = '10/11';
+
+    /**
+     * @var string VETERANS_DAY
+     */
+    const VETERANS_DAY = '11/11';
+
+    /**
+     * @var string CHRISTMAS_EVE
+     */
+    const CHRISTMAS_EVE = '12/24';
+
+    /**
+     * @var string CHRISTMAS_DAY
+     */
+    const CHRISTMAS_DAY = '12/25';
+
+    /**
+     * @var array HOLIDAYS
+     */
+    const HOLIDAYS = [
+        'New Years Eve'     => NEW_YEARS_EVE,
+        'New Years'         => NEW_YEARS_DAY,
+        'MLK Day'           => MLK_DAY,
+        'Easter Day'        => EASTER_DAY,
+        'Good Friday'       => GOOD_FRIDAY,
+        'Presidents Day'    => PRESIDENTS_DAY,
+        'Memorial Day'      => MEMORIAL_DAY,
+        'Independence Day'  => INDEPENDENCE_DAY,
+        'labor_day'         => LABOR_DAY,
+        'Columbus Day'      => COLUMBUS_DAY,
+        'Veterans Day'      => VETERANS_DAY,
+        'Christmas Eve'     => CHRISTMAS_EVE,
+        'Christmas Day'     => CHRISTMAS_DAY,
+    ];
+
+
+    /**
+     * Get New Years Eve
+     *
+     * @param  int $year
+     * @return string
+     * @static
+     */
+    public static function getNewYearsEveDay(int $year, string $format='d/m/Y')
+    {
+        $year = safe_integer($year);
+        return date($format, strtotime(self::NEW_YEARS_EVE.'/'.$year));
+    }
+
+    /**
+     * Get New Years Day
+     *
+     * @param  int $year
+     * @return string
+     * @static
+     */
+    public static function getNewYearsDay(int $year, string $format='d/m/Y')
+    {
+        $year = safe_integer($year);
+        return date($format, strtotime(self::NEW_YEARS_DAY.'/'.$year));
+    }
+
+    /**
+     * Get MLK Day
+     *
+     * @param  int $year
+     * @return string
+     * @static
+     */
+    public static function getMLKDay(int $year, string $format='d/m/Y')
+    {
+        $year = safe_integer($year);
+        return date($format, strtotime(self::MLK_DAY.'/'.$year));
+    }
+
+    /**
+     * Get Good Friday
+     *
+     * @param  int $year
+     * @return string
+     * @static
+     */
+    public static function getGoodFriday(int $year, string $format='d/m/Y')
+    {
+        $year = safe_integer($year);
+        return date($format, strtotime(self::GOOD_FRIDAY.'/'.$year));
+    }
+
+    /**
+     * Get Memorial Day
+     *
+     * @param  int $year
+     * @return string
+     * @static
+     */
+    public static function getMemorialDay(int $year, string $format='d/m/Y')
+    {
+        $year = safe_integer($year);
+        return date($format, strtotime(self::MEMORIAL_DAY.'/'.$year));
+    }
+
+    /**
+     * Get Veterans Day
+     *
+     * @param  int $year
+     * @return string
+     * @static
+     */
+    public static function getVeteransDay(int $year, string $format='d/m/Y')
+    {
+        $year = safe_integer($year);
+        return date($format, strtotime(self::VETERANS_DAY.'/'."{$year}"));
+    }
+
+    /**
+     * Get Columbus Day
+     *
+     * @param  int $year
+     * @return string
+     * @static
+     */
+    public static function getColumbusDay(int $year, string $format='d/m/Y')
+    {
+        $year = safe_integer($year);
+        return date($format, strtotime(self::COLUMBUS_DAY.'/'.$year));
+    }
+
+    /**
+     * Get Independence Day
+     *
+     * @param  int $year
+     * @return string
+     * @static
+     */
+    public static function getIndependenceDay(int $year, string $format='d/m/Y')
+    {
+        $year = safe_integer($year);
+        return date($format, strtotime(self::INDEPENDENCE_DAY.'/'.$year));
+    }
+
+    /**
+     * Get Presidents day
+     *
+     * @param  int $year
+     * @return string
+     * @static
+     */
+    public static function getPresidentsDay(int $year, string $format='d/m/Y')
+    {
+        $year = safe_integer($year);
+        return date($format, strtotime(self::PRESIDENTS_DAY." {$year}"));
+    }
+
+    /**
+     * Get Easter Day
+     *
+     * @param  int $year
+     * @return string
+     * @static
+     */
+    public static function getEasterDay(int $year, string $format='d/m/Y')
+    {
+        $year = safe_integer($year);
+        return date($format, strtotime(self::EASTER_DAY." {$year}"));
+    }
+
+    /**
+     * Get Christmas Eve
+     *
+     * @param  int $year
+     * @return string
+     * @static
+     */
+    public static function getChristmasEveDay(int $year, string $format='d/m/Y')
+    {
+        $year = safe_integer($year);
+        return date($format, strtotime(self::CHRISTMAS_EVE.'/'.$year));
+    }
+
+    /**
+     * Get Christmas Day
+     *
+     * @param  int $year
+     * @return string
+     * @static
+     */
+    public static function getChristmasDay(int $year, string $format='d/m/Y')
+    {
+        $year = safe_integer($year);
+        return date($format, strtotime(self::CHRISTMAS_DAY.'/'.$year));
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
