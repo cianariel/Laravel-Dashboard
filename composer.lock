@@ -1562,16 +1562,16 @@
         },
         {
             "name": "laravel/cashier",
-            "version": "v12.5.0",
+            "version": "v12.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/cashier-stripe.git",
-                "reference": "00b61d7ac6e02cdace822a2dbfd9c9ce1db4f9d5"
+                "reference": "0e378193f56d384bf1876290b3d5f9d8c003299b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/00b61d7ac6e02cdace822a2dbfd9c9ce1db4f9d5",
-                "reference": "00b61d7ac6e02cdace822a2dbfd9c9ce1db4f9d5",
+                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/0e378193f56d384bf1876290b3d5f9d8c003299b",
+                "reference": "0e378193f56d384bf1876290b3d5f9d8c003299b",
                 "shasum": ""
             },
             "require": {
@@ -1632,11 +1632,7 @@
                 "laravel",
                 "stripe"
             ],
-            "support": {
-                "issues": "https://github.com/laravel/cashier/issues",
-                "source": "https://github.com/laravel/cashier"
-            },
-            "time": "2020-11-03T14:54:45+00:00"
+            "time": "2020-11-24T16:41:13+00:00"
         },
         {
             "name": "laravel/framework",
@@ -4586,16 +4582,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.65.0",
+            "version": "v7.66.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "d4a22eeec7654efb8476fe8bea95b1e9928025a6"
+                "reference": "0dc50f42b06be83fe7029410616bda6e89c6d2be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/d4a22eeec7654efb8476fe8bea95b1e9928025a6",
-                "reference": "d4a22eeec7654efb8476fe8bea95b1e9928025a6",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/0dc50f42b06be83fe7029410616bda6e89c6d2be",
+                "reference": "0dc50f42b06be83fe7029410616bda6e89c6d2be",
                 "shasum": ""
             },
             "require": {
@@ -4639,7 +4635,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2020-11-19T19:37:25+00:00"
+            "time": "2020-11-24T16:33:56+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -7548,6 +7544,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
