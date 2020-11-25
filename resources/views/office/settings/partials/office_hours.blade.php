@@ -30,7 +30,7 @@
                     ])
                         {{--[monday]--}}
                         <tr>
-                            <td>
+                            <td width="400">
                                 @component('components.forms.toggler', [
                                     'id'        => 'days-monday-enabled',
                                     'name'      => 'days[monday][enabled]',
@@ -103,8 +103,8 @@
                                     </div>
                                     <div class="col-6">
                                         @component('components.forms.select', [
-                                            'id'            => 'days-monday-end_meridiem',
-                                            'name'          => 'days[monday][end_meridiem]',
+                                            'id'            => 'days-monday-end_hour_meridiem',
+                                            'name'          => 'days[monday][end_hour_meridiem]',
                                             'value'         => old('days.monday.end_hour_meridiem')?? $office->getMetaField('office_hours->monday->end_hour_meridiem'),
                                             'placeholder'   => '',
                                             'options'       => App\Models\System\Office::MERIDIUM_TYPES,
@@ -196,8 +196,8 @@
                                     </div>
                                     <div class="col-6">
                                         @component('components.forms.select', [
-                                            'id'            => 'days-tuesday-end_meridiem',
-                                            'name'          => 'days[tuesday][end_meridiem]',
+                                            'id'            => 'days-tuesday-end_hour_meridiem',
+                                            'name'          => 'days[tuesday][end_hour_meridiem]',
                                             'value'         => old('days.tuesday.end_hour_meridiem')?? $office->getMetaField('office_hours->tuesday->end_hour_meridiem'),
                                             'placeholder'   => '',
                                             'options'       => App\Models\System\Office::MERIDIUM_TYPES,
@@ -289,8 +289,8 @@
                                     </div>
                                     <div class="col-6">
                                         @component('components.forms.select', [
-                                            'id'            => 'days-wednesday-end_meridiem',
-                                            'name'          => 'days[wednesday][end_meridiem]',
+                                            'id'            => 'days-wednesday-end_hour_meridiem',
+                                            'name'          => 'days[wednesday][end_hour_meridiem]',
                                             'value'         => old('days.wednesday.end_hour_meridiem')?? $office->getMetaField('office_hours->wednesday->end_hour_meridiem'),
                                             'placeholder'   => '',
                                             'options'       => App\Models\System\Office::MERIDIUM_TYPES,
@@ -382,8 +382,8 @@
                                     </div>
                                     <div class="col-6">
                                         @component('components.forms.select', [
-                                            'id'            => 'days-thursday-end_meridiem',
-                                            'name'          => 'days[thursday][end_meridiem]',
+                                            'id'            => 'days-thursday-end_hour_meridiem',
+                                            'name'          => 'days[thursday][end_hour_meridiem]',
                                             'value'         => old('days.thursday.end_hour_meridiem')?? $office->getMetaField('office_hours->thursday->end_hour_meridiem'),
                                             'placeholder'   => '',
                                             'options'       => App\Models\System\Office::MERIDIUM_TYPES,
@@ -475,8 +475,8 @@
                                     </div>
                                     <div class="col-6">
                                         @component('components.forms.select', [
-                                            'id'            => 'days-friday-end_meridiem',
-                                            'name'          => 'days[friday][end_meridiem]',
+                                            'id'            => 'days-friday-end_hour_meridiem',
+                                            'name'          => 'days[friday][end_hour_meridiem]',
                                             'value'         => old('days.friday.end_hour_meridiem')?? $office->getMetaField('office_hours->friday->end_hour_meridiem'),
                                             'placeholder'   => '',
                                             'options'       => App\Models\System\Office::MERIDIUM_TYPES,
@@ -568,8 +568,8 @@
                                     </div>
                                     <div class="col-6">
                                         @component('components.forms.select', [
-                                            'id'            => 'days-saturday-end_meridiem',
-                                            'name'          => 'days[saturday][end_meridiem]',
+                                            'id'            => 'days-saturday-end_hour_meridiem',
+                                            'name'          => 'days[saturday][end_hour_meridiem]',
                                             'value'         => old('days.saturday.end_hour_meridiem')?? $office->getMetaField('office_hours->saturday->end_hour_meridiem'),
                                             'placeholder'   => '',
                                             'options'       => App\Models\System\Office::MERIDIUM_TYPES,
@@ -661,8 +661,8 @@
                                     </div>
                                     <div class="col-6">
                                         @component('components.forms.select', [
-                                            'id'            => 'days-sunday-end_meridiem',
-                                            'name'          => 'days[sunday][end_meridiem]',
+                                            'id'            => 'days-sunday-end_hour_meridiem',
+                                            'name'          => 'days[sunday][end_hour_meridiem]',
                                             'value'         => old('days.sunday.end_hour_meridiem')?? $office->getMetaField('office_hours->sunday->end_hour_meridiem'),
                                             'placeholder'   => '',
                                             'options'       => App\Models\System\Office::MERIDIUM_TYPES,
