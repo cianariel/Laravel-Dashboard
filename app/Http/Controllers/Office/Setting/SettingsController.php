@@ -110,51 +110,6 @@ class SettingsController extends BaseController
     }
 
     /**
-     * Edit rep visits settings
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function editRepVisitsSettings(Request $request, string $view = '')
-    {
-        $site = site(config('app.base_domain'));
-        $user = auth()->guard(User::GUARD)->user();
-
-        if($user->hasRole(Role::OWNER) ) {
-
-            $office = $user->offices()->first();
-
-            if(filled($section)) {
-                $section = Str::lower(strip_tags(trim($section)));
-            }
-
-            $breadcrumbs = breadcrumbs([
-                __('Dashboard')        => [
-                    'path'          => route('office.dashboard'),
-                    'active'        => false
-                ],
-                __('Settings')      => [
-                    'path'          => route('office.settings.edit'),
-                    'active'        => false
-                ],
-                __('Rep Visits')  => [
-                    'path'          => route('office.settings.edit.general'),
-                    'active'        => true
-                ]
-            ]);
-
-            return view(
-                'office.settings.rep_visits',
-                compact('site', 'user', 'breadcrumbs', 'section', 'office')
-            );
-        }
-
-        flash(__('Unauthorized access.'));
-        return redirect('/');
-    }
-
-
-    /**
      * Edit offices general settings
      *
      * @param  \Illuminate\Http\Request $request

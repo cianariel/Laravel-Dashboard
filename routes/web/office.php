@@ -72,13 +72,6 @@ $routes = [
         'name'          => 'settings.update'
     ],
     [
-        'path'          => 'settings/rep/visits',
-        'type'          => 'get',
-        'controller'    => 'Office\Setting\SettingsController',
-        'method'        => 'editRepVisitsSettings',
-        'name'          => 'settings.edit.rep.visits'
-    ],
-    [
         'path'          => 'settings/rep/visits/{view}',
         'type'          => 'get',
         'controller'    => 'Office\Setting\SettingsController',
