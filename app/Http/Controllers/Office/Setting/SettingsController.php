@@ -423,6 +423,15 @@ class SettingsController extends BaseController
             }
 
             $validatedData = $request->validate($rules);
+
+            foreach($days as $key => $day) {
+                $office->setMetaField('office_hours->'.$key, $day);
+            }
+
+            $office->save();
+
+            flash(__('Successfully saved'));
+            return redirect()->route('office.settings.edit.general.section', 'office_hours');
         }
     }
 
