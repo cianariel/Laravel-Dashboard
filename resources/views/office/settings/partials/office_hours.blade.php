@@ -32,7 +32,7 @@
                         <tr>
                             <td>
                                 @component('components.forms.toggler', [
-                                    'id'        => 'days[monday][enabled]',
+                                    'id'        => 'days-monday-enabled',
                                     'name'      => 'days[monday][enabled]',
                                     'value'     => 'on',
                                     'selected'  => (old('days.monday.enabled') == 'on' || $office->getMetaField('office_hours->monday->enabled') == 'on')? true : false,
@@ -42,9 +42,9 @@
                                         'days-toggler',
                                     ]
                                 ])
-                                    <span class="label-holder">{{ __('Closed') }}</span>
+
                                     @error('days.monday.enabled')
-                                        <span class="font-xxs-size">
+                                        <span class="font-xxs-size fg-red">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -56,11 +56,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days.monday.start_hour',
                                             'name'          => 'days[monday][start_hour]',
-                                            'value'         => (old('days.monday.start_hour') == 'on' || $office->getMetaField('office_hours->monday->start_hour') == 'on')? true : false,
+                                            'value'         => old('days.monday.start_hour')?? $office->getMetaField('office_hours->monday->start_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.monday.start_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -76,7 +76,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.monday.start_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -85,17 +85,17 @@
                                 </div>
                             </td>
                             <td>-</td>
-                            <td>
+                           <td>
                                 <div class="row">
                                     <div class="col-6">
                                         @component('components.forms.input', [
                                             'id'            => 'days-monday-end_hour',
                                             'name'          => 'days[monday][end_hour]',
-                                            'value'         => (old('days.monday.end_hour') == 'on' || $office->getMetaField('office_hours->monday->end_hour') == 'on')? true : false,
+                                            'value'         => old('days.monday.end_hour')?? $office->getMetaField('office_hours->monday->end_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.monday.end_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -111,7 +111,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.monday.end_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -136,9 +136,8 @@
                                         'days-toggler',
                                     ]
                                 ])
-                                    <span class="label-holder">{{ __('Closed') }}</span>
                                     @error('days.tuesday.enabled')
-                                        <span class="font-xxs-size">
+                                        <span class="font-xxs-size fg-red">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -150,11 +149,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days-tuesday-start_hour',
                                             'name'          => 'days[tuesday][start_hour]',
-                                            'value'         => (old('days.tuesday.start_hour') == 'on' || $office->getMetaField('office_hours->tuesday->start_hour') == 'on')? true : false,
+                                            'value'         => old('days.tuesday.start_hour')?? $office->getMetaField('office_hours->tuesday->start_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.tuesday.start_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -170,7 +169,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.tuesday.start_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -185,11 +184,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days-tuesday-end_hour',
                                             'name'          => 'days[tuesday][end_hour]',
-                                            'value'         => (old('days.tuesday.end_hour') == 'on' || $office->getMetaField('office_hours->tuesday->end_hour') == 'on')? true : false,
+                                            'value'         => old('days.tuesday.end_hour')?? $office->getMetaField('office_hours->tuesday->end_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.tuesday.end_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -205,7 +204,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.tuesday.end_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -230,9 +229,8 @@
                                         'days-toggler',
                                     ]
                                 ])
-                                    <span class="label-holder">{{ __('Closed') }}</span>
                                     @error('days.wednesday.enabled')
-                                        <span class="font-xxs-size">
+                                        <span class="font-xxs-size fg-red">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -244,11 +242,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days-wednesday-start_hour',
                                             'name'          => 'days[wednesday][start_hour]',
-                                            'value'         => (old('days.wednesday.start_hour') == 'on' || $office->getMetaField('office_hours->wednesday->start_hour') == 'on')? true : false,
+                                            'value'         => old('days.wednesday.start_hour')?? $office->getMetaField('office_hours->wednesday->start_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.wednesday.start_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -264,7 +262,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.wednesday.start_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -279,11 +277,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days-wednesday-end_hour',
                                             'name'          => 'days[wednesday][end_hour]',
-                                            'value'         => (old('days.wednesday.end_hour') == 'on' || $office->getMetaField('office_hours->wednesday->end_hour') == 'on')? true : false,
+                                            'value'         => old('days.wednesday.end_hour')?? $office->getMetaField('office_hours->wednesday->end_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.wednesday.end_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -299,7 +297,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.wednesday.end_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -324,9 +322,8 @@
                                         'days-toggler',
                                     ]
                                 ])
-                                    <span class="label-holder">{{ __('Closed') }}</span>
                                     @error('days.thursday.enabled')
-                                        <span class="font-xxs-size">
+                                        <span class="font-xxs-size fg-red">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -338,11 +335,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days-thursday-start_hour',
                                             'name'          => 'days[thursday][start_hour]',
-                                            'value'         => (old('days.thursday.start_hour') == 'on' || $office->getMetaField('office_hours->thursday->start_hour') == 'on')? true : false,
+                                            'value'         => old('days.thursday.start_hour')?? $office->getMetaField('office_hours->thursday->start_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.thursday.start_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -358,7 +355,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.thursday.start_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -373,11 +370,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days-thursday-end_hour',
                                             'name'          => 'days[thursday][end_hour]',
-                                            'value'         => (old('days.thursday.end_hour') == 'on' || $office->getMetaField('office_hours->thursday->end_hour') == 'on')? true : false,
+                                            'value'         => old('days.thursday.end_hour')?? $office->getMetaField('office_hours->thursday->end_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.thursday.end_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -393,7 +390,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.thursday.end_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -418,9 +415,8 @@
                                         'days-toggler',
                                     ]
                                 ])
-                                    <span class="label-holder">{{ __('Closed') }}</span>
                                     @error('days.friday.enabled')
-                                        <span class="font-xxs-size">
+                                        <span class="font-xxs-size fg-red">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -432,11 +428,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days-friday-start_hour',
                                             'name'          => 'days[friday][start_hour]',
-                                            'value'         => (old('days.friday.start_hour') == 'on' || $office->getMetaField('office_hours->friday->start_hour') == 'on')? true : false,
+                                            'value'         => old('days.friday.start_hour')?? $office->getMetaField('office_hours->friday->start_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.friday.start_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -452,7 +448,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.friday.start_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -467,11 +463,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days-friday-end_hour',
                                             'name'          => 'days[friday][end_hour]',
-                                            'value'         => (old('days.friday.end_hour') == 'on' || $office->getMetaField('office_hours->friday->end_hour') == 'on')? true : false,
+                                            'value'         => old('days.friday.end_hour')?? $office->getMetaField('office_hours->friday->end_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.friday.end_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -487,7 +483,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.friday.end_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -512,9 +508,8 @@
                                         'days-toggler',
                                     ]
                                 ])
-                                    <span class="label-holder">{{ __('Closed') }}</span>
                                     @error('days.saturday.enabled')
-                                        <span class="font-xxs-size">
+                                        <span class="font-xxs-size fg-red">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -526,11 +521,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days-saturday-start_hour',
                                             'name'          => 'days[saturday][start_hour]',
-                                            'value'         => (old('days.saturday.start_hour') == 'on' || $office->getMetaField('office_hours->saturday->start_hour') == 'on')? true : false,
+                                            'value'         => old('days.saturday.start_hour')?? $office->getMetaField('office_hours->saturday->start_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.saturday.start_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -546,7 +541,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.saturday.start_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -561,11 +556,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days-saturday-end_hour',
                                             'name'          => 'days[saturday][end_hour]',
-                                            'value'         => (old('days.saturday.end_hour') == 'on' || $office->getMetaField('office_hours->saturday->end_hour') == 'on')? true : false,
+                                            'value'         => old('days.saturday.end_hour')?? $office->getMetaField('office_hours->saturday->end_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.saturday.end_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -581,7 +576,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.saturday.end_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -606,9 +601,8 @@
                                         'days-toggler',
                                     ]
                                 ])
-                                    <span class="label-holder">{{ __('Closed') }}</span>
                                     @error('days.sunday.enabled')
-                                        <span class="font-xxs-size">
+                                        <span class="font-xxs-size fg-red">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -620,11 +614,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days-sunday-start_hour',
                                             'name'          => 'days[sunday][start_hour]',
-                                            'value'         => (old('days.sunday.start_hour') == 'on' || $office->getMetaField('office_hours->sunday->start_hour') == 'on')? true : false,
+                                            'value'         => old('days.sunday.start_hour')?? $office->getMetaField('office_hours->sunday->start_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.sunday.start_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -640,7 +634,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.sunday.start_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -655,11 +649,11 @@
                                         @component('components.forms.input', [
                                             'id'            => 'days-sunday-end_hour',
                                             'name'          => 'days[sunday][end_hour]',
-                                            'value'         => (old('days.sunday.end_hour') == 'on' || $office->getMetaField('office_hours->sunday->end_hour') == 'on')? true : false,
+                                            'value'         => old('days.sunday.end_hour')?? $office->getMetaField('office_hours->sunday->end_hour'),
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.sunday.end_hour')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -675,7 +669,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.sunday.end_hour_meridiem')
-                                                <span class="font-xxs-size">
+                                                <span class="font-xxs-size fg-red">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -703,10 +697,3 @@
         @endcomponent
     </div>
 @endcomponent
-<script type="text/javascript">
-<!--
-    jQuery(document).ready(function($){
-        let form = $('#office-settings-office-hours-form');
-    });
-//-->
-</script>
