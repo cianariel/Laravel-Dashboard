@@ -793,11 +793,13 @@ window.mdFormInputToggler = function ($) {
                     toggler.data('selected', false);
                     icon.removeClass(toggle_icon_on);
                     icon.addClass(toggle_icon_off);
+                    input.trigger('change');
                 } else {
                     input.val(value);
                     toggler.data('selected', true);
                     icon.removeClass(toggle_icon_off);
                     icon.addClass(toggle_icon_on);
+                    input.trigger('change');
                 }
 
                 form.trigger('change');

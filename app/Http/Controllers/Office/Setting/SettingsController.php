@@ -420,9 +420,9 @@ class SettingsController extends BaseController
                         }
                         break;
                 }
-
-                $validatedData = $request->validate($rules);
             }
+
+            $validatedData = $request->validate($rules);
         }
     }
 
