@@ -275,6 +275,8 @@ class SettingsController extends BaseController
                     return $this->updateHoldaySettings($request, $site, $user, $office);
                 case 'visitation_rules':
                     return $this->updateVisitationSettings($request, $site, $user, $office);
+                case 'office_hours':
+                    return $this->updateOfficeHours($request, $site, $user, $office);
 
             }
         }
@@ -323,7 +325,105 @@ class SettingsController extends BaseController
      */
     private function updateOfficeHours(Request $request, Site $site, User $user, Office $office)
     {
+        $rules = [
+            'days'                                  => ['nullable', 'array'],
+            'days.monday'                           => ['nullable', 'array'],
+            'days.tuesday'                          => ['nullable', 'array'],
+            'days.wednesday'                        => ['nullable', 'array'],
+            'days.thursday'                         => ['nullable', 'array'],
+            'days.friday'                           => ['nullable', 'array'],
+            'days.saturday'                         => ['nullable', 'array'],
+            'days.sunday'                           => ['nullable', 'array'],
+            'days.monday.enabled'                   => ['nullable', 'string', new SanitizeHtml],
+            'days.tuesday.enabled'                  => ['nullable', 'string', new SanitizeHtml],
+            'days.wednesday.enabled'                => ['nullable', 'string', new SanitizeHtml],
+            'days.thursday.enabled'                 => ['nullable', 'string', new SanitizeHtml],
+            'days.friday.enabled'                   => ['nullable', 'string', new SanitizeHtml],
+            'days.saturday.enabled'                 => ['nullable', 'string', new SanitizeHtml],
+            'days.sunday.enabled'                   => ['nullable', 'string', new SanitizeHtml],
+        ];
 
+        $days = $request->input('days');
+
+        if(filled($days)) {
+
+            foreach($days as $key => $day) {
+                switch($key) {
+                    case 'monday':
+                        if(isset($day['enabled'])) {
+                            if($day['enabled'] == 'on') {
+                                $rules['days.monday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.monday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                                $rules['days.monday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.monday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                            }
+                        }
+                        break;
+                    case 'tuesday':
+                        if(isset($day['enabled'])) {
+                            if($day['enabled'] == 'on') {
+                                $rules['days.tuesday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.tuesday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                                $rules['days.tuesday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.tuesday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                            }
+                        }
+                        break;
+                    case 'wednesday':
+                        if(isset($day['enabled'])) {
+                            if($day['enabled'] == 'on') {
+                                $rules['days.wednesday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.wednesday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                                $rules['days.wednesday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.wednesday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                            }
+                        }
+                        break;
+                    case 'thursday':
+                        if(isset($day['enabled'])) {
+                            if($day['enabled'] == 'on') {
+                                $rules['days.thursday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.thursday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                                $rules['days.thursday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.thursday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                            }
+                        }
+                        break;
+                    case 'friday':
+                        if(isset($day['enabled'])) {
+                            if($day['enabled'] == 'on') {
+                                $rules['days.friday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.friday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                                $rules['days.friday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.friday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                            }
+                        }
+                        break;
+                    case 'saturday':
+                        if(isset($day['enabled'])) {
+                            if($day['enabled'] == 'on') {
+                                $rules['days.saturday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.saturday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                                $rules['days.saturday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.saturday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                            }
+                        }
+                        break;
+                    case 'sunday':
+                        if(isset($day['enabled'])) {
+                            if($day['enabled'] == 'on') {
+                                $rules['days.sunday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.sunday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                                $rules['days.sunday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.sunday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
+                            }
+                        }
+                        break;
+                }
+
+                $validatedData = $request->validate($rules);
+            }
+        }
     }
 
     /**

@@ -32,10 +32,10 @@
                         <tr>
                             <td>
                                 @component('components.forms.toggler', [
-                                    'id'        => 'days-monday-enabled',
+                                    'id'        => 'days[monday][enabled]',
                                     'name'      => 'days[monday][enabled]',
                                     'value'     => 'on',
-                                    'selected'  => (old('days.monday') == 'on' || $office->getMetaField('office_hours->monday->enabled') == 'on')? true : false,
+                                    'selected'  => (old('days.monday.enabled') == 'on' || $office->getMetaField('office_hours->monday->enabled') == 'on')? true : false,
                                     'label'     => __('Monday'),
                                     'size'      => '2x',
                                     'classes'   => [
@@ -43,19 +43,24 @@
                                     ]
                                 ])
                                     <span class="label-holder">{{ __('Closed') }}</span>
+                                    @error('days.monday.enabled')
+                                        <span class="font-xxs-size">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 @endcomponent
                             </td>
                             <td>
                                 <div class="row">
                                     <div class="col-6">
                                         @component('components.forms.input', [
-                                            'id'            => 'days-monday-start_hour',
+                                            'id'            => 'days.monday.start_hour',
                                             'name'          => 'days[monday][start_hour]',
                                             'value'         => (old('days.monday.start_hour') == 'on' || $office->getMetaField('office_hours->monday->start_hour') == 'on')? true : false,
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.monday.start_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -71,7 +76,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.monday.start_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -90,7 +95,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.monday.end_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -106,7 +111,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.monday.end_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -132,6 +137,11 @@
                                     ]
                                 ])
                                     <span class="label-holder">{{ __('Closed') }}</span>
+                                    @error('days.tuesday.enabled')
+                                        <span class="font-xxs-size">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 @endcomponent
                             </td>
                             <td>
@@ -144,7 +154,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.tuesday.start_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -160,7 +170,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.tuesday.start_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -179,7 +189,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.tuesday.end_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -195,7 +205,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.tuesday.end_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -221,6 +231,11 @@
                                     ]
                                 ])
                                     <span class="label-holder">{{ __('Closed') }}</span>
+                                    @error('days.wednesday.enabled')
+                                        <span class="font-xxs-size">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 @endcomponent
                             </td>
                             <td>
@@ -233,7 +248,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.wednesday.start_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -249,7 +264,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.wednesday.start_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -268,7 +283,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.wednesday.end_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -284,7 +299,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.wednesday.end_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -310,6 +325,11 @@
                                     ]
                                 ])
                                     <span class="label-holder">{{ __('Closed') }}</span>
+                                    @error('days.thursday.enabled')
+                                        <span class="font-xxs-size">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 @endcomponent
                             </td>
                             <td>
@@ -322,7 +342,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.thursday.start_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -338,7 +358,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.thursday.start_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -357,7 +377,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.thursday.end_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -373,7 +393,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.thursday.end_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -399,6 +419,11 @@
                                     ]
                                 ])
                                     <span class="label-holder">{{ __('Closed') }}</span>
+                                    @error('days.friday.enabled')
+                                        <span class="font-xxs-size">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 @endcomponent
                             </td>
                             <td>
@@ -411,7 +436,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.friday.start_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -427,7 +452,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.friday.start_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -446,7 +471,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.friday.end_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -462,7 +487,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.friday.end_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -488,6 +513,11 @@
                                     ]
                                 ])
                                     <span class="label-holder">{{ __('Closed') }}</span>
+                                    @error('days.saturday.enabled')
+                                        <span class="font-xxs-size">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 @endcomponent
                             </td>
                             <td>
@@ -500,7 +530,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.saturday.start_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -516,7 +546,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.saturday.start_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -535,7 +565,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.saturday.end_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -551,7 +581,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.saturday.end_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -577,6 +607,11 @@
                                     ]
                                 ])
                                     <span class="label-holder">{{ __('Closed') }}</span>
+                                    @error('days.sunday.enabled')
+                                        <span class="font-xxs-size">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 @endcomponent
                             </td>
                             <td>
@@ -589,7 +624,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.sunday.start_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -605,7 +640,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.sunday.start_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -624,7 +659,7 @@
                                             'placeholder'   => '00:00',
                                         ])
                                             @error('days.sunday.end_hour')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -640,7 +675,7 @@
                                             'withIndex'     => true
                                         ])
                                             @error('days.sunday.end_hour_meridiem')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="font-xxs-size">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
