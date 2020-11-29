@@ -96,7 +96,7 @@
                                             @include('office.settings.partials.rep_assignment')
                                             @break
                                         @case('recurring_appointments')
-                                            @include('office.settings.partials.office_hours')
+                                            @include('office.settings.partials.recurring_appointments')
                                             @break
                                         @default
                                             @include('office.settings.partials.office_info')
