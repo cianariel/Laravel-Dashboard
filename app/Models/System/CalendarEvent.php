@@ -113,19 +113,19 @@ class CalendarEvent extends Model
      * @var array HOLIDAYS
      */
     const HOLIDAYS = [
-        'new_years_eve'     => NEW_YEARS_EVE,
-        'new_years'         => NEW_YEARS_DAY,
-        'mlk_day'           => MLK_DAY,
-        'easter_day'        => EASTER_DAY,
-        'good_friday'       => GOOD_FRIDAY,
-        'presidents_day'    => PRESIDENTS_DAY,
-        'memorial_day'      => MEMORIAL_DAY,
-        'independence_day'  => INDEPENDENCE_DAY,
-        'labor_day'         => LABOR_DAY,
-        'columbus_day'      => COLUMBUS_DAY,
-        'veterans_day'      => VETERANS_DAY,
-        'christmas_eve'     => CHRISTMAS_EVE,
-        'christmas_day'     => CHRISTMAS_DAY,
+        'new_years_eve'     => self::NEW_YEARS_EVE,
+        'new_years'         => self::NEW_YEARS_DAY,
+        'mlk_day'           => self::MLK_DAY,
+        'easter_day'        => self::EASTER_DAY,
+        'good_friday'       => self::GOOD_FRIDAY,
+        'presidents_day'    => self::PRESIDENTS_DAY,
+        'memorial_day'      => self::MEMORIAL_DAY,
+        'independence_day'  => self::INDEPENDENCE_DAY,
+        'labor_day'         => self::LABOR_DAY,
+        'columbus_day'      => self::COLUMBUS_DAY,
+        'veterans_day'      => self::VETERANS_DAY,
+        'christmas_eve'     => self::CHRISTMAS_EVE,
+        'christmas_day'     => self::CHRISTMAS_DAY,
     ];
 
 
