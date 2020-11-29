@@ -75,7 +75,7 @@
                         @enderror
                     @endcomponent
                 </div>
-                <div class="col-9"><label for="appointment-status-confirmed">{{ __('Open') }}</label></div>
+                <div class="col-9"><label for="appointment-status-confirmed">{{ __('Confirmed') }}</label></div>
             </div>
             {{--[/confirmed]--}}
             <h6 class="card-text mb-3 text-uppercase font-weight-normal">{{ __('Appointment Type') }}</h6>
