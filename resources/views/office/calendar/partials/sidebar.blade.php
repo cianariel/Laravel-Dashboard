@@ -78,100 +78,32 @@
                 <div class="col-9"><label for="appointment-status-confirmed">{{ __('Confirmed') }}</label></div>
             </div>
             {{--[/confirmed]--}}
-            <h6 class="card-text mb-3 text-uppercase font-weight-normal">{{ __('Appointment Type') }}</h6>
-            {{--[breakfast]--}}
-            <div class="row">
-                <div class="col-2">
-                    @component('components.forms.checkbox', [
-                        'id'        => 'appointment-type-breakfast',
-                        'name'      => 'appointment[type][breakfast]',
-                        'value'     => old('appointment.type.breakfast')?? 'on',
-                        'checked'   => (old('appointment.type.breakfast') == 'on')? true : false,
-                        'classes'   => [
-                            'text-right',
-                            'mb-0'
-                        ]
-                    ])
-                        @error('appointment.type.breakfast')
-                            <span class="invalid-feedback" role="alert">
-                                <span>{{ $message }}</span>
-                            </span>
-                        @enderror
-                    @endcomponent
+            @if($office->getMetaField('recurring_appointments', false))
+                <h6 class="card-text mb-3 text-uppercase font-weight-normal">{{ __('Appointment Type') }}</h6>
+                {{--[breakfast]--}}
+                <div class="row">
+                    <div class="col-2">
+                        @component('components.forms.checkbox', [
+                            'id'        => 'appointment-type-breakfast',
+                            'name'      => 'appointment[type][breakfast]',
+                            'value'     => old('appointment.type.breakfast')?? 'on',
+                            'checked'   => (old('appointment.type.breakfast') == 'on')? true : false,
+                            'classes'   => [
+                                'text-right',
+                                'mb-0'
+                            ]
+                        ])
+                            @error('appointment.type.breakfast')
+                                <span class="invalid-feedback" role="alert">
+                                    <span>{{ $message }}</span>
+                                </span>
+                            @enderror
+                        @endcomponent
+                    </div>
+                    <div class="col-9"><label for="appointment-type-breakfast">{{ __('Breakfast') }}</label></div>
                 </div>
-                <div class="col-9"><label for="appointment-type-breakfast">{{ __('Breakfast') }}</label></div>
-            </div>
-            {{--[/breakfast]--}}
-            {{--[lunch]--}}
-            <div class="row">
-                <div class="col-2">
-                    @component('components.forms.checkbox', [
-                        'id'        => 'appointment-type-lunch',
-                        'name'      => 'appointment[type][lunch]',
-                        'value'     => old('appointment.type.lunch')?? 'on',
-                        'checked'   => (old('appointment.type.lunch') == 'on')? true : false,
-                        'classes'   => [
-                            'text-right',
-                            'mb-0'
-                        ]
-                    ])
-                        @error('appointment.type.lunch')
-                            <span class="invalid-feedback" role="alert">
-                                <span>{{ $message }}</span>
-                            </span>
-                        @enderror
-                    @endcomponent
-                </div>
-                <div class="col-9"><label for="appointment-type-lunch">{{ __('Lunch') }}</label></div>
-            </div>
-            {{--[/lunch]--}}
-            {{--[dinner]--}}
-            <div class="row">
-                <div class="col-2">
-                    @component('components.forms.checkbox', [
-                        'id'        => 'appointment-type-dinner',
-                        'name'      => 'appointment[type][dinner]',
-                        'value'     => old('appointment.type.dinner')?? 'on',
-                        'checked'   => (old('appointment.type.dinner') == 'on')? true : false,
-                        'classes'   => [
-                            'text-right',
-                            'mb-0'
-                        ]
-                    ])
-                        @error('appointment.type.dinner')
-                            <span class="invalid-feedback" role="alert">
-                                <span>{{ $message }}</span>
-                            </span>
-                        @enderror
-                    @endcomponent
-                </div>
-                <div class="col-9"><label for="appointment-type-dinner">{{ __('Dinner') }}</label></div>
-            </div>
-            {{--[/dinner]--}}
-            {{--[coffee]--}}
-            <div class="row">
-                <div class="col-2">
-                    @component('components.forms.checkbox', [
-                        'id'        => 'appointment-type-coffee',
-                        'name'      => 'appointment[type][coffee]',
-                        'value'     => old('appointment.type.coffee')?? 'on',
-                        'checked'   => (old('appointment.type.coffee') == 'on')? true : false,
-                        'classes'   => [
-                            'text-right',
-                            'mb-0'
-                        ]
-                    ])
-                        @error('appointment.type.coffee')
-                            <span class="invalid-feedback" role="alert">
-                                <span>{{ $message }}</span>
-                            </span>
-                        @enderror
-                    @endcomponent
-                </div>
-                <div class="col-9"><label for="appointment-type-coffee">{{ __('Coffee') }}</label></div>
-            </div>
-            {{--[/coffee]--}}
-
+                {{--[/breakfast]--}}
+            @endif
         @endcomponent
     </div>
 @endcomponent

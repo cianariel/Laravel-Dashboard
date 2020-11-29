@@ -151,7 +151,42 @@
                     </div>
                     {{--[/end-time]--}}
                     {{--[repeats]--}}
-
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            @component('components.forms.select', [
+                                'id'        => 'repeat-type',
+                                'name'      => 'repeat_type',
+                                'options'   => [
+                                    'every_other'   => 'Every Other',
+                                    'Weekly on'     => 'Weekly On'
+                                ],
+                                'value'     => old('repeat_type'),
+                                'label'     =>  __('Repeat')
+                            ])
+                                @error('repeat_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            @endcomponent
+                        </div>
+                        <div class="col-12 col-md-6">
+                            @component('components.forms.select', [
+                                'id'        => 'repeat-day',
+                                'name'      => 'repeat_day',
+                                'value'     => old('repeat_day'),
+                                'options'   => App\Models\System\CalendarEvent::DAYS,
+                                'withIndex' => false,
+                                'label'     => __('Day')
+                            ])
+                                @error('repeat_day')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            @endcomponent
+                        </div>
+                    </div>
                     {{--[/repeats]--}}
                 @endcomponent
             </div>
