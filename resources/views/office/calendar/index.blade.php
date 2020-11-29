@@ -13,11 +13,21 @@
         <div class="row">
             <div class="col-12">
                 @component('components.bootstrap.card', [
-                    'id'    => 'office-calendar-index-card',
-
+                    'layout' => 'card-group'
                 ])
-                    <div class="card-body">
-                    </div>
+                    @include('office.calendar.partials.sidebar')
+                    @component('components.bootstrap.card', [
+                        'id'        => 'office-calendar-index-card',
+                        'classes'   => [
+                        ]
+                    ])
+                        <div class="card-header border-0">
+                            @include('office.calendar.partials.toolbar')
+                        </div>
+                        <div class="card-body">
+
+                        </div>
+                    @endcomponent
                 @endcomponent
             </div>
         </div>
