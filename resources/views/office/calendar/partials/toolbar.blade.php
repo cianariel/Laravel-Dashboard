@@ -43,9 +43,12 @@
                 </div>
                 <div class="col-3">
                     @component('components.elements.link', [
-                        'href'  => '',
+                        'href'  => '#',
                         'attrs' => [
                             'title' => 'Print'
+                        ],
+                        'classes' => [
+                            'fg-blue'
                         ]
                     ])
                         <i class="fas fa-print"></i>

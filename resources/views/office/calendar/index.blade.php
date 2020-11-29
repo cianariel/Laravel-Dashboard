@@ -25,7 +25,40 @@
                             @include('office.calendar.partials.toolbar')
                         </div>
                         <div class="card-body">
+                            @if($calendarEvents->count())
+                            @component('components.elements.table_data',[
+                                'headers' => [
+                                    '',
+                                    '',
+                                    ''
+                                ],
+                                'classes' => [
+                                    'table-hover'
+                                ]
+                            ])
+                                @foreach($calendarEvents as $calendarEvent)
+                                    <tr>
+                                        <td width="15%">
+                                            <strong>{{ Carbon\Carbon::parse($calendarEvent->start_at)->format('j') }}</strong>
+                                            <span>{{ Carbon\Carbon::parse($calendarEvent->start_at)->format('D') }}</span>
+                                        </td>
+                                        <td>
 
+                                        </td>
+                                        <td class="text-right">
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-right">
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endcomponent
+                            @else
+                                <p class="card-text text-center">{{ __('No calendar events found.') }}</p>
+                            @endif
                         </div>
                     @endcomponent
                 @endcomponent
