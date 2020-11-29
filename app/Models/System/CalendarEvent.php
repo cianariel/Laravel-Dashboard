@@ -128,6 +128,53 @@ class CalendarEvent extends Model
         'christmas_day'     => self::CHRISTMAS_DAY,
     ];
 
+    /**
+     * @var string SUNDAY
+     */
+    const SUNDAY = 'sunday';
+
+    /**
+     * @var string MONDAY
+     */
+    const MONDAY = 'monday';
+
+    /**
+     * @var string TUESDAY
+     */
+    const TUESDAY = 'tuesday';
+
+    /**
+     * @var string WEDNESDAY
+     */
+    const WEDNESDAY = 'wednesday';
+
+    /**
+     * @var string THRUSDAY
+     */
+    const THRUSDAY = 'thursday';
+
+    /**
+     * @var string FRIDAY
+     */
+    const FRIDAY = 'friday';
+
+    /**
+     * @var string SATURDAY
+     */
+    const SATURDAY = 'saturday';
+
+    /**
+     * @var array DAYS
+     */
+    const DAYS = [
+        self::SUNDAY,
+        self::MONDAY,
+        self::TUESDAY,
+        self::WEDNESDAY,
+        self::THRUSDAY,
+        self::FRIDAY,
+        self::SATURDAY
+    ];
 
     /**
      * Get New Years Eve
