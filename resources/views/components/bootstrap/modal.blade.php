@@ -21,7 +21,7 @@
                 @if(!isset($buttons))
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $button_label?? __('Close') }}</button>
                 @else
-                    @if(s($buttons)->contains('<') && s($button)->contains('>'))
+                    @if(!is_array($buttons) && s($buttons)->contains('<') && s($buttons)->contains('>'))
                         {!! $buttons !!}
                     @elseif(is_array($buttons) && filled($buttons))
                         @foreach($buttons as $btn)
