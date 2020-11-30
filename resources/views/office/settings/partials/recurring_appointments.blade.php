@@ -12,6 +12,10 @@
             'classes'   => [
                 'btn',
                 'btn-primary'
+            ],
+            'attrs'     => [
+                'data-toggle'   => 'modal',
+                'data-target'   => '#office-settings-recurring-appointments-modal'
             ]
         ])
             {{ __('Add Recurring Appointment') }}
@@ -28,7 +32,17 @@
 @component('components.bootstrap.modal', [
     'id'        => 'office-settings-recurring-appointments-modal',
     'title'     => 'Add Recurring Appointment',
-    'size'      => 'modal-lg'
+    'size'      => 'modal-lg',
+    'options'   => [
+        'backdrop'  => true,
+        'keyboard'  => true,
+        'focus'     => true,
+        'show'      => (request()->input('modal') == 'true')? true: false
+    ],
+    'buttons'   =>
+        '<button type="button" class="btn btn-secondary" data-dismiss="modal">'.__('Cancel').'</button>'.
+        '<button type="button" id="office-settings-recurring-appointments-modal-submit-btn" class="btn btn-primary">'
+        .__('Save').'</button>'
 ])
     <div class="modal-body">
         <div class="row">
@@ -157,8 +171,8 @@
                                 'id'        => 'repeat-type',
                                 'name'      => 'repeat_type',
                                 'options'   => [
-                                    'every_other'   => 'Every Other',
-                                    'Weekly on'     => 'Weekly On'
+                                    'monthly'   => 'Monthly',
+                                    'weekly'    => 'Weekly'
                                 ],
                                 'value'     => old('repeat_type'),
                                 'label'     =>  __('Repeat')
@@ -198,7 +212,13 @@
 <!--
     jQuery(document).ready(function($){
         let modal = $('#office-settings-recurring-appointments-modal');
+        let form = modal.find('#office-settings-recurring-appointments-modal-form');
+        let submitBtn = modal.find('#office-settings-recurring-appointments-modal-submit-btn');
         let addRecurringAptBtn = $('#add-recurring-appointment-btn');
+
+        submitBtn.on('click touchend', function(e){
+            form.submit();
+        });
     });
 //--
 </script>
