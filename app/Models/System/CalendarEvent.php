@@ -37,6 +37,24 @@ class CalendarEvent extends Model
     const INACTIVE = 'inactive';
 
     /**
+     * @var string RECURRING
+     */
+    const RECURRING = 'true';
+
+    /**
+     * @var string NOT_RECURRING
+     */
+    const NOT_RECURRING = 'false';
+
+    /**
+     * @var array RECURRING_TYPES
+     */
+    const RECURRING_TYPES = [
+        self::NOT_RECURRING,
+        self::RECURRING
+    ];
+
+    /**
      * @var array STATUS_TYPES
      */
     const STATUS_TYPES = [
@@ -361,7 +379,8 @@ class CalendarEvent extends Model
         'id'            => 'integer',
         'uuid'          => 'string',
         'title'         => 'string',
-        'meta_fields'   => 'object',
+        'recurring'     => 'string',
+        'meta_fields'   => 'array',
         'start_at'      => 'datetime',
         'ends_at'       => 'datetime',
         'created_at'    => 'datetime',
