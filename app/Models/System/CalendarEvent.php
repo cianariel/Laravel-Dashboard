@@ -37,6 +37,24 @@ class CalendarEvent extends Model
     const INACTIVE = 'inactive';
 
     /**
+     * @var string OFF_SET_VISIT_TYPE
+     */
+    const OFF_SET_VISIT_TYPE = 'off_set_visit';
+
+    /**
+     * @var string REP_VISIT_TYPE
+     */
+    const REP_VISIT_TYPE = 'rep_visit';
+
+    /**
+     * @var array VISIT_TYPES
+     */
+    const VISIT_TYPES = [
+        self::OFF_SET_VISIT_TYPE,
+        self::REP_VISIT_TYPE
+    ];
+
+    /**
      * @var string RECURRING
      */
     const RECURRING = 'true';
@@ -45,6 +63,24 @@ class CalendarEvent extends Model
      * @var string NOT_RECURRING
      */
     const NOT_RECURRING = 'false';
+
+    /**
+     * @var string REPEAT_WEEKLY
+     */
+    const REPEAT_WEEKLY = 'weekly';
+
+    /**
+     * @var string REPEAT_MONTHLY
+     */
+    const REPEAT_MONTHLY = 'monthly';
+
+    /**
+     * @var array REPEAT_TYPES
+     */
+    const REPEAT_TYPES = [
+        self::REPEAT_WEEKLY,
+        self::REPEAT_MONTHLY
+    ];
 
     /**
      * @var array RECURRING_TYPES

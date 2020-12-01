@@ -389,7 +389,6 @@ class SettingsController extends BaseController
     }
 
     /**
-     *
      * Create recurring calendar event
      *
      * @param  \Illuminate\Http\Request $request
@@ -403,17 +402,32 @@ class SettingsController extends BaseController
         if($user->hasRole(Role::OWNER)) {
 
             $rules = [
-                'recurring_appointments_type'   => ['required', 'string'],
-                'section_type'                  => ['required', 'string'],
+                'recurring_appointments_type'   => ['required', 'string', new SanitizeHtml],
+                'section_type'                  => ['required', 'string', Rule::in([CalendarEvent::VISIT_TYPES])],
                 'start_time'                    => ['required', 'date_format:H:m'],
                 'start_time_meridiem'           => ['required', 'string', Rule::in(Office::MERIDIUM_TYPES)],
                 'end_time'                      => ['required', 'date_format:H:m'],
                 'end_time_meridiem'             => ['required', 'string', Rule::in(Office::MERIDIUM_TYPES)],
-                'repeat_type'                   => ['required', 'string', Rule::in(['monthly', 'weekly'])],
+                'repeat_type'                   => ['required', 'string', Rule::in(CalendarEvent::REPEAT_TYPES)],
                 'repeat_day'                    => ['required', 'string', Rule::in(CalendarEvent::DAYS)],
             ];
 
             $validator = Validator::make($request->all(), $rules);
+
+            if($validator->passes()) {
+
+                $office = $user->offices()->first();
+
+                if($recurringAppointments = $office->calendarEvents()->where('recurring', CalendarEvent::RECURRING)->cursor()) {
+
+                }
+            }
+
+            return redirect()->route('office.settings.edit.general.section', [
+                                    'section' => 'recurring_appointments',
+                                    ''
+                            ])->withErrors($validator)
+                              ->withInput();
         }
 
         flash(__('Unauthorized Access'));
