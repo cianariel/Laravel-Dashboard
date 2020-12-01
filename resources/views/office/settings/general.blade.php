@@ -57,15 +57,6 @@
                                     {{ __('Vistation Rules') }}
                                 @endcomponent
                                 @component('components.elements.link', [
-                                    'href'      =>  route('office.settings.edit.general.section', ['section' => 'rep_assignment']),
-                                    'classes'   => [
-                                        'nav-link',
-                                        ($section == 'rep_assignment')? 'active' : 'inactive'
-                                    ]
-                                ])
-                                    {{ __('Rep Assignment Tool') }}
-                                @endcomponent
-                                @component('components.elements.link', [
                                     'href'      =>  route('office.settings.edit.general.section', ['section' => 'recurring_appointments']),
                                     'classes'   => [
                                         'nav-link',
@@ -91,9 +82,6 @@
                                             @break
                                         @case('visitation_rules')
                                             @include('office.settings.partials.visitation_rules')
-                                            @break
-                                        @case('rep_assignment')
-                                            @include('office.settings.partials.rep_assignment')
                                             @break
                                         @case('recurring_appointments')
                                             @include('office.settings.partials.recurring_appointments')

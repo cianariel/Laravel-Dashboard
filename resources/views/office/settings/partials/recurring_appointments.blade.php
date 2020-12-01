@@ -49,8 +49,8 @@
             <div class="col-md-10">
                 @component('components.forms.form', [
                     'id'        => 'office-settings-recurring-appointments-modal-form',
-                    'action'    => route('office.settings.update.general.section', 'recurring_appointments'),
-                    'method'    => 'PUT',
+                    'action'    => route('office.settings.create.recurring.appointment'),
+                    'method'    => 'POST',
                 ])
                     {{--[recurring-appointment-type]--}}
                     @component('components.forms.input', [

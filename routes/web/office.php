@@ -94,10 +94,17 @@ $routes = [
     ],
     [
         'path'          => 'settings/general/{section}',
-        'type'          => 'PUT',
+        'type'          => 'put',
         'controller'    => 'Office\Setting\SettingsController',
         'method'        => 'updateGeneralSettings',
         'name'          => 'settings.update.general.section'
+    ],
+    [
+        'path'          => 'settings/general/recurring_appointments/create',
+        'type'          => 'post',
+        'controller'    => 'Office\Setting\SettingsController',
+        'method'        => 'createRecurringCalendarEvent',
+        'name'          => 'settings.create.recurring.appointment'
     ],
     [
         'path'          => 'settings/offices',
