@@ -357,6 +357,7 @@ class CalendarEvent extends Model
      */
     protected $fillable = [
         'title',
+        'recurring',
         'meta_fields',
         'status',
         'start_at',

@@ -9,6 +9,8 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+use App\Models\System\CalendarEvent;
 use App\Models\System\Country;
 use App\Models\System\Office;
 use App\Models\System\State;
@@ -39,7 +41,7 @@ class SettingsController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->hasRole(Role::OWNER) ) {
+        if($user->hasRole(Role::OWNER)) {
 
             if($user->setup_completed == User::SETUP_COMPLETED) {
 
@@ -175,10 +177,6 @@ class SettingsController extends BaseController
                     return view('office.settings.general',
                         compact('site', 'user', 'breadcrumbs', 'section', 'office')
                     );
-                case 'rep_assignment':
-                    return view('office.settings.general',
-                        compact('site', 'user', 'breadcrumbs', 'section', 'office')
-                    );
                 case 'recurring_appointments':
                     return view('office.settings.general',
                         compact('site', 'user', 'breadcrumbs', 'section', 'office')
@@ -307,9 +305,9 @@ class SettingsController extends BaseController
                     case 'monday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.monday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.monday.start_hour'] = ['required','date_format:H:m'];
                                 $rules['days.monday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.monday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.monday.end_hour'] = ['required','date_format:H:m'];
                                 $rules['days.monday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -317,9 +315,9 @@ class SettingsController extends BaseController
                     case 'tuesday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.tuesday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.tuesday.start_hour'] = ['required','date_format:H:m'];
                                 $rules['days.tuesday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.tuesday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.tuesday.end_hour'] = ['required','date_format:H:m'];
                                 $rules['days.tuesday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -327,9 +325,9 @@ class SettingsController extends BaseController
                     case 'wednesday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.wednesday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.wednesday.start_hour'] = ['required','date_format:H:m'];
                                 $rules['days.wednesday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.wednesday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.wednesday.end_hour'] = ['required','date_format:H:m'];
                                 $rules['days.wednesday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -337,9 +335,9 @@ class SettingsController extends BaseController
                     case 'thursday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.thursday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.thursday.start_hour'] = ['required','date_format:H:m'];
                                 $rules['days.thursday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.thursday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.thursday.end_hour'] = ['required','date_format:H:m'];
                                 $rules['days.thursday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -347,9 +345,9 @@ class SettingsController extends BaseController
                     case 'friday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.friday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.friday.start_hour'] = ['required','date_format:H:m'];
                                 $rules['days.friday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.friday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.friday.end_hour'] = ['required','date_format:H:m'];
                                 $rules['days.friday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -357,9 +355,9 @@ class SettingsController extends BaseController
                     case 'saturday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.saturday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.saturday.start_hour'] = ['required','date_format:H:m'];
                                 $rules['days.saturday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.saturday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.saturday.end_hour'] = ['required','date_format:H:m'];
                                 $rules['days.saturday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -367,9 +365,9 @@ class SettingsController extends BaseController
                     case 'sunday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.sunday.start_hour'] = ['required','date_format:H:i'];
+                                $rules['days.sunday.start_hour'] = ['required','date_format:H:m'];
                                 $rules['days.sunday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.sunday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.sunday.end_hour'] = ['required','date_format:H:m'];
                                 $rules['days.sunday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -388,6 +386,38 @@ class SettingsController extends BaseController
             flash(__('Successfully saved'));
             return redirect()->route('office.settings.edit.general.section', 'office_hours');
         }
+    }
+
+    /**
+     *
+     * Create recurring calendar event
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function createRecurringCalendarEvent(Request $request)
+    {
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        if($user->hasRole(Role::OWNER)) {
+
+            $rules = [
+                'recurring_appointments_type'   => ['required', 'string'],
+                'section_type'                  => ['required', 'string'],
+                'start_time'                    => ['required', 'date_format:H:m'],
+                'start_time_meridiem'           => ['required', 'string', Rule::in(Office::MERIDIUM_TYPES)],
+                'end_time'                      => ['required', 'date_format:H:m'],
+                'end_time_meridiem'             => ['required', 'string', Rule::in(Office::MERIDIUM_TYPES)],
+                'repeat_type'                   => ['required', 'string', Rule::in(['monthly', 'weekly'])],
+                'repeat_day'                    => ['required', 'string', Rule::in(CalendarEvent::DAYS)],
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+        }
+
+        flash(__('Unauthorized Access'));
+        return redirect('/');
     }
 
     /**
