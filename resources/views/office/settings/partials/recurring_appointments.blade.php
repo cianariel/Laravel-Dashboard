@@ -22,7 +22,23 @@
         @endcomponent
     </div>
     <div class="card-body">
-        @if($office->getMetaField('recurring_appointments', false))
+        @if($recurringAppointments = $office->calendarEvents()->where('recurring', App\Models\System\CalendarEvent::RECURRING)->paginate(25))
+            @if($recurringAppointments->count() !== 0)
+                @component('components.elements.table_data', [
+                    'id'        => 'office-settings-recurring-appointments-table',
+                    'header'    => [
+                        '',
+                        ''
+                    ]
+                ])
+                    @foreach($recurringAppointments as $recurringAppointment)
+                        <tr>
+                        </tr>
+                    @endforeach
+                @endcomponent
+            @else
+                <p class="card-text text-center">{{ __('No recuring appointments found.') }}</p>
+            @endif
         @else
             <p class="card-text text-center">{{ __('No recuring appointments found.') }}</p>
         @endif
