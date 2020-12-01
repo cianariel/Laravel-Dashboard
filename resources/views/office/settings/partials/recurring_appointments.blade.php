@@ -28,7 +28,7 @@
                     'id'        => 'office-settings-recurring-appointments-table',
                     'header'    => [
                         '',
-                        ''
+                        '',
                     ]
                 ])
                     @foreach($recurringAppointments as $recurringAppointment)
@@ -136,7 +136,7 @@
                                 'placeholder'   => '',
                                 'withIndex'     => true
                             ])
-                                @error('start_hour_meridiem')
+                                @error('start_time_meridiem')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -191,7 +191,8 @@
                                     'weekly'    => 'Weekly'
                                 ],
                                 'value'     => old('repeat_type'),
-                                'label'     =>  __('Repeat')
+                                'label'     =>  __('Repeat'),
+                                'withIndex' => true,
                             ])
                                 @error('repeat_type')
                                     <span class="invalid-feedback" role="alert">
