@@ -305,9 +305,9 @@ class SettingsController extends BaseController
                     case 'monday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.monday.start_hour'] = ['required','date_format:H:m'];
+                                $rules['days.monday.start_hour'] = ['required','date_format:H:i'];
                                 $rules['days.monday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.monday.end_hour'] = ['required','date_format:H:m'];
+                                $rules['days.monday.end_hour'] = ['required','date_format:H:i'];
                                 $rules['days.monday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -315,9 +315,9 @@ class SettingsController extends BaseController
                     case 'tuesday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.tuesday.start_hour'] = ['required','date_format:H:m'];
+                                $rules['days.tuesday.start_hour'] = ['required','date_format:H:i'];
                                 $rules['days.tuesday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.tuesday.end_hour'] = ['required','date_format:H:m'];
+                                $rules['days.tuesday.end_hour'] = ['required','date_format:H:i'];
                                 $rules['days.tuesday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -325,9 +325,9 @@ class SettingsController extends BaseController
                     case 'wednesday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.wednesday.start_hour'] = ['required','date_format:H:m'];
+                                $rules['days.wednesday.start_hour'] = ['required','date_format:H:i'];
                                 $rules['days.wednesday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.wednesday.end_hour'] = ['required','date_format:H:m'];
+                                $rules['days.wednesday.end_hour'] = ['required','date_format:H:i'];
                                 $rules['days.wednesday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -335,9 +335,9 @@ class SettingsController extends BaseController
                     case 'thursday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.thursday.start_hour'] = ['required','date_format:H:m'];
+                                $rules['days.thursday.start_hour'] = ['required','date_format:H:i'];
                                 $rules['days.thursday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.thursday.end_hour'] = ['required','date_format:H:m'];
+                                $rules['days.thursday.end_hour'] = ['required','date_format:H:i'];
                                 $rules['days.thursday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -345,9 +345,9 @@ class SettingsController extends BaseController
                     case 'friday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.friday.start_hour'] = ['required','date_format:H:m'];
+                                $rules['days.friday.start_hour'] = ['required','date_format:H:i'];
                                 $rules['days.friday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.friday.end_hour'] = ['required','date_format:H:m'];
+                                $rules['days.friday.end_hour'] = ['required','date_format:H:i'];
                                 $rules['days.friday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -355,9 +355,9 @@ class SettingsController extends BaseController
                     case 'saturday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.saturday.start_hour'] = ['required','date_format:H:m'];
+                                $rules['days.saturday.start_hour'] = ['required','date_format:H:i'];
                                 $rules['days.saturday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.saturday.end_hour'] = ['required','date_format:H:m'];
+                                $rules['days.saturday.end_hour'] = ['required','date_format:H:i'];
                                 $rules['days.saturday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -365,9 +365,9 @@ class SettingsController extends BaseController
                     case 'sunday':
                         if(isset($day['enabled'])) {
                             if($day['enabled'] == 'on') {
-                                $rules['days.sunday.start_hour'] = ['required','date_format:H:m'];
+                                $rules['days.sunday.start_hour'] = ['required','date_format:H:i'];
                                 $rules['days.sunday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.sunday.end_hour'] = ['required','date_format:H:m'];
+                                $rules['days.sunday.end_hour'] = ['required','date_format:H:i'];
                                 $rules['days.sunday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -402,12 +402,12 @@ class SettingsController extends BaseController
         if($user->hasRole(Role::OWNER)) {
 
             $rules = [
-                'recurring_appointments_type'   => ['required', 'string', new SanitizeHtml],
-                'section_type'                  => ['required', 'string', Rule::in([CalendarEvent::VISIT_TYPES])],
-                'start_time'                    => ['required', 'date_format:H:m'],
-                'start_time_meridiem'           => ['required', 'string', Rule::in(Office::MERIDIUM_TYPES)],
-                'end_time'                      => ['required', 'date_format:H:m'],
-                'end_time_meridiem'             => ['required', 'string', Rule::in(Office::MERIDIUM_TYPES)],
+                'recurring_appointments_type'   => ['required', 'string', 'max:50', new SanitizeHtml],
+                'section_type'                  => ['required', 'string', Rule::in(CalendarEvent::VISIT_TYPES)],
+                'start_time'                    => ['required', 'date_format:H:i'],
+                'start_time_meridiem'           => ['required', 'string', Rule::in(['am', 'pm'])],
+                'end_time'                      => ['required', 'date_format:H:i'],
+                'end_time_meridiem'             => ['required', 'string', Rule::in(['am', 'pm'])],
                 'repeat_type'                   => ['required', 'string', Rule::in(CalendarEvent::REPEAT_TYPES)],
                 'repeat_day'                    => ['required', 'string', Rule::in(CalendarEvent::DAYS)],
             ];
@@ -417,15 +417,51 @@ class SettingsController extends BaseController
             if($validator->passes()) {
 
                 $office = $user->offices()->first();
+                $title = $request->input('recurring_appointments_type');
+                $sectionType = $request->input('section_type');
+                $startTime = $request->input('start_time');
+                $startTimeMeridiem = $request->input('start_time_meridiem');
+                $endTime = $request->input('start_time');
+                $endTimeMeridiem = $request->input('start_time_meridiem');
+                $repeatType = $request->input('repeat_type');
+                $repeatDay = $request->input('repeat_day');
+                $startTimeFormated = \Carbon\Carbon::parse($startTime . $startTimeMeridiem);
+                $endTimeFormated = \Carbon\Carbon::parse($endTime . $endTimeMeridiem);
 
-                if($recurringAppointments = $office->calendarEvents()->where('recurring', CalendarEvent::RECURRING)->cursor()) {
+                if($calendarEvents = $office->calendarEvents()->where('recurring', CalendarEvent::RECURRING)->cursor()) {
 
+                    if($calendarEvents->count() !== 0) {
+
+                    } else {
+
+                        $calendarEvent = new CalendarEvent;
+                        $calendarEvent->uuid = Str::uuid();
+                        $calendarEvent->title = $title;
+                        $calendarEvent->recurring = CalendarEvent::RECURRING;
+                        $calendarEvent->status = CalendarEvent::ACTIVE;
+                        $calendarEvent->start_at = $startTimeFormated;
+                        $calendarEvent->ends_at = $endTimeFormated;
+                        $calendarEvent->setMetaField('type', $sectionType);
+                        $calendarEvent->setMetaField('repeat_type', $repeatType);
+                        $calendarEvent->setMetaField('repeat_day', $repeatDay);
+
+                        $calendarEvent->save();
+
+                        $office->assignCalendarEvent($calendarEvent);
+                        $site->assignCalendarEvent($calendarEvent);
+
+                        flash(__('Successfully saved recurring appointment.'));
+
+                        return redirect()->route('office.settings.edit.general.section', [
+                                    'section'   => 'recurring_appointments']
+                               );
+                    }
                 }
             }
 
             return redirect()->route('office.settings.edit.general.section', [
-                                    'section' => 'recurring_appointments',
-                                    ''
+                                    'section'   => 'recurring_appointments',
+                                    'modal'     => 'true'
                             ])->withErrors($validator)
                               ->withInput();
         }
