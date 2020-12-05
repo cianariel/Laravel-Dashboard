@@ -30,6 +30,7 @@ mix.sass('resources/sass/app.scss', 'public/css')
         'bootstrap',
         'js-cookie',
         'autosize',
+        'timepicker',
         'daterangepicker',
         'owl.carousel',
         'parsleyjs',

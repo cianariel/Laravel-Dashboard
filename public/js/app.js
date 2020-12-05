@@ -27456,6 +27456,10 @@ try {
 } catch (e) {}
 
 try {
+  window.timepicker = __webpack_require__(/*! timepicker */ "./node_modules/timepicker/jquery.timepicker.min.js");
+} catch (e) {}
+
+try {
   window.daterangepicker = __webpack_require__(/*! daterangepicker */ "./node_modules/daterangepicker/daterangepicker.js");
 } catch (e) {}
 
@@ -28229,10 +28233,34 @@ window.mdDatePicker = function ($) {
       var input = parent.find('input[type="text"]');
 
       if (!options) {
-        options = {};
+        options = {
+          singleDatePicker: true
+        };
       }
 
       input.daterangepicker(options);
+    });
+  }
+}; // Date Picker
+//-----------------------------------------//
+
+
+window.mdTimePicker = function ($) {
+  var timePickers = $('.md-time-picker');
+
+  if (timePickers.length !== 0) {
+    timePickers.each(function (index) {
+      var parent = $(this);
+      var options = {
+        timeFormat: 'h:i A',
+        interval: 10,
+        dynamic: true,
+        dropdown: true,
+        scrollbar: true,
+        step: 5
+      };
+      var input = parent.find('input[type="text"]');
+      input.timepicker(options);
     });
   }
 }; // On Document Ready
@@ -28281,7 +28309,9 @@ jQuery(document).ready(function ($) {
 
   mdVerticalTabs($); // Date Picker
 
-  mdDatePicker($);
+  mdDatePicker($); // Time Picker
+
+  mdTimePicker($);
 });
 
 /***/ }),

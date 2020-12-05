@@ -134,14 +134,14 @@
                         @enderror
                     @endcomponent
                     {{--[/section-type]--}}
-                    {{--[start-time]--}}
                     <div class="row">
-                        <div class="col-9">
-                            @component('components.forms.input', [
+                        {{--[start-time]--}}
+                        <div class="col-6">
+                            @component('components.forms.timepicker', [
                                 'id'            => 'start-time',
                                 'name'          => 'start_time',
                                 'value'         => old('start_time'),
-                                'placeholder'   => '00:00',
+                                'placeholder'   => '12:00AM',
                                 'label'         => __('Start Time')
                             ])
                                 @error('start_time')
@@ -151,32 +151,14 @@
                                 @enderror
                             @endcomponent
                         </div>
-                        <div class="col-3">
-                            @component('components.forms.select', [
-                                'id'            => 'start-time-meridiem',
-                                'name'          => 'start_time_meridiem',
-                                'options'       => App\Models\System\Office::MERIDIUM_TYPES,
-                                'value'         => old('start_time_meridiem'),
-                                'placeholder'   => '',
-                                'withIndex'     => true
-                            ])
-                                @error('start_time_meridiem')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            @endcomponent
-                        </div>
-                    </div>
-                    {{--[/start-time]--}}
-                    {{--[end-time]--}}
-                    <div class="row">
-                        <div class="col-9">
-                            @component('components.forms.input', [
+                        {{--[/start-time]--}}
+                        {{--[end-time]--}}
+                        <div class="col-6">
+                            @component('components.forms.timepicker', [
                                 'id'            => 'end-time',
                                 'name'          => 'end_time',
                                 'value'         => old('end_time'),
-                                'placeholder'   => '00:00',
+                                'placeholder'   => '1:00PM',
                                 'label'         => __('End Time')
                             ])
                                 @error('end_time')
@@ -186,24 +168,8 @@
                                 @enderror
                             @endcomponent
                         </div>
-                        <div class="col-3">
-                            @component('components.forms.select', [
-                                'id'            => 'end-time-meridiem',
-                                'name'          => 'end_time_meridiem',
-                                'options'       => App\Models\System\Office::MERIDIUM_TYPES,
-                                'value'         => old('end_time_meridiem'),
-                                'placeholder'   => '',
-                                'withIndex'     => true
-                            ])
-                                @error('end_time_meridiem')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            @endcomponent
-                        </div>
+                        {{--[/end-time]--}}
                     </div>
-                    {{--[/end-time]--}}
                     {{--[repeats]--}}
                     <div class="row">
                         <div class="col-12 col-md-6">
@@ -243,8 +209,11 @@
                                 @enderror
                             @endcomponent
                             @component('components.forms.datepicker', [
-                                'id'    => 'month-day',
-                                'name'  => 'month_day',
+                                'id'                => 'month-day',
+                                'name'              => 'month_day',
+                                'required_if'       => 'repeat_type',
+                                'required_if_value' => 'weekly',
+                                'value'             => old('month_day')
                             ])
                             @endcomponent
                         </div>
