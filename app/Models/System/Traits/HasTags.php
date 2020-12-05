@@ -88,7 +88,7 @@ trait HasTags
             }
 
             if ($tag instanceof Tag) {
-                return ($this->tags()->save($tag))? true : false;
+                return ($this->tags()->save($tag)) ? true : false;
             } else {
                 return false;
             }
@@ -119,7 +119,7 @@ trait HasTags
             }
 
             if ($tag instanceof Tag) {
-                return ($this->tags()->detach($tag->id))? true : false;
+                return ($this->tags()->detach($tag->id)) ? true : false;
             }
         }
 

@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 class DelimitedRule implements Rule
 {
     /**
-     * @var string|array|\Illuminate\Contracts\Validation\Rule 
+     * @var string|array|\Illuminate\Contracts\Validation\Rule
      */
     protected $rule;
 
@@ -34,12 +34,12 @@ class DelimitedRule implements Rule
     protected $separatedBy = ',';
 
     /**
-     * @var bool 
+     * @var bool
      */
     protected $trimItems = true;
 
     /**
-     * @var string 
+     * @var string
      */
     protected $validationMessageWord = 'item';
 
@@ -106,7 +106,8 @@ class DelimitedRule implements Rule
         if (! is_null($this->minimum)) {
             if ($items->count() < $this->minimum) {
                 $this->message = __(
-                    'validationRules::messages.delimited.min', [
+                    'validationRules::messages.delimited.min',
+                    [
                     'min' => $this->minimum,
                     'actual' => $items->count(),
                     'item' => Str::plural($this->validationMessageWord, $items->count()),
@@ -120,7 +121,8 @@ class DelimitedRule implements Rule
         if (! is_null($this->maximum)) {
             if ($items->count() > $this->maximum) {
                 $this->message = __(
-                    'validationRules::messages.delimited.max', [
+                    'validationRules::messages.delimited.max',
+                    [
                     'max' => $this->maximum,
                     'actual' => $items->count(),
                     'item' => Str::plural($this->validationMessageWord, $items->count()),

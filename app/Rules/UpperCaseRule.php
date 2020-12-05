@@ -18,7 +18,7 @@ class UpperCaseRule implements Rule
     /**
      * Determine if the validation rule passes.
      **/
-    public function passes($attribute, $value) : bool
+    public function passes($attribute, $value): bool
     {
         return mb_strtoupper($value) === $value;
     }
@@ -26,7 +26,7 @@ class UpperCaseRule implements Rule
     /**
      * Get the validation error message.
      **/
-    public function message() : string
+    public function message(): string
     {
         return 'The :attribute must be entirely uppercase text';
     }

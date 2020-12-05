@@ -21,10 +21,10 @@ use App\Models\Shared\Model;
  */
 class Forum extends Model implements Searchable
 {
-    use HasForumDiscussions,
-        HasForumCategories,
-        HasForumPosts,
-        SoftDeletes;
+    use HasForumDiscussions;
+    use HasForumCategories;
+    use HasForumPosts;
+    use SoftDeletes;
 
     /**
      * Database table for model

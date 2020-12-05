@@ -88,7 +88,7 @@ trait HasOffices
             }
 
             if ($office instanceof Office) {
-                return ($this->offices()->save($office))? true : false;
+                return ($this->offices()->save($office)) ? true : false;
             } else {
                 return false;
             }
@@ -119,7 +119,7 @@ trait HasOffices
             }
 
             if ($office instanceof Office) {
-                return ($this->offices()->detach($office->id))? true : false;
+                return ($this->offices()->detach($office->id)) ? true : false;
             }
         }
 

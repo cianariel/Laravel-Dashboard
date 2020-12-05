@@ -80,7 +80,7 @@ trait HasAppointments
             }
 
             if ($appointment instanceof Appointment) {
-                return ($this->appointments()->save($appointment))? true : false;
+                return ($this->appointments()->save($appointment)) ? true : false;
             } else {
                 return false;
             }
@@ -107,7 +107,7 @@ trait HasAppointments
             }
 
             if ($appointment instanceof Appointment) {
-                return ($this->appointments()->detach($appointment->id))? true : false;
+                return ($this->appointments()->detach($appointment->id)) ? true : false;
             }
         }
 

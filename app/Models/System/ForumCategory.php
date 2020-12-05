@@ -17,8 +17,8 @@ use App\Models\Shared\Model;
  */
 class ForumCategory extends Model
 {
-    use HasForumDiscussions,
-        SoftDeletes;
+    use HasForumDiscussions;
+    use SoftDeletes;
 
     /**
      * Database table for model

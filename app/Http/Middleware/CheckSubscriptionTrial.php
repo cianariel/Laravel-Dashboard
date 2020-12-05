@@ -35,7 +35,7 @@ class CheckSubscriptionTrial
 
                     $subscription = $user->subscription('default');
 
-                    flash('Your 15 day trial expires in ' . Carbon::parse($subscription->trial_ends_at)->diffForHumans() . '. <a href="#" class="font-weight-bold">'.__('Click here to activate full subscription.').'</a>')->warning();
+                    flash('Your 15 day trial expires in ' . Carbon::parse($subscription->trial_ends_at)->diffForHumans() . '. <a href="#" class="font-weight-bold">' . __('Click here to activate full subscription.') . '</a>')->warning();
                 }
             }
         }

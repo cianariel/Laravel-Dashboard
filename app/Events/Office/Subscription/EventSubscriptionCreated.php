@@ -13,7 +13,9 @@ use App\Models\System\User;
 
 class EventSubscriptionCreated
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
 
     /**

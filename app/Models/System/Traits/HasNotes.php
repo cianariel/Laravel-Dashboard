@@ -35,7 +35,7 @@ trait HasNotes
      */
     public function hasNotes(): bool
     {
-        return ($this->notes()->count() !== 0)? true : false;
+        return ($this->notes()->count() !== 0) ? true : false;
     }
 
     /**
@@ -75,7 +75,7 @@ trait HasNotes
             }
 
             if ($note instanceof Note) {
-                return ($this->notes()->save($note))? true : false;
+                return ($this->notes()->save($note)) ? true : false;
             } else {
                 return false;
             }
@@ -100,7 +100,7 @@ trait HasNotes
             }
 
             if ($note instanceof Note) {
-                return ($this->notes()->detach($note->id))? true : false;
+                return ($this->notes()->detach($note->id)) ? true : false;
             }
         }
 

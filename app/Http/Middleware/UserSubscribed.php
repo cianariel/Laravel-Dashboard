@@ -22,7 +22,7 @@ class UserSubscribed
         if ($request->guard(User::GUARD)->user()) {
             $user = $request->user();
 
-            if($user->hasRole(Role::OWNER)) {
+            if ($user->hasRole(Role::OWNER)) {
                 // Check if user hasn't paid subscription.
                 if ($user->setup_completed == User::SETUP_COMPLETED && $user->subscribed('default') !== true) {
                     // redirect to billing

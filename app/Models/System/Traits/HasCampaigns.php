@@ -34,7 +34,7 @@ trait HasCampaigns
      */
     public function hasCampaigns(): bool
     {
-        return ($this->campaigns()->count() !== 0)? true : false;
+        return ($this->campaigns()->count() !== 0) ? true : false;
     }
 
     /**
@@ -78,7 +78,7 @@ trait HasCampaigns
             }
 
             if ($campaign instanceof Campaign) {
-                return ($this->campaigns()->save($campaign))? true : false;
+                return ($this->campaigns()->save($campaign)) ? true : false;
             } else {
                 return false;
             }
@@ -99,11 +99,11 @@ trait HasCampaigns
     {
         if ($this->hasCampaign($campaign)) {
             if (is_numeric($campaign) && is_finite(intval($campaign))) {
-                return ($this->campaigns()->detach(intval($campaign)))? true : false;
+                return ($this->campaigns()->detach(intval($campaign))) ? true : false;
             }
 
             if ($campaign instanceof Campaign) {
-                return ($this->campaigns()->detach($campaign->id))? true : false;
+                return ($this->campaigns()->detach($campaign->id)) ? true : false;
             }
         }
 

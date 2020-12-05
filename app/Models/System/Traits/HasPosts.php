@@ -34,7 +34,7 @@ trait HasPosts
      */
     public function hasPosts(): bool
     {
-        return ($this->posts->count() !== 0)? true : false;
+        return ($this->posts->count() !== 0) ? true : false;
     }
 
     /**
@@ -78,7 +78,7 @@ trait HasPosts
             }
 
             if ($post instanceof Post) {
-                return ($this->posts()->save($post))? true : false;
+                return ($this->posts()->save($post)) ? true : false;
             } else {
                 return false;
             }
@@ -104,7 +104,7 @@ trait HasPosts
             }
 
             if ($post instanceof Post) {
-                return ($this->posts()->detach($post->id))? true : false;
+                return ($this->posts()->detach($post->id)) ? true : false;
             }
         }
 

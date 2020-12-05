@@ -26,7 +26,6 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
     use RegistersUsers;
 
     /**
@@ -56,10 +55,10 @@ class RegisterController extends Controller
     {
         $rules = [
             'account_type'          => ['required', 'string', Rule::in(Role::OWNER, Role::USER)],
-            'title'                 => ['required', 'string', 'max:100', new SanitizeHtml],
-            'company'               => ['required', 'string', 'max:150', new SanitizeHtml],
-            'first_name'            => ['required', 'string', 'max:50', new SanitizeHtml],
-            'last_name'             => ['required', 'string', 'max:50', new SanitizeHtml],
+            'title'                 => ['required', 'string', 'max:100', new SanitizeHtml()],
+            'company'               => ['required', 'string', 'max:150', new SanitizeHtml()],
+            'first_name'            => ['required', 'string', 'max:50', new SanitizeHtml()],
+            'last_name'             => ['required', 'string', 'max:50', new SanitizeHtml()],
             'email'                 => ['required', 'email', 'unique:system.users,email'],
             'password'              => ['required', 'max:16', 'confirmed'],
             'g-recaptcha-response'  => ['required', 'captcha']
@@ -80,7 +79,7 @@ class RegisterController extends Controller
 
         $role = Role::where('name', $data['account_type'])->first();
 
-        $user = new User;
+        $user = new User();
         $user->uuid = Str::uuid();
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
@@ -99,7 +98,7 @@ class RegisterController extends Controller
         $user->assignRole($role);
         $site->assignUser($user);
 
-        if($role->name == Role::OWNER) {
+        if ($role->name == Role::OWNER) {
             $this->redirectTo = route('office.setup.account');
         }
 

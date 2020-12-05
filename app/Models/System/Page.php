@@ -17,8 +17,8 @@ use App\Models\Shared\Model;
  */
 class Page extends Model implements HasMedia
 {
-    use HasMediaTrait,
-        SoftDeletes;
+    use HasMediaTrait;
+    use SoftDeletes;
 
     /**
      * The database table used by the model.

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use \Stripe\Stripe as Stripe;
+use Stripe\Stripe as Stripe;
 use App\Models\Shared\Model;
 
 /**

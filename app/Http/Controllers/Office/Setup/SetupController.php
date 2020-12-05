@@ -22,9 +22,9 @@ use App\Models\System\Payment;
 use App\Rules\CreditCardRule;
 use App\Rules\PhoneRule;
 use App\Rules\SanitizeHtml;
-use \Stripe\Stripe as Stripe;
-use \Stripe\Exception\InvalidRequestException;
-use \Stripe\Exception\CardException;
+use Stripe\Stripe as Stripe;
+use Stripe\Exception\InvalidRequestException;
+use Stripe\Exception\CardException;
 use Laravel\Cashier\Exceptions\SubscriptionUpdateFailure;
 use App\Events\Office\Subscription\EventSubscriptionCreated;
 use Exception;
@@ -60,8 +60,7 @@ class SetupController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->setup_completed != User::SETUP_COMPLETED) {
-
+        if ($user->setup_completed != User::SETUP_COMPLETED) {
             $countries = countries(false);
             $_countries = [];
 
@@ -90,9 +89,7 @@ class SetupController extends BaseController
                 'office/setup/profile',
                 compact('site', 'user', 'countries', 'breadcrumbs')
             );
-
-        } elseif($user->hasRole(Role::GUEST)) {
-
+        } elseif ($user->hasRole(Role::GUEST)) {
             flash(__('Please contact office owner. Account requires profile setup.'));
             return redirect('/');
         }
@@ -112,25 +109,24 @@ class SetupController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->setup_completed != User::SETUP_COMPLETED) {
-
+        if ($user->setup_completed != User::SETUP_COMPLETED) {
             $rules = [
-                'office'        => ['required', 'string', 'max:100', new SanitizeHtml],
-                'first_name'    => ['required', 'string', 'max:100', new SanitizeHtml],
-                'last_name'     => ['required', 'string', 'max:100', new SanitizeHtml],
-                'address'       => ['required', 'string', 'max:100', new SanitizeHtml],
-                'address_2'     => ['nullable', 'string', 'max:100', new SanitizeHtml],
-                'city'          => ['required', 'string', 'max:100', new SanitizeHtml],
-                'zipcode'       => ['required', 'string', 'max:25', new SanitizeHtml],
-                'state'         => ['required', 'string', 'max:100', new SanitizeHtml],
+                'office'        => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'first_name'    => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'last_name'     => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'address'       => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'address_2'     => ['nullable', 'string', 'max:100', new SanitizeHtml()],
+                'city'          => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'zipcode'       => ['required', 'string', 'max:25', new SanitizeHtml()],
+                'state'         => ['required', 'string', 'max:100', new SanitizeHtml()],
                 'country'       => ['required', 'string', 'exists:system.countries,code', Rule::in(['US'])],
-                'phone'         => ['required', 'string', new PhoneRule, new SanitizeHtml],
-                'mobile_phone'  => ['required', 'string', new PhoneRule, new SanitizeHtml]
+                'phone'         => ['required', 'string', new PhoneRule(), new SanitizeHtml()],
+                'mobile_phone'  => ['required', 'string', new PhoneRule(), new SanitizeHtml()]
             ];
 
             $validatedData = $request->validate($rules);
 
-            $office = new Office;
+            $office = new Office();
             $office->uuid = Str::uuid();
             $office->name = unique_name('office', $request->input('office'));
             $office->label = $request->input('office');
@@ -178,8 +174,7 @@ class SetupController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if(!$user->subscribed('default')) {
-
+        if (!$user->subscribed('default')) {
             $countries = countries(false);
             $_countries = [];
 
@@ -232,23 +227,23 @@ class SetupController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->subscribed('default') === true) {
+        if ($user->subscribed('default') === true) {
             return redirect()->route('office.dashboard');
         }
 
         $rules = [
-            'packages.*'        => ['nullable', 'string', 'exists:system.packages,name', new SanitizeHtml],
-            'first_name'        => ['required', 'string', 'max:50', new SanitizeHtml],
-            'last_name'         => ['required', 'string', 'max:50', new SanitizeHtml],
-            'address'           => ['required', 'string', 'max:100', new SanitizeHtml],
-            'address_2'         => ['nullable', 'string', 'max:100', new SanitizeHtml],
-            'city'              => ['required', 'string', 'max:50', new SanitizeHtml],
-            'state'             => ['required', 'string', 'max:50', new SanitizeHtml],
-            'zipcode'           => ['required', 'string', 'max:25', new SanitizeHtml],
+            'packages.*'        => ['nullable', 'string', 'exists:system.packages,name', new SanitizeHtml()],
+            'first_name'        => ['required', 'string', 'max:50', new SanitizeHtml()],
+            'last_name'         => ['required', 'string', 'max:50', new SanitizeHtml()],
+            'address'           => ['required', 'string', 'max:100', new SanitizeHtml()],
+            'address_2'         => ['nullable', 'string', 'max:100', new SanitizeHtml()],
+            'city'              => ['required', 'string', 'max:50', new SanitizeHtml()],
+            'state'             => ['required', 'string', 'max:50', new SanitizeHtml()],
+            'zipcode'           => ['required', 'string', 'max:25', new SanitizeHtml()],
             'country'           => ['required', 'string', 'exists:countries,code'],
-            'card_holder_name'  => ['required', 'string', 'max:255', new SanitizeHtml],
-            'stripeToken'       => ['required', 'string', 'max:255', new SanitizeHtml],
-            'payment_method'    => ['required', 'string', 'max:255', new SanitizeHtml]
+            'card_holder_name'  => ['required', 'string', 'max:255', new SanitizeHtml()],
+            'stripeToken'       => ['required', 'string', 'max:255', new SanitizeHtml()],
+            'payment_method'    => ['required', 'string', 'max:255', new SanitizeHtml()]
         ];
 
         $validatedData = $request->validate($rules);
@@ -256,11 +251,11 @@ class SetupController extends BaseController
         $packagesSelectedCount = 0;
 
         // Allow only one package to be selected.
-        if($packagesSelected = $request->input('packages')) {
-            if(count($packagesSelected)) {
-                foreach($packagesSelected as $packageSelected) {
-                    if(filled($packageSelected)) {
-                        if($packagesSelectedCount <= 0) {
+        if ($packagesSelected = $request->input('packages')) {
+            if (count($packagesSelected)) {
+                foreach ($packagesSelected as $packageSelected) {
+                    if (filled($packageSelected)) {
+                        if ($packagesSelectedCount <= 0) {
                             $packagesSelectedCount = 1;
                         } else {
                             flash(__('Can not select more one then one subscription plan'));
@@ -295,11 +290,11 @@ class SetupController extends BaseController
         try {
             $stripeCustomer = $user->createOrGetStripeCustomer(
                 [
-                'name'              => (filled($user->company))? $user->first_name . ' ' . $user->last_name . '(' . $user->company . ')' : $user->first_name . ' ' . $user->last_name,
+                'name'              => (filled($user->company)) ? $user->first_name . ' ' . $user->last_name . '(' . $user->company . ')' : $user->first_name . ' ' . $user->last_name,
                 'description'       => $user->username,
                 'address'           => [
                     'line1'         => $user->address,
-                    'line2'         => $user->address_2?? '',
+                    'line2'         => $user->address_2 ?? '',
                     'city'          => $user->city,
                     'state'         => $user->state,
                     'postal_code'   => $user->zipcode,
@@ -417,8 +412,7 @@ class SetupController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->subscribed('default') == true) {
-
+        if ($user->subscribed('default') == true) {
             $breadcrumbs = breadcrumbs(
                 [
                 __('Dashboard') => [

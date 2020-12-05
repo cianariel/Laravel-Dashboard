@@ -28085,6 +28085,14 @@ window.mdRequireIfFormInput = function ($) {
     var require_input = $('#' + input.data('required-if'));
     var require_value = input.data('required-if-value');
 
+    if (require_value == true || require_value == 'true') {
+      require_value = 'true';
+    }
+
+    if (require_value == false || require_value == 'false') {
+      require_value = 'false';
+    }
+
     if (require_input.val() == require_value) {
       input.removeClass('hidden');
     }
@@ -28178,21 +28186,53 @@ window.mdFeatherIcons = function () {
 window.mdVerticalTabs = function ($) {
   var nav = $('.md-nav-vertical-tabs');
   links = nav.find('.nav-link');
-  var tabsContentBlocks = $('.md-nav-vertical-tabs-content .md-tab-block');
+  var tabsContentBlocks = $('.md-nav-vertical-tabs-content .wv-tab-block');
 
   if (links.length !== 0 && tabsContentBlocks.length !== 0) {
-    links.on('click touchend', function (e) {
-      e.preventDefault();
+    links.each(function (index) {
       var link = $(this);
       var id = link.attr('href');
       var block = $(id);
 
-      if (id.length !== 0) {
+      if (MD.getUriHash() == id) {
         links.removeClass('active');
         tabsContentBlocks.addClass('hidden');
         link.addClass('active');
+        MD.setUriHash(id);
         block.removeClass('hidden');
       }
+
+      link.on('click touchend', function (e) {
+        e.preventDefault();
+
+        if (id.length !== 0) {
+          links.removeClass('active');
+          tabsContentBlocks.addClass('hidden');
+          link.addClass('active');
+          MD.setUriHash(id);
+          block.removeClass('hidden');
+        }
+      });
+    });
+  }
+}; // Date Picker
+//-----------------------------------------//
+
+
+window.mdDatePicker = function ($) {
+  var datePickers = $('.md-date-picker');
+
+  if (datePickers.length !== 0) {
+    datePickers.each(function (index) {
+      var parent = $(this);
+      var options = parent.data('options');
+      var input = parent.find('input[type="text"]');
+
+      if (!options) {
+        options = {};
+      }
+
+      input.daterangepicker(options);
     });
   }
 }; // On Document Ready
@@ -28237,8 +28277,11 @@ jQuery(document).ready(function ($) {
 
   mdFormInputToggler($); // Feather Icons
 
-  mdFeatherIcons();
-  mdVerticalTabs($);
+  mdFeatherIcons(); // Tabs
+
+  mdVerticalTabs($); // Date Picker
+
+  mdDatePicker($);
 });
 
 /***/ }),

@@ -86,7 +86,7 @@ trait HasTranslations
             }
 
             if ($translation instanceof Translation) {
-                return ($this->translations()->save($translation))? true : false;
+                return ($this->translations()->save($translation)) ? true : false;
             } else {
                 return false;
             }
@@ -117,7 +117,7 @@ trait HasTranslations
             }
 
             if ($translation instanceof Translation) {
-                return ($this->translations()->detach($translation->id))? true : false;
+                return ($this->translations()->detach($translation->id)) ? true : false;
             }
         }
 

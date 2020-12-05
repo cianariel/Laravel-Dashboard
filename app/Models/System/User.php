@@ -36,19 +36,19 @@ use App\Models\Shared\Authenticatable;
  */
 class User extends Authenticatable implements Searchable, HasMedia, MustVerifyEmail
 {
-    use Notifiable,
-        Billable,
-        HasRoles,
-        HasOffices,
-        HasOrders,
-        HasCarts,
-        HasPayments,
-        HasReviews,
-        HasSettings,
-        HasMediaTrait,
-        HasMessages,
-        HasSupportTickets,
-        SoftDeletes;
+    use Notifiable;
+    use Billable;
+    use HasRoles;
+    use HasOffices;
+    use HasOrders;
+    use HasCarts;
+    use HasPayments;
+    use HasReviews;
+    use HasSettings;
+    use HasMediaTrait;
+    use HasMessages;
+    use HasSupportTickets;
+    use SoftDeletes;
 
     /**
      * The database table used by the model.

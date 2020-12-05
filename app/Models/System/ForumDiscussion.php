@@ -19,8 +19,8 @@ use App\Models\Shared\Model;
  */
 class ForumDiscussion extends Model implements Searchable
 {
-    use HasForumPosts,
-        SoftDeletes;
+    use HasForumPosts;
+    use SoftDeletes;
 
     /**
      * Database table for model

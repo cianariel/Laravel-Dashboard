@@ -80,7 +80,7 @@ trait HasCalendarEvents
             }
 
             if ($calendarEvent instanceof CalendarEvent) {
-                return ($this->calendarEvents()->save($calendarEvent))? true : false;
+                return ($this->calendarEvents()->save($calendarEvent)) ? true : false;
             } else {
                 return false;
             }
@@ -107,7 +107,7 @@ trait HasCalendarEvents
             }
 
             if ($calendarEvent instanceof CalendarEvent) {
-                return ($this->calendarEvents()->detach($calendarEvent->id))? true : false;
+                return ($this->calendarEvents()->detach($calendarEvent->id)) ? true : false;
             }
         }
 

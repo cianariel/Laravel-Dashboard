@@ -98,7 +98,7 @@ class RolesController extends AdminController
 
             $validatData = $request->validate($rules);
 
-            $role = new Role;
+            $role = new Role();
             $role->name = $name;
             $role->label = strip_tags($request->input('label'));
             $role->status = $request->input('status');

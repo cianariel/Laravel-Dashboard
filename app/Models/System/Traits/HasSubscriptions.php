@@ -34,7 +34,7 @@ trait HasSubscriptions
      */
     public function hasSubscriptions(): bool
     {
-        return ($this->subscriptions()->count() !== 0)? true : false;
+        return ($this->subscriptions()->count() !== 0) ? true : false;
     }
 
     /**
@@ -76,7 +76,7 @@ trait HasSubscriptions
             }
 
             if ($subscription instanceof Subscription) {
-                return ($this->subscriptions()->save($subscription))? true : false;
+                return ($this->subscriptions()->save($subscription)) ? true : false;
             } else {
                 return false;
             }
@@ -97,11 +97,11 @@ trait HasSubscriptions
     {
         if ($this->hasSubscription($subscription)) {
             if (is_numeric($subscription) && is_finite(intval($subscription))) {
-                return ($this->subscriptions()->detach(intval($subscription)))? true : false;
+                return ($this->subscriptions()->detach(intval($subscription))) ? true : false;
             }
 
             if ($subscription instanceof Subscription) {
-                return ($this->subscriptions()->detach($subscription->id))? true : false;
+                return ($this->subscriptions()->detach($subscription->id)) ? true : false;
             }
         }
 

@@ -19,8 +19,8 @@ use App\Models\Shared\Model;
  */
 class Order extends Model implements Searchable
 {
-    use HasPayments,
-        HasRefunds;
+    use HasPayments;
+    use HasRefunds;
 
     /**
      * Has Cart Relationship

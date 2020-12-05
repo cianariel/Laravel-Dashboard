@@ -33,7 +33,7 @@ trait HasStates
      */
     public function hasStates(): bool
     {
-        return ($this->states()->count() !== 0 )? true : false;
+        return ($this->states()->count() !== 0 ) ? true : false;
     }
 
     /**
@@ -78,7 +78,7 @@ trait HasStates
             }
 
             if ($state instanceof State) {
-                return ($this->states()->save($state))? true : false;
+                return ($this->states()->save($state)) ? true : false;
             } else {
                 return false;
             }
@@ -106,7 +106,7 @@ trait HasStates
             }
 
             if ($state instanceof State) {
-                return ($this->states()->detach($state->id))? true : false;
+                return ($this->states()->detach($state->id)) ? true : false;
             }
         }
 

@@ -22,7 +22,7 @@ class StrongPasswordRule implements Rule
      * and include a number, a symbol, an upper case letter,
      * and a lower case letter.
      **/
-    public function passes($attribute, $value) : bool
+    public function passes($attribute, $value): bool
     {
         return preg_match(
             '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@()$%^&*=_{}[\]:;"\'|\\<>,.\/~`±§+-]).{8,30}$/',
@@ -33,7 +33,7 @@ class StrongPasswordRule implements Rule
     /**
      * Get the validation error message.
      **/
-    public function message() : string
+    public function message(): string
     {
         return 'The :attribute must be an unbroken string of text, it cannot include spaces';
     }

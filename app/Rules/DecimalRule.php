@@ -23,7 +23,7 @@ class DecimalRule implements Rule
      * 1. The maximum number of digits before the decimal point.
      * 2. The maximum number of digits after the decimal point.
      **/
-    public function passes($attribute, $value) : bool
+    public function passes($attribute, $value): bool
     {
         return preg_match(
             "/^[0-9]{1,{$this->parameters[0]}}(\.[0-9]{1,{$this->parameters[1]}})$/",
@@ -34,7 +34,7 @@ class DecimalRule implements Rule
     /**
      * Get the validation error message.
      **/
-    public function message() : string
+    public function message(): string
     {
         return 'The :attribute must be an appropriately formatted decimal';
     }

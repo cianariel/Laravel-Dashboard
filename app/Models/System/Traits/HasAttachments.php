@@ -34,7 +34,7 @@ trait HasAttachments
      */
     public function hasAttachments(): bool
     {
-        return ($this->attachments()->count() !== 0 )? true : false;
+        return ($this->attachments()->count() !== 0 ) ? true : false;
     }
 
     /**
@@ -79,7 +79,7 @@ trait HasAttachments
             }
 
             if ($attachment instanceof Attachment) {
-                return ($this->attachments()->save($attachment))? true : false;
+                return ($this->attachments()->save($attachment)) ? true : false;
             } else {
                 return false;
             }
@@ -115,7 +115,7 @@ trait HasAttachments
                     Storage::delete($path);
                 }
 
-                return ($this->attachments()->detach($attachment->id))? true : false;
+                return ($this->attachments()->detach($attachment->id)) ? true : false;
             }
         }
 

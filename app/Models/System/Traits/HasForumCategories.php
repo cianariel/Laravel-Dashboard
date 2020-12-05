@@ -88,7 +88,7 @@ trait HasForumCategories
             }
 
             if ($forumCategory instanceof ForumCategory) {
-                return ($this->forumCategories()->save($forumCategory))? true : false;
+                return ($this->forumCategories()->save($forumCategory)) ? true : false;
             } else {
                 return false;
             }
@@ -119,7 +119,7 @@ trait HasForumCategories
             }
 
             if ($forumCategory instanceof ForumCategory) {
-                return ($this->forumCategories()->detach($forumCategory->id))? true : false;
+                return ($this->forumCategories()->detach($forumCategory->id)) ? true : false;
             }
         }
 

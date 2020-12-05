@@ -93,13 +93,13 @@ class CountriesController extends AdminController
         if ($request->isMethod('post')) {
             $rules = [
                 'code'      => ['string', 'required', 'alpha' ,'max:2', 'unique:system.countries,code'],
-                'name'      => ['string', 'required', 'max:190', 'unique:system.countries,name', new SanitizeHtml],
+                'name'      => ['string', 'required', 'max:190', 'unique:system.countries,name', new SanitizeHtml()],
                 'status'    => ['string', 'required', Rule::in(Country::STATUS_TYPES)]
             ];
 
             $validatedData = $request->validate($rules);
 
-            $country = new Country;
+            $country = new Country();
             $country->code = $request->input('code');
             $country->name = strip_tags($request->input('name'));
             $country->status = $request->input('status');
@@ -171,7 +171,7 @@ class CountriesController extends AdminController
             $country = Country::where('id', $id)->firstOrFail();
 
             $rules = [
-                'name'      => ['string', 'required', 'max:190', new SanitizeHtml],
+                'name'      => ['string', 'required', 'max:190', new SanitizeHtml()],
                 'status'    => ['string', 'required', Rule::in(Country::STATUS_TYPES)]
             ];
 

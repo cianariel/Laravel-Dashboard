@@ -34,7 +34,7 @@ trait HasCountries
      */
     public function hasCountries()
     {
-        return ($this->countries()->count() !== 0)? true : false;
+        return ($this->countries()->count() !== 0) ? true : false;
     }
 
     /**
@@ -79,7 +79,7 @@ trait HasCountries
             }
 
             if ($country instanceof Country) {
-                return ($this->countries()->save($country))? true : false;
+                return ($this->countries()->save($country)) ? true : false;
             } else {
                 return false;
             }
@@ -100,11 +100,11 @@ trait HasCountries
     {
         if ($this->hasCountry($country)) {
             if (is_numeric($country) && is_finite(intval($country))) {
-                return ($this->countries()->detach(intval($country)))? true : false;
+                return ($this->countries()->detach(intval($country))) ? true : false;
             }
 
             if ($country instanceof Country) {
-                return ($this->countries()->detach($country->id))? true : false;
+                return ($this->countries()->detach($country->id)) ? true : false;
             }
         }
 

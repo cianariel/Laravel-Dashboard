@@ -49,7 +49,8 @@ class CalendarController extends Controller
                 'path'      => route('office.calendar.index'),
                 'active'    => true
             ]
-        ]);
+            ]
+        );
 
         return view(
             'office.calendar.index',

@@ -94,8 +94,8 @@ class MenuItemsController extends AdminController
             $rules = [
                 'parent_id'     => ['nullable', 'integer', 'exists:system.menu_items,id'],
                 'type'          => ['required', 'string', Rule::in(MenuItem::MENU_ITEM_TYPES)],
-                'label'         => ['required', 'string', 'max:150', new SanitizeHtml],
-                'title'         => ['nullable', 'string', 'max:190', new SanitizeHtml],
+                'label'         => ['required', 'string', 'max:150', new SanitizeHtml()],
+                'title'         => ['nullable', 'string', 'max:190', new SanitizeHtml()],
                 'url'           => ['required', 'string'],
                 'target'        => ['required', 'string', Rule::in(MenuItem::TARGET_TYPES)],
                 'css_classes'   => ['nullable', 'string', 'max:190'],
@@ -118,7 +118,7 @@ class MenuItemsController extends AdminController
                 $css_classes = str_replace(' ', '', $css_classes);
             }
 
-            $menuItem = new MenuItem;
+            $menuItem = new MenuItem();
             $menuItem->name = $name;
             $menuItem->type = $request->input('type');
             $menuItem->label = $request->input('label');
@@ -224,8 +224,8 @@ class MenuItemsController extends AdminController
             $rules = [
                 'parent_id'     => ['nullable', 'integer', 'exists:system.menu_items,id'],
                 'type'          => ['required', 'string', Rule::in(MenuItem::MENU_ITEM_TYPES)],
-                'label'         => ['required', 'string', 'max:150', new SanitizeHtml],
-                'title'         => ['nullable', 'string', 'max:190', new SanitizeHtml],
+                'label'         => ['required', 'string', 'max:150', new SanitizeHtml()],
+                'title'         => ['nullable', 'string', 'max:190', new SanitizeHtml()],
                 'url'           => ['required', 'string'],
                 'target'        => ['required', 'string', Rule::in(MenuItem::TARGET_TYPES)],
                 'css_classes'   => ['nullable', 'string', 'max:190'],

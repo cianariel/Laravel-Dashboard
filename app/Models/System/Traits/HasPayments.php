@@ -34,7 +34,7 @@ trait HasPayments
      */
     public function hasPayments()
     {
-        return ($this->payments()->count())? true : false;
+        return ($this->payments()->count()) ? true : false;
     }
 
     /**
@@ -84,7 +84,7 @@ trait HasPayments
             }
 
             if ($payment instanceof Payment) {
-                return ($this->payments()->save($payment))? true : false;
+                return ($this->payments()->save($payment)) ? true : false;
             } else {
                 return false;
             }
@@ -104,11 +104,11 @@ trait HasPayments
     {
         if ($this->hasPayment($payment)) {
             if (is_numeric($payment) && is_finite(intval($payment))) {
-                return ($this->payments()->detach(intval($payment)))? true : false;
+                return ($this->payments()->detach(intval($payment))) ? true : false;
             }
 
             if ($payment instanceof Payment) {
-                return ($this->payments()->detach($payment->id))? true : false;
+                return ($this->payments()->detach($payment->id)) ? true : false;
             } else {
                 return false;
             }

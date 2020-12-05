@@ -34,7 +34,7 @@ trait HasProductAttributes
      */
     public function hasProductAttributes(): bool
     {
-        return ($this->productAttributes()->count() !== 0)? true : false;
+        return ($this->productAttributes()->count() !== 0) ? true : false;
     }
 
     /**
@@ -78,7 +78,7 @@ trait HasProductAttributes
             }
 
             if ($productAttribute instanceof ProductAttribute) {
-                return ($this->productAttributes()->save($productAttribute))? true : false;
+                return ($this->productAttributes()->save($productAttribute)) ? true : false;
             } else {
                 return false;
             }
@@ -99,11 +99,11 @@ trait HasProductAttributes
     {
         if ($this->hasProductAttribute($productAttribute)) {
             if (is_numeric($productAttribute) && is_finite(intval($productAttribute))) {
-                return ($this->productAttributes()->detach(intval($productAttribute)))? true : false;
+                return ($this->productAttributes()->detach(intval($productAttribute))) ? true : false;
             }
 
             if ($productAttribute instanceof ProductAttribute) {
-                return ($this->productAttributes()->detach($productAttribute->id))? true : false;
+                return ($this->productAttributes()->detach($productAttribute->id)) ? true : false;
             }
         }
 

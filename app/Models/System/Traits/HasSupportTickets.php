@@ -34,7 +34,7 @@ trait HasSupportTickets
      */
     public function hasSupportTickets()
     {
-        return ($this->supportTickets()->count() !== 0)? true : false;
+        return ($this->supportTickets()->count() !== 0) ? true : false;
     }
 
     /**
@@ -78,7 +78,7 @@ trait HasSupportTickets
             }
 
             if ($supportTicket instanceof SupportTicket) {
-                return ($this->supportTickets()->save($supportTicket->id))? true : false;
+                return ($this->supportTickets()->save($supportTicket->id)) ? true : false;
             } else {
                 return false;
             }
@@ -99,11 +99,11 @@ trait HasSupportTickets
     {
         if ($this->hasSupportTicket($supportTicket)) {
             if (is_numeric($supportTicket) && is_finite(intval($supportTicket))) {
-                return ($this->supportTickets()->detach(intval($supportTicket)))? true : false;
+                return ($this->supportTickets()->detach(intval($supportTicket))) ? true : false;
             }
 
             if ($supportTicket instanceof SupportTicket) {
-                return ($this->supportTickets()->detach($supportTicket->id))? true : false;
+                return ($this->supportTickets()->detach($supportTicket->id)) ? true : false;
             }
         }
 

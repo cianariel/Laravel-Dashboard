@@ -100,8 +100,8 @@ class CurrenciesController extends AdminController
             $rules = [
                 'code'              => ['string', 'required', 'alpha_dash' , 'max:5', 'unique:system.currencies,code'],
                 'symbol'            => ['string', 'required', 'max:5'],
-                'name'              => ['string', 'required', 'max:100', new SanitizeHtml],
-                'name_plural'       => ['string', 'required', 'max:150', new SanitizeHtml],
+                'name'              => ['string', 'required', 'max:100', new SanitizeHtml()],
+                'name_plural'       => ['string', 'required', 'max:150', new SanitizeHtml()],
                 'symbol_native'     => ['string', 'required', 'max:25'],
                 'decimal_digits'    => ['integer', 'required'],
                 'status'            => ['string', 'required', Rule::in(Currency::STATUS_TYPES)],
@@ -109,7 +109,7 @@ class CurrenciesController extends AdminController
 
             $validatedData = $request->validate($rules);
 
-            $currency = new Currency;
+            $currency = new Currency();
             $currency->code = $request->input('code');
             $currency->symbol = $request->input('symbol');
             $currency->name = $request->input('name');
@@ -180,8 +180,8 @@ class CurrenciesController extends AdminController
 
              $rules = [
                 'symbol'            => ['string', 'required', 'max:5'],
-                'name'              => ['string', 'required', 'max:100', new SanitizeHtml],
-                'name_plural'       => ['string', 'required', 'max:150', new SanitizeHtml],
+                'name'              => ['string', 'required', 'max:100', new SanitizeHtml()],
+                'name_plural'       => ['string', 'required', 'max:150', new SanitizeHtml()],
                 'symbol_native'     => ['string', 'required', 'max:25'],
                 'decimal_digits'    => ['integer', 'required'],
                 'status'            => ['string', 'required', Rule::in(Currency::STATUS_TYPES)],

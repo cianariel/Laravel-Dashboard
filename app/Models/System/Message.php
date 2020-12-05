@@ -19,8 +19,8 @@ use App\Models\Shared\Model;
  */
 class Message extends Model implements Searchable
 {
-    use HasFolders,
-        HasAttachments;
+    use HasFolders;
+    use HasAttachments;
 
     /**
      * The database table used by the model.

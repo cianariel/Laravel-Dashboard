@@ -34,7 +34,7 @@ trait HasCarts
      */
     public function hasCarts()
     {
-        return ($this->carts()->count() !== 0)? true : false;
+        return ($this->carts()->count() !== 0) ? true : false;
     }
 
     /**
@@ -76,7 +76,7 @@ trait HasCarts
             }
 
             if ($cart instanceof Cart) {
-                return ($this->carts()->save($cart))? true : false;
+                return ($this->carts()->save($cart)) ? true : false;
             }
         }
 
@@ -95,11 +95,11 @@ trait HasCarts
     {
         if ($this->hasCart($cart)) {
             if (is_numeric($cart) && is_finite(intval($cart))) {
-                return ($this->cart()->detach(intval($cart)))? true : false;
+                return ($this->cart()->detach(intval($cart))) ? true : false;
             }
 
             if ($cart instanceof Cart) {
-                return ($this->cart()->detach($cart->id))? true : false;
+                return ($this->cart()->detach($cart->id)) ? true : false;
             }
         }
 

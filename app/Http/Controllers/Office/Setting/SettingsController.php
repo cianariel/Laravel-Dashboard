@@ -41,10 +41,8 @@ class SettingsController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->hasRole(Role::OWNER)) {
-
-            if($user->setup_completed == User::SETUP_COMPLETED) {
-
+        if ($user->hasRole(Role::OWNER)) {
+            if ($user->setup_completed == User::SETUP_COMPLETED) {
                 return redirect()->route('office.settings.edit.general.section', ['section' => 'office_info']);
             }
 
@@ -66,20 +64,19 @@ class SettingsController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->hasRole(Role::OWNER)) {
-
+        if ($user->hasRole(Role::OWNER)) {
             $rules = [
-                'office'        => ['required', 'string', 'max:100', new SanitizeHtml],
-                'first_name'    => ['required', 'string', 'max:100', new SanitizeHtml],
-                'last_name'     => ['required', 'string', 'max:100', new SanitizeHtml],
-                'address'       => ['required', 'string', 'max:100', new SanitizeHtml],
-                'address_2'     => ['nullable', 'string', 'max:100', new SanitizeHtml],
-                'city'          => ['required', 'string', 'max:100', new SanitizeHtml],
-                'zipcode'       => ['required', 'string', 'max:25', new SanitizeHtml],
-                'state'         => ['required', 'string', 'max:100', new SanitizeHtml],
+                'office'        => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'first_name'    => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'last_name'     => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'address'       => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'address_2'     => ['nullable', 'string', 'max:100', new SanitizeHtml()],
+                'city'          => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'zipcode'       => ['required', 'string', 'max:25', new SanitizeHtml()],
+                'state'         => ['required', 'string', 'max:100', new SanitizeHtml()],
                 'country'       => ['required', 'string', 'exists:system.countries,code', Rule::in(['US'])],
-                'phone'         => ['required', 'string', new PhoneRule, new SanitizeHtml],
-                'mobile_phone'  => ['required', 'string', new PhoneRule, new SanitizeHtml]
+                'phone'         => ['required', 'string', new PhoneRule(), new SanitizeHtml()],
+                'mobile_phone'  => ['required', 'string', new PhoneRule(), new SanitizeHtml()]
             ];
 
             $validatedData = $request->validate($rules);
@@ -122,8 +119,7 @@ class SettingsController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->hasRole(Role::OWNER) ) {
-
+        if ($user->hasRole(Role::OWNER)) {
             $breadcrumbs = breadcrumbs([
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
@@ -139,13 +135,13 @@ class SettingsController extends BaseController
                 ]
             ]);
 
-            if(filled($section)) {
+            if (filled($section)) {
                 $section = Str::lower(strip_tags(trim($section)));
             }
 
             $office = $user->offices()->first();
 
-            switch($section) {
+            switch ($section) {
                 case 'office_info':
                     $countries = countries(false);
                     $_countries = [];
@@ -158,27 +154,33 @@ class SettingsController extends BaseController
 
                     $countries = $_countries;
 
-                    return view('office.settings.general',
+                    return view(
+                        'office.settings.general',
                         compact('site', 'user', 'breadcrumbs', 'section', 'office', 'countries')
                     );
                 case 'holidays':
-                    return view('office.settings.general',
+                    return view(
+                        'office.settings.general',
                         compact('site', 'user', 'breadcrumbs', 'section', 'office')
                     );
                 case 'appointments':
-                    return view('office.settings.general',
+                    return view(
+                        'office.settings.general',
                         compact('site', 'user', 'breadcrumbs', 'section', 'office')
                     );
                 case 'office_hours':
-                    return view('office.settings.general',
+                    return view(
+                        'office.settings.general',
                         compact('site', 'user', 'breadcrumbs', 'section', 'office')
                     );
                 case 'visitation_rules':
-                    return view('office.settings.general',
+                    return view(
+                        'office.settings.general',
                         compact('site', 'user', 'breadcrumbs', 'section', 'office')
                     );
                 case 'recurring_appointments':
-                    return view('office.settings.general',
+                    return view(
+                        'office.settings.general',
                         compact('site', 'user', 'breadcrumbs', 'section', 'office')
                     );
                 default:
@@ -193,7 +195,8 @@ class SettingsController extends BaseController
 
                     $countries = $_countries;
 
-                    return view('office.settings.general',
+                    return view(
+                        'office.settings.general',
                         compact('site', 'user', 'breadcrumbs', 'section', 'office', 'countries')
                     );
             }
@@ -215,22 +218,20 @@ class SettingsController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->hasRole(Role::OWNER) ) {
-
-            if(filled($section)) {
+        if ($user->hasRole(Role::OWNER)) {
+            if (filled($section)) {
                 $section = Str::lower(strip_tags(trim($section)));
             }
 
             $office = $user->offices()->first();
 
-            switch($section) {
+            switch ($section) {
                 case 'holidays':
                     return $this->updateHoldaySettings($request, $site, $user, $office);
                 case 'visitation_rules':
                     return $this->updateVisitationSettings($request, $site, $user, $office);
                 case 'office_hours':
                     return $this->updateOfficeHours($request, $site, $user, $office);
-
             }
         }
 
@@ -256,7 +257,7 @@ class SettingsController extends BaseController
 
         $validatedData = $request->validate($rules);
 
-        if(filled($request->input('holidays'))) {
+        if (filled($request->input('holidays'))) {
             $holidays = $request->input('holidays');
 
             $office->setMetaField('holidays_closed', $holidays);
@@ -287,87 +288,86 @@ class SettingsController extends BaseController
             'days.friday'                           => ['nullable', 'array'],
             'days.saturday'                         => ['nullable', 'array'],
             'days.sunday'                           => ['nullable', 'array'],
-            'days.monday.enabled'                   => ['nullable', 'string', new SanitizeHtml],
-            'days.tuesday.enabled'                  => ['nullable', 'string', new SanitizeHtml],
-            'days.wednesday.enabled'                => ['nullable', 'string', new SanitizeHtml],
-            'days.thursday.enabled'                 => ['nullable', 'string', new SanitizeHtml],
-            'days.friday.enabled'                   => ['nullable', 'string', new SanitizeHtml],
-            'days.saturday.enabled'                 => ['nullable', 'string', new SanitizeHtml],
-            'days.sunday.enabled'                   => ['nullable', 'string', new SanitizeHtml],
+            'days.monday.enabled'                   => ['nullable', 'string', new SanitizeHtml()],
+            'days.tuesday.enabled'                  => ['nullable', 'string', new SanitizeHtml()],
+            'days.wednesday.enabled'                => ['nullable', 'string', new SanitizeHtml()],
+            'days.thursday.enabled'                 => ['nullable', 'string', new SanitizeHtml()],
+            'days.friday.enabled'                   => ['nullable', 'string', new SanitizeHtml()],
+            'days.saturday.enabled'                 => ['nullable', 'string', new SanitizeHtml()],
+            'days.sunday.enabled'                   => ['nullable', 'string', new SanitizeHtml()],
         ];
 
         $days = $request->input('days');
 
-        if(filled($days)) {
-
-            foreach($days as $key => $day) {
-                switch($key) {
+        if (filled($days)) {
+            foreach ($days as $key => $day) {
+                switch ($key) {
                     case 'monday':
-                        if(isset($day['enabled'])) {
-                            if($day['enabled'] == 'on') {
-                                $rules['days.monday.start_hour'] = ['required','date_format:H:i'];
+                        if (isset($day['enabled'])) {
+                            if ($day['enabled'] == 'on') {
+                                $rules['days.monday.start_hour'] = ['required','date_format:h:i'];
                                 $rules['days.monday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.monday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.monday.end_hour'] = ['required','date_format:h:i'];
                                 $rules['days.monday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
                         break;
                     case 'tuesday':
-                        if(isset($day['enabled'])) {
-                            if($day['enabled'] == 'on') {
-                                $rules['days.tuesday.start_hour'] = ['required','date_format:H:i'];
+                        if (isset($day['enabled'])) {
+                            if ($day['enabled'] == 'on') {
+                                $rules['days.tuesday.start_hour'] = ['required','date_format:h:i'];
                                 $rules['days.tuesday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.tuesday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.tuesday.end_hour'] = ['required','date_format:h:i'];
                                 $rules['days.tuesday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
                         break;
                     case 'wednesday':
-                        if(isset($day['enabled'])) {
-                            if($day['enabled'] == 'on') {
-                                $rules['days.wednesday.start_hour'] = ['required','date_format:H:i'];
+                        if (isset($day['enabled'])) {
+                            if ($day['enabled'] == 'on') {
+                                $rules['days.wednesday.start_hour'] = ['required','date_format:h:i'];
                                 $rules['days.wednesday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.wednesday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.wednesday.end_hour'] = ['required','date_format:h:i'];
                                 $rules['days.wednesday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
                         break;
                     case 'thursday':
-                        if(isset($day['enabled'])) {
-                            if($day['enabled'] == 'on') {
-                                $rules['days.thursday.start_hour'] = ['required','date_format:H:i'];
+                        if (isset($day['enabled'])) {
+                            if ($day['enabled'] == 'on') {
+                                $rules['days.thursday.start_hour'] = ['required','date_format:h:i'];
                                 $rules['days.thursday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.thursday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.thursday.end_hour'] = ['required','date_format:h:i'];
                                 $rules['days.thursday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
                         break;
                     case 'friday':
-                        if(isset($day['enabled'])) {
-                            if($day['enabled'] == 'on') {
-                                $rules['days.friday.start_hour'] = ['required','date_format:H:i'];
+                        if (isset($day['enabled'])) {
+                            if ($day['enabled'] == 'on') {
+                                $rules['days.friday.start_hour'] = ['required','date_format:h:i'];
                                 $rules['days.friday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.friday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.friday.end_hour'] = ['required','date_format:h:i'];
                                 $rules['days.friday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
                         break;
                     case 'saturday':
-                        if(isset($day['enabled'])) {
-                            if($day['enabled'] == 'on') {
-                                $rules['days.saturday.start_hour'] = ['required','date_format:H:i'];
+                        if (isset($day['enabled'])) {
+                            if ($day['enabled'] == 'on') {
+                                $rules['days.saturday.start_hour'] = ['required','date_format:h:i'];
                                 $rules['days.saturday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.saturday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.saturday.end_hour'] = ['required','date_format:h:i'];
                                 $rules['days.saturday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
                         break;
                     case 'sunday':
-                        if(isset($day['enabled'])) {
-                            if($day['enabled'] == 'on') {
-                                $rules['days.sunday.start_hour'] = ['required','date_format:H:i'];
+                        if (isset($day['enabled'])) {
+                            if ($day['enabled'] == 'on') {
+                                $rules['days.sunday.start_hour'] = ['required','date_format:h:i'];
                                 $rules['days.sunday.start_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
-                                $rules['days.sunday.end_hour'] = ['required','date_format:H:i'];
+                                $rules['days.sunday.end_hour'] = ['required','date_format:h:i'];
                                 $rules['days.sunday.end_hour_meridiem'] = ['required', 'string', Rule::in(['am', 'pm'])];
                             }
                         }
@@ -377,8 +377,8 @@ class SettingsController extends BaseController
 
             $validatedData = $request->validate($rules);
 
-            foreach($days as $key => $day) {
-                $office->setMetaField('office_hours->'.$key, $day);
+            foreach ($days as $key => $day) {
+                $office->setMetaField('office_hours->' . $key, $day);
             }
 
             $office->save();
@@ -399,14 +399,13 @@ class SettingsController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->hasRole(Role::OWNER)) {
-
+        if ($user->hasRole(Role::OWNER)) {
             $rules = [
-                'recurring_appointments_type'   => ['required', 'string', 'max:50', new SanitizeHtml],
+                'recurring_appointments_type'   => ['required', 'string', 'max:50', new SanitizeHtml()],
                 'section_type'                  => ['required', 'string', Rule::in(CalendarEvent::VISIT_TYPES)],
-                'start_time'                    => ['required', 'date_format:H:i'],
+                'start_time'                    => ['required', 'date_format:h:i'],
                 'start_time_meridiem'           => ['required', 'string', Rule::in(['am', 'pm'])],
-                'end_time'                      => ['required', 'date_format:H:i'],
+                'end_time'                      => ['required', 'date_format:h:i'],
                 'end_time_meridiem'             => ['required', 'string', Rule::in(['am', 'pm'])],
                 'repeat_type'                   => ['required', 'string', Rule::in(CalendarEvent::REPEAT_TYPES)],
                 'repeat_day'                    => ['required', 'string', Rule::in(CalendarEvent::DAYS)],
@@ -414,27 +413,23 @@ class SettingsController extends BaseController
 
             $validator = Validator::make($request->all(), $rules);
 
-            if($validator->passes()) {
-
+            if ($validator->passes()) {
                 $office = $user->offices()->first();
                 $title = $request->input('recurring_appointments_type');
                 $sectionType = $request->input('section_type');
                 $startTime = $request->input('start_time');
                 $startTimeMeridiem = $request->input('start_time_meridiem');
-                $endTime = $request->input('start_time');
-                $endTimeMeridiem = $request->input('start_time_meridiem');
+                $endTime = $request->input('end_time');
+                $endTimeMeridiem = $request->input('end_time_meridiem');
                 $repeatType = $request->input('repeat_type');
                 $repeatDay = $request->input('repeat_day');
                 $startTimeFormated = \Carbon\Carbon::parse($startTime . $startTimeMeridiem);
                 $endTimeFormated = \Carbon\Carbon::parse($endTime . $endTimeMeridiem);
 
-                if($calendarEvents = $office->calendarEvents()->where('recurring', CalendarEvent::RECURRING)->cursor()) {
-
-                    if($calendarEvents->count() !== 0) {
-
+                if ($calendarEvents = $office->calendarEvents()->where('recurring', CalendarEvent::RECURRING)->cursor()) {
+                    if ($calendarEvents->count() !== 0) {
                     } else {
-
-                        $calendarEvent = new CalendarEvent;
+                        $calendarEvent = new CalendarEvent();
                         $calendarEvent->uuid = Str::uuid();
                         $calendarEvent->title = $title;
                         $calendarEvent->recurring = CalendarEvent::RECURRING;
@@ -442,6 +437,8 @@ class SettingsController extends BaseController
                         $calendarEvent->start_at = $startTimeFormated;
                         $calendarEvent->ends_at = $endTimeFormated;
                         $calendarEvent->setMetaField('type', $sectionType);
+                        $calendarEvent->setMetaField('start_time_meridiem', $startTimeMeridiem);
+                        $calendarEvent->setMetaField('end_time_meridiem', $endTimeMeridiem);
                         $calendarEvent->setMetaField('repeat_type', $repeatType);
                         $calendarEvent->setMetaField('repeat_day', $repeatDay);
 
@@ -453,8 +450,8 @@ class SettingsController extends BaseController
                         flash(__('Successfully saved recurring appointment.'));
 
                         return redirect()->route('office.settings.edit.general.section', [
-                                    'section'   => 'recurring_appointments']
-                               );
+                                    'section'   => 'recurring_appointments'
+                        ]);
                     }
                 }
             }
@@ -487,16 +484,16 @@ class SettingsController extends BaseController
 
          $validatedData = $request->validate($rules);
 
-         if($request->input('require_approve_appointments') == 'on') {
-            $office->setMetaField('visitation_rules->require_approve_appointments', 'on');
+         if ($request->input('require_approve_appointments') == 'on') {
+             $office->setMetaField('visitation_rules->require_approve_appointments', 'on');
          } else {
-            $office->setMetaField('visitation_rules->require_approve_appointments', 'off');
+             $office->setMetaField('visitation_rules->require_approve_appointments', 'off');
          }
 
-        $office->save();
+         $office->save();
 
-        flash(__('Successfully saved'));
-        return redirect()->route('office.settings.edit.general.section', 'visitation_rules');
+         flash(__('Successfully saved'));
+         return redirect()->route('office.settings.edit.general.section', 'visitation_rules');
     }
 
     /**
@@ -510,8 +507,7 @@ class SettingsController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->hasRole(Role::OWNER) ) {
-
+        if ($user->hasRole(Role::OWNER)) {
             $breadcrumbs = breadcrumbs([
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
@@ -545,8 +541,7 @@ class SettingsController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->hasRole(Role::OWNER)) {
-
+        if ($user->hasRole(Role::OWNER)) {
             $breadcrumbs = breadcrumbs([
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),
@@ -580,8 +575,7 @@ class SettingsController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->hasRole(Role::OWNER)) {
-
+        if ($user->hasRole(Role::OWNER)) {
             $breadcrumbs = breadcrumbs([
                 __('Dashboard')        => [
                     'path'          => route('office.dashboard'),

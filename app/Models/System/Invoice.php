@@ -22,9 +22,9 @@ use App\Models\Shared\Model;
  */
 class Invoice extends Model implements HasMedia, Searchable
 {
-    use HasMediaTrait,
-        HasInvoiceItems,
-        SoftDeletes;
+    use HasMediaTrait;
+    use HasInvoiceItems;
+    use SoftDeletes;
 
     /**
      * The database table used by the model.

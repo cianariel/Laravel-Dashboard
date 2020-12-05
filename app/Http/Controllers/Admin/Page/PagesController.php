@@ -84,7 +84,8 @@ class PagesController extends AdminController
         $templates = Page::TEMPLATES;
         $users = User::where('status', User::ACTIVE)
             ->whereHas(
-                'roles', function ($query) {
+                'roles',
+                function ($query) {
                             $roles = [
                             Role::SUPER_ADMIN,
                             Role::ADMIN,
@@ -125,14 +126,14 @@ class PagesController extends AdminController
         if ($request->isMethod('post')) {
             $rules = [
                 'user'              => ['required', 'integer', 'exists:system.users,id'],
-                'title'             => ['required', 'string', 'max:100', new SanitizeHtml],
+                'title'             => ['required', 'string', 'max:100', new SanitizeHtml()],
                 'content'           => ['required', 'string'],
                 'media'             => ['nullable', 'file', 'image', 'mimes:jpeg,gif,png', 'max:' . bit_convert(10, 'mb')],
-                'excerpt'           => ['nullable', 'string', 'max:150', new SanitizeHtml],
-                'seo_title'         => ['nullable', 'string', 'max:150', new SanitizeHtml],
-                'meta_keywords'     => ['nullable', 'string', 'max:150', new SanitizeHtml],
-                'meta_description'  => ['nullable', 'string', 'max:150', new SanitizeHtml],
-                'meta_robots'       => ['nullable', 'string', 'max:150', new SanitizeHtml],
+                'excerpt'           => ['nullable', 'string', 'max:150', new SanitizeHtml()],
+                'seo_title'         => ['nullable', 'string', 'max:150', new SanitizeHtml()],
+                'meta_keywords'     => ['nullable', 'string', 'max:150', new SanitizeHtml()],
+                'meta_description'  => ['nullable', 'string', 'max:150', new SanitizeHtml()],
+                'meta_robots'       => ['nullable', 'string', 'max:150', new SanitizeHtml()],
                 'template'          => ['required', 'string', Rule::in(Page::TEMPLATES)],
                 'status'            => ['required', 'string', Rule::in(Page::STATUS_TYPES)],
                 'visible'           => ['required', 'string', Rule::in(Page::VISIBLE_TYPES)]
@@ -141,7 +142,7 @@ class PagesController extends AdminController
             $validatedData = $request->validate($rules);
 
             // Create new page.
-            $page = new Page;
+            $page = new Page();
             $page->uuid = Str::uuid();
             $page->user_id = $request->input('user');
             $page->title = strip_tags($request->input('title'));
@@ -204,7 +205,8 @@ class PagesController extends AdminController
             $templates = Page::TEMPLATES;
             $users = User::where('status', User::ACTIVE)
                 ->whereHas(
-                    'roles', function ($query) {
+                    'roles',
+                    function ($query) {
                             $roles = [
                             Role::SUPER_ADMIN,
                             Role::ADMIN,
@@ -255,14 +257,14 @@ class PagesController extends AdminController
 
             $rules = [
                 'user'              => ['required', 'integer', 'exists:system.users,id'],
-                'title'             => ['required', 'string', 'max:100', new SanitizeHtml],
+                'title'             => ['required', 'string', 'max:100', new SanitizeHtml()],
                 'content'           => ['required', 'string'],
                 'media'             => ['nullable', 'file', 'image', 'mimes:jpeg,gif,png', 'max:' . bit_convert(10, 'mb')],
-                'excerpt'           => ['nullable', 'string', 'max:150', new SanitizeHtml],
-                'seo_title'         => ['nullable', 'string', 'max:150', new SanitizeHtml],
-                'meta_keywords'     => ['nullable', 'string', 'max:150', new SanitizeHtml],
-                'meta_description'  => ['nullable', 'string', 'max:150', new SanitizeHtml],
-                'meta_robots'       => ['nullable', 'string', 'max:150', new SanitizeHtml],
+                'excerpt'           => ['nullable', 'string', 'max:150', new SanitizeHtml()],
+                'seo_title'         => ['nullable', 'string', 'max:150', new SanitizeHtml()],
+                'meta_keywords'     => ['nullable', 'string', 'max:150', new SanitizeHtml()],
+                'meta_description'  => ['nullable', 'string', 'max:150', new SanitizeHtml()],
+                'meta_robots'       => ['nullable', 'string', 'max:150', new SanitizeHtml()],
                 'template'          => ['required', 'string', Rule::in(Page::TEMPLATES)],
                 'status'            => ['required', 'string', Rule::in(Page::STATUS_TYPES)],
                 'visible'           => ['required', 'string', Rule::in(Page::VISIBLE_TYPES)]

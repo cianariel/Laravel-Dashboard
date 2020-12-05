@@ -17,8 +17,8 @@ use App\Models\System\Traits\HasStates;
  */
 class Country extends Model
 {
-    use HasStates,
-        SoftDeletes;
+    use HasStates;
+    use SoftDeletes;
 
     /**
      * Database table for model

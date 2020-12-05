@@ -82,13 +82,13 @@ class GroupsController extends AdminController
     {
         if ($request->isMethod('post')) {
             $rules = [
-                'label'     => ['required', 'string', 'alpha_num', 'unique:system.groups,label' ,'max:100', new SanitizeHtml],
+                'label'     => ['required', 'string', 'alpha_num', 'unique:system.groups,label' ,'max:100', new SanitizeHtml()],
                 'visible'   => ['required', 'string', Rule::in(Group::VISIBLE_TYPES)]
             ];
 
             $validatedData = $request->validate($rules);
 
-            $group = new Group;
+            $group = new Group();
             $group->name = Str::slug($request->input('label'));
             $group->label = $request->input('label');
             $group->visible = $request->input('visible');
@@ -152,7 +152,7 @@ class GroupsController extends AdminController
     {
         if ($request->isMethod('put') && Group::where('id', $id)->exists()) {
             $rules = [
-                'label'     => ['required', 'string', 'alpha_num', 'max:100', new SanitizeHtml],
+                'label'     => ['required', 'string', 'alpha_num', 'max:100', new SanitizeHtml()],
                 'visible'   => ['required', 'string', Rule::in(Group::VISIBLE_TYPES)]
             ];
 

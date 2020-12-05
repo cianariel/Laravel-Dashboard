@@ -137,6 +137,17 @@ if(!window.MDRepTime && window.jQuery && window.Cookies && window.axios) {
                 return _stripe;
             }
 
+            // Url Hash
+            this.getUriHash = function() {
+                return window.location.hash;
+            }
+
+            this.setUriHash = function(hash='') {
+                if(hash.length) {
+                    window.location.hash = hash;
+                }
+            }
+
             // Dialogs
             let _dialog = function(title, message, buttons=false) {
                 let dialog_modal = $('#dialog-modal');

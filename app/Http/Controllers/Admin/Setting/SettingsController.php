@@ -110,7 +110,7 @@ class SettingsController extends AdminController
             if (!Setting::where('key', $key)->exists()) {
                 $site = site();
                 $group = Group::where('name', $request->input('group'))->firstOrFail();
-                $setting = new Setting;
+                $setting = new Setting();
                 $setting->key = $key;
                 $setting->type = $request->input('type');
 
@@ -350,7 +350,8 @@ class SettingsController extends AdminController
             $site = site();
             $group = Group::where('name', $name)->firstOrFail();
             $settings = $site->settings()->whereHas(
-                'groups', function ($query) use (&$group) {
+                'groups',
+                function ($query) use (&$group) {
                     $query->where('name', $group->name);
                 }
             )->cursor();
@@ -387,7 +388,8 @@ class SettingsController extends AdminController
             $site = site();
             $group = Group::where('name', $name)->firstOrFail();
             $settings = $site->settings()->whereHas(
-                'groups', function ($query) use (&$group) {
+                'groups',
+                function ($query) use (&$group) {
                     $query->where('name', $group->name);
                 }
             )->cursor();
@@ -403,45 +405,45 @@ class SettingsController extends AdminController
                     }
 
                     switch ($setting->type) {
-                    case Setting::INPUT_FILE:
-                        if (filled($setting->options)) {
-                            $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'file' ,'mimes:' . implode(',', unserialize($setting->options))];
-                        } else {
-                            $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'file'];
-                        }
-                        break;
-                    case Setting::INPUT_EMAIL:
-                        $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string', 'email:rfc,dns'];
-                        break;
-                    case Setting::INPUT_TEXT:
-                        $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string'];
-                        break;
-                    case Setting::INPUT_TEXTAREA:
-                        $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string'];
-                        break;
-                    case Setting::INPUT_NUMBER:
-                        $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'numeric'];
-                        break;
-                    case Setting::INPUT_RANGE:
-                        $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'numeric'];
-                        break;
-                    case Setting::INPUT_SELECT:
-                        if (filled($setting->options)) {
-                            $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string', Rule::in(unserialize($setting->options))];
-                        } else {
-                            $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string'];
-                        }
-                        break;
-                    case Setting::INPUT_MULTISELECT:
-                        $rules[str_replace(config('app.base_domain').'_', '', $setting->key)] = [$required, 'string'];
-                        break;
+                        case Setting::INPUT_FILE:
+                            if (filled($setting->options)) {
+                                $rules[str_replace(config('app.base_domain') . '_', '', $setting->key)] = [$required, 'file' ,'mimes:' . implode(',', unserialize($setting->options))];
+                            } else {
+                                $rules[str_replace(config('app.base_domain') . '_', '', $setting->key)] = [$required, 'file'];
+                            }
+                            break;
+                        case Setting::INPUT_EMAIL:
+                            $rules[str_replace(config('app.base_domain') . '_', '', $setting->key)] = [$required, 'string', 'email:rfc,dns'];
+                            break;
+                        case Setting::INPUT_TEXT:
+                            $rules[str_replace(config('app.base_domain') . '_', '', $setting->key)] = [$required, 'string'];
+                            break;
+                        case Setting::INPUT_TEXTAREA:
+                            $rules[str_replace(config('app.base_domain') . '_', '', $setting->key)] = [$required, 'string'];
+                            break;
+                        case Setting::INPUT_NUMBER:
+                            $rules[str_replace(config('app.base_domain') . '_', '', $setting->key)] = [$required, 'numeric'];
+                            break;
+                        case Setting::INPUT_RANGE:
+                            $rules[str_replace(config('app.base_domain') . '_', '', $setting->key)] = [$required, 'numeric'];
+                            break;
+                        case Setting::INPUT_SELECT:
+                            if (filled($setting->options)) {
+                                $rules[str_replace(config('app.base_domain') . '_', '', $setting->key)] = [$required, 'string', Rule::in(unserialize($setting->options))];
+                            } else {
+                                $rules[str_replace(config('app.base_domain') . '_', '', $setting->key)] = [$required, 'string'];
+                            }
+                            break;
+                        case Setting::INPUT_MULTISELECT:
+                            $rules[str_replace(config('app.base_domain') . '_', '', $setting->key)] = [$required, 'string'];
+                            break;
                     }
                 }
 
                 $validatedData = $request->validate($rules);
 
                 foreach ($settings as $setting) {
-                    $key = str_replace(config('app.base_domain').'_', '', $setting->key);
+                    $key = str_replace(config('app.base_domain') . '_', '', $setting->key);
 
                     if ($request->has($key)) {
                         if ($setting->type == Setting::INPUT_FILE) {

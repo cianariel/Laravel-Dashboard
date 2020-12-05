@@ -3,7 +3,6 @@
 // Enable Strict Types
 declare(strict_types=1);
 
-
 /**
  * Custom Helpers Functions.
  *
@@ -298,7 +297,7 @@ if (! function_exists('leap_year')) {
     function leap_year(): bool
     {
         $year = intval(current_year());
-        return ((($year % 4) == 0) && ((($year % 100) != 0) || (($year %400) == 0)));
+        return ((($year % 4) == 0) && ((($year % 100) != 0) || (($year % 400) == 0)));
     }
 }
 
@@ -348,30 +347,30 @@ if (! function_exists('months')) {
         $type = strtolower($type);
 
         switch ($type) {
-        case 'short':
-            for ($m=$start; $m <= $end; $m++) {
-                $months[] = date('M', mktime(0, 0, 0, $m, 1));
-            }
-            break;
-        case 'full':
-            for ($m=$start; $m <= $end; $m++) {
-                $months[] = date('F', mktime(0, 0, 0, $m, 1));
-            }
-            break;
-        case 'digit':
-            for ($m=$start; $m <= $end; $m++) {
-                $months[] = date('n', mktime(0, 0, 0, $m, 1));
-            }
-            break;
-        case 'digits':
-            for ($m=$start; $m <= $end; $m++) {
-                $months[] = date('m', mktime(0, 0, 0, $m, 1));
-            }
-            break;
-        default:
-            for ($m=$start; $m <= $end; $m++) {
-                $months[] = date('m', mktime(0, 0, 0, $m, 1));
-            }
+            case 'short':
+                for ($m = $start; $m <= $end; $m++) {
+                    $months[] = date('M', mktime(0, 0, 0, $m, 1));
+                }
+                break;
+            case 'full':
+                for ($m = $start; $m <= $end; $m++) {
+                    $months[] = date('F', mktime(0, 0, 0, $m, 1));
+                }
+                break;
+            case 'digit':
+                for ($m = $start; $m <= $end; $m++) {
+                    $months[] = date('n', mktime(0, 0, 0, $m, 1));
+                }
+                break;
+            case 'digits':
+                for ($m = $start; $m <= $end; $m++) {
+                    $months[] = date('m', mktime(0, 0, 0, $m, 1));
+                }
+                break;
+            default:
+                for ($m = $start; $m <= $end; $m++) {
+                    $months[] = date('m', mktime(0, 0, 0, $m, 1));
+                }
         }
 
         return $months;
@@ -472,7 +471,8 @@ if (! function_exists('countries')) {
     {
         if ($cached == true) {
             $countries = Cache::rememberForever(
-                'countries', function () {
+                'countries',
+                function () {
 
                     $columns = [
                     'id',
@@ -530,7 +530,7 @@ if (! function_exists('country')) {
             }
         }
 
-        return $country? $country->name : $code;
+        return $country ? $country->name : $code;
     }
 }
 
@@ -548,7 +548,8 @@ if (! function_exists('timezones')) {
     {
         if ($cached === true) {
             return Cache::rememberForever(
-                'timezones', function () {
+                'timezones',
+                function () {
 
                     $columns = [
                     'zone',
@@ -583,7 +584,8 @@ if (! function_exists('currencies')) {
     {
         if ($cached === true) {
             return Cache::rememberForever(
-                'currencies', function () {
+                'currencies',
+                function () {
 
                     $columns = [
                     'code',
@@ -684,7 +686,8 @@ if (! function_exists('states')) {
 
         if ($country && $cached === true) {
             return Cache::rememberForever(
-                $country->code.'_states', function () use ($country) {
+                $country->code . '_states',
+                function () use ($country) {
 
                     $columns = [
                     'code',
@@ -772,21 +775,21 @@ if (! function_exists('user')) {
  * @param  \App\Models\System\User|int     $user
  * @return \App\Models\System\Office|null
  */
-if(! function_exists('office_owner')) {
-    function office_owner($user) : ?User
+if (! function_exists('office_owner')) {
+    function office_owner($user): ?User
     {
-        if(is_numeric($user)) {
+        if (is_numeric($user)) {
             $user = User::where('id', safe_integer($user))->first();
         }
 
-        if($user instanceof User) {
-            if($user->hasRole(Role::OWNER)) {
+        if ($user instanceof User) {
+            if ($user->hasRole(Role::OWNER)) {
                 return $user;
             }
 
-            if($user->hasRole(Role::GUEST)) {
-                if($ownerId = $user->getMetaField('owner_id')) {
-                    if($owner = User::role(Role::OWNER)->where('id', safe_integer($ownerId))) {
+            if ($user->hasRole(Role::GUEST)) {
+                if ($ownerId = $user->getMetaField('owner_id')) {
+                    if ($owner = User::role(Role::OWNER)->where('id', safe_integer($ownerId))) {
                         return $owner;
                     }
                 }
@@ -850,7 +853,7 @@ if (! function_exists('user_panel_url')) {
                 return secure_url(Role::ADMIN);
             }
 
-            if($role == Role::GUEST) {
+            if ($role == Role::GUEST) {
                 return secure_url('office.dashboard');
             } else {
                 return secure_url($role);
@@ -902,7 +905,7 @@ if (! function_exists('system_media_url')) {
     function system_media_url(string $url): string
     {
         if (filled($url)) {
-            $url = str_replace('/'.request()->getHttpHost().'/', '/'.config('app.www_domain').'/', $url);
+            $url = str_replace('/' . request()->getHttpHost() . '/', '/' . config('app.www_domain') . '/', $url);
         }
 
         return $url;
@@ -949,18 +952,18 @@ if (! function_exists('megabyte_convert')) {
 
         if ($size > 0) {
             switch ($type) {
-            case 'bit':
-                return $size * (1024);
-            case 'byte':
-                return $size * (1024 * 1024);
-            case 'kb':
-                return $size * (1024 * 1024 * 1024);
-            case 'gb':
-                return (1024 * 1024 * 1024) * $size;
-            case 'tb':
-                return (1024 * 1024 * 1024 * 1024) * $size;
-            default:
-                return $size;
+                case 'bit':
+                    return $size * (1024);
+                case 'byte':
+                    return $size * (1024 * 1024);
+                case 'kb':
+                    return $size * (1024 * 1024 * 1024);
+                case 'gb':
+                    return (1024 * 1024 * 1024) * $size;
+                case 'tb':
+                    return (1024 * 1024 * 1024 * 1024) * $size;
+                default:
+                    return $size;
             }
         }
 
@@ -995,18 +998,18 @@ if (! function_exists('bit_convert')) {
             }
 
             switch ($type) {
-            case 'bit':
-                return $size;
-            case 'byte':
-                return $size * 8;
-            case 'kb':
-                return $size * 8000;
-            case 'mb':
-                return $size * 8e+6;
-            case 'gb':
-                return $size * 8e+9;
-            case 'tb':
-                return $size * 8e+12;
+                case 'bit':
+                    return $size;
+                case 'byte':
+                    return $size * 8;
+                case 'kb':
+                    return $size * 8000;
+                case 'mb':
+                    return $size * 8e+6;
+                case 'gb':
+                    return $size * 8e+9;
+                case 'tb':
+                    return $size * 8e+12;
             }
         }
 
@@ -1028,8 +1031,8 @@ if (! function_exists('memory_convert')) {
     function memory_convert($size)
     {
 
-        $unit=array('b','kb','mb','gb','tb','pb');
-        return @round($size/pow(1024, ($i=floor(log($size, 1024)))), 2).' '.$unit[$i];
+        $unit = array('b','kb','mb','gb','tb','pb');
+        return @round($size / pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
     }
 }
 
@@ -1056,7 +1059,7 @@ if (! function_exists('array_keys_exist')) {
 
         foreach ($keys as $key) {
             if (isset($array[$key]) || array_key_exists($key, $array)) {
-                $count ++;
+                $count++;
             }
         }
 
@@ -1153,7 +1156,8 @@ if (! function_exists('site')) {
         if (is_bool($cached)) {
             if ($cached) {
                 return Cache::rememberForever(
-                    'site', function () use (&$domain) {
+                    'site',
+                    function () use (&$domain) {
 
                         return Site::where('domain', $domain)->firstOrFail();
                     }
@@ -1168,7 +1172,8 @@ if (! function_exists('site')) {
         } else {
             if ($cached) {
                 return Cache::rememberForever(
-                    'site', function () use (&$domain) {
+                    'site',
+                    function () use (&$domain) {
 
                         return Site::where('domain', $domain)->firstOrFail();
                     }
@@ -1198,7 +1203,8 @@ if (! function_exists('settings')) {
 
         if ($cached) {
             return Cache::rememberForever(
-                'settings', function () use (&$domain, &$cached) {
+                'settings',
+                function () use (&$domain, &$cached) {
 
                     return site($domain, $cached)->settings()->get();
                 }
@@ -1270,7 +1276,8 @@ if (! function_exists('menu')) {
         if ($site && filled($name) && Menu::where('name', $name)->exists()) {
             if ($cached === true) {
                 return Cache::rememberForever(
-                    Str::snake('site_menu_' . $name), function () use (&$site) {
+                    Str::snake('site_menu_' . $name),
+                    function () use (&$site) {
 
                         return $site->menus()->where('name', $name)->first();
                     }
@@ -1379,36 +1386,36 @@ if (! function_exists('unique_slug')) {
         $i = 1;
 
         switch ($type) {
-        case 'page':
-            while (Page::withTrashed()->where('slug', $slug)->exists()) {
-                $slug = Str::slug($prefix) . '-' . $i;
-                $i++;
-            }
-            break;
-        case 'product':
-            while (Product::withTrashed()->where('slug', $slug)->exists()) {
-                $slug = Str::slug($prefix) . '-' . $i;
-                $i++;
-            }
-            break;
-        case 'package':
-            while (Package::withTrashed()->where('slug', $slug)->exists()) {
-                $slug = Str::slug($prefix) . '-' . $i;
-                $i++;
-            }
-            break;
-        case 'blog':
-            while (Blog::withTrashed()->where('slug', $slug)->exists()) {
-                $slug = Str::slug($prefix) . '-' . $i;
-                $i++;
-            }
-            break;
-        case 'post':
-            while (Post::withTrashed()->where('slug', $slug)->exists()) {
-                $slug = Str::slug($prefix) . '-' . $i;
-                $i++;
-            }
-            break;
+            case 'page':
+                while (Page::withTrashed()->where('slug', $slug)->exists()) {
+                    $slug = Str::slug($prefix) . '-' . $i;
+                    $i++;
+                }
+                break;
+            case 'product':
+                while (Product::withTrashed()->where('slug', $slug)->exists()) {
+                    $slug = Str::slug($prefix) . '-' . $i;
+                    $i++;
+                }
+                break;
+            case 'package':
+                while (Package::withTrashed()->where('slug', $slug)->exists()) {
+                    $slug = Str::slug($prefix) . '-' . $i;
+                    $i++;
+                }
+                break;
+            case 'blog':
+                while (Blog::withTrashed()->where('slug', $slug)->exists()) {
+                    $slug = Str::slug($prefix) . '-' . $i;
+                    $i++;
+                }
+                break;
+            case 'post':
+                while (Post::withTrashed()->where('slug', $slug)->exists()) {
+                    $slug = Str::slug($prefix) . '-' . $i;
+                    $i++;
+                }
+                break;
         }
 
         return $slug;
@@ -1432,13 +1439,13 @@ if (! function_exists('unique_name')) {
         $name = $prefix;
         $i = 1;
 
-        switch($type) {
-        case 'office':
-            while(Office::where('name', $name)->exists()) {
-                $name = $prefix . '_' . $i;
-                $i++;
-            }
-            break;
+        switch ($type) {
+            case 'office':
+                while (Office::where('name', $name)->exists()) {
+                    $name = $prefix . '_' . $i;
+                    $i++;
+                }
+                break;
         }
 
         return $name;
@@ -1453,7 +1460,7 @@ if (! function_exists('unique_name')) {
  *
  * @return string
  */
-if(! function_exists('unique_reference')) {
+if (! function_exists('unique_reference')) {
 
     function unique_reference($type, string $prefix = 'MD_')
     {
@@ -1465,19 +1472,19 @@ if(! function_exists('unique_reference')) {
         $suffix = Str::random(37);
         $reference = $prefix . $suffix;
 
-        switch($type) {
-        case 'appointment':
-            while (Appointment::where('reference', $reference)->exists()) {
-                $suffix = Str::random(37);
-                $reference = $prefix . $suffix;
-            }
-            break;
-        case 'payment':
-            while (Payment::where('reference', $reference)->exists()) {
-                $suffix = Str::random(37);
-                $reference = $prefix . $suffix;
-            }
-            break;
+        switch ($type) {
+            case 'appointment':
+                while (Appointment::where('reference', $reference)->exists()) {
+                    $suffix = Str::random(37);
+                    $reference = $prefix . $suffix;
+                }
+                break;
+            case 'payment':
+                while (Payment::where('reference', $reference)->exists()) {
+                    $suffix = Str::random(37);
+                    $reference = $prefix . $suffix;
+                }
+                break;
         }
 
         return $reference;
@@ -1493,12 +1500,12 @@ if(! function_exists('unique_reference')) {
  *
  * @return string
  */
-if(! function_exists('unique_invite_code')) {
+if (! function_exists('unique_invite_code')) {
     function unique_invite_code(): string
     {
         $code = Str::lower(Str::random(40));
 
-        while(User::where('invite_code', $code)->exists()) {
+        while (User::where('invite_code', $code)->exists()) {
             $code = Str::lower(Str::random(40));
         }
 
@@ -1519,9 +1526,9 @@ if (! function_exists('admin_url')) {
     function admin_url($path = ''): string
     {
         if (filled($path)) {
-            return config('app.ssl')? 'https://' . config('app.admin_domain') . '/' . $path : 'http://' . config('app.admin_domain') . '/' . $path;
+            return config('app.ssl') ? 'https://' . config('app.admin_domain') . '/' . $path : 'http://' . config('app.admin_domain') . '/' . $path;
         } else {
-            return config('app.ssl')? 'https://' . config('app.admin_domain') : 'http://' . config('app.admin_domain');
+            return config('app.ssl') ? 'https://' . config('app.admin_domain') : 'http://' . config('app.admin_domain');
         }
     }
 }
@@ -1562,7 +1569,7 @@ if (! function_exists('breadcrumbs')) {
  * @return bool
  */
 if (! function_exists('send_notification_queued')) {
-    function send_notification_queued($user, Notifiable $notifiable):? bool
+    function send_notification_queued($user, Notifiable $notifiable): ?bool
     {
         if (filled($user)) {
             if (is_numeric($user)) {
@@ -1682,9 +1689,9 @@ if (! function_exists('site_url')) {
         }
 
         if (filled($path)) {
-            return config('app.ssl')? 'https://' . $hostname . '/' . $path : 'http://' . config('app.www_domain') . '/' . $path;
+            return config('app.ssl') ? 'https://' . $hostname . '/' . $path : 'http://' . config('app.www_domain') . '/' . $path;
         } else {
-            return config('app.ssl')? 'https://' . $hostname : 'http://' . config('app.www_domain');
+            return config('app.ssl') ? 'https://' . $hostname : 'http://' . config('app.www_domain');
         }
     }
 }
@@ -1724,7 +1731,9 @@ if (! function_exists('resized_image')) {
                     try {
                         $image = Image::make($real_path);
                         $image->resize(
-                            $width, null, function ($constraint) {
+                            $width,
+                            null,
+                            function ($constraint) {
                                 $constraint->aspectRatio();
                             }
                         );
@@ -1771,45 +1780,6 @@ if (! function_exists('create_route')) {
                 if (array_keys_exist($route, ['method', 'name', 'middleware']) === 3) {
                     if (filled($route['middleware'])) {
                         switch ($type) {
-                        case 'any':
-                            return Route::any($path, $controller)->middleware($route['middleware']);
-                        case 'get':
-                            return Route::get($path, $controller)->middleware($route['middleware']);
-                        case 'post':
-                            return Route::post($path, $controller)->middleware($route['middleware']);
-                        case 'put':
-                            return Route::put($path, $controller)->middleware($route['middleware']);
-                        case 'patch':
-                            return Route::patch($path, $controller)->middleware($route['middleware']);
-                        case 'delete':
-                            return Route::delete($path, $controller)->middleware($route['middleware']);
-                        }
-                    } else {
-                        switch ($type) {
-                        case 'any':
-                            return Route::any($path, $controller);
-                        case 'get':
-                            return Route::get($path, $controller);
-                        case 'post':
-                            return Route::post($path, $controller);
-                        case 'put':
-                            return Route::put($path, $controller);
-                        case 'patch':
-                            return Route::patch($path, $controller);
-                        case 'delete':
-                            return Route::delete($path, $controller);
-                        }
-                    }
-                }
-
-                if (array_keys_exist($route, ['method'])) {
-                    $method = $route['method'];
-
-                    if (!array_keys_exist($route, ['name'])) {
-                        $controller .= '@' . $method;
-
-                        if (array_keys_exist($route, ['middleware'])) {
-                            switch ($type) {
                             case 'any':
                                 return Route::any($path, $controller)->middleware($route['middleware']);
                             case 'get':
@@ -1822,9 +1792,9 @@ if (! function_exists('create_route')) {
                                 return Route::patch($path, $controller)->middleware($route['middleware']);
                             case 'delete':
                                 return Route::delete($path, $controller)->middleware($route['middleware']);
-                            }
-                        } else {
-                            switch ($type) {
+                        }
+                    } else {
+                        switch ($type) {
                             case 'any':
                                 return Route::any($path, $controller);
                             case 'get':
@@ -1837,6 +1807,45 @@ if (! function_exists('create_route')) {
                                 return Route::patch($path, $controller);
                             case 'delete':
                                 return Route::delete($path, $controller);
+                        }
+                    }
+                }
+
+                if (array_keys_exist($route, ['method'])) {
+                    $method = $route['method'];
+
+                    if (!array_keys_exist($route, ['name'])) {
+                        $controller .= '@' . $method;
+
+                        if (array_keys_exist($route, ['middleware'])) {
+                            switch ($type) {
+                                case 'any':
+                                    return Route::any($path, $controller)->middleware($route['middleware']);
+                                case 'get':
+                                    return Route::get($path, $controller)->middleware($route['middleware']);
+                                case 'post':
+                                    return Route::post($path, $controller)->middleware($route['middleware']);
+                                case 'put':
+                                    return Route::put($path, $controller)->middleware($route['middleware']);
+                                case 'patch':
+                                    return Route::patch($path, $controller)->middleware($route['middleware']);
+                                case 'delete':
+                                    return Route::delete($path, $controller)->middleware($route['middleware']);
+                            }
+                        } else {
+                            switch ($type) {
+                                case 'any':
+                                    return Route::any($path, $controller);
+                                case 'get':
+                                    return Route::get($path, $controller);
+                                case 'post':
+                                    return Route::post($path, $controller);
+                                case 'put':
+                                    return Route::put($path, $controller);
+                                case 'patch':
+                                    return Route::patch($path, $controller);
+                                case 'delete':
+                                    return Route::delete($path, $controller);
                             }
                         }
                     } else {
@@ -1845,33 +1854,33 @@ if (! function_exists('create_route')) {
 
                         if (array_keys_exist($route, ['middleware'])) {
                             switch ($type) {
-                            case 'any':
-                                return Route::any($path, $controller)->name($name)->middleware($route['middleware']);
-                            case 'get':
-                                return Route::get($path, $controller)->name($name)->middleware($route['middleware']);
-                            case 'post':
-                                return Route::post($path, $controller)->name($name)->middleware($route['middleware']);
-                            case 'put':
-                                return Route::put($path, $controller)->name($name)->middleware($route['middleware']);
-                            case 'patch':
-                                return Route::patch($path, $controller)->name($name)->middleware($route['middleware']);
-                            case 'delete':
-                                return Route::delete($path, $controller)->name($name)->middleware($route['middleware']);
+                                case 'any':
+                                    return Route::any($path, $controller)->name($name)->middleware($route['middleware']);
+                                case 'get':
+                                    return Route::get($path, $controller)->name($name)->middleware($route['middleware']);
+                                case 'post':
+                                    return Route::post($path, $controller)->name($name)->middleware($route['middleware']);
+                                case 'put':
+                                    return Route::put($path, $controller)->name($name)->middleware($route['middleware']);
+                                case 'patch':
+                                    return Route::patch($path, $controller)->name($name)->middleware($route['middleware']);
+                                case 'delete':
+                                    return Route::delete($path, $controller)->name($name)->middleware($route['middleware']);
                             }
                         } else {
                             switch ($type) {
-                            case 'any':
-                                return Route::any($path, $controller)->name($name);
-                            case 'get':
-                                return Route::get($path, $controller)->name($name);
-                            case 'post':
-                                return Route::post($path, $controller)->name($name);
-                            case 'put':
-                                return Route::put($path, $controller)->name($name);
-                            case 'patch':
-                                return Route::patch($path, $controller)->name($name);
-                            case 'delete':
-                                return Route::delete($path, $controller)->name($name);
+                                case 'any':
+                                    return Route::any($path, $controller)->name($name);
+                                case 'get':
+                                    return Route::get($path, $controller)->name($name);
+                                case 'post':
+                                    return Route::post($path, $controller)->name($name);
+                                case 'put':
+                                    return Route::put($path, $controller)->name($name);
+                                case 'patch':
+                                    return Route::patch($path, $controller)->name($name);
+                                case 'delete':
+                                    return Route::delete($path, $controller)->name($name);
                             }
                         }
                     }
@@ -2068,7 +2077,7 @@ if (! function_exists('server_memory_usage')) {
                 $mem = explode(" ", $free_arr[1]);
                 $mem = array_filter($mem);
                 $mem = array_merge($mem);
-                $memory_usage = $mem[2]/$mem[1]*100;
+                $memory_usage = $mem[2] / $mem[1] * 100;
             } catch (Exception $e) {
                 logger('Failed to get server memory usage')->error();
             }
@@ -2095,7 +2104,7 @@ if (! function_exists('server_cpu_usage')) {
         if (strtolower(server_os()) == 'linux') {
             $loads = sys_getloadavg();
             $cores = server_cpu_cores();
-            $load  = $loads[0]/$cores;
+            $load  = $loads[0] / $cores;
         }
 
         return $load;

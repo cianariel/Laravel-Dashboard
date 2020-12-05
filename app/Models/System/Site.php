@@ -41,30 +41,30 @@ use App\Models\System\Traits\HasIndustries;
  */
 class Site extends Model
 {
-    use HasAppointments,
-        HasCalendarEvents,
-        HasOffices,
-        HasCarts,
-        HasCountries,
-        HasForums,
-        HasInvoiceItems,
-        HasMenus,
-        HasNotes,
-        HasOrders,
-        HasPackages,
-        HasPages,
-        HasProductAttributes,
-        HasProducts,
-        HasProductTypes,
-        HasQuotes,
-        HasRedirects,
-        HasRefunds,
-        HasSettings,
-        HasStates,
-        HasSubscriptions,
-        HasTags,
-        HasUsers,
-        SoftDeletes;
+    use HasAppointments;
+    use HasCalendarEvents;
+    use HasOffices;
+    use HasCarts;
+    use HasCountries;
+    use HasForums;
+    use HasInvoiceItems;
+    use HasMenus;
+    use HasNotes;
+    use HasOrders;
+    use HasPackages;
+    use HasPages;
+    use HasProductAttributes;
+    use HasProducts;
+    use HasProductTypes;
+    use HasQuotes;
+    use HasRedirects;
+    use HasRefunds;
+    use HasSettings;
+    use HasStates;
+    use HasSubscriptions;
+    use HasTags;
+    use HasUsers;
+    use SoftDeletes;
 
     /**
      * The database table used by the model.

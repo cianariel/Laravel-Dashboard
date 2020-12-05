@@ -35,7 +35,7 @@ trait HasPages
      */
     public function hasPages(): bool
     {
-        return ($this->pages()->count() !== 0)? true : false;
+        return ($this->pages()->count() !== 0) ? true : false;
     }
 
     /**
@@ -75,7 +75,7 @@ trait HasPages
             }
 
             if ($page instanceof Page) {
-                return ($this->pages()->save($page))? true : false;
+                return ($this->pages()->save($page)) ? true : false;
             } else {
                 return false;
             }
@@ -100,7 +100,7 @@ trait HasPages
             }
 
             if ($page instanceof Page) {
-                return ($this->pages()->detach($page->id))? true : false;
+                return ($this->pages()->detach($page->id)) ? true : false;
             }
         }
 

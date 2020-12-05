@@ -35,17 +35,14 @@ class InvitationController extends Controller
     {
         $site = site(config('app.base_domain'));
 
-        if($site->users()->where('invite_code', $invite_code)->exists()) {
+        if ($site->users()->where('invite_code', $invite_code)->exists()) {
             $user = $site->users()->where('invite_code', $invite_code)->first();
             $owner = office_owner($user);
             $office = $owner->offices()->first();
 
-            if($user && $owner) {
-
-                if($user->setup_completed == User::SETUP_INCOMPLETE) {
-
+            if ($user && $owner) {
+                if ($user->setup_completed == User::SETUP_INCOMPLETE) {
                     return view('frontend.invitation.show', compact('site', 'user', 'owner', 'office'));
-
                 } else {
                     return redirect()->route('login');
                 }
@@ -63,20 +60,19 @@ class InvitationController extends Controller
      */
     public function accept(Request $request, string $invite_code = '')
     {
-        if($site->users()->where('invite_code', $invite_code)->exists()) {
-
+        if ($site->users()->where('invite_code', $invite_code)->exists()) {
             $rules = [
-                'first_name'    => ['required', 'string', 'max:50', new SanitizeHtml],
-                'last_name'     => ['required', 'string', 'max:50', new SanitizeHtml],
-                'address'       => ['required', 'string', 'max:100', new SanitizeHtml],
-                'address_2'     => ['required', 'string', 'max:100', new SanitizeHtml],
-                'city'          => ['required', 'string', 'max:50', new SanitizeHtml],
-                'state'         => ['required', 'string', 'max:50', new SanitizeHtml],
-                'zipcode'       => ['required', 'string', 'max:25', new SanitizeHtml],
+                'first_name'    => ['required', 'string', 'max:50', new SanitizeHtml()],
+                'last_name'     => ['required', 'string', 'max:50', new SanitizeHtml()],
+                'address'       => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'address_2'     => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'city'          => ['required', 'string', 'max:50', new SanitizeHtml()],
+                'state'         => ['required', 'string', 'max:50', new SanitizeHtml()],
+                'zipcode'       => ['required', 'string', 'max:25', new SanitizeHtml()],
                 'country'       => ['required', 'string', 'max:2', 'exists:countries,code'],
                 'password'      => ['required', 'string', 'confirmed', 'max:16'],
-                'phone'         => ['nullable', 'string', new PhoneRule],
-                'mobile_phone'  => ['nullable', 'string', new PhoneRule]
+                'phone'         => ['nullable', 'string', new PhoneRule()],
+                'mobile_phone'  => ['nullable', 'string', new PhoneRule()]
             ];
 
             $validatedData = $request->validate($rules);

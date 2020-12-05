@@ -32,9 +32,9 @@ trait HasMessages
      * @return bool
      * @access public
      */
-    public function hasMessages():bool
+    public function hasMessages(): bool
     {
-        return ($this->messages->count() !== 0)? true : false;
+        return ($this->messages->count() !== 0) ? true : false;
     }
 
     /**
@@ -96,11 +96,11 @@ trait HasMessages
     {
         if ($this->hasMessage($message)) {
             if (is_numeric($message) && is_finite(intval($message))) {
-                return ($this->messages()->detach(intval($message)))? true : false;
+                return ($this->messages()->detach(intval($message))) ? true : false;
             }
 
             if ($message instanceof Message) {
-                return ($this->messages()->detach($message->id))? true : false;
+                return ($this->messages()->detach($message->id)) ? true : false;
             }
         }
 

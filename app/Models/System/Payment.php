@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use \Stripe\Stripe as Stripe;
-use \Stripe\Exception\InvalidRequestException;
-use \Stripe\Exception\CardException;
+use Stripe\Stripe as Stripe;
+use Stripe\Exception\InvalidRequestException;
+use Stripe\Exception\CardException;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use App\Models\System\User;

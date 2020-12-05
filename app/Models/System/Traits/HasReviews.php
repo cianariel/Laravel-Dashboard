@@ -34,7 +34,7 @@ trait HasReviews
      */
     public function hasReviews(): bool
     {
-        return ($this->reviews->count() !== 0)? true : false;
+        return ($this->reviews->count() !== 0) ? true : false;
     }
 
     /**
@@ -80,7 +80,7 @@ trait HasReviews
             }
 
             if ($rating instanceof Review) {
-                return ($this->reviews()->saveOrfail($rating->id))? true : false;
+                return ($this->reviews()->saveOrfail($rating->id)) ? true : false;
             }
         }
 
@@ -98,11 +98,11 @@ trait HasReviews
     {
         if ($this->hasReview($rating)) {
             if (is_numeric($rating) && is_finite(intval($rating))) {
-                return ($this->reviews()->detach(intval($rating)))? true : false;
+                return ($this->reviews()->detach(intval($rating))) ? true : false;
             }
 
             if ($rating instanceof Review) {
-                return ($this->reviews()->detach($rating->id))? true : false;
+                return ($this->reviews()->detach($rating->id)) ? true : false;
             } else {
                 return false;
             }

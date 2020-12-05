@@ -119,13 +119,13 @@ class StatesController extends Controller
 
             $rules = [
                 'code'      => ['required', 'string', 'alpha', 'max:2'],
-                'name'      => ['required', 'string', 'max:50', new SanitizeHtml],
+                'name'      => ['required', 'string', 'max:50', new SanitizeHtml()],
                 'status'    => ['required', 'string', Rule::in(State::STATUS_TYPES)]
             ];
 
             $validatedData = $request->validate($rules);
 
-            $state = new State;
+            $state = new State();
             $state->code = $request->input('code');
             $state->name = strip_tags($request->input('name'));
             $state->status = $request->input('status');
@@ -199,7 +199,7 @@ class StatesController extends Controller
 
             $rules = [
                 'code'      => ['required', 'string', 'alpha', 'max:2'],
-                'name'      => ['required', 'string', 'max:50', new SanitizeHtml],
+                'name'      => ['required', 'string', 'max:50', new SanitizeHtml()],
                 'status'    => ['required', 'string', Rule::in(State::STATUS_TYPES)]
             ];
 

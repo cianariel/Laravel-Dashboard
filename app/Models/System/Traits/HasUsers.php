@@ -34,7 +34,7 @@ trait HasUsers
      */
     public function hasUsers(): bool
     {
-        return ($this->users()->count() !== 0)? true : false;
+        return ($this->users()->count() !== 0) ? true : false;
     }
 
     /**
@@ -76,7 +76,7 @@ trait HasUsers
             }
 
             if ($user instanceof User) {
-                return ($this->users()->save($user))? true : false;
+                return ($this->users()->save($user)) ? true : false;
             } else {
                 return false;
             }
@@ -94,11 +94,11 @@ trait HasUsers
     {
         if ($this->hasUser($user)) {
             if (is_numeric($user) && is_finite(intval($user))) {
-                return ($this->users()->detach(intval($user)))? true : false;
+                return ($this->users()->detach(intval($user))) ? true : false;
             }
 
             if ($user instanceof $user) {
-                return ($this->users()->detach($user->id))? true : false;
+                return ($this->users()->detach($user->id)) ? true : false;
             }
         }
 

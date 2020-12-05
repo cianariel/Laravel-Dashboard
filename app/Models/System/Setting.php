@@ -19,8 +19,8 @@ use App\Models\System\Traits\HasGroups;
  */
 class Setting extends Model implements HasMedia
 {
-    use HasMediaTrait,
-        HasGroups;
+    use HasMediaTrait;
+    use HasGroups;
 
     /**
      * The database table used by the model.
