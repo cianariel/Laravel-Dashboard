@@ -34,7 +34,7 @@ trait HasRedirects
      */
     public function hasRedirects(): bool
     {
-        return ($this->redirects()->count() !== 0)? true : false;
+        return ($this->redirects()->count() !== 0) ? true : false;
     }
 
     /**
@@ -77,7 +77,7 @@ trait HasRedirects
             }
 
             if ($redirect instanceof Redirect) {
-                return ($this->redirects()->save($redirect))? true : false;
+                return ($this->redirects()->save($redirect)) ? true : false;
             } else {
                 return false;
             }
@@ -103,7 +103,7 @@ trait HasRedirects
             }
 
             if ($redirect instanceof Redirect) {
-                return ($this->redirects()->detach($redirect->id))? true : false;
+                return ($this->redirects()->detach($redirect->id)) ? true : false;
             }
         }
 

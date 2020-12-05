@@ -29,14 +29,14 @@ class PagesController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, string $slug='')
+    public function show(Request $request, string $slug = '')
     {
         $site = site(config('app.base_domain'));
 
-        if(filled($slug) && $site->pages()->where('slug', $slug)->exists()) {
+        if (filled($slug) && $site->pages()->where('slug', $slug)->exists()) {
             $page = $site->pages()->where('slug', $slug)->first();
 
-            if($page->status == Page::ACTIVE) {
+            if ($page->status == Page::ACTIVE) {
                 return view(
                     'frontend.pages.default',
                     compact('site', 'page')

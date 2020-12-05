@@ -34,7 +34,7 @@ trait HasProducts
      */
     public function hasProducts(): bool
     {
-        return ($this->products()->count() !== 0)? true : false;
+        return ($this->products()->count() !== 0) ? true : false;
     }
 
     /**
@@ -76,7 +76,7 @@ trait HasProducts
             }
 
             if ($product instanceof Product) {
-                return ($this->products()->save($product))? true : false;
+                return ($this->products()->save($product)) ? true : false;
             } else {
                 return false;
             }
@@ -97,11 +97,11 @@ trait HasProducts
     {
         if ($this->hasProduct($product)) {
             if (is_numeric($product) && is_finite(intval($product))) {
-                return ($this->products()->detach(intval($product)))? true : false;
+                return ($this->products()->detach(intval($product))) ? true : false;
             }
 
             if ($product instanceof Product) {
-                return ($this->products()->detach($product->id))? true : false;
+                return ($this->products()->detach($product->id)) ? true : false;
             }
         }
 

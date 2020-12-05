@@ -34,7 +34,7 @@ trait HasCompanies
      */
     public function hasCompanies(): bool
     {
-        return ($this->companies->count() !== 0)? true : false;
+        return ($this->companies->count() !== 0) ? true : false;
     }
 
     /**
@@ -78,7 +78,7 @@ trait HasCompanies
             }
 
             if ($company instanceof Company) {
-                return ($this->companies()->save($company))? true : false;
+                return ($this->companies()->save($company)) ? true : false;
             } else {
                 return false;
             }
@@ -99,11 +99,11 @@ trait HasCompanies
     {
         if ($this->hasCompany($company)) {
             if (is_numeric($company) && is_finite(intval($company))) {
-                return ($this->companies()->detach(intval($company)))? true : false;
+                return ($this->companies()->detach(intval($company))) ? true : false;
             }
 
             if ($company instanceof Company) {
-                return ($this->companies()->detach($company->id))? true : false;
+                return ($this->companies()->detach($company->id)) ? true : false;
             }
         }
 

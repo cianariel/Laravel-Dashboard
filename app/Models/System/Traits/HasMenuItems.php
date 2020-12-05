@@ -34,7 +34,7 @@ trait HasMenuItems
      */
     public function hasMenuItems(): bool
     {
-        return ($this->menuItems()->count())? true : false;
+        return ($this->menuItems()->count()) ? true : false;
     }
 
     /**
@@ -87,7 +87,7 @@ trait HasMenuItems
             }
 
             if ($menuItem instanceof MenuItem) {
-                return ($this->menuItems()->save($menuItem))? true : false;
+                return ($this->menuItems()->save($menuItem)) ? true : false;
             } else {
                 return false;
             }
@@ -117,7 +117,7 @@ trait HasMenuItems
             }
 
             if ($menuItem instanceof MenuItem) {
-                return ($this->menuItems()->detach($menuItem->id))? true : false;
+                return ($this->menuItems()->detach($menuItem->id)) ? true : false;
             }
         }
 

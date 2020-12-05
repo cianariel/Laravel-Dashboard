@@ -34,7 +34,7 @@ trait HasRefunds
      */
     public function hasRefunds(): bool
     {
-        return ($this->refunds()->count() !== 0)?  true : false;
+        return ($this->refunds()->count() !== 0) ?  true : false;
     }
 
     /**
@@ -80,7 +80,7 @@ trait HasRefunds
             }
 
             if ($refund instanceof Refund) {
-                return ($this->refunds()->save($refund))? true : false;
+                return ($this->refunds()->save($refund)) ? true : false;
             } else {
                 return false;
             }
@@ -100,11 +100,11 @@ trait HasRefunds
     {
         if ($this->hasRefund($refund)) {
             if (is_numeric($refund) && is_finite(intval($refund))) {
-                return ($this->refunds()->detach(intval($refund)))? true : false;
+                return ($this->refunds()->detach(intval($refund))) ? true : false;
             }
 
             if ($refund instanceof Refund) {
-                return ($this->refunds()->detach($refund->id))? true : false;
+                return ($this->refunds()->detach($refund->id)) ? true : false;
             } else {
                 return false;
             }

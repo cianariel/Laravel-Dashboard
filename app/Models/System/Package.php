@@ -22,9 +22,9 @@ use App\Models\Shared\Model;
  */
 class Package extends Model implements HasMedia, Searchable
 {
-    use HasProducts,
-        HasMediaTrait,
-        SoftDeletes;
+    use HasProducts;
+    use HasMediaTrait;
+    use SoftDeletes;
 
     /**
      * The database table used by the model.

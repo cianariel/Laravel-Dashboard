@@ -34,7 +34,7 @@ trait HasPackages
      */
     public function hasPackages(): bool
     {
-        return ($this->packages()->count() !== 0)? true : false;
+        return ($this->packages()->count() !== 0) ? true : false;
     }
 
     /**
@@ -76,7 +76,7 @@ trait HasPackages
             }
 
             if ($package instanceof Package) {
-                return ($this->packages()->save($package))? true : false;
+                return ($this->packages()->save($package)) ? true : false;
             } else {
                 return false;
             }
@@ -97,11 +97,11 @@ trait HasPackages
     {
         if ($this->hasPackage($package)) {
             if (is_numeric($package) && is_finite(intval($package))) {
-                return ($this->packages()->detach(intval($package)))? true : false;
+                return ($this->packages()->detach(intval($package))) ? true : false;
             }
 
             if ($package instanceof Package) {
-                return ($this->packages()->detach($package->id))? true : false;
+                return ($this->packages()->detach($package->id)) ? true : false;
             }
         }
 

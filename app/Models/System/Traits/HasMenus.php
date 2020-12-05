@@ -34,7 +34,7 @@ trait HasMenus
      */
     public function hasMenus(): bool
     {
-        return ($this->menus()->count())? true : false;
+        return ($this->menus()->count()) ? true : false;
     }
 
     /**
@@ -87,7 +87,7 @@ trait HasMenus
             }
 
             if ($menu instanceof Menu) {
-                return ($this->menus()->save($menu))? true : false;
+                return ($this->menus()->save($menu)) ? true : false;
             } else {
                 return false;
             }
@@ -117,7 +117,7 @@ trait HasMenus
             }
 
             if ($menu instanceof Menu) {
-                return ($this->menus()->detach($menu->id))? true : false;
+                return ($this->menus()->detach($menu->id)) ? true : false;
             }
         }
 

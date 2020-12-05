@@ -717,6 +717,13 @@ window.mdRequireIfFormInput = function ($) {
         let require_input = $('#'+input.data('required-if'));
         let require_value = input.data('required-if-value');
 
+        if(require_value  == true || require_value  == 'true') {
+            require_value  = 'true';
+        }
+
+        if(require_value  == false || require_value  == 'false') {
+            require_value  = 'false';
+        }
 
         if (require_input.val() == require_value) {
             input.removeClass('hidden');
@@ -819,26 +826,61 @@ window.mdVerticalTabs = function ($) {
 
     let nav = $('.md-nav-vertical-tabs');
         links = nav.find('.nav-link');
-    let tabsContentBlocks = $('.md-nav-vertical-tabs-content .md-tab-block');
+    let tabsContentBlocks = $('.md-nav-vertical-tabs-content .wv-tab-block');
 
     if (links.length !== 0 && tabsContentBlocks.length !== 0) {
-        links.on('click touchend', function (e) {
-            e.preventDefault();
+
+        links.each(function(index){
 
             let link = $(this);
             let id = link.attr('href');
             let block = $(id);
 
-            if (id.length !== 0) {
+            if(MD.getUriHash() == id) {
                 links.removeClass('active');
                 tabsContentBlocks.addClass('hidden');
                 link.addClass('active');
-
+                MD.setUriHash(id);
                 block.removeClass('hidden')
             }
+
+            link.on('click touchend', function (e) {
+                e.preventDefault();
+
+                if (id.length !== 0) {
+                    links.removeClass('active');
+                    tabsContentBlocks.addClass('hidden');
+                    link.addClass('active');
+                    MD.setUriHash(id);
+                    block.removeClass('hidden')
+                }
+            });
         });
     }
-}
+};
+
+// Date Picker
+//-----------------------------------------//
+window.mdDatePicker = function($) {
+
+    let datePickers = $('.md-date-picker');
+
+    if(datePickers.length !== 0) {
+
+        datePickers.each(function(index){
+            let parent = $(this);
+            let options = parent.data('options');
+            let input = parent.find('input[type="text"]');
+
+            if(!options) {
+                options = {};
+            }
+
+            input.daterangepicker(options);
+
+        });
+    }
+};
 
 
 // On Document Ready
@@ -902,5 +944,9 @@ jQuery(document).ready(function ($) {
     // Feather Icons
     mdFeatherIcons();
 
+    // Tabs
     mdVerticalTabs($);
+
+    // Date Picker
+    mdDatePicker($);
 });

@@ -34,7 +34,7 @@ trait HasComments
      */
     public function hasComments()
     {
-        return ($this->comments()->count() !== 0)? true : false;
+        return ($this->comments()->count() !== 0) ? true : false;
     }
 
     /**
@@ -79,7 +79,7 @@ trait HasComments
             }
 
             if ($comment instanceof Comment) {
-                return ($this->comments()->save($comment))? true : false;
+                return ($this->comments()->save($comment)) ? true : false;
             } else {
                 return false;
             }
@@ -100,11 +100,11 @@ trait HasComments
     {
         if ($this->hasComment($comment)) {
             if (is_numeric($comment) && is_finite(intval($comment))) {
-                return ($this->comments()->detach(intval($comment)))? true : false;
+                return ($this->comments()->detach(intval($comment))) ? true : false;
             }
 
             if ($comment instanceof Comment) {
-                return ($this->comments()->detach($comment->id))? true : false;
+                return ($this->comments()->detach($comment->id)) ? true : false;
             }
         }
 

@@ -34,7 +34,7 @@ trait HasGroups
      */
     public function hasGroups(): bool
     {
-        return ($this->groups()->count())? true : false;
+        return ($this->groups()->count()) ? true : false;
     }
 
     /**
@@ -87,7 +87,7 @@ trait HasGroups
             }
 
             if ($group instanceof Group) {
-                return ($this->groups()->save($group))? true : false;
+                return ($this->groups()->save($group)) ? true : false;
             } else {
                 return false;
             }
@@ -117,7 +117,7 @@ trait HasGroups
             }
 
             if ($group instanceof Group) {
-                return ($this->groups()->detach($group->id))? true : false;
+                return ($this->groups()->detach($group->id)) ? true : false;
             }
         }
 

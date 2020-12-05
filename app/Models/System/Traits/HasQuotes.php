@@ -34,7 +34,7 @@ trait HasQuotes
      */
     public function hasQuotes(): bool
     {
-        return ($this->quotes()->count() !== 0)? true : false;
+        return ($this->quotes()->count() !== 0) ? true : false;
     }
 
     /**
@@ -78,7 +78,7 @@ trait HasQuotes
             }
 
             if ($quote instanceof Quote) {
-                return ($this->quotes()->save($quote))? true : false;
+                return ($this->quotes()->save($quote)) ? true : false;
             } else {
                 return false;
             }
@@ -99,11 +99,11 @@ trait HasQuotes
     {
         if ($this->hasQuote($quote)) {
             if (is_numeric($quote) && is_finite(intval($quote))) {
-                return ($this->quotes()->detach(intval($quote)))? true : false;
+                return ($this->quotes()->detach(intval($quote))) ? true : false;
             }
 
             if ($quote instanceof Quote) {
-                return ($this->quotes()->detach($quote->id))? true : false;
+                return ($this->quotes()->detach($quote->id)) ? true : false;
             }
         }
 

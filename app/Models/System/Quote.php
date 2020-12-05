@@ -21,8 +21,8 @@ use App\Models\Shared\Model;
  */
 class Quote extends Model implements HasMedia, Searchable
 {
-    use HasMediaTrait,
-        HasQuoteItems;
+    use HasMediaTrait;
+    use HasQuoteItems;
 
     /**
      * The database table used by the model.

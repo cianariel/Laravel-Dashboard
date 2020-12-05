@@ -34,7 +34,7 @@ trait HasOrders
      */
     public function hasOrders(): bool
     {
-        return ($this->orders->count())? true : false;
+        return ($this->orders->count()) ? true : false;
     }
 
     /**
@@ -76,7 +76,7 @@ trait HasOrders
             }
 
             if ($order instanceof Order) {
-                return ($this->orders()->saveOrFail($order))? true : false;
+                return ($this->orders()->saveOrFail($order)) ? true : false;
             } else {
                 return false;
             }
@@ -96,11 +96,11 @@ trait HasOrders
     {
         if ($this->hasOrder($order)) {
             if (is_numeric($order) && is_finite(intval($order))) {
-                return ($this->orders()->detach(intval($order)))? true : false;
+                return ($this->orders()->detach(intval($order))) ? true : false;
             }
 
             if ($order instanceof Order) {
-                return ($this->orders()->detach($order->id))? true : false;
+                return ($this->orders()->detach($order->id)) ? true : false;
             }
         }
 

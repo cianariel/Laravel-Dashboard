@@ -130,6 +130,19 @@ if (!window.MDRepTime && window.jQuery && window.Cookies && window.axios) {
 
       this.stripe = function () {
         return _stripe;
+      }; // Url Hash
+
+
+      this.getUriHash = function () {
+        return window.location.hash;
+      };
+
+      this.setUriHash = function () {
+        var hash = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+        if (hash.length) {
+          window.location.hash = hash;
+        }
       }; // Dialogs
 
 

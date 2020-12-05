@@ -13,7 +13,9 @@ use App\Models\System\User;
 
 class InviteUser
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * @var App\Models\System\User $owner

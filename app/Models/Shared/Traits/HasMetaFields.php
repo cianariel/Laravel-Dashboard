@@ -39,7 +39,7 @@ trait HasMetaFields
      */
     public function getMetaField($name, $defaultValue = null)
     {
-        if(strpos($name, '->') !== false) {
+        if (strpos($name, '->') !== false) {
             $name = str_replace('->', '.', $name);
         }
 
@@ -55,13 +55,13 @@ trait HasMetaFields
      */
     public function setMetaField($name, $value = null, bool $autosave = false): bool
     {
-        if(strpos($name, '->') !== false) {
+        if (strpos($name, '->') !== false) {
             $name = str_replace('->', '.', $name);
         }
 
         $this->meta_fields->set($name, $value);
 
-        if($autosave === true) {
+        if ($autosave === true) {
             return $this->save();
         }
 

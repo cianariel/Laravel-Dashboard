@@ -78,8 +78,7 @@ class SubscriptionsController extends AdminController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($site->subscriptions()->where('id', $id)->exists()) {
-
+        if ($site->subscriptions()->where('id', $id)->exists()) {
             $subscription = $site->subscriptions()->where('id', safe_integer($id))->firstOrFail();
 
             $breadcrumbs = [
@@ -121,8 +120,7 @@ class SubscriptionsController extends AdminController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($site->subscriptions()->where('id', $id)->exists()) {
-
+        if ($site->subscriptions()->where('id', $id)->exists()) {
             $subscription = $site->subscriptions()->where('id', safe_integer($id))->firstOrFail();
 
             $breadcrumbs = [
@@ -164,7 +162,7 @@ class SubscriptionsController extends AdminController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($site->subscriptions()->where('id', $id)->exists()) {
+        if ($site->subscriptions()->where('id', $id)->exists()) {
             $rules = [
                 'status'    => ['required', 'string', Rule::in(Subscription::STATUS_TYPES)]
             ];

@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard?? \App\Models\System\User::GUARD)->check()) {
+        if (Auth::guard($guard ?? \App\Models\System\User::GUARD)->check()) {
             return redirect(role($user));
         }
 

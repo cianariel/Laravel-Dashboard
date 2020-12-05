@@ -88,7 +88,7 @@ trait HasForums
             }
 
             if ($forum instanceof Forum) {
-                return ($this->forums()->save($forum))? true : false;
+                return ($this->forums()->save($forum)) ? true : false;
             } else {
                 return false;
             }
@@ -119,7 +119,7 @@ trait HasForums
             }
 
             if ($forum instanceof Forum) {
-                return ($this->forums()->detach($forum->id))? true : false;
+                return ($this->forums()->detach($forum->id)) ? true : false;
             }
         }
 

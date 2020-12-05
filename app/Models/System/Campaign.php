@@ -23,9 +23,9 @@ use App\Models\Shared\Model;
  */
 class Campaign extends Model implements HasMedia, Searchable
 {
-    use HasMediaTrait,
-        HasUsers,
-        SoftDeletes;
+    use HasMediaTrait;
+    use HasUsers;
+    use SoftDeletes;
 
     /**
      * The database table used by the model.

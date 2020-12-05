@@ -7,7 +7,7 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
-use \Venturecraft\Revisionable\RevisionableTrait;
+use Venturecraft\Revisionable\RevisionableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Shared\Model;
 
@@ -20,9 +20,9 @@ use App\Models\Shared\Model;
  */
 class Post extends Model implements HasMedia, Searchable
 {
-    use HasMediaTrait,
-        RevisionableTrait,
-        SoftDeletes;
+    use HasMediaTrait;
+    use RevisionableTrait;
+    use SoftDeletes;
 
     /**
      * The database table used by the model.

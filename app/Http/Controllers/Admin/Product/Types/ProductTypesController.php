@@ -86,7 +86,7 @@ class ProductTypesController extends AdminController
     {
         if ($request->isMethod('post')) {
             $rules = [
-                'label'     => ['required', 'string', 'max:100', new SanitizeHtml],
+                'label'     => ['required', 'string', 'max:100', new SanitizeHtml()],
                 'status'    => ['required', 'string', Rule::in(ProductType::STATUS_TYPES)]
             ];
 
@@ -100,7 +100,7 @@ class ProductTypesController extends AdminController
                 return back()->withInput();
             }
 
-            $productType = new ProductType;
+            $productType = new ProductType();
             $productType->name = $name;
             $productType->label = strip_tags($request->input('label'));
             $productType->status = $request->input('status');
@@ -170,7 +170,7 @@ class ProductTypesController extends AdminController
             $productType = $site->productTypes()->where('id', $id)->firstOrFail();
 
             $rules = [
-                'label'     => ['required', 'string', 'max:100', new SanitizeHtml],
+                'label'     => ['required', 'string', 'max:100', new SanitizeHtml()],
                 'status'    => ['required', 'string', Rule::in(ProductType::STATUS_TYPES)]
             ];
 

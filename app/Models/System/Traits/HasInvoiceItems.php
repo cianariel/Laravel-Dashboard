@@ -34,7 +34,7 @@ trait HasInvoiceItems
      */
     public function hasInvoiceItems(): bool
     {
-        return ($this->invoices()->count() !== 0)? true : false;
+        return ($this->invoices()->count() !== 0) ? true : false;
     }
 
     /**
@@ -78,7 +78,7 @@ trait HasInvoiceItems
             }
 
             if ($invoiceItem instanceof InvoiceItem) {
-                return ($this->invoices()->save($invoiceItem))? true : false;
+                return ($this->invoices()->save($invoiceItem)) ? true : false;
             } else {
                 return false;
             }
@@ -99,11 +99,11 @@ trait HasInvoiceItems
     {
         if ($this->hasInvoice($invoiceItem)) {
             if (is_numeric($invoiceItem) && is_finite(intval($invoiceItem))) {
-                return ($this->invoices()->detach(intval($invoiceItem)))? true : false;
+                return ($this->invoices()->detach(intval($invoiceItem))) ? true : false;
             }
 
             if ($invoiceItem instanceof InvoiceItem) {
-                return ($this->invoices()->detach($invoiceItem->id))? true : false;
+                return ($this->invoices()->detach($invoiceItem->id)) ? true : false;
             }
         }
 

@@ -19,7 +19,7 @@ interface Metable
     /**
      * @return \Spatie\SchemalessAttributes\SchemalessAttributes
      */
-    public function getMetaFieldsAttribute() : SchemalessAttributes;
+    public function getMetaFieldsAttribute(): SchemalessAttributes;
 
     /**
      * @return \Illuminate\Database\Eloquent\Builder

@@ -97,7 +97,7 @@ class TimeZonesController extends AdminController
 
             $validatedData = $request->validate($rules);
 
-            $timezone = new TimeZone;
+            $timezone = new TimeZone();
             $timezone = $request->input('zone');
             $timezone = $request->input('status');
             $timezone->saveOrFail();

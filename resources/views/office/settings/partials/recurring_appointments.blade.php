@@ -26,13 +26,37 @@
             @if($recurringAppointments->count() !== 0)
                 @component('components.elements.table_data', [
                     'id'        => 'office-settings-recurring-appointments-table',
-                    'header'    => [
+                    'headers'    => [
+                        'Type',
+                        'Section',
+                        'Start Time',
+                        'End Time',
+                        'Repeats',
                         '',
-                        '',
+                        'Delete'
                     ]
                 ])
                     @foreach($recurringAppointments as $recurringAppointment)
                         <tr>
+                            <td>{{ $recurringAppointment->title }}</td>
+                            <td>
+                                {{ $recurringAppointment->getMetaField('type') }}
+                            </td>
+                            <td>
+                                {{ Carbon\Carbon::parse($recurringAppointment->start_at)->format('h:i') }}
+                                {{ $recurringAppointment->getMetaField('start_time_meridiem', 'am') }}
+                            </td>
+                            <td>
+                                {{ Carbon\Carbon::parse($recurringAppointment->ends_at)->format('h:i') }}
+                                {{ $recurringAppointment->getMetaField('end_time_meridiem', 'pm') }}
+                            </td>
+                            <td>
+                                {{ $recurringAppointment->getMetaField('repeat_type') }}
+                            </td>
+                            <td></td>
+                            <td>
+
+                            </td>
                         </tr>
                     @endforeach
                 @endcomponent
@@ -203,18 +227,25 @@
                         </div>
                         <div class="col-12 col-md-6">
                             @component('components.forms.select', [
-                                'id'        => 'repeat-day',
-                                'name'      => 'repeat_day',
-                                'value'     => old('repeat_day'),
-                                'options'   => App\Models\System\CalendarEvent::DAYS,
-                                'withIndex' => false,
-                                'label'     => __('Day')
+                                'id'                => 'repeat-day',
+                                'name'              => 'repeat_day',
+                                'required_if'       => 'repeat_type',
+                                'required_if_value' => 'weekly',
+                                'value'             => old('repeat_day'),
+                                'options'           => App\Models\System\CalendarEvent::DAYS,
+                                'withIndex'         => false,
+                                'label'             => __('Day')
                             ])
                                 @error('repeat_day')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            @endcomponent
+                            @component('components.forms.datepicker', [
+                                'id'    => 'month-day',
+                                'name'  => 'month_day',
+                            ])
                             @endcomponent
                         </div>
                     </div>

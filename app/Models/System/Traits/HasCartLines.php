@@ -34,7 +34,7 @@ trait HasCartLines
      */
     public function hasCartLines(): bool
     {
-        return ($this->cartLines()->count() !== 0)? true : false;
+        return ($this->cartLines()->count() !== 0) ? true : false;
     }
 
     /**
@@ -78,7 +78,7 @@ trait HasCartLines
             }
 
             if ($cartLine instanceof CartLine) {
-                return ($this->cartLines()->save($cartLine))? true : false;
+                return ($this->cartLines()->save($cartLine)) ? true : false;
             }
         }
 
@@ -96,11 +96,11 @@ trait HasCartLines
     {
         if ($this->hasCartLine($cartLine)) {
             if (is_numeric($cartLine) && is_finite(intval($cartLine))) {
-                return ($this->cartLines()->detach(intval($cartLine)))? true : false;
+                return ($this->cartLines()->detach(intval($cartLine))) ? true : false;
             }
 
             if ($cartLine instanceof CartLine) {
-                return ($this->cartLines()->detach($cartLine->id))? true : false;
+                return ($this->cartLines()->detach($cartLine->id)) ? true : false;
             }
         }
 

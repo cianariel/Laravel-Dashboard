@@ -119,7 +119,7 @@ class PackagesController extends AdminController
         if ($request->isMethod('post')) {
             $rules = [
                 'type'              => ['required', 'string', Rule::in(Package::PACKAGE_TYPES)],
-                'label'             => ['required', 'string', 'max:150', new SanitizeHtml],
+                'label'             => ['required', 'string', 'max:150', new SanitizeHtml()],
                 'description'       => ['required', 'string'],
                 'media'             => ['file', 'nullable','image', 'mimes:jpeg,gif,png', 'max:' . bit_convert(10, 'mb')],
                 'price'             => ['required', 'numeric', 'min:0'],
@@ -127,7 +127,7 @@ class PackagesController extends AdminController
                 'interval'          => ['required', 'string', Rule::in(Package::INTERVAL_PLANS)],
                 'featured'          => ['string', 'required', Rule::in(Package::FEATURED_TYPES)],
                 'status'            => ['string', 'required', Rule::in(Package::STATUS_TYPES)],
-                'stripe_product'    => ['required_if:type,'.Package::LINKED_PRODUCT, 'string', 'exists:system.products,stripe_product'],
+                'stripe_product'    => ['required_if:type,' . Package::LINKED_PRODUCT, 'string', 'exists:system.products,stripe_product'],
             ];
 
             $validatedData = $request->validate($rules);
@@ -154,8 +154,8 @@ class PackagesController extends AdminController
                         'interval_count'    => 1,
                         'amount'            => cents(safe_float($request->input('price'))),
                         'product'           => ['name' => strip_tags($request->input('label'))],
-                        'trial_period_days' => ($request->input('trial_enabled') == Package::TRIAL_ENABLED)? 15 : 0,
-                        'active'            => ($request->input('status') == Package::ACTIVE)? true : false
+                        'trial_period_days' => ($request->input('trial_enabled') == Package::TRIAL_ENABLED) ? 15 : 0,
+                        'active'            => ($request->input('status') == Package::ACTIVE) ? true : false
                         ]
                     );
                 } catch (\Stripe\Exception\InvalidRequestException $e) {
@@ -184,8 +184,8 @@ class PackagesController extends AdminController
                         'interval_count'    => 1,
                         'amount'            => cents(safe_float($request->input('price'))),
                         'product'           => $product->stripe_product,
-                        'trial_period_days' => ($request->input('trial_enabled') == Package::TRIAL_ENABLED)? 15 : 0,
-                        'active'            => ($request->input('status') == Package::ACTIVE)? true : false
+                        'trial_period_days' => ($request->input('trial_enabled') == Package::TRIAL_ENABLED) ? 15 : 0,
+                        'active'            => ($request->input('status') == Package::ACTIVE) ? true : false
                         ]
                     );
                 } catch (\Stripe\Exception\InvalidRequestException $e) {
@@ -200,7 +200,7 @@ class PackagesController extends AdminController
                 }
             }
 
-            $package = new Package;
+            $package = new Package();
             $package->uuid = Str::uuid();
             $package->type = $type;
             $package->name = $name;
@@ -310,7 +310,7 @@ class PackagesController extends AdminController
         if ($request->isMethod('PUT') && Package::where('id', $id)->exists()) {
             $rules = [
                 'type'              => ['required', 'string', Rule::in(Package::PACKAGE_TYPES)],
-                'label'             => ['required', 'string', 'max:150', new SanitizeHtml],
+                'label'             => ['required', 'string', 'max:150', new SanitizeHtml()],
                 'description'       => ['required', 'string'],
                 'media'             => ['file', 'nullable','image', 'mimes:jpeg,gif,png', 'max:' . bit_convert(10, 'mb')],
                 'price'             => ['required', 'numeric', 'min:0'],
@@ -318,7 +318,7 @@ class PackagesController extends AdminController
                 'interval'          => ['required', 'string', Rule::in(Package::INTERVAL_PLANS)],
                 'featured'          => ['string', 'required', Rule::in(Package::FEATURED_TYPES)],
                 'status'            => ['string', 'required', Rule::in(Package::STATUS_TYPES)],
-                'stripe_product'    => ['required_if:type,'.Package::LINKED_PRODUCT, 'string', 'exists:system.products,stripe_product'],
+                'stripe_product'    => ['required_if:type,' . Package::LINKED_PRODUCT, 'string', 'exists:system.products,stripe_product'],
             ];
 
             $validatedData = $request->validate($rules);
@@ -341,12 +341,13 @@ class PackagesController extends AdminController
                     \Stripe\Stripe::setApiKey(config('cashier.secret')); // stripe key
 
                     $stripe_plan = \Stripe\Plan::update(
-                        $stripe_plan, [
+                        $stripe_plan,
+                        [
                         'interval'          => $request->input('interval'),
                         'amount'            => cents(safe_float($request->input('price'))),
                         'product'           => ['name' => strip_tags($request->input('label'))],
-                        'trial_period_days' => ($request->input('trial_enabled') == Package::TRIAL_ENABLED)? 15 : 0,
-                        'active'            => ($request->input('status') == Package::ACTIVE)? true : false
+                        'trial_period_days' => ($request->input('trial_enabled') == Package::TRIAL_ENABLED) ? 15 : 0,
+                        'active'            => ($request->input('status') == Package::ACTIVE) ? true : false
                         ]
                     );
                 } catch (\Stripe\Exception\InvalidRequestException $e) {
@@ -377,9 +378,10 @@ class PackagesController extends AdminController
                     \Stripe\Stripe::setApiKey(config('cashier.secret')); // stripe key
 
                     $stripe_plan = \Stripe\Plan::update(
-                        $stripe_plan, [
+                        $stripe_plan,
+                        [
                         'product'           => $product->stripe_product,
-                        'active'            => ($request->input('status') == Package::ACTIVE)? true : false
+                        'active'            => ($request->input('status') == Package::ACTIVE) ? true : false
                         ]
                     );
                 } catch (\Stripe\Exception\InvalidRequestException $e) {
@@ -490,7 +492,8 @@ class PackagesController extends AdminController
                     \Stripe\Stripe::setApiKey(config('cashier.secret')); // stripe key
 
                     $stripe_plan = \Stripe\Plan::update(
-                        $stripe_plan, [
+                        $stripe_plan,
+                        [
                         'active'            => false
                         ]
                     );

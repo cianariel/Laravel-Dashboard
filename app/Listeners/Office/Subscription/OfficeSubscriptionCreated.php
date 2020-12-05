@@ -16,7 +16,7 @@ class OfficeSubscriptionCreated
      */
     public function handle(EventSubscriptionCreated $event)
     {
-        if(filled($event->user) && filled($event->subscription)) {
+        if (filled($event->user) && filled($event->subscription)) {
             user_activity($event->user, "Signed up for subscription - {$event->subscription->name}", $event->subscription);
         }
     }

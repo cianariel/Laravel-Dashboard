@@ -237,10 +237,10 @@ class CalendarEvent extends Model
      * @return string
      * @static
      */
-    public static function getNewYearsEveDay(int $year, string $format='d/m/Y')
+    public static function getNewYearsEveDay(int $year, string $format = 'd/m/Y')
     {
         $year = safe_integer($year);
-        return date($format, strtotime(self::NEW_YEARS_EVE.'/'.$year));
+        return date($format, strtotime(self::NEW_YEARS_EVE . '/' . $year));
     }
 
     /**
@@ -250,10 +250,10 @@ class CalendarEvent extends Model
      * @return string
      * @static
      */
-    public static function getNewYearsDay(int $year, string $format='d/m/Y')
+    public static function getNewYearsDay(int $year, string $format = 'd/m/Y')
     {
         $year = safe_integer($year);
-        return date($format, strtotime(self::NEW_YEARS_DAY.'/'.$year));
+        return date($format, strtotime(self::NEW_YEARS_DAY . '/' . $year));
     }
 
     /**
@@ -263,10 +263,10 @@ class CalendarEvent extends Model
      * @return string
      * @static
      */
-    public static function getMLKDay(int $year, string $format='d/m/Y')
+    public static function getMLKDay(int $year, string $format = 'd/m/Y')
     {
         $year = safe_integer($year);
-        return date($format, strtotime(self::MLK_DAY.'/'.$year));
+        return date($format, strtotime(self::MLK_DAY . '/' . $year));
     }
 
     /**
@@ -276,10 +276,10 @@ class CalendarEvent extends Model
      * @return string
      * @static
      */
-    public static function getGoodFriday(int $year, string $format='d/m/Y')
+    public static function getGoodFriday(int $year, string $format = 'd/m/Y')
     {
         $year = safe_integer($year);
-        return date($format, strtotime(self::GOOD_FRIDAY.'/'.$year));
+        return date($format, strtotime(self::GOOD_FRIDAY . '/' . $year));
     }
 
     /**
@@ -289,10 +289,10 @@ class CalendarEvent extends Model
      * @return string
      * @static
      */
-    public static function getMemorialDay(int $year, string $format='d/m/Y')
+    public static function getMemorialDay(int $year, string $format = 'd/m/Y')
     {
         $year = safe_integer($year);
-        return date($format, strtotime(self::MEMORIAL_DAY.'/'.$year));
+        return date($format, strtotime(self::MEMORIAL_DAY . '/' . $year));
     }
 
     /**
@@ -302,10 +302,10 @@ class CalendarEvent extends Model
      * @return string
      * @static
      */
-    public static function getVeteransDay(int $year, string $format='d/m/Y')
+    public static function getVeteransDay(int $year, string $format = 'd/m/Y')
     {
         $year = safe_integer($year);
-        return date($format, strtotime(self::VETERANS_DAY.'/'."{$year}"));
+        return date($format, strtotime(self::VETERANS_DAY . '/' . "{$year}"));
     }
 
     /**
@@ -315,10 +315,10 @@ class CalendarEvent extends Model
      * @return string
      * @static
      */
-    public static function getColumbusDay(int $year, string $format='d/m/Y')
+    public static function getColumbusDay(int $year, string $format = 'd/m/Y')
     {
         $year = safe_integer($year);
-        return date($format, strtotime(self::COLUMBUS_DAY.'/'.$year));
+        return date($format, strtotime(self::COLUMBUS_DAY . '/' . $year));
     }
 
     /**
@@ -328,10 +328,10 @@ class CalendarEvent extends Model
      * @return string
      * @static
      */
-    public static function getIndependenceDay(int $year, string $format='d/m/Y')
+    public static function getIndependenceDay(int $year, string $format = 'd/m/Y')
     {
         $year = safe_integer($year);
-        return date($format, strtotime(self::INDEPENDENCE_DAY.'/'.$year));
+        return date($format, strtotime(self::INDEPENDENCE_DAY . '/' . $year));
     }
 
     /**
@@ -341,10 +341,10 @@ class CalendarEvent extends Model
      * @return string
      * @static
      */
-    public static function getPresidentsDay(int $year, string $format='d/m/Y')
+    public static function getPresidentsDay(int $year, string $format = 'd/m/Y')
     {
         $year = safe_integer($year);
-        return date($format, strtotime(self::PRESIDENTS_DAY." {$year}"));
+        return date($format, strtotime(self::PRESIDENTS_DAY . " {$year}"));
     }
 
     /**
@@ -354,10 +354,10 @@ class CalendarEvent extends Model
      * @return string
      * @static
      */
-    public static function getEasterDay(int $year, string $format='d/m/Y')
+    public static function getEasterDay(int $year, string $format = 'd/m/Y')
     {
         $year = safe_integer($year);
-        return date($format, strtotime(self::EASTER_DAY." {$year}"));
+        return date($format, strtotime(self::EASTER_DAY . " {$year}"));
     }
 
     /**
@@ -367,10 +367,10 @@ class CalendarEvent extends Model
      * @return string
      * @static
      */
-    public static function getChristmasEveDay(int $year, string $format='d/m/Y')
+    public static function getChristmasEveDay(int $year, string $format = 'd/m/Y')
     {
         $year = safe_integer($year);
-        return date($format, strtotime(self::CHRISTMAS_EVE.'/'.$year));
+        return date($format, strtotime(self::CHRISTMAS_EVE . '/' . $year));
     }
 
     /**
@@ -380,10 +380,10 @@ class CalendarEvent extends Model
      * @return string
      * @static
      */
-    public static function getChristmasDay(int $year, string $format='d/m/Y')
+    public static function getChristmasDay(int $year, string $format = 'd/m/Y')
     {
         $year = safe_integer($year);
-        return date($format, strtotime(self::CHRISTMAS_DAY.'/'.$year));
+        return date($format, strtotime(self::CHRISTMAS_DAY . '/' . $year));
     }
 
     /**

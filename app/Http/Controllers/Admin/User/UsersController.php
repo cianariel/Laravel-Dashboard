@@ -132,11 +132,11 @@ class UsersController extends AdminController
             $rules = [
                 'email'         => ['required', 'email:rfc,dns', 'unique:system.users,email'],
                 'password'      => ['required', 'string', 'confirmed', 'max:32'],
-                'company'       => ['nullable', 'string', 'max:50', new SanitizeHtml],
-                'first_name'    => ['required', 'string', 'max:50', new SanitizeHtml],
-                'last_name'     => ['required', 'string', 'max:50', new SanitizeHtml],
-                'phone'         => ['nullable', 'string', new PhoneRule],
-                'mobile_phone'  => ['nullable', 'string', new PhoneRule],
+                'company'       => ['nullable', 'string', 'max:50', new SanitizeHtml()],
+                'first_name'    => ['required', 'string', 'max:50', new SanitizeHtml()],
+                'last_name'     => ['required', 'string', 'max:50', new SanitizeHtml()],
+                'phone'         => ['nullable', 'string', new PhoneRule()],
+                'mobile_phone'  => ['nullable', 'string', new PhoneRule()],
                 'role'          => ['required', 'string', Rule::in($roles)],
                 'status'        => ['required', 'string', Rule::in(User::STATUS_TYPES)],
             ];
@@ -144,7 +144,7 @@ class UsersController extends AdminController
             $validateData = $request->validate($rules);
 
             $role = $request->input('role');
-            $user = new User;
+            $user = new User();
             $user->uuid = Str::uuid();
             $user->username = unique_username($role);
             $user->email = strtolower($request->input('email'));
@@ -263,11 +263,11 @@ class UsersController extends AdminController
             // Rules.
             $rules = [
                 'email'         => ['required', 'email:rfc,dns', 'exists:system.users,email'],
-                'company'       => ['nullable', 'string', 'max:50', new SanitizeHtml],
-                'first_name'    => ['required', 'string', 'max:50', new SanitizeHtml],
-                'last_name'     => ['required', 'string', 'max:50', new SanitizeHtml],
-                'phone'         => ['nullable', 'string', 'max:16', new PhoneRule],
-                'mobile_phone'  => ['nullable', 'string', 'max:16', new PhoneRule],
+                'company'       => ['nullable', 'string', 'max:50', new SanitizeHtml()],
+                'first_name'    => ['required', 'string', 'max:50', new SanitizeHtml()],
+                'last_name'     => ['required', 'string', 'max:50', new SanitizeHtml()],
+                'phone'         => ['nullable', 'string', 'max:16', new PhoneRule()],
+                'mobile_phone'  => ['nullable', 'string', 'max:16', new PhoneRule()],
             ];
 
             if (filled($request->input('password'))) {

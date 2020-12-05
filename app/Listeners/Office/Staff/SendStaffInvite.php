@@ -17,13 +17,12 @@ class SendStaffInvite
      */
     public function handle(InviteUser $event)
     {
-        if(filled($event->owner) && filled($event->guestUser)) {
-
+        if (filled($event->owner) && filled($event->guestUser)) {
             user_activity($event->owner, "Invited staff member: {$event->guestUser->email}.");
 
             try {
                 $event->guestUser->notify(new InviteNotifcation($event->owner, $event->guestUser));
-            } catch(Exception $e) {
+            } catch (Exception $e) {
                 logger("[App\Listeners\Office\Staff\SendStaffInvite] failed to send staff invite notification.");
             }
         }

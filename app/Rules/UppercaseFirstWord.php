@@ -18,7 +18,7 @@ class UppercaseFirstWord implements Rule
        /**
         * Determine if the validation rule passes.
         **/
-public function passes($attribute, $value) : bool
+public function passes($attribute, $value): bool
 {
     return mb_strtolower($value) === $value;
 }
@@ -26,7 +26,7 @@ public function passes($attribute, $value) : bool
     /**
      * Get the validation error message.
      **/
-public function message() : string
+public function message(): string
 {
     return 'The :attribute first letter must be capitalized';
 }

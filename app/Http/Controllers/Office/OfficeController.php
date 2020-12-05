@@ -28,10 +28,10 @@ class OfficeController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->setup_completed == User::SETUP_COMPLETED
+        if (
+            $user->setup_completed == User::SETUP_COMPLETED
             || $user->setup_completed == User::SETUP_IGNORED
         ) {
-
             $breadcrumbs = breadcrumbs(
                 [
                 __('Dashboard')     => [

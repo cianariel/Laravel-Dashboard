@@ -21,8 +21,8 @@ use Spatie\Searchable\SearchResult;
  */
 class Company extends Model implements HasMedia, Searchable
 {
-    use HasMediaTrait,
-        SoftDeletes;
+    use HasMediaTrait;
+    use SoftDeletes;
 
     /**
      * The database table used by the model.

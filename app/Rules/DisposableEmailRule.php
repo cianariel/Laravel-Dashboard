@@ -24,7 +24,7 @@ class DisposableEmailRule implements Rule
      * be accepted. However, you can override this by adding
      * a boolean parameter e.g. new DisposableEmail(true).
      **/
-    public function passes($attribute, $value) : bool
+    public function passes($attribute, $value): bool
     {
         $url = 'https://open.kickbox.com/v1/disposable/' . Str::after($value, '@');
 
@@ -38,7 +38,7 @@ class DisposableEmailRule implements Rule
     /**
      * Get the validation error message.
      **/
-    public function message() : string
+    public function message(): string
     {
         return 'The :attribute must be a valid, non-disposable domain';
     }

@@ -88,7 +88,7 @@ trait HasFolders
             }
 
             if ($folder instanceof Folder) {
-                return ($this->folders()->save($folder))? true : false;
+                return ($this->folders()->save($folder)) ? true : false;
             } else {
                 return false;
             }
@@ -119,7 +119,7 @@ trait HasFolders
             }
 
             if ($folder instanceof Folder) {
-                return ($this->folders()->detach($folder->id))? true : false;
+                return ($this->folders()->detach($folder->id)) ? true : false;
             }
         }
 

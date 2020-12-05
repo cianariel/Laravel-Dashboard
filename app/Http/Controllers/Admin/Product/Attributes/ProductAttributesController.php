@@ -91,8 +91,8 @@ class ProductAttributesController extends AdminController
             $site = site();
 
             $rules = [
-                'label'  => ['required', 'string', 'max:150', new SanitizeHtml],
-                'value'  => ['required', 'string', new SanitizeHtml],
+                'label'  => ['required', 'string', 'max:150', new SanitizeHtml()],
+                'value'  => ['required', 'string', new SanitizeHtml()],
                 'status' => ['required', 'string', Rule::in(ProductAttribute::STATUS_TYPES)]
             ];
 
@@ -105,7 +105,7 @@ class ProductAttributesController extends AdminController
                 return back()->withInput();
             }
 
-            $productAttribute = new ProductAttribute;
+            $productAttribute = new ProductAttribute();
             $productAttribute->name = $name;
             $productAttribute->label = strip_tags($request->input('label'));
             $productAttribute->value = serialize(explode(PHP_EOL, strip_tags($request->input('value'))));
@@ -176,8 +176,8 @@ class ProductAttributesController extends AdminController
             $productAttribute = $site->productAttributes()->where('id', $id)->firstOrFail();
 
             $rules = [
-                'label'  => ['required', 'string', 'max:150', new SanitizeHtml],
-                'value'  => ['required', 'string', new SanitizeHtml],
+                'label'  => ['required', 'string', 'max:150', new SanitizeHtml()],
+                'value'  => ['required', 'string', new SanitizeHtml()],
                 'status' => ['required', 'string', Rule::in(ProductAttribute::STATUS_TYPES)]
             ];
 

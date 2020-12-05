@@ -84,13 +84,13 @@ class FoldersController extends AdminController
     {
         if ($request->isMethod('post')) {
             $rules = [
-                'label'     => ['required', 'string', 'alpha_num', 'unique:system.folders,label' ,'max:100', new SanitizeHtml],
+                'label'     => ['required', 'string', 'alpha_num', 'unique:system.folders,label' ,'max:100', new SanitizeHtml()],
                 'visible'   => ['required', 'string', Rule::in(Folder::VISIBLE_TYPES)]
             ];
 
             $validatedData = $request->validate($rules);
 
-            $folder = new Folder;
+            $folder = new Folder();
             $folder->name = Str::slug($request->input('label'));
             $folder->label = $request->input('label');
             $folder->visible = $request->input('visible');
@@ -154,7 +154,7 @@ class FoldersController extends AdminController
     {
         if ($request->isMethod('put') && Folder::where('id', $id)->exists()) {
             $rules = [
-                'label'     => ['required', 'string', 'alpha_num', 'max:100', new SanitizeHtml],
+                'label'     => ['required', 'string', 'alpha_num', 'max:100', new SanitizeHtml()],
                 'visible'   => ['required', 'string', Rule::in(Folder::VISIBLE_TYPES)]
             ];
 

@@ -121,11 +121,11 @@ class ProductsController extends AdminController
         if ($request->isMethod('post')) {
             $rules = [
                 'type'          => ['string', 'required', 'exists:system.product_types,name'],
-                'label'         => ['string', 'required', 'max:150', new SanitizeHtml],
+                'label'         => ['string', 'required', 'max:150', new SanitizeHtml()],
                 'description'   => ['string', 'required'],
                 'media'         => ['file', 'nullable','image', 'mimes:jpeg,gif,png', 'max:' . bit_convert(10, 'mb')],
                 'price'         => ['numeric', 'required', 'min:1'],
-                'tags'          => ['string', 'nullable', new SanitizeHtml],
+                'tags'          => ['string', 'nullable', new SanitizeHtml()],
                 'featured'      => ['string', 'required', Rule::in(Product::FEATURED_TYPES)],
                 'status'        => ['string', 'required', Rule::in(Product::STATUS_TYPES)]
             ];
@@ -148,7 +148,7 @@ class ProductsController extends AdminController
                 $stripe_product = \Stripe\Product::create(
                     [
                     'name'      => $name,
-                    'active'    => ($request->input('status') == Product::ACTIVE)? true : false
+                    'active'    => ($request->input('status') == Product::ACTIVE) ? true : false
                     ]
                 );
             } catch (\Stripe\Exception\InvalidRequestException $e) {
@@ -164,7 +164,7 @@ class ProductsController extends AdminController
 
             // Product
             if ($stripe_product && is_object($stripe_product)) {
-                $product = new Product;
+                $product = new Product();
                 $product->uuid = Str::uuid();
                 $product->name = $name;
                 $product->label = strip_tags($request->input('label'));
@@ -288,11 +288,11 @@ class ProductsController extends AdminController
         if ($request->isMethod('put') && Product::where('id', $id)->exists()) {
             $rules = [
                 'type'          => ['string', 'required', 'exists:system.product_types,name'],
-                'label'         => ['string', 'required', 'max:150', new SanitizeHtml],
+                'label'         => ['string', 'required', 'max:150', new SanitizeHtml()],
                 'description'   => ['string', 'required'],
                 'media'         => ['file', 'nullable','image', 'mimes:jpeg,gif,png', 'max:' . bit_convert(10, 'mb')],
                 'price'         => ['numeric', 'required', 'min:1'],
-                'tags'          => ['string', 'nullable', new SanitizeHtml],
+                'tags'          => ['string', 'nullable', new SanitizeHtml()],
                 'featured'      => ['string', 'required', Rule::in(Product::FEATURED_TYPES)],
                 'status'        => ['string', 'required', Rule::in(Product::STATUS_TYPES)]
             ];
@@ -322,9 +322,10 @@ class ProductsController extends AdminController
                     \Stripe\Stripe::setApiKey(config('cashier.secret')); // stripe key
 
                     $stripe_product = \Stripe\Product::update(
-                        $stripe_id, [
+                        $stripe_id,
+                        [
                         'name'      => $name,
-                        'active'    => ($request->input('status') == Product::ACTIVE)? true : false
+                        'active'    => ($request->input('status') == Product::ACTIVE) ? true : false
                         ]
                     );
                 } catch (\Stripe\Exception\InvalidRequestException $e) {

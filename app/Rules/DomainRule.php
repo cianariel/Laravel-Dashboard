@@ -18,7 +18,7 @@ class DomainRule implements Rule
     /**
      * Determine if the validation rule passes.
      **/
-    public function passes($attribute, $value) : bool
+    public function passes($attribute, $value): bool
     {
         return preg_match('/^([\w-]+\.)*[\w\-]+\.\w{2,10}$/', $value) > 0;
     }
@@ -26,7 +26,7 @@ class DomainRule implements Rule
     /**
      * Get the validation error message.
      **/
-    public function message() : string
+    public function message(): string
     {
         return 'The :attribute must be a valid domain without an http protocol e.g. google.com, www.google.com';
     }

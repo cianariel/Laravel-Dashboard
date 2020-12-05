@@ -97,7 +97,8 @@ class PostsController extends AdminController
 
             $users = User::where('status', User::ACTIVE)
                 ->whereHas(
-                    'roles', function ($query) {
+                    'roles',
+                    function ($query) {
                             $roles = [
                             Role::SUPER_ADMIN,
                             Role::ADMIN,
@@ -145,14 +146,14 @@ class PostsController extends AdminController
         if (Blog::where('id', $blog)->exists()) {
             $rules = [
                 'user'              => ['required', 'integer', 'exists:system.users,id'],
-                'title'             => ['required', 'string', 'max:150', new SanitizeHtml],
+                'title'             => ['required', 'string', 'max:150', new SanitizeHtml()],
                 'content'           => ['required', 'string'],
                 'excerpt'           => ['nullable', 'string', 'max:150'],
                 'media'             => ['nullable', 'file', 'image', 'mimes:jpeg,gif,png', 'max:' . bit_convert(10, 'mb')],
-                'seo_title'         => ['nullable', 'string', 'max:100', new SanitizeHtml],
-                'meta_keywords'     => ['nullable', 'string', 'max:150', new SanitizeHtml],
-                'meta_description'  => ['nullable', 'string', 'max:150', new SanitizeHtml],
-                'meta_robots'       => ['nullable', 'string', new SanitizeHtml],
+                'seo_title'         => ['nullable', 'string', 'max:100', new SanitizeHtml()],
+                'meta_keywords'     => ['nullable', 'string', 'max:150', new SanitizeHtml()],
+                'meta_description'  => ['nullable', 'string', 'max:150', new SanitizeHtml()],
+                'meta_robots'       => ['nullable', 'string', new SanitizeHtml()],
                 'visible'           => ['required', 'string', Rule::in(Post::VISIBLE_TYPES)],
                 'status'            => ['required', 'string', Rule::in(Post::STATUS_TYPES)]
             ];
@@ -164,7 +165,7 @@ class PostsController extends AdminController
 
             $title = strip_tags($request->input('title'));
 
-            $post = new Post;
+            $post = new Post();
             $post->user_id = $request->input('user');
             $post->title = $title;
             $post->slug = unique_slug('post', $title);
@@ -227,7 +228,8 @@ class PostsController extends AdminController
 
             $users = User::where('status', User::ACTIVE)
                 ->whereHas(
-                    'roles', function ($query) {
+                    'roles',
+                    function ($query) {
                             $roles = [
                             Role::SUPER_ADMIN,
                             Role::ADMIN,
@@ -277,14 +279,14 @@ class PostsController extends AdminController
         if (Blog::where('id', $blog)->exists() && Post::where('id', $id)->exists()) {
             $rules = [
                 'user'              => ['required', 'integer', 'exists:system.users,id'],
-                'title'             => ['required', 'string', 'max:150', new SanitizeHtml],
+                'title'             => ['required', 'string', 'max:150', new SanitizeHtml()],
                 'content'           => ['required', 'string'],
                 'excerpt'           => ['nullable', 'string', 'max:150'],
                 'media'             => ['nullable', 'file', 'image', 'mimes:jpeg,gif,png', 'max:' . bit_convert(10, 'mb')],
-                'seo_title'         => ['nullable', 'string', 'max:100', new SanitizeHtml],
-                'meta_keywords'     => ['nullable', 'string', 'max:150', new SanitizeHtml],
-                'meta_description'  => ['nullable', 'string', 'max:150', new SanitizeHtml],
-                'meta_robots'       => ['nullable', 'string', new SanitizeHtml],
+                'seo_title'         => ['nullable', 'string', 'max:100', new SanitizeHtml()],
+                'meta_keywords'     => ['nullable', 'string', 'max:150', new SanitizeHtml()],
+                'meta_description'  => ['nullable', 'string', 'max:150', new SanitizeHtml()],
+                'meta_robots'       => ['nullable', 'string', new SanitizeHtml()],
                 'visible'           => ['required', 'string', Rule::in(Post::VISIBLE_TYPES)],
                 'status'            => ['required', 'string', Rule::in(Post::STATUS_TYPES)]
             ];

@@ -36,8 +36,7 @@ class StaffsController extends Controller
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->hasRole(Role::OWNER)) {
-
+        if ($user->hasRole(Role::OWNER)) {
             $query = $request->query();
             $perPage = 10;
             $withTrashed = false;
@@ -53,15 +52,15 @@ class StaffsController extends Controller
                 }
             }
 
-            if(filled($query) && isset($query['with_trashed'])) {
+            if (filled($query) && isset($query['with_trashed'])) {
                 $withTrashed = strip_tags(trim($query['with_trashed']));
 
-                if($withTrashed == 'true') {
+                if ($withTrashed == 'true') {
                     $withTrashed = true;
                 }
             }
 
-            if($withTrashed === true) {
+            if ($withTrashed === true) {
                 $users = $site->users()->where('meta_fields->owner_id', $user->id)->withTrashed()->paginate($perPage);
             } else {
                 $users = $site->users()->where('meta_fields->owner_id', $user->id)->paginate($perPage);
@@ -98,8 +97,7 @@ class StaffsController extends Controller
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->hasRole(Role::OWNER)) {
-
+        if ($user->hasRole(Role::OWNER)) {
             $breadcrumbs = breadcrumbs(
                 [
                 __('Dashboard') => [
@@ -135,17 +133,16 @@ class StaffsController extends Controller
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if($user->hasRole(Role::OWNER)) {
-
+        if ($user->hasRole(Role::OWNER)) {
             $rules = [
-                'first_name'    => ['required', 'string', 'max:100', new SanitizeHtml],
-                'last_name'     => ['required', 'string', 'max:100', new SanitizeHtml],
-                'email'         => ['required', 'email', 'unique:system.users,email', new SanitizeHtml],
+                'first_name'    => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'last_name'     => ['required', 'string', 'max:100', new SanitizeHtml()],
+                'email'         => ['required', 'email', 'unique:system.users,email', new SanitizeHtml()],
             ];
 
             $validatedData = $request->validate($rules);
 
-            $guestUser = new User;
+            $guestUser = new User();
             $guestUser->uuid = Str::uuid();
             $guestUser->username = unique_username(Role::GUEST);
             $guestUser->email = $request->input('email');

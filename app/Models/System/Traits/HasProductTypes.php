@@ -34,7 +34,7 @@ trait HasProductTypes
      */
     public function hasProductTypes(): bool
     {
-        return ($this->productTypes()->count() !== 0)? true : false;
+        return ($this->productTypes()->count() !== 0) ? true : false;
     }
 
     /**
@@ -78,7 +78,7 @@ trait HasProductTypes
             }
 
             if ($productType instanceof ProductType) {
-                return ($this->productTypes()->save($productType))? true : false;
+                return ($this->productTypes()->save($productType)) ? true : false;
             } else {
                 return false;
             }
@@ -99,11 +99,11 @@ trait HasProductTypes
     {
         if ($this->hasProductType($productType)) {
             if (is_numeric($productType) && is_finite(intval($productType))) {
-                return ($this->productTypes()->detach(intval($productType)))? true : false;
+                return ($this->productTypes()->detach(intval($productType))) ? true : false;
             }
 
             if ($productType instanceof ProductType) {
-                return ($this->productTypes()->detach($productType->id))? true : false;
+                return ($this->productTypes()->detach($productType->id)) ? true : false;
             }
         }
 

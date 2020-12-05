@@ -55,7 +55,7 @@ class InviteNotification extends Notification
         $guestUser = $this->guestUser;
         $office = $owner->offices()->first();
 
-        return (new MailMessage)->subject(__('Invitation'))->markdown(
+        return (new MailMessage())->subject(__('Invitation'))->markdown(
             'emails.office.staff.invitation',
             compact('owner', 'guestUser', 'office')
         );

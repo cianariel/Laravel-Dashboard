@@ -99,7 +99,7 @@ class MenusController extends AdminController
 
             $name = Str::slug(strip_tags($request->input('label')));
 
-            $menu = new Menu;
+            $menu = new Menu();
             $menu->name = $name;
             $menu->label = $request->input('label');
             $menu->type = $request->input('type');

@@ -34,7 +34,7 @@ trait HasQuoteItems
      */
     public function hasQuoteItems(): bool
     {
-        return ($this->quoteItems()->count() !== 0)? true : false;
+        return ($this->quoteItems()->count() !== 0) ? true : false;
     }
 
     /**
@@ -78,7 +78,7 @@ trait HasQuoteItems
             }
 
             if ($quoteItem instanceof Quote) {
-                return ($this->quoteItems()->save($quoteItem))? true : false;
+                return ($this->quoteItems()->save($quoteItem)) ? true : false;
             } else {
                 return false;
             }
@@ -99,11 +99,11 @@ trait HasQuoteItems
     {
         if ($this->hasQuoteItem($quoteItem)) {
             if (is_numeric($quoteItem) && is_finite(intval($quoteItem))) {
-                return ($this->quoteItems()->detach(intval($quoteItem)))? true : false;
+                return ($this->quoteItems()->detach(intval($quoteItem))) ? true : false;
             }
 
             if ($quoteItem instanceof Quote) {
-                return ($this->quoteItems()->detach($quoteItem->id))? true : false;
+                return ($this->quoteItems()->detach($quoteItem->id)) ? true : false;
             }
         }
 

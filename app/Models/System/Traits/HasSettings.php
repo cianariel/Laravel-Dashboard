@@ -34,7 +34,7 @@ trait HasSettings
      */
     public function hasSettings(): bool
     {
-        return ($this->settings()->count())? true : false;
+        return ($this->settings()->count()) ? true : false;
     }
 
     /**
@@ -111,7 +111,7 @@ trait HasSettings
             }
 
             if ($setting instanceof Setting) {
-                return ($this->settings()->save($setting))? true : false;
+                return ($this->settings()->save($setting)) ? true : false;
             } else {
                 return false;
             }
@@ -137,7 +137,7 @@ trait HasSettings
             }
 
             if ($setting instanceof Setting) {
-                return ($this->settings()->detach($setting->id))? true : false;
+                return ($this->settings()->detach($setting->id)) ? true : false;
             }
         }
 
