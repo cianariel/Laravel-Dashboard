@@ -209,11 +209,11 @@
                                 @endcomponent
                                 @component('components.forms.datepicker', [
                                     'id'                => 'repeat-month-day',
-                                    'name'              => 'repeat-month-day',
-                                    'value'             => old('month_day'),
+                                    'name'              => 'repeat_month_day',
+                                    'value'             => old('repeat_month_day'),
                                     'label'             => __('Day')
                                 ])
-                                    @error('repeat-month-day')
+                                    @error('repeat_month_day')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
