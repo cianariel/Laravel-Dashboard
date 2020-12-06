@@ -6,7 +6,7 @@
     @if(isset($required_if) && filled($required_if)) data-required-if="{{ $required_if }}" @endif
     @if(isset($required_if_value) && filled($required_if_value)) data-required-if-value="{{ $required_if_value }}"@endif>
     @if(isset($label))<label for="{{ $name }}" class="col-sm-4 col-form-label text-md-right">{{ __($label) }}</label>@endif
-    @if(isset($label))<div class="col-md-10 offset-md-4">@endif
+    @if(isset($label))<div class="col-sm-8">@endif
         <input id="{{ $id?? $name }}"
             @if(isset($attrs) && filled($attrs))
                 @foreach($attrs as $attr => $attr_value) {{ $attr }}="{{ $attr_value }}" @endforeach

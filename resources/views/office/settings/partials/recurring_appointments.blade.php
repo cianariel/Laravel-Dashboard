@@ -85,7 +85,7 @@
         .__('Save').'</button>'
 ])
     <div class="modal-body">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-10">
                 @component('components.forms.form', [
                     'id'        => 'office-settings-recurring-appointments-modal-form',
@@ -192,30 +192,34 @@
                             @endcomponent
                         </div>
                         <div class="col-12 col-md-6">
-                            @component('components.forms.select', [
-                                'id'                => 'repeat-day',
-                                'name'              => 'repeat_day',
-                                'required_if'       => 'repeat_type',
-                                'required_if_value' => 'weekly',
-                                'value'             => old('repeat_day'),
-                                'options'           => App\Models\System\CalendarEvent::DAYS,
-                                'withIndex'         => false,
-                                'label'             => __('Day')
-                            ])
-                                @error('repeat_day')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            @endcomponent
-                            @component('components.forms.datepicker', [
-                                'id'                => 'month-day',
-                                'name'              => 'month_day',
-                                'required_if'       => 'repeat_type',
-                                'required_if_value' => 'weekly',
-                                'value'             => old('month_day')
-                            ])
-                            @endcomponent
+                            <div id="additiona-form-options" class="hidden">
+                                @component('components.forms.select', [
+                                    'id'                => 'repeat-day',
+                                    'name'              => 'repeat_day',
+                                    'value'             => old('repeat_day'),
+                                    'options'           => App\Models\System\CalendarEvent::DAYS,
+                                    'withIndex'         => false,
+                                    'label'             => __('Day')
+                                ])
+                                    @error('repeat_day')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                @endcomponent
+                                @component('components.forms.datepicker', [
+                                    'id'                => 'repeat-month-day',
+                                    'name'              => 'repeat-month-day',
+                                    'value'             => old('month_day'),
+                                    'label'             => __('Day')
+                                ])
+                                    @error('repeat-month-day')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                @endcomponent
+                            </div>
                         </div>
                     </div>
                     {{--[/repeats]--}}
@@ -232,6 +236,23 @@
         let form = modal.find('#office-settings-recurring-appointments-modal-form');
         let submitBtn = modal.find('#office-settings-recurring-appointments-modal-submit-btn');
         let addRecurringAptBtn = $('#add-recurring-appointment-btn');
+        let additionalOptions = $('#additiona-form-options');
+        let repeatType = $('#repeat-type');
+
+        repeatType.on('change', function(i){
+            let value = $(this).val();
+            console.log(value);
+
+            if(value == 'monthly') {
+                additionalOptions.removeClass('hidden');
+                additionalOptions.find('#repeat-month-day').closest('.form-group').removeClass('hidden');
+                additionalOptions.find('#repeat-day').closest('.form-group').addClass('hidden');
+            } else {
+                additionalOptions.removeClass('hidden');
+                additionalOptions.find('#repeat-month-day').closest('.form-group').addClass('hidden');
+                additionalOptions.find('#repeat-day').closest('.form-group').removeClass('hidden');
+            }
+        });
 
         submitBtn.on('click touchend', function(e){
             form.submit();
