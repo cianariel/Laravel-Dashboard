@@ -403,13 +403,14 @@ class SettingsController extends BaseController
             $rules = [
                 'recurring_appointments_type'   => ['required', 'string', 'max:50', new SanitizeHtml()],
                 'section_type'                  => ['required', 'string', Rule::in(CalendarEvent::VISIT_TYPES)],
-                'start_time'                    => ['required', 'date_format:h:i'],
-                'start_time_meridiem'           => ['required', 'string', Rule::in(['am', 'pm'])],
-                'end_time'                      => ['required', 'date_format:h:i'],
-                'end_time_meridiem'             => ['required', 'string', Rule::in(['am', 'pm'])],
+                'start_time'                    => ['required', 'date_format:h:i A', 'before:end_time'],
+                'end_time'                      => ['required', 'date_format:h:i A', 'after:start_time'],
                 'repeat_type'                   => ['required', 'string', Rule::in(CalendarEvent::REPEAT_TYPES)],
-                'repeat_day'                    => ['required', 'string', Rule::in(CalendarEvent::DAYS)],
+                'repeat_day'                    => ['required_if:repeat_type,weekly', 'string', Rule::in(CalendarEvent::DAYS)],
+                'repeat_month_day'              => ['required_if:repeat_type,monthly', 'string', 'date_format:m/d/Y']
             ];
+
+
 
             $validator = Validator::make($request->all(), $rules);
 
@@ -418,13 +419,12 @@ class SettingsController extends BaseController
                 $title = $request->input('recurring_appointments_type');
                 $sectionType = $request->input('section_type');
                 $startTime = $request->input('start_time');
-                $startTimeMeridiem = $request->input('start_time_meridiem');
                 $endTime = $request->input('end_time');
-                $endTimeMeridiem = $request->input('end_time_meridiem');
                 $repeatType = $request->input('repeat_type');
                 $repeatDay = $request->input('repeat_day');
-                $startTimeFormated = \Carbon\Carbon::parse($startTime . $startTimeMeridiem);
-                $endTimeFormated = \Carbon\Carbon::parse($endTime . $endTimeMeridiem);
+                $repeatMonthDay = $request->input('repeat_month_day');
+                $startTimeFormated = \Carbon\Carbon::parse($startTime);
+                $endTimeFormated = \Carbon\Carbon::parse($endTime);
 
                 if ($calendarEvents = $office->calendarEvents()->where('recurring', CalendarEvent::RECURRING)->cursor()) {
                     if ($calendarEvents->count() !== 0) {
@@ -437,12 +437,14 @@ class SettingsController extends BaseController
                         $calendarEvent->start_at = $startTimeFormated;
                         $calendarEvent->ends_at = $endTimeFormated;
                         $calendarEvent->setMetaField('type', $sectionType);
-                        $calendarEvent->setMetaField('start_time_meridiem', $startTimeMeridiem);
-                        $calendarEvent->setMetaField('end_time_meridiem', $endTimeMeridiem);
                         $calendarEvent->setMetaField('repeat_type', $repeatType);
-                        $calendarEvent->setMetaField('repeat_day', $repeatDay);
-
                         $calendarEvent->save();
+
+                        if($repeatType == CalendarEvent::REPEAT_WEEKLY) {
+                            $calendarEvent->setMetaField('repeat_day', $repeatDay);
+                        }else {
+                            $calendarEvent->setMetaField('repeat_month_day', $repeatMonthDay);
+                        }
 
                         $office->assignCalendarEvent($calendarEvent);
                         $site->assignCalendarEvent($calendarEvent);
