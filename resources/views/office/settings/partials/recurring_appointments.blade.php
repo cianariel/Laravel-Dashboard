@@ -43,19 +43,37 @@
                                 {{ $recurringAppointment->getMetaField('type') }}
                             </td>
                             <td>
-                                {{ Carbon\Carbon::parse($recurringAppointment->start_at)->format('h:i') }}
-                                {{ $recurringAppointment->getMetaField('start_time_meridiem', 'am') }}
+                                {{ Carbon\Carbon::parse($recurringAppointment->start_at)->format('h:i A') }}
                             </td>
                             <td>
-                                {{ Carbon\Carbon::parse($recurringAppointment->ends_at)->format('h:i') }}
-                                {{ $recurringAppointment->getMetaField('end_time_meridiem', 'pm') }}
+                                {{ Carbon\Carbon::parse($recurringAppointment->ends_at)->format('h:i A') }}
                             </td>
                             <td>
-                                {{ $recurringAppointment->getMetaField('repeat_type') }}
+                                {{ ucwords($recurringAppointment->getMetaField('repeat_type')) }}
                             </td>
-                            <td></td>
                             <td>
-
+                                @if($recurringAppointment->getMetaField('repeat_type') == App\Models\System\CalendarEvent::REPEAT_WEEKLY)
+                                    {{ __('Every') }} {{ __(ucwords($recurringAppointment->getMetaField('repeat_day'))) }}
+                                @else
+                                    {{ __('On') }} {{ __(ucwords(\Carbon\Carbon::parse($recurringAppointment->getMetaField('repeat_month_day'))->format('jS'))) }} {{ __('every month') }}
+                                @endif
+                            </td>
+                            <td class="text-right">
+                                @component('components.forms.form', [
+                                    'id'                => 'delete-recurring-event' . $recurringAppointment->id,
+                                    'action'            => route('office.settings.create.recurring.appointment.destroy', $recurringAppointment->id),
+                                    'method'            => 'DELETE',
+                                    'confirmed'         => true,
+                                    'dialog_message'    => 'Are you sure you want to delete recurring appointment?'
+                                ])
+                                    @component('components.forms.button', [
+                                        'id'    => 'submit-btn',
+                                        'type'  => 'submit',
+                                        'label' => '<i class="fas fa-trash-alt"></i>',
+                                        'name'  => 'submit-btn'
+                                    ])
+                                    @endcomponent
+                                @endcomponent
                             </td>
                         </tr>
                     @endforeach

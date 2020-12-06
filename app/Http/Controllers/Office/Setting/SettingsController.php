@@ -410,8 +410,6 @@ class SettingsController extends BaseController
                 'repeat_month_day'              => ['required_if:repeat_type,monthly', 'string', 'date_format:m/d/Y']
             ];
 
-
-
             $validator = Validator::make($request->all(), $rules);
 
             if ($validator->passes()) {
@@ -426,36 +424,32 @@ class SettingsController extends BaseController
                 $startTimeFormated = \Carbon\Carbon::parse($startTime);
                 $endTimeFormated = \Carbon\Carbon::parse($endTime);
 
-                if ($calendarEvents = $office->calendarEvents()->where('recurring', CalendarEvent::RECURRING)->cursor()) {
-                    if ($calendarEvents->count() !== 0) {
-                    } else {
-                        $calendarEvent = new CalendarEvent();
-                        $calendarEvent->uuid = Str::uuid();
-                        $calendarEvent->title = $title;
-                        $calendarEvent->recurring = CalendarEvent::RECURRING;
-                        $calendarEvent->status = CalendarEvent::ACTIVE;
-                        $calendarEvent->start_at = $startTimeFormated;
-                        $calendarEvent->ends_at = $endTimeFormated;
-                        $calendarEvent->setMetaField('type', $sectionType);
-                        $calendarEvent->setMetaField('repeat_type', $repeatType);
-                        $calendarEvent->save();
+                $calendarEvent = new CalendarEvent();
+                $calendarEvent->uuid = Str::uuid();
+                $calendarEvent->title = $title;
+                $calendarEvent->recurring = CalendarEvent::RECURRING;
+                $calendarEvent->status = CalendarEvent::ACTIVE;
+                $calendarEvent->start_at = $startTimeFormated;
+                $calendarEvent->ends_at = $endTimeFormated;
+                $calendarEvent->setMetaField('type', $sectionType);
+                $calendarEvent->setMetaField('repeat_type', $repeatType);
 
-                        if($repeatType == CalendarEvent::REPEAT_WEEKLY) {
-                            $calendarEvent->setMetaField('repeat_day', $repeatDay);
-                        }else {
-                            $calendarEvent->setMetaField('repeat_month_day', $repeatMonthDay);
-                        }
-
-                        $office->assignCalendarEvent($calendarEvent);
-                        $site->assignCalendarEvent($calendarEvent);
-
-                        flash(__('Successfully saved recurring appointment.'));
-
-                        return redirect()->route('office.settings.edit.general.section', [
-                                    'section'   => 'recurring_appointments'
-                        ]);
-                    }
+                if($repeatType == CalendarEvent::REPEAT_WEEKLY) {
+                    $calendarEvent->setMetaField('repeat_day', $repeatDay);
+                }else {
+                    $calendarEvent->setMetaField('repeat_month_day', $repeatMonthDay);
                 }
+
+                $calendarEvent->save();
+
+                $office->assignCalendarEvent($calendarEvent);
+                $site->assignCalendarEvent($calendarEvent);
+
+                flash(__('Successfully saved recurring appointment.'));
+
+                return redirect()->route('office.settings.edit.general.section', [
+                            'section'   => 'recurring_appointments'
+                ]);
             }
 
             return redirect()->route('office.settings.edit.general.section', [
@@ -463,6 +457,41 @@ class SettingsController extends BaseController
                                     'modal'     => 'true'
                             ])->withErrors($validator)
                               ->withInput();
+        }
+
+        flash(__('Unauthorized Access'));
+        return redirect('/');
+    }
+
+    /**
+     * Deletes recurring appointe from settings for office.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  int
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteRecurringAppointment(Request $request, $id)
+    {
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        if ($user->hasRole(Role::OWNER)) {
+
+            $office = $user->offices()->first();
+
+            if($calendarEvent = $office->calendarEvents()->where('id', $id)->first()) {
+
+                $site->unassignCalendarEvent($calendarEvent);
+                $office->unassignCalendarEvent($calendarEvent);
+
+                $calendarEvent->forceDelete();
+
+                flash(__('Successfully deleted recurring_appointment.'));
+                return redirect()->route('office.settings.edit.general.section', 'recurring_appointments');
+            }
+
+            flash(__('Recurring appointment setting does not exist.'));
+            return redirect()->route('office.settings.edit.general.section', 'recurring_appointments');
         }
 
         flash(__('Unauthorized Access'));

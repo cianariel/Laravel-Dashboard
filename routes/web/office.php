@@ -107,6 +107,13 @@ $routes = [
         'name'          => 'settings.create.recurring.appointment'
     ],
     [
+        'path'          => 'settings/general/recurring_appointments/{id}/destroy',
+        'type'          => 'delete',
+        'controller'    => 'Office\Setting\SettingsController',
+        'method'        => 'deleteRecurringAppointment',
+        'name'          => 'settings.create.recurring.appointment.destroy'
+    ],
+    [
         'path'          => 'settings/offices',
         'type'          => 'get',
         'controller'    => 'Office\Setting\SettingsController',
