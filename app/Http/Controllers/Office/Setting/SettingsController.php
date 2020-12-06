@@ -486,7 +486,7 @@ class SettingsController extends BaseController
 
                 $calendarEvent->forceDelete();
 
-                flash(__('Successfully deleted recurring_appointment.'));
+                flash(__('Successfully deleted recurring appointment.'));
                 return redirect()->route('office.settings.edit.general.section', 'recurring_appointments');
             }
 
