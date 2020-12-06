@@ -40,7 +40,7 @@
                         <tr>
                             <td>{{ $recurringAppointment->title }}</td>
                             <td>
-                                {{ $recurringAppointment->getMetaField('type') }}
+                                {{ ucwords(str_replace('_', ' ', $recurringAppointment->getMetaField('type'))) }}
                             </td>
                             <td>
                                 {{ Carbon\Carbon::parse($recurringAppointment->start_at)->format('h:i A') }}
