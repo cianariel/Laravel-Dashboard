@@ -434,9 +434,9 @@ class SettingsController extends BaseController
                 $calendarEvent->setMetaField('type', $sectionType);
                 $calendarEvent->setMetaField('repeat_type', $repeatType);
 
-                if($repeatType == CalendarEvent::REPEAT_WEEKLY) {
+                if ($repeatType == CalendarEvent::REPEAT_WEEKLY) {
                     $calendarEvent->setMetaField('repeat_day', $repeatDay);
-                }else {
+                } else {
                     $calendarEvent->setMetaField('repeat_month_day', $repeatMonthDay);
                 }
 
@@ -476,11 +476,9 @@ class SettingsController extends BaseController
         $user = auth()->guard(User::GUARD)->user();
 
         if ($user->hasRole(Role::OWNER)) {
-
             $office = $user->offices()->first();
 
-            if($calendarEvent = $office->calendarEvents()->where('id', $id)->first()) {
-
+            if ($calendarEvent = $office->calendarEvents()->where('id', $id)->first()) {
                 $site->unassignCalendarEvent($calendarEvent);
                 $office->unassignCalendarEvent($calendarEvent);
 
