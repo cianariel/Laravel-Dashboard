@@ -39,8 +39,7 @@ class CalendarController extends Controller
 
         $calendarEvents = $office->calendarEvents()->latest()->paginate($perPage);
 
-        $breadcrumbs = breadcrumbs(
-            [
+        $breadcrumbs = breadcrumbs([
             __('Dashboard') => [
                 'path'      => route('office.dashboard'),
                 'active'    => false
@@ -49,8 +48,7 @@ class CalendarController extends Controller
                 'path'      => route('office.calendar.index'),
                 'active'    => true
             ]
-            ]
-        );
+        ]);
 
         return view(
             'office.calendar.index',

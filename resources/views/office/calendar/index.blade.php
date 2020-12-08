@@ -38,12 +38,30 @@
                             ])
                                 @foreach($calendarEvents as $calendarEvent)
                                     <tr>
-                                        <td width="15%">
-                                            <strong>{{ Carbon\Carbon::parse($calendarEvent->start_at)->format('j') }}</strong>
-                                            <span>{{ Carbon\Carbon::parse($calendarEvent->start_at)->format('D') }}</span>
+                                        <td width="15%" class="text-center">
+                                            @if(filled($calendarEvent->getMetaField('repeat_type')))
+                                                @if($calendarEvent->getMetaField('repeat_type') == App\Models\System\CalendarEvent::REPEAT_WEEKLY)
+                                                    {{ __($calendarEvent->getMetaField('repeat_day')) }}
+                                                @endif
+                                            @else
+                                                <h4>{{ Carbon\Carbon::parse($calendarEvent->start_at)->format('j') }}</h4>
+                                                <span>{{ Carbon\Carbon::parse($calendarEvent->start_at)->format('D') }}</span>
+                                            @endif
+                                            <div class="d-block mt-2">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </div>
                                         </td>
                                         <td>
+                                            @if(filled($calendarEvent->getMetaField('repeat_type')))
+                                                <h4>{{ $calendarEvent->title }}</h4>
+                                                <span>
+                                                    @if($calendarEvent->recurring == App\Models\System\CalendarEvent::RECURRING)
+                                                        {{ __('Recurring') }}
+                                                    @endif
+                                                </span>
+                                            @else
 
+                                            @endif
                                         </td>
                                         <td class="text-right">
 
@@ -51,7 +69,22 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3" class="text-right">
-
+                                            @if(filled($calendarEvent->start_at))
+                                                {{ Carbon\Carbon::parse($calendarEvent->start_at)->format('h:i A') }}
+                                            @endif
+                                            @if(filled($calendarEvent->ends_at))
+                                                - {{ Carbon\Carbon::parse($calendarEvent->ends_at)->format('h:i A') }}
+                                            @endif
+                                            <div class="d-block mt-3">
+                                                @component('components.elements.link', [
+                                                    'href'      => '#',
+                                                    'classes'   => [
+                                                        'fg-link'
+                                                    ]
+                                                ])
+                                                    <i class="far fa-edit"></i> <span class="text-uppercase">{{ __('Edit') }}</span>
+                                                @endcomponent
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
