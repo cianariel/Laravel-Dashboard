@@ -34,7 +34,7 @@
                 </li>
                 <li class="nav-item">
                     @component('components.elements.link', [
-                        'href'      => '#',
+                        'href'      => route('office.messages.index'),
                         'classes'   => ['nav-link']
                     ])
                         {{ __('Messages') }} <span class="badge badge-secondary">0</span>
@@ -62,6 +62,22 @@
                         'classes'   => ['nav-link']
                     ])
                         {{ __('Settings') }}
+                    @endcomponent
+                </li>
+                <li class="nav-item">
+                    @component('components.elements.link', [
+                        'href'      => '#',
+                        'classes'   => [
+                            'nav-link',
+                            'nav-avator-link'
+                        ]
+                    ])
+                        @component('components.elements.image',[
+                            'src'   => avator(auth()->user(), 'thumb'),
+                            'attrs' => [
+                                'title' => 'Edit Profile'
+                            ]
+                        ])@endcomponent
                     @endcomponent
                 </li>
                 <li class="nav-item">
