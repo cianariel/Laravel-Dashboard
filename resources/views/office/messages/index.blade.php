@@ -19,6 +19,8 @@
                     @component('components.bootstrap.card', [
                         'id'    => 'office-messges-card'
                     ])
+                        <div class="card-body">
+                        </div>
                     @endcomponent
                 @endcomponent
             </div>

@@ -18785,6 +18785,10 @@ input[type=checkbox] {
   outline: none !important;
 }
 
+.nav-avator-link img {
+  max-width: 1.5625rem;
+}
+
 .md-breadcrumbs {
   position: relative;
   top: 0;
