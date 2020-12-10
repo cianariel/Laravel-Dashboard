@@ -56,7 +56,7 @@
                                                 <h4>{{ $calendarEvent->title }}</h4>
                                                 <span>
                                                     @if($calendarEvent->recurring == App\Models\System\CalendarEvent::RECURRING)
-                                                        {{ __('Recurring') }}
+                                                        <span class="badge badge-primary">{{ __('Recurring') }}</span>
                                                     @endif
                                                 </span>
                                             @else

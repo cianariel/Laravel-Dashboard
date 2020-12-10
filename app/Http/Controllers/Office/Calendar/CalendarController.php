@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Office\Calendar;
 
-use App\Http\Controllers\Controller;
-use Exception;
+use App\Http\Controllers\Office\BaseController;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -14,6 +13,7 @@ use App\Models\System\User;
 use App\Models\System\Role;
 use App\Models\System\CalendarEvent;
 use App\Models\System\Office;
+use Exception;
 
 /**
  * CalendarsController
@@ -22,7 +22,7 @@ use App\Models\System\Office;
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Http\Controllers\Office\Calendar
  */
-class CalendarController extends Controller
+class CalendarController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,8 @@ class CalendarController extends Controller
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
         $office = office_owner($user)->offices()->first();
-        $perPage = 10;
+        $perPage = 25;
+        $currentMonth = current_month();
 
         $calendarEvents = $office->calendarEvents()->latest()->paginate($perPage);
 
