@@ -17,14 +17,16 @@ declare(strict_types=1);
 $routes = [
     [
         'path'          => '/',
-        'controller'    => 'User/UserController',
+        'type'          => 'get',
+        'controller'    => 'User\UserController',
         'method'        => 'index',
         'name'          => 'dashboard'
     ],
     [
-        'path'          => '/',
-        'controller'    => 'User/UserController',
-        'method'        => 'editProfile',
+        'path'          => 'profile/edit',
+        'type'          => 'get',
+        'controller'    => 'User\Profile\ProfileController',
+        'method'        => 'edit',
         'name'          => 'profile.edit'
     ],
 ];

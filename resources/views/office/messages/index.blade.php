@@ -20,6 +20,21 @@
                         'id'    => 'office-messges-card'
                     ])
                         <div class="card-body">
+                            @if($messages->count() !== 0)
+                            @else
+                                <p class="card-text text-center">{{ __('No messages found.') }}</p>
+                                <p class="card-text text-center">
+                                    @component('components.elements.link', [
+                                        'href'      => route('office.messages.create'),
+                                        'classes'   => [
+                                            'btn',
+                                            'btn-primary'
+                                        ]
+                                    ])
+                                        {{ __('Click here to create a new message.') }}
+                                    @endcomponent
+                                </p>
+                            @endif
                         </div>
                     @endcomponent
                 @endcomponent
