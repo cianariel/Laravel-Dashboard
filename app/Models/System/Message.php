@@ -6,6 +6,7 @@ namespace App\Models\System;
 
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
+use App\Models\System\Traits\HasUsers;
 use App\Models\System\Traits\HasFolders;
 use App\Models\System\Traits\HasAttachments;
 use App\Models\Shared\Model;
@@ -19,8 +20,9 @@ use App\Models\Shared\Model;
  */
 class Message extends Model implements Searchable
 {
-    use HasFolders;
-    use HasAttachments;
+    use HasUsers,
+        HasFolders,
+        HasAttachments;
 
     /**
      * The database table used by the model.

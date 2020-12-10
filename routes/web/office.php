@@ -144,6 +144,12 @@ $routes = [
         'path'          => 'calendar',
         'type'          => 'resource',
         'controller'    => 'Office\Calendar\CalendarController',
+    ],
+    [
+        'path'          => 'messages',
+        'type'          => 'resource',
+        'controller'    => 'Office\Message\MessagesController',
+        'except'        => ['edit', 'update']
     ]
 ];
 

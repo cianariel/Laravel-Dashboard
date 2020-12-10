@@ -11,7 +11,8 @@ body[id^="page-office"]
 
     #office-settings-sidebar-card,
     #office-calendar-sidebar-card,
-    #office-settings-rep-visits-sidebar-card
+    #office-settings-rep-visits-sidebar-card,
+    #office-messges-sidebar-card
     {
         @include media-breakpoint-up(md)
         {

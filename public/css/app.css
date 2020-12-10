@@ -19440,7 +19440,8 @@ body[id^=page-office] #office-content-body {
 @media (min-width: 768px) {
   body[id^=page-office] #office-settings-sidebar-card,
 body[id^=page-office] #office-calendar-sidebar-card,
-body[id^=page-office] #office-settings-rep-visits-sidebar-card {
+body[id^=page-office] #office-settings-rep-visits-sidebar-card,
+body[id^=page-office] #office-messges-sidebar-card {
     max-width: 15.625rem;
   }
 }
