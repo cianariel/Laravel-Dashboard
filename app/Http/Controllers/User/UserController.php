@@ -9,6 +9,10 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use App\Models\System\Role;
+use App\Models\System\User;
+use App\Rules\SanitizeHtml;
+use App\Rules\PhoneRule;
 use Exception;
 
 /**
@@ -32,19 +36,16 @@ class UserController extends BaseController
         $user = auth()->guard(User::GUARD)->user();
 
         if (
-            $user->setup_completed == User::SETUP_COMPLETED
-            || $user->setup_completed == User::SETUP_IGNORED
+            $user->setup_completed != User::SETUP_COMPLETED
         ) {
             return redirect()->route('user.profile.edit');
         } else {
-            $breadcrumbs = breadcrumbs(
-                [
+            $breadcrumbs = breadcrumbs([
                 __('Dashboard')     => [
                     'path'          => route('user.dashboard'),
                     'active'        => false,
                 ]
-                ]
-            );
+            ]);
 
             return view(
                 'user.dashboard.index',
@@ -71,8 +72,7 @@ class UserController extends BaseController
             $user->setup_completed == User::SETUP_COMPLETED
             || $user->setup_completed == User::SETUP_IGNORED
         ) {
-            $breadcrumbs = breadcrumbs(
-                [
+            $breadcrumbs = breadcrumbs([
                 __('Dashboard')     => [
                     'path'          => route('user.dashboard'),
                     'active'        => false,
@@ -81,8 +81,7 @@ class UserController extends BaseController
                     'path'          => route('user.profile.edit'),
                     'active'        => true,
                 ]
-                ]
-            );
+            ]);
 
             return view(
                 'user.profile.edit',

@@ -43,9 +43,17 @@
                 <li class="nav-item">
                     @component('components.elements.link', [
                         'href'      => route('user.profile.edit'),
-                        'classes'   => ['nav-link']
+                        'classes'   => [
+                            'nav-link',
+                            'nav-avator-link'
+                        ]
                     ])
-                        {{ __('Profile') }}
+                        @component('components.elements.image',[
+                            'src'   => avator(auth()->user(), 'thumb'),
+                            'attrs' => [
+                                'title' => 'Edit Profile'
+                            ]
+                        ])@endcomponent
                     @endcomponent
                 </li>
                 <li class="nav-item">
