@@ -1562,16 +1562,16 @@
         },
         {
             "name": "laravel/cashier",
-            "version": "v12.6.0",
+            "version": "v12.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/cashier-stripe.git",
-                "reference": "0e378193f56d384bf1876290b3d5f9d8c003299b"
+                "reference": "1fb4deb3cdc6ada83634f3c9aaa4fcde1e42efa8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/0e378193f56d384bf1876290b3d5f9d8c003299b",
-                "reference": "0e378193f56d384bf1876290b3d5f9d8c003299b",
+                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/1fb4deb3cdc6ada83634f3c9aaa4fcde1e42efa8",
+                "reference": "1fb4deb3cdc6ada83634f3c9aaa4fcde1e42efa8",
                 "shasum": ""
             },
             "require": {
@@ -1632,7 +1632,7 @@
                 "laravel",
                 "stripe"
             ],
-            "time": "2020-11-24T16:41:13+00:00"
+            "time": "2020-12-08T18:18:43+00:00"
         },
         {
             "name": "laravel/framework",
@@ -4081,16 +4081,16 @@
         },
         {
             "name": "spatie/laravel-backup",
-            "version": "6.13.1",
+            "version": "6.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-backup.git",
-                "reference": "a0ca6662fbc3d008fe9e17b0f74101d139aca6f1"
+                "reference": "982d8377816eaceac0ac0a78fbf9b0f75fb009db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/a0ca6662fbc3d008fe9e17b0f74101d139aca6f1",
-                "reference": "a0ca6662fbc3d008fe9e17b0f74101d139aca6f1",
+                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/982d8377816eaceac0ac0a78fbf9b0f75fb009db",
+                "reference": "982d8377816eaceac0ac0a78fbf9b0f75fb009db",
                 "shasum": ""
             },
             "require": {
@@ -4162,7 +4162,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2020-12-01T07:29:53+00:00"
+            "time": "2020-12-09T20:35:29+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
@@ -4406,16 +4406,16 @@
         },
         {
             "name": "spatie/laravel-searchable",
-            "version": "1.8.0",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-searchable.git",
-                "reference": "329d6d507569be55541cab6eccd35651a6ce434c"
+                "reference": "79ea2abc11f7354d2beec537b39c455b1679d99b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-searchable/zipball/329d6d507569be55541cab6eccd35651a6ce434c",
-                "reference": "329d6d507569be55541cab6eccd35651a6ce434c",
+                "url": "https://api.github.com/repos/spatie/laravel-searchable/zipball/79ea2abc11f7354d2beec537b39c455b1679d99b",
+                "reference": "79ea2abc11f7354d2beec537b39c455b1679d99b",
                 "shasum": ""
             },
             "require": {
@@ -4463,7 +4463,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2020-11-28T19:00:49+00:00"
+            "time": "2020-12-09T07:25:27+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
@@ -4569,16 +4569,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.66.1",
+            "version": "v7.67.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "a2ebaa272a8797b21e81afaf8d5ba0953ff15e13"
+                "reference": "935d2c67912007f6d17b6c08a62050252c509129"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/a2ebaa272a8797b21e81afaf8d5ba0953ff15e13",
-                "reference": "a2ebaa272a8797b21e81afaf8d5ba0953ff15e13",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/935d2c67912007f6d17b6c08a62050252c509129",
+                "reference": "935d2c67912007f6d17b6c08a62050252c509129",
                 "shasum": ""
             },
             "require": {
@@ -4588,7 +4588,7 @@
                 "php": ">=5.6.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "2.16.5",
+                "friendsofphp/php-cs-fixer": "2.17.1",
                 "php-coveralls/php-coveralls": "^2.1",
                 "phpunit/phpunit": "^5.7",
                 "squizlabs/php_codesniffer": "^3.3",
@@ -4622,36 +4622,35 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2020-12-01T18:44:12+00:00"
+            "time": "2020-12-09T19:00:34+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v6.2.3",
+            "version": "v6.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "149cfdf118b169f7840bbe3ef0d4bc795d1780c9"
+                "reference": "56f0ab23f54c4ccbb0d5dcc67ff8552e0c98d59e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/149cfdf118b169f7840bbe3ef0d4bc795d1780c9",
-                "reference": "149cfdf118b169f7840bbe3ef0d4bc795d1780c9",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/56f0ab23f54c4ccbb0d5dcc67ff8552e0c98d59e",
+                "reference": "56f0ab23f54c4ccbb0d5dcc67ff8552e0c98d59e",
                 "shasum": ""
             },
             "require": {
-                "egulias/email-validator": "~2.0",
+                "egulias/email-validator": "^2.0",
                 "php": ">=7.0.0",
                 "symfony/polyfill-iconv": "^1.0",
                 "symfony/polyfill-intl-idn": "^1.10",
                 "symfony/polyfill-mbstring": "^1.0"
             },
             "require-dev": {
-                "mockery/mockery": "~0.9.1",
-                "symfony/phpunit-bridge": "^3.4.19|^4.1.8"
+                "mockery/mockery": "^1.0",
+                "symfony/phpunit-bridge": "^4.4|^5.0"
             },
             "suggest": {
-                "ext-intl": "Needed to support internationalized email addresses",
-                "true/punycode": "Needed to support internationalized email addresses, if ext-intl is not installed"
+                "ext-intl": "Needed to support internationalized email addresses"
             },
             "type": "library",
             "extra": {
@@ -4684,7 +4683,17 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2019-11-12T09:31:26+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/swiftmailer/swiftmailer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-12-08T18:02:06+00:00"
         },
         {
             "name": "symfony/console",
@@ -7266,16 +7275,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "2.5.2",
+            "version": "2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "08668034beb185fa2ac6f09b1034eaa440952ace"
+                "reference": "d8dc4f90ed469f9f9313b976fb078c20585d5c99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/08668034beb185fa2ac6f09b1034eaa440952ace",
-                "reference": "08668034beb185fa2ac6f09b1034eaa440952ace",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/d8dc4f90ed469f9f9313b976fb078c20585d5c99",
+                "reference": "d8dc4f90ed469f9f9313b976fb078c20585d5c99",
                 "shasum": ""
             },
             "require": {
@@ -7333,13 +7342,7 @@
                 "laravel",
                 "page"
             ],
-            "support": {
-                "docs": "https://flareapp.io/docs/ignition-for-laravel/introduction",
-                "forum": "https://twitter.com/flareappio",
-                "issues": "https://github.com/facade/ignition/issues",
-                "source": "https://github.com/facade/ignition"
-            },
-            "time": "2020-11-17T09:18:51+00:00"
+            "time": "2020-12-09T20:25:45+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -7457,16 +7460,16 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.9.1",
+            "version": "v1.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f"
+                "reference": "848d8125239d7dbf8ab25cb7f054f1a630e68c2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/fc10d778e4b84d5bd315dad194661e091d307c6f",
-                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/848d8125239d7dbf8ab25cb7f054f1a630e68c2e",
+                "reference": "848d8125239d7dbf8ab25cb7f054f1a630e68c2e",
                 "shasum": ""
             },
             "require": {
@@ -7504,7 +7507,7 @@
                 "fixtures"
             ],
             "abandoned": true,
-            "time": "2019-12-12T13:22:17+00:00"
+            "time": "2020-12-11T09:56:16+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",

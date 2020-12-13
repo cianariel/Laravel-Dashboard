@@ -45,18 +45,32 @@ class ProfileController extends BaseController
     public function edit(Request $request)
     {
         $site = site(config('app.base_domain'));
-        $user = auth()->guard()->user();
+        $user = auth()->guard(User::GUARD)->user();
+
+        $countries = countries();
+        $_countries = [];
+
+        foreach ($countries as $country) {
+            if ($countries->status = Country::ACTIVE) {
+                $_countries[$country->code] = $country->name;
+            }
+        }
+
+        $countries = $_countries;
+        unset($_countries);
 
         $breadcrumbs = breadcrumbs([
             __('Dashboard')     => [
-
+                'path'          => route('user.dashboard'),
+                'active'        => false
             ],
             __('Edit Profile')  => [
-
+                'path'          => route('user.profile.edit'),
+                'active'        => true
             ]
         ]);
 
-        return view('user.profile.edit', compact('site', 'breadcrumbs', 'user'));
+        return view('user.profile.edit', compact('site', 'breadcrumbs', 'user', 'countries'));
     }
 
     /**
@@ -68,6 +82,56 @@ class ProfileController extends BaseController
      */
     public function update(Request $request)
     {
-        //
+        $rules = [
+            'profile_image'     => ['nullable', 'image', 'max:' . bit_convert(5, 'mb')],
+            'company'           => ['nullable', 'string', 'max:50', new SanitizeHtml],
+            'first_name'        => ['required', 'string', 'max:50', new SanitizeHtml],
+            'last_name'         => ['required', 'string', 'max:50', new SanitizeHtml],
+            'address'           => ['required', 'string', 'max:100', new SanitizeHtml],
+            'address_2'         => ['nullable', 'string', 'max:100', new SanitizeHtml],
+            'city'              => ['required', 'string', 'max:50', new SanitizeHtml],
+            'state'             => ['required', 'string', 'max:50'],
+            'country'           => ['required', 'string', 'max:2', 'exists:system.countries,code'],
+            'phone'             => ['nullable', 'string', new PhoneRule],
+            'mobile_phone'      => ['required', 'string', new PhoneRule]
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        $user->company = $request->input('company');
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->address = $request->input('address');
+        $user->address_2 = $request->input('address_2');
+        $user->city = $request->input('city');
+        $user->state = $request->input('state');
+        $user->country = $request->input('country');
+        $user->phone = (filled($request->input('phone')))? clean_phone($request->input('phone')) : null;
+        $user->phone = (filled($request->input('mobile_phone')))? clean_phone($request->input('mobile_phone')) : null;
+        $user->save();
+
+        flash(__('Successfully updated user.'));
+        return redirect()->route('user.profile.edit');
+    }
+
+    /**
+     * Delete Profile Image from storage resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteMediaImage(Request $request, $id)
+    {
+        $user = auth()->user(User::GUARD)->select(['id'])->with(['media'])->firstOrFail();
+
+        if ($profile_image = $user->getMedia('profile_image')->first()) {
+            $profile_image->delete();
+        }
+
+        flash(__('Successfully deleted profile image'));
+        return redirect()->route('admin.profile.edit');
     }
 }
