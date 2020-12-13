@@ -66,7 +66,7 @@
                 </li>
                 <li class="nav-item">
                     @component('components.elements.link', [
-                        'href'      => '#',
+                        'href'      => route('office.profile.edit'),
                         'classes'   => [
                             'nav-link',
                             'nav-avator-link'
