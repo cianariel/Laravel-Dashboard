@@ -979,10 +979,10 @@ if (! function_exists('megabyte_convert')) {
  *
  * @param  int|float
  * @param  string type
- * @return int
+ * @return int|float
  */
 if (! function_exists('bit_convert')) {
-    function bit_convert($size, $type = 'kb'): int
+    function bit_convert($size, $type = 'kb')
     {
         if (is_numeric($size) && $size >= 1) {
             if (is_integer($size)) {

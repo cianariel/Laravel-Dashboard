@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\System\Role;
 use App\Models\System\User;
+use App\Models\System\Country;
 use App\Rules\SanitizeHtml;
 use App\Rules\PhoneRule;
 
@@ -83,7 +84,7 @@ class ProfileController extends BaseController
     public function update(Request $request)
     {
         $rules = [
-            'profile_image'     => ['nullable', 'image', 'max:' . bit_convert(5, 'mb')],
+            'profile_image'     => ['file', 'nullable','image', 'mimes:jpeg,gif,png', 'max:' . bit_convert(10, 'mb')],
             'company'           => ['nullable', 'string', 'max:50', new SanitizeHtml],
             'first_name'        => ['required', 'string', 'max:50', new SanitizeHtml],
             'last_name'         => ['required', 'string', 'max:50', new SanitizeHtml],
@@ -91,6 +92,7 @@ class ProfileController extends BaseController
             'address_2'         => ['nullable', 'string', 'max:100', new SanitizeHtml],
             'city'              => ['required', 'string', 'max:50', new SanitizeHtml],
             'state'             => ['required', 'string', 'max:50'],
+            'zipcode'           => ['required', 'string', 'max:25'],
             'country'           => ['required', 'string', 'max:2', 'exists:system.countries,code'],
             'phone'             => ['nullable', 'string', new PhoneRule],
             'mobile_phone'      => ['required', 'string', new PhoneRule]
@@ -108,9 +110,10 @@ class ProfileController extends BaseController
         $user->address_2 = $request->input('address_2');
         $user->city = $request->input('city');
         $user->state = $request->input('state');
+        $user->zipcode = $request->input('zipcode');
         $user->country = $request->input('country');
-        $user->phone = (filled($request->input('phone')))? clean_phone($request->input('phone')) : null;
-        $user->phone = (filled($request->input('mobile_phone')))? clean_phone($request->input('mobile_phone')) : null;
+        $user->phone = $request->input('phone');
+        $user->mobile_phone = $request->input('mobile_phone');
         $user->save();
 
         flash(__('Successfully updated user.'));
