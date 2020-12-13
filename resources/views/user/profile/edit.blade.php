@@ -22,12 +22,19 @@
                                     'id'        => 'user-edit-profile-form',
                                     'action'    => route('user.profile.update'),
                                     'method'    => 'PUT',
-                                    'confirmed' => true
+                                    'confirmed' => true,
+                                    'enctype'   => 'multipart/form-data'
                                 ])
                                     @component('components.forms.file', [
-                                        'id'    => 'profile_image',
-                                        'name'  => 'profile_image',
-                                        'label' => __('Profile Image')
+                                        'id'        => 'profile_image',
+                                        'name'      => 'profile_image',
+                                        'label'     => __('Profile Image'),
+                                        'accepts'   => [
+                                            '.gif',
+                                            '.png',
+                                            '.jpg',
+                                            '.jpeg'
+                                        ]
                                     ])
                                         @error('profile_image')
                                             <span class="invalid-feedback" role="alert">
@@ -121,8 +128,8 @@
                                     @endcomponent
                                     @component('components.forms.input', [
                                         'type'          => 'text',
-                                        'name'          => 'zipcode', '
-                                        label'          => __('Zipcode'),
+                                        'name'          => 'zipcode',
+                                        'label'         => __('Zipcode'),
                                         'value'         => old('zipcode')?? $user->zipcode,
                                         'placeholder'   => __('Zipcode')
                                     ])
@@ -183,6 +190,30 @@
                                             </span>
                                         @enderror
                                     @endcomponent
+                                    <div class="form-group row mb-0">
+                                        <div class="col-md-8 offset-md-4">
+                                            @component('components.forms.button', [
+                                                'id'        => 'submit-btn',
+                                                'type'      => 'submit',
+                                                'name'      => 'submit-btn',
+                                                'label'     => 'Update',
+                                                'classes'   => [
+                                                    'btn',
+                                                    'btn-primary'
+                                                ]
+                                            ])
+                                                @component('components.elements.link', [
+                                                    'href'  => route('user.dashboard'),
+                                                    'classes'   => [
+                                                        'btn',
+                                                        'btn-secondary'
+                                                    ]
+                                                ])
+                                                    {{ __('Cancel') }}
+                                                @endcomponent
+                                            @endcomponent
+                                        </div>
+                                    </div>
                                 @endcomponent
                             </div>
                         </div>
