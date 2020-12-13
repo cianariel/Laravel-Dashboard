@@ -135,6 +135,27 @@ $routes = [
         'name'          => 'settings.edit.subscription'
     ],
     [
+        'path'          => 'profile/edit',
+        'type'          => 'get',
+        'controller'    => 'Office\Profile\ProfileController',
+        'method'        => 'edit',
+        'name'          => 'profile.edit'
+    ],
+    [
+        'path'          => 'profile/edit/update',
+        'type'          => 'PUT',
+        'controller'    => 'Office\Profile\ProfileController',
+        'method'        => 'update',
+        'name'          => 'profile.update'
+    ],
+    [
+        'path'          => 'profile/edit/media/delete',
+        'type'          => 'get',
+        'controller'    => 'Office\Profile\ProfileController',
+        'method'        => 'deleteMediaImage',
+        'name'          => 'profile.media.delete'
+    ],
+    [
         'path'          => 'staff',
         'type'          => 'resource',
         'controller'    => 'Office\Staff\StaffsController',
