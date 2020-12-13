@@ -116,6 +116,19 @@ class ProfileController extends BaseController
         $user->mobile_phone = $request->input('mobile_phone');
         $user->save();
 
+        if ($request->hasFile('profile_image')) {
+            $image = $user->getMedia('profile_image')->first();
+
+            if ($image) {
+                $image->delete();
+            }
+
+            $file = $request->file('profile_image');
+
+            $user->addMedia($file)
+                ->toMediaCollection('profile_image');
+        }
+
         flash(__('Successfully updated user.'));
         return redirect()->route('user.profile.edit');
     }

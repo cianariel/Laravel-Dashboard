@@ -42,12 +42,16 @@
                                             </span>
                                         @enderror
                                     @endcomponent
-                                    @if($profile_image = $user->getMedia('profile_image')->first())
-                                        @component('components.forms.media.single_image', [
-                                            'path'  => $profile_image->getFullUrl('thumb'),
-                                            'route' => route('user.profile.media.delete',['image' => $profile_image->id])
-                                        ])@endcomponent
-                                    @endif
+                                    <div class="row">
+                                        <div class="col-12">
+                                            @if($profile_image = $user->getMedia('profile_image')->first())
+                                                @component('components.forms.media.single_image', [
+                                                    'path'  => $profile_image->getFullUrl('thumb'),
+                                                    'route' => route('user.profile.media.delete',['image' => $profile_image->id])
+                                                ])@endcomponent
+                                            @endif
+                                        </div>
+                                    </div>
                                     @component('components.forms.input', [
                                         'type'          => 'text',
                                         'name'          => 'company',

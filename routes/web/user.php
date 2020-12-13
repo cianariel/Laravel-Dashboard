@@ -36,6 +36,13 @@ $routes = [
         'method'        => 'update',
         'name'          => 'profile.update'
     ],
+    [
+        'path'          => 'profile/edit/media/delete',
+        'type'          => 'get',
+        'controller'    => 'User\Profile\ProfileController',
+        'method'        => 'deleteMediaImage',
+        'name'          => 'profile.media.delete'
+    ],
 ];
 
 Route::domain(config('app.base_domain'))->name('user.')->group(function () use (&$routes) {
