@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\User\Profile;
+namespace App\Http\Controllers\Office\Profile;
 
-use App\Http\Controllers\User\BaseController;
+use App\Http\Controllers\Office\BaseController;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -20,7 +20,7 @@ use App\Rules\PhoneRule;
  *
  * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
- * @package App\Http\Controllers\User\Profile
+ * @package App\Http\Controllers\Office\Profile
  */
 class ProfileController extends BaseController
 {
@@ -62,16 +62,16 @@ class ProfileController extends BaseController
 
         $breadcrumbs = breadcrumbs([
             __('Dashboard')     => [
-                'path'          => route('user.dashboard'),
+                'path'          => route('office.dashboard'),
                 'active'        => false
             ],
             __('Edit Profile')  => [
-                'path'          => route('user.profile.edit'),
+                'path'          => route('office.profile.edit'),
                 'active'        => true
             ]
         ]);
 
-        return view('user.profile.edit', compact('site', 'breadcrumbs', 'user', 'countries'));
+        return view('office.profile.edit', compact('site', 'breadcrumbs', 'user', 'countries'));
     }
 
     /**
@@ -130,7 +130,7 @@ class ProfileController extends BaseController
         }
 
         flash(__('Successfully updated profile.'));
-        return redirect()->route('user.profile.edit');
+        return redirect()->route('office.profile.edit');
     }
 
     /**
