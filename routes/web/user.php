@@ -29,6 +29,13 @@ $routes = [
         'method'        => 'edit',
         'name'          => 'profile.edit'
     ],
+    [
+        'path'          => 'profile/edit/update',
+        'type'          => 'PUT',
+        'controller'    => 'User\Profile\ProfileController',
+        'method'        => 'update',
+        'name'          => 'profile.update'
+    ],
 ];
 
 Route::domain(config('app.base_domain'))->name('user.')->group(function () use (&$routes) {

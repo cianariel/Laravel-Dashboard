@@ -69,7 +69,6 @@ class ProfileController extends AdminController
         $countries = $_countries;
         unset($_countries);
 
-
         $breadcrumbs = [
             'Dashboard'     => ['path' => admin_url(),                      'active' => false],
             'Edit Profile'  => ['path' => route('admin.profile.edit'),            'active' => true],
