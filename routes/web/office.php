@@ -171,6 +171,13 @@ $routes = [
         'type'          => 'resource',
         'controller'    => 'Office\Message\MessagesController',
         'except'        => ['edit', 'update']
+    ],
+    [
+        'path'          => 'reps',
+        'type'          => 'get',
+        'controller'    => 'Office\Reps\RepsController',
+        'method'        => 'index',
+        'name'          => 'reps.index'
     ]
 ];
 
