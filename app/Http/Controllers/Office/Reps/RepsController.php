@@ -59,7 +59,7 @@ class RepsController extends OfficeController
             'not_approved'  => 'No'
         ];
 
-        $reps = User::role(Role::USER)->where('status', User::ACTIVE)->cursor();
+        $reps = User::role(Role::USER)->where('status', User::ACTIVE)->paginate(10);
 
         return view('office.reps.index',
             compact(
