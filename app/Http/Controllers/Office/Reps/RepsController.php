@@ -54,6 +54,11 @@ class RepsController extends OfficeController
             'Other'
         ];
 
+        $approvedTypes = [
+            'approved'      => 'Yes',
+            'not_approved'  => 'No'
+        ];
+
         $reps = User::role(Role::USER)->where('status', User::ACTIVE)->cursor();
 
         return view('office.reps.index',
@@ -61,7 +66,8 @@ class RepsController extends OfficeController
                 'site',
                 'breadcrumbs',
                 'reps',
-                'specialities'
+                'specialities',
+                'approvedTypes'
             )
         );
     }
