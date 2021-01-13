@@ -42,7 +42,7 @@
                 </li>
                 <li class="nav-item">
                     @component('components.elements.link', [
-                        'href'      => '#',
+                        'href'      => route('office.reps.index'),
                         'classes'   => ['nav-link']
                     ])
                         {{ __('Rep Database') }}
