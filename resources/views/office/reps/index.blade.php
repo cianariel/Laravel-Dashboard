@@ -4,15 +4,30 @@
 @section('page-class', 'office-reps-database-index')
 @section('content-body')
     @component('components.bootstrap.container', [
-        'id'        => 'office-reps-database-card-deck',
-        'layout'    => 'card-group'
+        'fluid'  => true
     ])
-        @include('office.reps.partials.sidebar')
         @component('components.bootstrap.card', [
-            'id'    => 'office-reps-database-listing-card'
+            'id'        => 'office-reps-database-card-deck',
+            'layout'    => 'card-group'
         ])
-            <div class="card-body">
-            </div>
+            @include('office.reps.partials.sidebar')
+            @component('components.bootstrap.card', [
+                'id'    => 'office-reps-database-listing-card'
+            ])
+                <div class="card-body">
+                    @if($reps->count() !== 0)
+                        <ul class="list-group">
+                            @foreach($reps as $rep)
+                                <li class="list-group-item">
+
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p class="card-text text-center">{{ __('No reps available.') }}</p>
+                    @endif
+                </div>
+            @endcomponent
         @endcomponent
     @endcomponent
 @endsection
