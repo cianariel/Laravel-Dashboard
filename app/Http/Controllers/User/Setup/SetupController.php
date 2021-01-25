@@ -354,7 +354,8 @@ class SetupController extends BaseController
             }
 
             try {
-                 $user->saveOrFail();
+                $user->setup_completed = User::SETUP_COMPLETED;
+                $user->saveOrFail();
             } catch (QueryException $e) {
                 logger("[App\Http\Controllers\User\Setup\SetupController] - {$e->getMessage()}");
                 flash(__('System error occured saving your profile. Please contact support.'));

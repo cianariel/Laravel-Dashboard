@@ -12,7 +12,7 @@
                 <span class="text-center d-block w-100"><i class="fg-red fas fa-heart fa-3x"></i></span>
                 <div class="d-block text-center mt-3 mb-3">
                     @component('components.elements.link', [
-                        'href'      => route('office.dashboard'),
+                        'href'      => route('user.dashboard'),
                         'classes'   => [
                             'btn',
                             'btn-primary'

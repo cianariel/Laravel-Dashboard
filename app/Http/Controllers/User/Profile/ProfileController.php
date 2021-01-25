@@ -114,6 +114,7 @@ class ProfileController extends BaseController
         $user->country = $request->input('country');
         $user->phone = $request->input('phone');
         $user->mobile_phone = $request->input('mobile_phone');
+        $user->setup_completed = User::SETUP_COMPLETED;
         $user->save();
 
         if ($request->hasFile('profile_image')) {
