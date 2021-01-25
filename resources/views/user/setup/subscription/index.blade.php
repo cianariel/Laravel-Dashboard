@@ -13,7 +13,7 @@
                         @component('components.forms.form', [
                             'id'            => 'payment-form',
                             'method'        => 'POST',
-                            'action'        => route('office.setup.account.subscription.store'),
+                            'action'        => route('user.setup.account.subscription.store'),
                             'confirmed'     => true,
                             'dialog_title'  => __('Are you sure you want to continue?'),
                             'classes'       => ['no-form-update-handler']
@@ -36,7 +36,7 @@
                                         <div class="col-12">
                                             <div class="card-deck-packages bg-white">
                                                 {{--[packages]--}}
-                                                @include('office.setup.subscription.partials.form.packages')
+                                                @include('user.setup.subscription.partials.form.packages')
                                                 {{--[/packages]--}}
                                             </div>
                                         </div>
@@ -45,8 +45,8 @@
                                     <div class="row justify-content-center">
                                         <div class="col-12">
                                             <div class="card-deck card-deck-payment-info mt-3">
-                                                @include('office.setup.subscription.partials.form.billing')
-                                                @include('office.setup.subscription.partials.form.payment')
+                                                @include('user.setup.subscription.partials.form.billing')
+                                                @include('user.setup.subscription.partials.form.payment')
                                             </div>
                                         </div>
                                     </div>
