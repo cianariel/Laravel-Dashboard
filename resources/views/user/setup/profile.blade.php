@@ -171,7 +171,6 @@
                                     @component('components.forms.input', [
                                         'type'      => 'tel',
                                         'name'      => 'phone',
-                                        'inputmask' => "'mask': '+9(999)-999-9999'",
                                         'label'     => __('Phone'),
                                         'value'     => old('phone')?? $user->phone
                                     ])
@@ -184,7 +183,6 @@
                                     @component('components.forms.input', [
                                         'type'      => 'tel',
                                         'name'      => 'mobile_phone',
-                                        'inputmask' => "'mask': '+9(999)-999-9999'",
                                         'label'     => __('Mobile Phone'),
                                         'value'     => old('mobile_phone')?? $user->mobile_phone
                                     ])

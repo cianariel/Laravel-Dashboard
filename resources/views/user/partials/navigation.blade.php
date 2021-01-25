@@ -2,7 +2,7 @@
 {{--[navigation]--}}
 <nav class="navbar navbar-expand-lg md-navbar">
     @component('components.elements.link', [
-        'href'      => secure_url('office'),
+        'href'      => secure_url('user'),
         'classes'   => ['navbar-brand']
     ])
         <span class="site-name">

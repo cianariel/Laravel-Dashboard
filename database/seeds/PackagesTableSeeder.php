@@ -29,7 +29,7 @@ class PackagesTableSeeder extends Seeder
 
         $single_package = [
             'name'          => 'single',
-            'label'         => 'Single Office Pass',
+            'label'         => 'Single Provider Pass',
             'type'          => Package::LINKED_PRODUCT,
             'slug'          => 'single',
             'description'   => "Gain access to a single office.\nBecome discoverable in \"Rep Database\" with one office.\nRequest meetings and have access to the provider's calendar.",
@@ -43,7 +43,7 @@ class PackagesTableSeeder extends Seeder
 
         $unlimited_package = [
             'name'          => 'unlimted',
-            'label'         => 'Unlimited Office Pass',
+            'label'         => 'Unlimited Provider Pass',
             'type'          => Package::LINKED_PRODUCT,
             'slug'          => 'unlimted',
             'description'   => "Gain access to unlimited offices.\nBecome discoverable in \"Rep Database\" with all offices.\nRequest meetings and have calendar access to any offices.",

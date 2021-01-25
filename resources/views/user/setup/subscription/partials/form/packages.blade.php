@@ -11,9 +11,6 @@
                     <div class="package-image rounded-circle text-center ">
                         <div class="package-image" style="background:url('{{ $image->getUrl() }}') center no-repeat;background-size: cover;"></div>
                     </div>
-                    @php
-                        dump($image);
-                    @endphp
                 @endif
                 <div class="package-title text-center mt-2 mb-2">
                     <h3 class="fg-baby-blue">{{ __($package->label) }}</h3>

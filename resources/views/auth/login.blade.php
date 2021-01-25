@@ -51,18 +51,21 @@
                                         </span>
                                     @enderror
                                 @endcomponent
-
-                                @component('components.forms.checkbox', [
-                                    'name'      => 'remember',
-                                    'label'     => 'Remember Me',
-                                    'checked'   => old('remember')
-                                ])
-                                    @error('remember')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                @endcomponent
+                                <div class="row">
+                                        <div class="col-12 offset-md-4">
+                                            @component('components.forms.checkbox', [
+                                                'name'      => 'remember',
+                                                'label'     => 'Remember Me',
+                                                'checked'   => old('remember')
+                                            ])
+                                                @error('remember')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            @endcomponent
+                                        </div>
+                                    </div>
                                 <div class="form-group row mb-0">
                                     <div class="col-md-8 offset-md-4">
                                         @component('components.forms.button', [
