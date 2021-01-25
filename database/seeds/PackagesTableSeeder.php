@@ -37,7 +37,8 @@ class PackagesTableSeeder extends Seeder
             'trial_enabled' => Package::TRIAL_DISABLED,
             'interval'      => Package::YEARLY,
             'featured'      => Package::FEATURED,
-            'status'        => Package::ACTIVE
+            'status'        => Package::ACTIVE,
+            'image'         => public_path('images/plan1.png')
         ];
 
         $unlimited_package = [
@@ -50,7 +51,8 @@ class PackagesTableSeeder extends Seeder
             'trial_enabled' => Package::TRIAL_DISABLED,
             'interval'      => Package::YEARLY,
             'featured'      => Package::FEATURED,
-            'status'        => Package::ACTIVE
+            'status'        => Package::ACTIVE,
+            'image'         => public_path('images/plan2.png')
         ];
 
         $packages = [
@@ -129,6 +131,10 @@ class PackagesTableSeeder extends Seeder
                 $product->status = $package['status'];
                 $product->stripe_product = $stripe_product->id;
                 $product->saveOrFail();
+
+                $product->addMedia($package['image'])
+                            ->preservingOriginal()
+                            ->toMediaCollection('images');
 
                 $site->assignProduct($product);
 

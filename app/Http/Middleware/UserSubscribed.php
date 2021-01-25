@@ -22,7 +22,7 @@ class UserSubscribed
         if ($request->guard(User::GUARD)->user()) {
             $user = $request->user();
 
-            if ($user->hasRole(Role::OWNER)) {
+            if ($user->hasRole(Role::USER)) {
                 // Check if user hasn't paid subscription.
                 if ($user->setup_completed == User::SETUP_COMPLETED && $user->subscribed('default') !== true) {
                     // redirect to billing
@@ -30,7 +30,7 @@ class UserSubscribed
 
                 // Check if hasn't choose a subscription
                 if ($usre->setup_completed == User::SETUP_INCOMPLETE) {
-                    return redirect('office.setup.account');
+                    return redirect('user.setup.account');
                 }
             }
         }

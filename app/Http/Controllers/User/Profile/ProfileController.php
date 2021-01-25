@@ -148,6 +148,6 @@ class ProfileController extends BaseController
         }
 
         flash(__('Successfully deleted profile image'));
-        return redirect()->route('office.profile.edit');
+        return redirect()->route('user.profile.edit');
     }
 }

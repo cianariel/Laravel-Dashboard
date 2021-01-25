@@ -37,27 +37,6 @@ $routes = [
         'name'          => 'setup.account.office.store'
     ],
     [
-        'path'          => 'setup/subscription',
-        'type'          => 'get',
-        'controller'    => 'Office\Setup\SetupController',
-        'method'        => 'selectSubscription',
-        'name'          => 'setup.account.subscription.signup'
-    ],
-    [
-        'path'          => 'setup/subscription',
-        'type'          => 'post',
-        'controller'    => 'Office\Setup\SetupController',
-        'method'        => 'createSubscription',
-        'name'          => 'setup.account.subscription.store'
-    ],
-    [
-        'path'          => 'setup/complete/thankyou',
-        'type'          => 'get',
-        'controller'    => 'Office\Setup\SetupController',
-        'method'        => 'thankyou',
-        'name'          => 'setup.complete'
-    ],
-    [
         'path'          => 'settings',
         'type'          => 'get',
         'controller'    => 'Office\Setting\SettingsController',
@@ -126,13 +105,6 @@ $routes = [
         'controller'    => 'Office\Setting\SettingsController',
         'method'        => 'editCalendarSettings',
         'name'          => 'settings.edit.calendar'
-    ],
-    [
-        'path'          => 'settings/subscription',
-        'type'          => 'get',
-        'controller'    => 'Office\Setting\SettingsController',
-        'method'        => 'editSubscriptionSettings',
-        'name'          => 'settings.edit.subscription'
     ],
     [
         'path'          => 'profile/edit',

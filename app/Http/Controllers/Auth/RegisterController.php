@@ -98,7 +98,11 @@ class RegisterController extends Controller
         $user->assignRole($role);
         $site->assignUser($user);
 
-        if ($role->name == Role::OWNER) {
+        if ($role->name == Role::USER) {
+            $this->redirectTo = route('user.setup.account');
+        }
+
+        if($role->name == Role::OWNER) {
             $this->redirectTo = route('office.setup.account');
         }
 

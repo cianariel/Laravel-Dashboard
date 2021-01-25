@@ -32,14 +32,12 @@ class OfficeController extends BaseController
             $user->setup_completed == User::SETUP_COMPLETED
             || $user->setup_completed == User::SETUP_IGNORED
         ) {
-            $breadcrumbs = breadcrumbs(
-                [
+            $breadcrumbs = breadcrumbs([
                 __('Dashboard')     => [
                     'path'          => route('office.dashboard'),
                     'active'        => true
                 ]
-                ]
-            );
+            ]);
 
             return view('office.dashboard.index', compact('site', 'user', 'breadcrumbs'));
         } else {
