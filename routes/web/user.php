@@ -13,7 +13,6 @@ declare(strict_types=1);
 |
 */
 
-
 $routes = [
     [
         'path'          => '/',
@@ -42,6 +41,41 @@ $routes = [
         'controller'    => 'User\Profile\ProfileController',
         'method'        => 'deleteMediaImage',
         'name'          => 'profile.media.delete'
+    ],
+    [
+        'path'          => 'setup',
+        'type'          => 'get',
+        'controller'    => 'User\Setup\SetupController',
+        'method'        => 'index',
+        'name'          => 'setup.account'
+    ],
+    [
+        'path'          => 'setup',
+        'type'          => 'post',
+        'controller'    => 'User\Setup\SetupController',
+        'method'        => 'saveUserProfile',
+        'name'          => 'setup.account.profile.store'
+    ],
+    [
+        'path'          => 'setup/subscription',
+        'type'          => 'get',
+        'controller'    => 'User\Setup\SetupController',
+        'method'        => 'selectSubscription',
+        'name'          => 'setup.account.subscription.signup'
+    ],
+    [
+        'path'          => 'setup/subscription',
+        'type'          => 'post',
+        'controller'    => 'User\Setup\SetupController',
+        'method'        => 'createSubscription',
+        'name'          => 'setup.account.subscription.store'
+    ],
+    [
+        'path'          => 'setup/complete/thankyou',
+        'type'          => 'get',
+        'controller'    => 'User\Setup\SetupController',
+        'method'        => 'thankyou',
+        'name'          => 'setup.complete'
     ],
 ];
 

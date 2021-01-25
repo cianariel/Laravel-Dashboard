@@ -30,13 +30,6 @@
             </li>
             <li class="list-group-item">
                 @component('components.elements.link', [
-                    'href'  => route('office.settings.edit.subscription')
-                ])
-                    {{ __('Subscription') }}
-                @endcomponent
-            </li>
-            <li class="list-group-item">
-                @component('components.elements.link', [
                     'href'  => '#'
                 ])
                     {{ __('Close Account') }}
