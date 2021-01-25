@@ -154,6 +154,10 @@ class PackagesTableSeeder extends Seeder
                 $_package->saveOrFail();
                 $_package->assignProduct($product);
 
+                $_package->addMedia($package['image'])
+                            ->preservingOriginal()
+                            ->toMediaCollection('images');
+
                 $site->assignPackage($_package);
             }
         }

@@ -194,6 +194,8 @@ class SetupController extends BaseController
             $user->addMedia($file)
                 ->toMediaCollection('profile_image');
         }
+
+        return redirect()->route('user.setup.account.subscription.signup');
     }
 
     /**
