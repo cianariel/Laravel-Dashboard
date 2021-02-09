@@ -64,7 +64,8 @@ class RepsController extends OfficeController
 
         $reps = User::role(Role::USER)->where('status', User::ACTIVE)->paginate(10);
 
-        return view('office.reps.index',
+        return view(
+            'office.reps.index',
             compact(
                 'site',
                 'office',
@@ -74,5 +75,48 @@ class RepsController extends OfficeController
                 'approvedTypes'
             )
         );
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  integer $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request, $username)
+    {
+        $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+
+        if($repUser = User::role(Role::USER)->where('username', $username)->where('status', User::ACTIVE)->first()) {
+
+            $breadcrumbs = breadcrumbs([
+                __('Dashboard')     => [
+                    'path'          => route('office.dashboard'),
+                    'active'        => false
+                ],
+                __('Reps Database') => [
+                    'path'          => route('office.reps.index'),
+                    'active'        => false
+                ],
+                __($repUser->company)   => [
+                    'path'          => route('office.reps.show', $repUser),
+                    'active'        => true
+                ]
+            ]);
+
+            return view(
+                'office.reps.show',
+                compact(
+                    'site',
+                    'user',
+                    'repUser',
+                    'breadcrumbs'
+                )
+            );
+        }
+
+        abort(404);
     }
 }

@@ -43,7 +43,7 @@ class AjaxController extends AjaxBaseController
     public function toggleApprovedRepUser(Request $request)
     {
         $rules = [
-            'user'  => ['required', 'integer', 'exists:system.user,id'],
+            'user'  => ['required', 'integer', 'exists:system.users,id'],
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -54,6 +54,7 @@ class AjaxController extends AjaxBaseController
             $user = auth()->guard(User::GUARD)->user();
             $officeOwner = office_owner($user);
             $office = $officeOwner->offices()->first();
+            $status = 'off';
 
             if($repUser = $site->users()->where('id', $request->input('user'))->where('status', User::ACTIVE)->first()) {
 
@@ -62,27 +63,31 @@ class AjaxController extends AjaxBaseController
                     $approvedUsers = $office->getMetaField('approved_users', []);
 
                     if(filled($approvedUsers)) {
-
                         if(in_array($repUser->username, $approvedUsers)) {
                             foreach($approvedUsers as $index => $approvedUser) {
                                 if($repUser->username = $approvedUser) {
-                                    unset($approvedUser[$index]);
+                                    unset($approvedUsers[$index]);
+                                    $status = 'off';
                                     break;
                                 }
                             }
                         } else {
                             $approvedUsers[] = $repUser->username;
+                            $status = 'on';
                         }
                     } else {
                         $approvedUsers[] = $repUser->username;
+                        $status = 'on';
+
                     }
 
-                    $office->getMetaField('approved_users', [$repUser->username]);
+                    $office->setMetaField('approved_users', $approvedUsers);
                     $office->save();
 
                     return response()->json([
                         'status'    => 200,
-                        'message'   => __('success')
+                        'message'   => __('success'),
+                        'status'    => $status
                     ]);
                 }
             }
@@ -105,7 +110,7 @@ class AjaxController extends AjaxBaseController
     public function toggleFavoriteUser(Request $request)
     {
         $rules = [
-            'user'  => ['required', 'integer', 'exists:system.user,id'],
+            'user'  => ['required', 'integer', 'exists:system.users,id'],
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -116,6 +121,7 @@ class AjaxController extends AjaxBaseController
             $user = auth()->guard(User::GUARD)->user();
             $officeOwner = office_owner($user);
             $office = $officeOwner->offices()->first();
+            $status = 'off';
 
             if($repUser = $site->users()->where('id', $request->input('user'))->where('status', User::ACTIVE)->first()) {
 
@@ -124,26 +130,31 @@ class AjaxController extends AjaxBaseController
                     $favoriteUsers = $office->getMetaField('favorite_users', []);
 
                     if(filled($favoriteUsers)) {
-                        if(in_array($repUser->username, $approvedUsers)) {
+                        if(in_array($repUser->username, $favoriteUsers)) {
                             foreach($favoriteUsers as $index => $favoriteUser) {
                                 if($repUser->username = $favoriteUser) {
                                     unset($favoriteUsers[$index]);
+                                    $status = 'off';
                                     break;
                                 }
                             }
                         } else {
                             $favoriteUsers[] = $repUser->username;
+                            $status = 'on';
                         }
                     } else {
                         $favoriteUsers[] = $repUser->username;
+                        $status = 'on';
+
                     }
 
-                    $office->getMetaField('favorite_users', [$repUser->username]);
+                    $office->setMetaField('favorite_users', $favoriteUsers);
                     $office->save();
 
                     return response()->json([
                         'status'    => 200,
-                        'message'   => __('success')
+                        'message'   => __('success'),
+                        'status'    => $status
                     ]);
                 }
             }
@@ -166,7 +177,7 @@ class AjaxController extends AjaxBaseController
     public function toggleBlockedUser(Request $request)
     {
         $rules = [
-            'user'  => ['required', 'integer', 'exists:system.user,id'],
+            'user'  => ['required', 'integer', 'exists:system.users,id'],
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -177,6 +188,7 @@ class AjaxController extends AjaxBaseController
             $user = auth()->guard(User::GUARD)->user();
             $officeOwner = office_owner($user);
             $office = $officeOwner->offices()->first();
+            $status = 'off';
 
             if($repUser = $site->users()->where('id', $request->input('user'))->where('status', User::ACTIVE)->first()) {
 
@@ -189,22 +201,25 @@ class AjaxController extends AjaxBaseController
                             foreach($blockedUsers as $index => $blockedUser) {
                                 if($repUser->username = $blockedUser) {
                                     unset($blockedUsers[$index]);
-                                    break;
+                                    $status = 'off';
                                 }
                             }
                         } else {
                             $blockedUsers[] = $repUser->username;
+                            $status = 'on';
                         }
                     } else {
                         $blockedUsers[] = $repUser->username;
+                        $status = 'on';
                     }
 
-                    $office->getMetaField('blocked_users', [$repUser->username]);
+                    $office->setMetaField('blocked_users', $blockedUsers);
                     $office->save();
 
                     return response()->json([
                         'status'    => 200,
-                        'message'   => __('success')
+                        'message'   => __('success'),
+                        'status'    => $status
                     ]);
                 }
             }
