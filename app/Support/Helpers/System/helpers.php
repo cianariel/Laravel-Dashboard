@@ -767,6 +767,78 @@ if (! function_exists('user')) {
 }
 
 /**
+ * Checks if office rep user is approved
+ *
+ * @author    Antonio Vargas <localhost.80@gmail.com>
+ * @copyright 2020 MdRepTime, LLC
+ *
+ * @param  \App\Models\System\Office $office
+ * @param  \App\Models\System\User $user
+ * @return bool
+ */
+if(! function_exists('office_user_approved')) {
+
+    function office_user_approved(Office $office, User $user): bool
+    {
+        if($blockedUsers = $office->getMetaField('approved_users', [])) {
+            if(in_array($user->username, $blockedUsers)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+/**
+ * Checks if office rep user is favorite
+ *
+ * @author    Antonio Vargas <localhost.80@gmail.com>
+ * @copyright 2020 MdRepTime, LLC
+ *
+ * @param  \App\Models\System\Office $office
+ * @param  \App\Models\System\User $user
+ * @return bool
+ */
+if(! function_exists('office_user_favorite')) {
+
+    function office_user_favorite(Office $office, User $user): bool
+    {
+        if($favoriteUsers = $office->getMetaField('favorite_users', [])) {
+            if(in_array($user->username, $favoriteUsers)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+/**
+ * Checks if office rep user is blocked
+ *
+ * @author    Antonio Vargas <localhost.80@gmail.com>
+ * @copyright 2020 MdRepTime, LLC
+ *
+ * @param  \App\Models\System\Office $office
+ * @param  \App\Models\System\User $user
+ * @return bool
+ */
+if(! function_exists('office_user_blocked')) {
+
+    function office_user_blocked(Office $office, User $user): bool
+    {
+        if($blockedUsers = $office->getMetaField('blocked_users', [])) {
+            if(in_array($user->username, $blockedUsers)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+/**
  * Returns office owner
  *
  * @author    Antonio Vargas <localhost.80@gmail.com>

@@ -31,6 +31,9 @@ class RepsController extends OfficeController
     public function index(Request $request)
     {
         $site = site(config('app.base_domain'));
+        $user = auth()->guard(User::GUARD)->user();
+        $officeUser = office_owner($user);
+        $office = $officeUser->offices()->first();
 
         $breadcrumbs = breadcrumbs([
             __('Dashboard')     => [
@@ -64,6 +67,7 @@ class RepsController extends OfficeController
         return view('office.reps.index',
             compact(
                 'site',
+                'office',
                 'breadcrumbs',
                 'reps',
                 'specialities',

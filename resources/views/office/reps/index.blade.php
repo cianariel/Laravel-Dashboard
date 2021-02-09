@@ -23,7 +23,7 @@
                                         'href'  => '#'
                                     ])
                                         <div class="row">
-                                            <div class="col-12 col-md-2">
+                                            <div class="col-12 col-md-1">
                                                 <div class="user-avator image">
                                                     <img src="{{ avator($rep) }}">
                                                 </div>
@@ -37,24 +37,63 @@
                                             <div class="col-12">
                                                 <ul class="list-unstyled">
                                                     <li class="d-inline-block mr-3">
-                                                        @component('components.elements.link', [
-                                                            'href'  => '#',
+                                                        @component('components.forms.form', [
+                                                            'id'        => 'approve-user-form-' . $rep->id,
+                                                            'action'    => route('office.ajax.reps.toggle.approved'),
+                                                            'method'    => 'POST',
+                                                            'classes'   => [
+                                                                'no-form-update-handler'
+                                                            ]
                                                         ])
-                                                            <i class="far fa-check-square"></i> {{ __('Approve') }}
+                                                            @component('components.forms.button', [
+                                                                'type'      => 'submit',
+                                                                'name'      => 'submit-btn',
+                                                                'label'     => '<i class="far fa-check-square"></i> ' . __('Approve'),
+                                                                'classes'   => [
+                                                                    'btn-unstyled',
+                                                                    (office_user_approved($office, $rep))? 'fg-link' : 'fg-grey'
+                                                                ]
+                                                            ])@endcomponent
                                                         @endcomponent
                                                     </li>
                                                     <li class="d-inline-block mr-3">
-                                                        @component('components.elements.link', [
-                                                            'href'  => '#',
+                                                        @component('components.forms.form', [
+                                                            'id'        => 'approve-user-form-' . $rep->id,
+                                                            'action'    => route('office.ajax.reps.toggle.favorite'),
+                                                            'method'    => 'POST',
+                                                            'classes'   => [
+                                                                'no-form-update-handler'
+                                                            ]
                                                         ])
-                                                            <i class="far fa-heart"></i> {{ __('Favorite') }}
+                                                            @component('components.forms.button', [
+                                                                'type'      => 'submit',
+                                                                'name'      => 'submit-btn',
+                                                                'label'     => '<i class="far fa-heart"></i> ' . __('Favorite'),
+                                                                'classes'   => [
+                                                                    'btn-unstyled',
+                                                                    (office_user_favorite($office, $rep))? 'fg-red' : 'fg-grey'
+                                                                ]
+                                                            ])@endcomponent
                                                         @endcomponent
                                                     </li>
                                                     <li class="d-inline-block mr-3">
-                                                        @component('components.elements.link', [
-                                                            'href'  => '#',
+                                                        @component('components.forms.form', [
+                                                            'id'        => 'approve-user-form-' . $rep->id,
+                                                            'action'    => route('office.ajax.reps.toggle.favorite'),
+                                                            'method'    => 'POST',
+                                                            'classes'   => [
+                                                                'no-form-update-handler'
+                                                            ]
                                                         ])
-                                                            <i class="fas fa-ban"></i> {{ __('Block') }}
+                                                            @component('components.forms.button', [
+                                                                'type'      => 'submit',
+                                                                'name'      => 'submit-btn',
+                                                                'label'     => '<i class="fas fa-ban"></i> ' . __('Block'),
+                                                                'classes'   => [
+                                                                    'btn-unstyled',
+                                                                    (office_user_blocked($office, $rep))? 'fg-red' : 'fg-grey'
+                                                                ]
+                                                            ])@endcomponent
                                                         @endcomponent
                                                     </li>
                                                 </ul>
@@ -71,4 +110,13 @@
             @endcomponent
         @endcomponent
     @endcomponent
+@endsection
+@section('scripts_end')
+<script type="text/javascript">
+<!--
+    jQuery(document).ready(function($) {
+
+    });
+//-->
+</script>
 @endsection

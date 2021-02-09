@@ -37,4 +37,17 @@ body[id^="page-office"]
             }
         }
     }
+
+    // Reps
+    #office-reps-database-listing-card {
+
+        .user-avator {
+            width: rem(100);
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
 }
