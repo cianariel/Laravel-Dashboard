@@ -19459,6 +19459,13 @@ body[id^=page-office] .md-breadcrumbs .breadcrumb .breadcrumb-item {
 body[id^=page-office] .md-breadcrumbs .breadcrumb .breadcrumb-item .active {
   color: #0a8cbf;
 }
+body[id^=page-office] #office-reps-database-listing-card .user-avator {
+  width: 6.25rem;
+}
+body[id^=page-office] #office-reps-database-listing-card .user-avator img {
+  width: 100%;
+  height: auto;
+}
 
 body[id=page-login] #md-app,
 body[id=page-login] #md-main,

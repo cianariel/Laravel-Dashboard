@@ -20,7 +20,7 @@ class BaseController extends Controller
     /**
      * Constructor
      *
-     * @return App\Http\Office\BaseController
+     * @return void
      */
     public function __construct()
     {
