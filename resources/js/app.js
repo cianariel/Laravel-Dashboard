@@ -912,6 +912,19 @@ window.mdTimePicker = function($) {
     }
 };
 
+// Handle HTML elements with data-redirect attribute
+//----------------------------------------------------//
+window.mdHandleDataRedirectHtmlAttr = function($)
+{
+    let elements = $('[data-redirect-url]');
+
+    elements.on('click touchend', function(e){
+        let element = $(this);
+        let url = element.data('redirect-url');
+        window.location.href = url;
+    });
+}
+
 
 // On Document Ready
 //-----------------------------------------//
@@ -952,6 +965,9 @@ jQuery(document).ready(function ($) {
 
     // Confirmed Dialog
     mdConfirmedActionLink($);
+
+    // Handle inline data redirect attribute
+    mdHandleDataRedirectHtmlAttr($);
 
     // WYSIWYG Editor
     mdEditor($);
