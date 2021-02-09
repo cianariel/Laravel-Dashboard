@@ -152,6 +152,13 @@ $routes = [
         'name'          => 'reps.index'
     ],
     [
+        'path'          => 'reps/{rep}/',
+        'type'          => 'get',
+        'controller'    => 'Office\Reps\RepsController',
+        'method'        => 'show',
+        'name'          => 'reps.show'
+    ],
+    [
         'path'          => 'ajax/reps/toggle/approved',
         'type'          => 'post',
         'controller'    => 'Office\Ajax\AjaxController',
@@ -169,7 +176,7 @@ $routes = [
         'path'          => 'ajax/reps/toggle/blocked',
         'type'          => 'post',
         'controller'    => 'Office\Ajax\AjaxController',
-        'method'        => 'toggleFavoriteUser',
+        'method'        => 'toggleBlockedUser',
         'name'          => 'ajax.reps.toggle.blocked'
     ]
 ];
