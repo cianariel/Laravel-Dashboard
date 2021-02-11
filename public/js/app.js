@@ -50,7 +50,7 @@ var registerWrapper = function registerWrapper(stripe, startTime) {
 
   stripe._registerWrapper({
     name: 'stripe-js',
-    version: "1.11.0",
+    version: "1.12.1",
     startTime: startTime
   });
 };
@@ -28263,6 +28263,17 @@ window.mdTimePicker = function ($) {
       input.timepicker(options);
     });
   }
+}; // Handle HTML elements with data-redirect attribute
+//----------------------------------------------------//
+
+
+window.mdHandleDataRedirectHtmlAttr = function ($) {
+  var elements = $('[data-redirect-url]');
+  elements.on('click touchend', function (e) {
+    var element = $(this);
+    var url = element.data('redirect-url');
+    window.location.href = url;
+  });
 }; // On Document Ready
 //-----------------------------------------//
 
@@ -28291,7 +28302,9 @@ jQuery(document).ready(function ($) {
 
   mdConfirmedActionForm($); // Confirmed Dialog
 
-  mdConfirmedActionLink($); // WYSIWYG Editor
+  mdConfirmedActionLink($); // Handle inline data redirect attribute
+
+  mdHandleDataRedirectHtmlAttr($); // WYSIWYG Editor
 
   mdEditor($); // Tables
 
@@ -28379,8 +28392,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Volumes/500GB/www/app.mdreptime.com/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Volumes/500GB/www/app.mdreptime.com/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Volumes/240GB_RAID/www/app.mdreptime.com/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Volumes/240GB_RAID/www/app.mdreptime.com/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

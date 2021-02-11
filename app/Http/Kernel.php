@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'site.mode' => \App\Http\Middleware\SiteMode::class,
         'ajax.disabled' => \App\Http\Middleware\AjaxDisabled::class,
+        'ajax.request'  => \App\Http\Middleware\AjaxRequest::class,
         'user'  => \App\Http\Middleware\CheckUser::class,
         'user.subscription.trial' => \App\Http\Middleware\CheckSubscriptionTrial::class,
         'user.subscribed' => \App\Http\Middleware\UserSubscribed::class,
