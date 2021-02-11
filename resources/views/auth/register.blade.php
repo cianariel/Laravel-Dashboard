@@ -119,7 +119,7 @@
                                     @enderror
                                 @endcomponent
                                 @component('components.forms.recaptcha', [
-                                    'label'         => 'Human Verfication',
+                                    'label'         => 'Human Verification',
                                     'name'          => 'g-recaptcha'
                                 ])
                                     @error('g-recaptcha')
