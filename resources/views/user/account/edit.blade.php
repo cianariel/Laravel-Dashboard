@@ -49,12 +49,12 @@
                                             <a class="pull-right" href="#">DEACTIVATE MY ACCOUNT</a>
                                         </div>
                                     </div>
-                                    
+
                                     @component('components.forms.form',[
                                         'id'        => 'user-edit-profile-form',
                                         'action'    => route('user.setup.account.profile.store'),
                                         'method'    => 'POST',
-                                        'confirmed' => true            
+                                        'confirmed' => true
                                     ])
                                         <div class="row">
                                             <div class="col-md-6">
@@ -125,7 +125,7 @@
                                                     'value'         => old('specialists')?? $user->getMetaField("specialists"),
                                                     'vertical'      => true
                                                 ])
-                                                    
+
                                                     @error('specialists')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -168,7 +168,7 @@
                                                 @endcomponent
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group row mb-0">
                                             <div class="col-md-8 offset-md-4">
                                                 @component('components.forms.button', [

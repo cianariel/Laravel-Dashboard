@@ -15,6 +15,16 @@
                 'id'    => 'office-reps-database-listing-card'
             ])
                 <div class="card-body">
+                    <div class="d-block text-right mb-2 mb-2">
+                        @component('components.elements.link', [
+                            'href'      => '#',
+                            'classes'   => [
+                                'fg-link'
+                            ]
+                        ])
+                            {{ __('Requested approval') }} <span class="badge badge-primary">0</span>
+                        @endcomponent
+                    </div>
                     @if($reps->count() !== 0)
                         <ul class="list-group">
                             @foreach($reps as $rep)
@@ -22,11 +32,27 @@
                                     <div class="row">
                                         <div class="col-12 col-md-1">
                                             <div class="user-avator image">
-                                                <img src="{{ avator($rep) }}">
+                                                @component('components.elements.link', [
+                                                    'href'      => route('office.reps.show', $rep),
+                                                    'classes'   => [
+                                                        'border-0'
+                                                    ]
+                                                ])
+                                                    <img src="{{ avator($rep) }}">
+                                                @endcomponent
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-10">
-                                            <h5>{{ $rep->first_name }} {{ $rep->last_name }}</h5>
+                                            @component('components.elements.link', [
+                                                    'href'      => route('office.reps.show', $rep),
+                                                    'classes'   => [
+                                                        'border-0',
+                                                        'text-decoration-none',
+                                                        'fg-black'
+                                                    ]
+                                                ])
+                                                <h5>{{ $rep->first_name }} {{ $rep->last_name }}</h5>
+                                            @endcomponent
                                             <h6 class="font-weight-normal">{{ __('Place holder for RX Data') }}</h6>
                                         </div>
                                     </div>

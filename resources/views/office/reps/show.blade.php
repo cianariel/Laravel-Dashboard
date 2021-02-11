@@ -3,5 +3,8 @@
 @section('html-title', 'Rep Profile')
 @section('page-class', 'office-reps-user-show')
 @section('content-body')
-
+    @component('components.bootstrap.container', [
+        'fluid'  => true
+    ])
+    @endcomponent
 @endsection
