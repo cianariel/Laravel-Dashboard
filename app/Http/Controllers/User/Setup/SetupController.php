@@ -392,4 +392,51 @@ class SetupController extends BaseController
         flash(__('Unauthorized access.'));
         return redirect('/');
     }
+
+    /**
+     * Chagne user status
+     *
+     * @param  \Iluminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateUserStatus(Request $request)
+    {
+        $user = auth()->guard(User::GUARD)->user();
+
+        $user->status = USER::INACTIVE;
+        $user->save();
+        flash (__('Account was successfully deactivated.'));
+        return redirect()->route('login');
+
+    }
+
+    /**
+     * Chagne user password
+     *
+     * @param  \Iluminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function changeUserPassword(Request $request)
+    {
+        $rules = [
+            'current_password'      => ['required', 'string', 'max:50', new SanitizeHtml],
+            'password'              => ['required', 'string', 'max:50', 'min:8', 'confirmed', new SanitizeHtml],
+            'password_confirmation' => ['required', 'string', 'max:50', new SanitizeHtml],
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        $user = auth()->guard(User::GUARD)->user();
+
+        if(\Hash::check($request->input('current_password'), $user->password)){
+            $user->password = \Hash::make($request->input('password'));
+            $user->save();
+            flash (__('Password was successfully changed.'));
+        }else{
+            flash (__('The current password does not match.'))->error();
+        }
+
+        return redirect()->route('user.setup.account')->withInput($request->except('password'));
+
+    }
 }
