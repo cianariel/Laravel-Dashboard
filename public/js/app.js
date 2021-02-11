@@ -28007,10 +28007,11 @@ window.mdConfirmedActionForm = function ($) {
     var dialog_modal = $('#dialog-modal');
     var dialog_footer = dialog_modal.find('.modal-footer');
     var html = '';
-    forms.find('button[type="submit"]').on('click touchend', function (e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      var form = $(this).closest('.md-confirm-action-form');
+    var confirmed = false;
+    forms.on('submit', function (e) {
+      // e.preventDefault();
+      // e.stopImmediatePropagation();
+      var form = $(this);
       var type = form.data('type');
       var title = form.data('dialog-title');
       var message = form.data('dialog-message');
@@ -28024,10 +28025,18 @@ window.mdConfirmedActionForm = function ($) {
           btn.on('click touchend', function (e) {
             dialog_modal.modal('hide');
             btn.prop('disabled', true);
+            confirmed = true;
             form.submit();
           });
           dialog(title, message);
         });
+      }
+
+      if (confirmed) {
+        confirmed = false;
+        return true;
+      } else {
+        return false;
       }
     });
   }

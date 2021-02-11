@@ -152,7 +152,7 @@ $routes = [
         'name'          => 'reps.index'
     ],
     [
-        'path'          => 'reps/{rep}/',
+        'path'          => 'reps/{rep}',
         'type'          => 'get',
         'controller'    => 'Office\Reps\RepsController',
         'method'        => 'show',
