@@ -57,6 +57,20 @@ $routes = [
         'name'          => 'setup.account.profile.store'
     ],
     [
+        'path'          => 'setup/update/status',
+        'type'          => 'post',
+        'controller'    => 'User\Setup\SetupController',
+        'method'        => 'updateUserStatus',
+        'name'          => 'setup.account.status'
+    ],
+    [
+        'path'          => 'setup/change/password',
+        'type'          => 'post',
+        'controller'    => 'User\Setup\SetupController',
+        'method'        => 'changeUserPassword',
+        'name'          => 'setup.account.password.change'
+    ],
+    [
         'path'          => 'setup/subscription',
         'type'          => 'get',
         'controller'    => 'User\Setup\SetupController',
