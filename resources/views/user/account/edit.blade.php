@@ -28,7 +28,7 @@
                                             <img class="pull-left profile-image" src="{{$profile_img_url}}" />
                                             <div class="pull-left ml-4">
                                                 <h4>{{$user->first_name}} {{$user->last_name}}</h4>
-                                                <div>{{$user->company}}</div>
+                                                <div>{{$user->company}} @if($user->getMetaField('drugs')) for @endif {{ is_array($user->getMetaField('drugs')) ? implode(", ", $user->getMetaField('drugs')) : $user->getMetaField('drugs') }}</div>
                                             </div>
                                         </div>
                                         <div class="col-12 mt-3">
@@ -230,14 +230,14 @@
                                                 ])
                                                 @endcomponent
                                                 
-                                                @component('components.forms.input', [
-                                                    'type'          => 'password',
+                                                @component('components.forms.password', [
                                                     'id'            => 'current-password',
                                                     'name'          => 'current_password',
                                                     'label'         => __('Current Password'),
                                                     'value'         => '',
                                                     'vertical'      => true,
-                                                    'attrs'         => ['required'=>'required']
+                                                    'attrs'         => ['required'=>'required'],
+                                                    'not_confirmed' => true
                                                 ])
                                                     @error('current_password')
                                                         <span class="invalid-feedback" role="alert">
@@ -246,32 +246,15 @@
                                                     @enderror
                                                 @endcomponent
                                                 
-                                                @component('components.forms.input', [
-                                                    'type'          => 'password',
+                                                @component('components.forms.password', [
                                                     'id'            => 'password',
                                                     'name'          => 'password',
                                                     'label'         => __('Password'),
                                                     'value'         => '',
                                                     'vertical'      => true,
-                                                    'attrs'         => ['required'=>'required']
+                                                    'attrs'         => ['required'=>'required'],
                                                 ])
                                                     @error('password')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                @endcomponent
-                                                
-                                                @component('components.forms.input', [
-                                                    'type'          => 'password',
-                                                    'id'            => 'password-confirmation',
-                                                    'name'          => 'password_confirmation',
-                                                    'label'         => __('Password Confirmation'),
-                                                    'value'         => '',
-                                                    'vertical'      => true,
-                                                    'attrs'         => ['required'=>'required']
-                                                ])
-                                                    @error('password_confirmation')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
