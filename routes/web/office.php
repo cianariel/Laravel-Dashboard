@@ -150,6 +150,34 @@ $routes = [
         'controller'    => 'Office\Reps\RepsController',
         'method'        => 'index',
         'name'          => 'reps.index'
+    ],
+    [
+        'path'          => 'reps/{rep}/',
+        'type'          => 'get',
+        'controller'    => 'Office\Reps\RepsController',
+        'method'        => 'show',
+        'name'          => 'reps.show'
+    ],
+    [
+        'path'          => 'ajax/reps/toggle/approved',
+        'type'          => 'post',
+        'controller'    => 'Office\Ajax\AjaxController',
+        'method'        => 'toggleApprovedRepUser',
+        'name'          => 'ajax.reps.toggle.approved'
+    ],
+    [
+        'path'          => 'ajax/reps/toggle/favorite',
+        'type'          => 'post',
+        'controller'    => 'Office\Ajax\AjaxController',
+        'method'        => 'toggleFavoriteUser',
+        'name'          => 'ajax.reps.toggle.favorite'
+    ],
+    [
+        'path'          => 'ajax/reps/toggle/blocked',
+        'type'          => 'post',
+        'controller'    => 'Office\Ajax\AjaxController',
+        'method'        => 'toggleBlockedUser',
+        'name'          => 'ajax.reps.toggle.blocked'
     ]
 ];
 

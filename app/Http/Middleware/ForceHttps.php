@@ -25,7 +25,7 @@ class ForceHttps
      */
     public function handle($request, Closure $next)
     {
-        if (env('SSL') === true && !$request->secure()) {
+        if (env('APP_SSL') === true && !$request->secure()) {
             return redirect()->secure($request->getRequestUri());
         }
 
