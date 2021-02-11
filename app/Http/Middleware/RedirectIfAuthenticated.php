@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard ?? \App\Models\System\User::GUARD)->check()) {
-            return redirect(role($user));
+            return redirect(role(Auth::guard($guard ?? \App\Models\System\User::GUARD)->user()));
         }
 
         return $next($request);
