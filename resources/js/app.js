@@ -632,12 +632,13 @@ window.mdConfirmedActionForm = function ($) {
         let dialog_modal = $('#dialog-modal');
         let dialog_footer = dialog_modal.find('.modal-footer');
         let html = '';
+        let confirmed = false;
 
-        forms.find('button[type="submit"]').on('click touchend', function (e) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
+        forms.on('submit', function (e) {
+            // e.preventDefault();
+            // e.stopImmediatePropagation();
 
-            let form = $(this).closest('.md-confirm-action-form');
+            let form = $(this);
             let type = form.data('type');
             let title = form.data('dialog-title');
             let message = form.data('dialog-message');
@@ -652,13 +653,20 @@ window.mdConfirmedActionForm = function ($) {
                     let btn = dialog_modal.find('#btn-modal-confirmed');
 
                     btn.on('click touchend', function (e) {
-                            dialog_modal.modal('hide');
-                            btn.prop('disabled', true);
-                            form.submit();
+                        dialog_modal.modal('hide');
+                        btn.prop('disabled', true);
+                        confirmed = true;
+                        form.submit();
                     });
 
                     dialog(title, message);
                 });
+            }
+            if(confirmed){
+                confirmed = false;
+                return true;
+            }else{
+                return false;
             }
         });
     }

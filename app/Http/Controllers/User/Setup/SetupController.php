@@ -60,35 +60,31 @@ class SetupController extends BaseController
         $user = auth()->guard(User::GUARD)->user();
 
         if ($user->setup_completed != User::SETUP_COMPLETED) {
-            $countries = countries(false);
-            $_countries = [];
-
-            foreach ($countries as $country) {
-                if ($countries->status = Country::ACTIVE) {
-                    $_countries[$country->code] = $country->name;
-                }
-            }
-
-            $countries = $_countries;
-
-            $breadcrumbs = breadcrumbs([
-                __('Dashboard') => [
-                    'path'      => route('user.dashboard'),
-                    'active'    => false
-                ],
-                __('Setup')     => [
-                    'path'      => route('user.setup.account'),
-                    'active'    => true
-                ]
-            ]);
-
-            return view('user.setup.profile',
-                compact('site', 'user', 'countries', 'breadcrumbs')
-            );
+            flash(__('Unauthorized access.'));
+            return redirect('/');
         }
 
-        flash(__('Unauthorized access.'));
-        return redirect('/');
+        $breadcrumbs = breadcrumbs([
+            __('Dashboard') => [
+                'path'      => route('user.dashboard'),
+                'active'    => false
+            ],
+            __('Setup')     => [
+                'path'      => route('user.setup.account'),
+                'active'    => true
+            ]
+        ]);
+
+        if($profile_image = $user->getMedia('profile_image')->first()){
+            $profile_img_url = $profile_image->getFullUrl('thumb');
+        }else{
+            $profile_img_url = "";
+        }
+
+        return view('user.account.edit',
+            compact('site', 'user', 'breadcrumbs', 'profile_img_url')
+        );
+
     }
 
     /**
@@ -150,52 +146,29 @@ class SetupController extends BaseController
     public function saveUserProfile(Request $request)
     {
         $rules = [
-            'profile_image'     => ['file', 'nullable','image', 'mimes:jpeg,gif,png', 'max:' . bit_convert(10, 'mb')],
             'company'           => ['nullable', 'string', 'max:50', new SanitizeHtml],
             'first_name'        => ['required', 'string', 'max:50', new SanitizeHtml],
             'last_name'         => ['required', 'string', 'max:50', new SanitizeHtml],
-            'address'           => ['required', 'string', 'max:100', new SanitizeHtml],
-            'address_2'         => ['nullable', 'string', 'max:100', new SanitizeHtml],
-            'city'              => ['required', 'string', 'max:50', new SanitizeHtml],
-            'state'             => ['required', 'string', 'max:50'],
-            'zipcode'           => ['required', 'string', 'max:25'],
-            'country'           => ['required', 'string', 'max:2', 'exists:system.countries,code'],
-            'phone'             => ['nullable', 'string', new PhoneRule],
-            'mobile_phone'      => ['required', 'string', new PhoneRule]
+            'email'             => ['required', 'string', 'max:100', new SanitizeHtml],
+            'specialists'       => ['nullable', 'string', 'max:100', new SanitizeHtml],
+            'mobile_phone'      => ['required', 'string', new PhoneRule],
+            'drugs'             => ['nullable', ['array']]
         ];
 
         $validatedData = $request->validate($rules);
 
-        $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
         $user->company = $request->input('company');
         $user->first_name = $request->input('first_name');
         $user->last_name = $request->input('last_name');
-        $user->address = $request->input('address');
-        $user->address_2 = $request->input('address_2');
-        $user->city = $request->input('city');
-        $user->state = $request->input('state');
-        $user->zipcode = $request->input('zipcode');
-        $user->country = $request->input('country');
-        $user->phone = $request->input('phone');
+        $user->email = $request->input('email');
+        $user->setMetaField('specialists', $request->input('specialists'), false);
         $user->mobile_phone = $request->input('mobile_phone');
+        $user->setMetaField('drugs', $request->input('drugs'), false);
         $user->save();
-
-        if ($request->hasFile('profile_image')) {
-            $image = $user->getMedia('profile_image')->first();
-
-            if ($image) {
-                $image->delete();
-            }
-
-            $file = $request->file('profile_image');
-
-            $user->addMedia($file)
-                ->toMediaCollection('profile_image');
-        }
-
-        return redirect()->route('user.setup.account.subscription.signup');
+        flash (__('Successfully updated account.'));
+        return redirect()->route('user.setup.account');
     }
 
     /**
