@@ -28,7 +28,7 @@
                                             <img class="pull-left profile-image" src="{{$profile_img_url}}" />
                                             <div class="pull-left ml-4">
                                                 <h4>{{$user->first_name}} {{$user->last_name}}</h4>
-                                                <div>{{$user->company}}</div>
+                                                <div>{{$user->company}} @if($user->getMetaField('drugs')) for @endif {{ is_array($user->getMetaField('drugs')) ? implode(", ", $user->getMetaField('drugs')) : $user->getMetaField('drugs') }}</div>
                                             </div>
                                         </div>
                                         <div class="col-12 mt-3">
@@ -43,10 +43,31 @@
                                 <div class="right-panel">
                                     <div class="row">
                                         <div class="col-12">
-                                            <a class="pull-right" href="#">CHANGE PASSWORD</a>
+                                            <button id="change-password-btn" data-page="{{ old('is_password_page', false) ? 'password' : 'main' }}" class="btn btn-link pull-right" type="button">CHANGE PASSWORD</button>
                                         </div>
                                         <div class="col-12">
-                                            <a class="pull-right" href="#">DEACTIVATE MY ACCOUNT</a>
+                                            @component('components.forms.form',[
+                                                'id'        => 'user-change-status-form',
+                                                'action'    => route('user.setup.account.status'),
+                                                'method'    => 'POST',
+                                                'dialog_message' => 'Are you sure you want to deactivate your account?',
+                                                'confirmed' => true
+                                            ])
+
+                                                @component('components.forms.button', [
+                                                    'id'        => 'change-status-btn',
+                                                    'type'      => 'submit',
+                                                    'name'      => 'submit-btn',
+                                                    'label'     => 'DEACTIVATE MY ACCOUNT',
+                                                    'classes'   => [
+                                                        'btn',
+                                                        'btn-link',
+                                                        'pull-right'
+                                                    ]
+                                                ])
+                                                @endcomponent
+
+                                            @endcomponent
                                         </div>
                                     </div>
 
@@ -54,7 +75,11 @@
                                         'id'        => 'user-edit-profile-form',
                                         'action'    => route('user.setup.account.profile.store'),
                                         'method'    => 'POST',
+<<<<<<< HEAD
                                         'confirmed' => true
+=======
+                                        'classes'   =>  old('is_password_page', false) ? 'd-none' : ''
+>>>>>>> dev
                                     ])
                                         <div class="row">
                                             <div class="col-md-6">
@@ -152,7 +177,7 @@
                                                     'name'      => 'drugs[]',
                                                     'error_name'=> 'drugs',
                                                     'label'     => __('Products'),
-                                                    'options'   => array_combine(old('drugs') ?? $user->getMetaField('drugs'), old('drugs') ?? $user->getMetaField('drugs')),
+                                                    'options'   => old('drugs') ?? $user->getMetaField('drugs'),
                                                     'value'     => old('drugs') ?? $user->getMetaField('drugs'),
                                                     'withIndex' => false,
                                                     'classes'   => ['class' => 'selectize-multiple'],
@@ -194,6 +219,80 @@
                                             </div>
                                         </div>
                                     @endcomponent
+
+                                    @component('components.forms.form',[
+                                        'id'        => 'user-change-password-form',
+                                        'action'    => route('user.setup.account.password.change'),
+                                        'method'    => 'POST',
+                                        'classes'   => old('is_password_page', false) ? '' : 'd-none'
+                                    ])
+                                        <div class="row">
+                                            <div class="col-md-6 offset-md-3">
+                                                @component('components.forms.hidden', [
+                                                    'name'          => 'is_password_page',
+                                                    'value'         => '1',
+                                                ])
+                                                @endcomponent
+                                                
+                                                @component('components.forms.password', [
+                                                    'id'            => 'current-password',
+                                                    'name'          => 'current_password',
+                                                    'label'         => __('Current Password'),
+                                                    'value'         => '',
+                                                    'vertical'      => true,
+                                                    'attrs'         => ['required'=>'required'],
+                                                    'not_confirmed' => true
+                                                ])
+                                                    @error('current_password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                @endcomponent
+                                                
+                                                @component('components.forms.password', [
+                                                    'id'            => 'password',
+                                                    'name'          => 'password',
+                                                    'label'         => __('Password'),
+                                                    'value'         => '',
+                                                    'vertical'      => true,
+                                                    'attrs'         => ['required'=>'required'],
+                                                ])
+                                                    @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                @endcomponent
+                                                
+                                                <div class="text-center">
+                                                    @component('components.forms.button', [
+                                                        'id'        => 'submit-btn',
+                                                        'type'      => 'submit',
+                                                        'name'      => 'submit-btn',
+                                                        'label'     => 'Update',
+                                                        'classes'   => [
+                                                            'btn',
+                                                            'btn-primary'
+                                                        ]
+                                                    ])
+                                                        @component('components.elements.link', [
+                                                            'href'  => '#',
+                                                            'id'    => 'cancel-change-password',
+                                                            'classes'   => [
+                                                                'btn',
+                                                                'btn-secondary'
+                                                            ]
+                                                        ])
+                                                            {{ __('Cancel') }}
+                                                        @endcomponent
+                                                    @endcomponent
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        
+                                    @endcomponent
                                 </div>
                             </div>
                         </div>
@@ -214,6 +313,27 @@
                         return {value: input, text: input};
                     }
                 });
+
+                $("#change-password-btn").click(function(){
+                    // Shows change password if this is main form
+                    if($(this).data('page') == 'main'){
+                        $("#user-edit-profile-form").removeClass('d-none');
+                        $("#user-change-password-form").removeClass('d-none');
+
+                        $("#user-edit-profile-form").hide();
+                        $("#user-change-password-form").show();
+                        $(this).data('page', 'password');
+                    }
+                })
+
+                $("#cancel-change-password").click(function(){
+                    $("#user-edit-profile-form").removeClass('d-none');
+                    $("#user-change-password-form").removeClass('d-none');
+
+                    $("#user-change-password-form").hide();
+                    $("#user-edit-profile-form").show();
+                    $("#change-password-btn").data('page', 'main');
+                })
             })
         </script>
     @endsection
