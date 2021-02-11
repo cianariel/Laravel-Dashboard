@@ -29,7 +29,15 @@
                         'href'      => '#',
                         'classes'   => ['nav-link']
                     ])
-                        {{ __('Calendar') }}
+                        {{ __('My Appointments') }}
+                    @endcomponent
+                </li>
+                <li class="nav-item">
+                    @component('components.elements.link', [
+                        'href'      => '#',
+                        'classes'   => ['nav-link']
+                    ])
+                        {{ __('Offices') }} 
                     @endcomponent
                 </li>
                 <li class="nav-item">
@@ -38,6 +46,14 @@
                         'classes'   => ['nav-link']
                     ])
                         {{ __('Messages') }} <span class="badge badge-secondary">0</span>
+                    @endcomponent
+                </li>
+                <li class="nav-item">
+                    @component('components.elements.link', [
+                        'href'      => route('user.setup.account'),
+                        'classes'   => ['nav-link']
+                    ])
+                        {{ __('Account') }} 
                     @endcomponent
                 </li>
                 <li class="nav-item">
