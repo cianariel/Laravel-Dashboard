@@ -429,7 +429,7 @@ class SetupController extends BaseController
         $user = auth()->guard(User::GUARD)->user();
 
         if(\Hash::check($request->input('current_password'), $user->password)){
-            $user->status = $request->input('password');
+            $user->password = \Hash::make($request->input('password'));
             $user->save();
             flash (__('Password was successfully changed.'));
         }else{
