@@ -75,11 +75,8 @@
                                         'id'        => 'user-edit-profile-form',
                                         'action'    => route('user.setup.account.profile.store'),
                                         'method'    => 'POST',
-<<<<<<< HEAD
-                                        'confirmed' => true
-=======
+                                        'confirmed' => true,
                                         'classes'   =>  old('is_password_page', false) ? 'd-none' : ''
->>>>>>> dev
                                     ])
                                         <div class="row">
                                             <div class="col-md-6">
@@ -233,7 +230,7 @@
                                                     'value'         => '1',
                                                 ])
                                                 @endcomponent
-                                                
+
                                                 @component('components.forms.password', [
                                                     'id'            => 'current-password',
                                                     'name'          => 'current_password',
@@ -249,7 +246,7 @@
                                                         </span>
                                                     @enderror
                                                 @endcomponent
-                                                
+
                                                 @component('components.forms.password', [
                                                     'id'            => 'password',
                                                     'name'          => 'password',
@@ -264,7 +261,7 @@
                                                         </span>
                                                     @enderror
                                                 @endcomponent
-                                                
+
                                                 <div class="text-center">
                                                     @component('components.forms.button', [
                                                         'id'        => 'submit-btn',
@@ -291,7 +288,7 @@
 
                                             </div>
                                         </div>
-                                        
+
                                     @endcomponent
                                 </div>
                             </div>
