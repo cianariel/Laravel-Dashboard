@@ -33,7 +33,7 @@
                                         <div class="col-12 col-md-1">
                                             <div class="user-avator image">
                                                 @component('components.elements.link', [
-                                                    'href'      => route('office.reps.show', $rep),
+                                                    'href'      => route('office.reps.show', $rep->username),
                                                     'classes'   => [
                                                         'border-0'
                                                     ]
@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="col-12 col-md-10">
                                             @component('components.elements.link', [
-                                                    'href'      => route('office.reps.show', $rep),
+                                                    'href'      => route('office.reps.show', $rep->username),
                                                     'classes'   => [
                                                         'border-0',
                                                         'text-decoration-none',
@@ -53,7 +53,9 @@
                                                 ])
                                                 <h5>{{ $rep->first_name }} {{ $rep->last_name }}</h5>
                                             @endcomponent
-                                            <h6 class="font-weight-normal">{{ __('Place holder for RX Data') }}</h6>
+                                            @if($drugs = $rep->getMetaField('drugs', null))
+                                                <h6 class="font-weight-normal">{{ $rep->company }} {{ __('for') }} {{ implode(', ', $drugs) }}</h6>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="row mt-1">
