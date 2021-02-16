@@ -88,6 +88,8 @@ class RepsController extends OfficeController
     {
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
+        $officeUser = office_owner($user);
+        $office = $officeUser->offices()->first();
 
         if($repUser = User::role(Role::USER)->where('username', $username)->where('status', User::ACTIVE)->first()) {
 
@@ -112,7 +114,8 @@ class RepsController extends OfficeController
                     'site',
                     'user',
                     'repUser',
-                    'breadcrumbs'
+                    'breadcrumbs',
+                    'office'
                 )
             );
         }

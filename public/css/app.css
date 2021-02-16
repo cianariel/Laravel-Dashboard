@@ -19499,6 +19499,38 @@ body[id^=page-office] #office-reps-database-listing-card .user-avator img {
   width: 100%;
   height: auto;
 }
+body[id^=page-office] #office-rep-user-profile-header,
+body[id^=page-office] .office-rep-user-profile-header {
+  background: #f4907e;
+}
+body[id^=page-office] #office-rep-user-profile-header .user-avator,
+body[id^=page-office] .office-rep-user-profile-header .user-avator {
+  width: 6.25rem;
+}
+body[id^=page-office] #office-rep-user-profile-header .user-avator img,
+body[id^=page-office] .office-rep-user-profile-header .user-avator img {
+  width: 100%;
+  height: auto;
+}
+@media (min-width: 768px) {
+  body[id^=page-office] #office-reps-profile-toolbar {
+    position: relative;
+    min-height: 3.125rem;
+  }
+  body[id^=page-office] #office-reps-profile-toolbar .buttons {
+    position: absolute;
+    top: -1.25rem;
+    left: 1.5625rem;
+  }
+  body[id^=page-office] #office-reps-profile-toolbar .buttons li a {
+    background: #fff;
+  }
+}
+@media (min-width: 768px) {
+  body[id^=page-office] #office-reps-user-sidebar-card {
+    max-width: 21.875rem;
+  }
+}
 
 body[id=page-login] #md-app,
 body[id=page-login] #md-main,

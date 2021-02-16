@@ -71,11 +71,6 @@ class Tag extends Model implements Searchable
     const REFUND = 'refund';
 
     /**
-     * @var string TENANT
-     */
-    const TENANT = 'tenant';
-
-    /**
      * @var string ORDER
      */
     const ORDER = 'order';

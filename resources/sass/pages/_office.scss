@@ -50,4 +50,50 @@ body[id^="page-office"]
             }
         }
     }
+
+    #office-rep-user-profile-header,
+    .office-rep-user-profile-header
+    {
+        background: rgb(244,144,126);
+
+        .user-avator {
+            width: rem(100);
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    #office-reps-profile-toolbar
+    {
+        @include media-breakpoint-up(md)
+        {
+            position: relative;
+
+            min-height: rem(50);
+
+            .buttons
+            {
+                position: absolute;
+                top: rem(-20);
+                left: rem(25);
+
+                li {
+                    a {
+                        background: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    #office-reps-user-sidebar-card
+    {
+        @include media-breakpoint-up(md)
+        {
+            max-width: rem(350);
+        }
+    }
 }
