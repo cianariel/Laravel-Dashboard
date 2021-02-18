@@ -70,7 +70,7 @@
                                             @endcomponent
                                         </div>
                                     </div>
-
+                                    
                                     @component('components.forms.form',[
                                         'id'        => 'user-edit-profile-form',
                                         'action'    => route('user.setup.account.profile.store'),
@@ -139,7 +139,7 @@
                                                     @enderror
                                                 @endcomponent
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 @component('components.forms.input', [
                                                     'type'          => 'text',
                                                     'name'          => 'specialists',
@@ -147,7 +147,7 @@
                                                     'value'         => old('specialists')?? $user->getMetaField("specialists"),
                                                     'vertical'      => true
                                                 ])
-
+                                                    
                                                     @error('specialists')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -190,9 +190,9 @@
                                                 @endcomponent
                                             </div>
                                         </div>
-
+                                        
                                         <div class="form-group row mb-0">
-                                            <div class="col-md-8 offset-md-4">
+                                            <div class="col-md-12 text-center">
                                                 @component('components.forms.button', [
                                                     'id'        => 'submit-btn',
                                                     'type'      => 'submit',
@@ -203,15 +203,6 @@
                                                         'btn-primary'
                                                     ]
                                                 ])
-                                                    @component('components.elements.link', [
-                                                        'href'  => route('user.dashboard'),
-                                                        'classes'   => [
-                                                            'btn',
-                                                            'btn-secondary'
-                                                        ]
-                                                    ])
-                                                        {{ __('Cancel') }}
-                                                    @endcomponent
                                                 @endcomponent
                                             </div>
                                         </div>
@@ -230,7 +221,7 @@
                                                     'value'         => '1',
                                                 ])
                                                 @endcomponent
-
+                                                
                                                 @component('components.forms.password', [
                                                     'id'            => 'current-password',
                                                     'name'          => 'current_password',
@@ -246,7 +237,7 @@
                                                         </span>
                                                     @enderror
                                                 @endcomponent
-
+                                                
                                                 @component('components.forms.password', [
                                                     'id'            => 'password',
                                                     'name'          => 'password',
@@ -261,7 +252,7 @@
                                                         </span>
                                                     @enderror
                                                 @endcomponent
-
+                                                
                                                 <div class="text-center">
                                                     @component('components.forms.button', [
                                                         'id'        => 'submit-btn',
@@ -288,7 +279,7 @@
 
                                             </div>
                                         </div>
-
+                                        
                                     @endcomponent
                                 </div>
                             </div>

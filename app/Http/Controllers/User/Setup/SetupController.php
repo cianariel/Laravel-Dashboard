@@ -69,7 +69,7 @@ class SetupController extends BaseController
                 'path'      => route('user.dashboard'),
                 'active'    => false
             ],
-            __('Setup')     => [
+            __('Account')     => [
                 'path'      => route('user.setup.account'),
                 'active'    => true
             ]
