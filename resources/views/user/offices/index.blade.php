@@ -1,7 +1,7 @@
 {{-- Stored in /resources/views/user/account/edit.blade.php --}}
 @extends('user.layouts.master')
-@section('html-title', 'Account')
-@section('page-class', 'user-account')
+@section('html-title', 'Offices')
+@section('page-class', 'user-offices-index')
 @section('page_script')
     @component('components.elements.script', ['src' => mix('js/selectize.js')])@endcomponent
 @endsection
@@ -18,12 +18,10 @@
                     <a id="add-office-btn" href="{{ route('user.offices.add') }}" >
                         <i class="fa fa-plus"></i>
                     </a>
-                    <div class="input-group search-holder bt-1 bb-1 pt-1 pb-1">
-                        <input type="text" class="form-control" placeholder="{{__('Enter office name, address or provider')}}">
-                        <span class="input-group-addon">
-                            <i class="fa fa-search search-icon"></i>
-                        </span>
-                    </div>
+                    @component('components.elements.search', [
+                        'placeholder' => __('Enter office name, address or provider')
+                    ])
+                    @endcomponent
                     <div class="p-3">
                         <i>No offices found</i>
                     </div>
@@ -34,7 +32,7 @@
             </div>
         </div>
     @endcomponent
-
+    
     <style>
         #add-office-btn{
             position: absolute;
@@ -52,5 +50,4 @@
             height: calc(100vh - 145px);
         }
     </style>
-
 @endsection

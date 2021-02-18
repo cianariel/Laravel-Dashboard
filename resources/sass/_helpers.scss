@@ -261,16 +261,22 @@
     border-bottom: 1px solid #ddd;
 }
 
-.input-group.search-holder{
-    position: relative;
-    .input-group-addon{
-        position: absolute;
-        right: 10px;
-        top: 11px;
-        cursor: pointer;
+.input-group.search-container{
+    .search-holder{
+        width: 100%;
+        position: relative;
+        .input-group-addon{
+            position: absolute;
+            left: 10px;
+            top: 7px;
+            cursor: pointer;
+        }
+        input{
+            border: 0px;
+            padding-left: 35px;
+        }
     }
-    input{
-        border: 0px;
-        padding-right: 30px;
+    .title{
+        font-size: 1.2rem;
     }
 }

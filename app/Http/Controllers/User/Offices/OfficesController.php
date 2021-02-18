@@ -9,23 +9,9 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Carbon;
-use App\Models\System\Country;
-use App\Models\System\State;
 use App\Models\System\Role;
 use App\Models\System\User;
-use App\Models\System\Subscription;
-use App\Models\System\Package;
-use App\Models\System\Product;
-use App\Models\System\Payment;
-use App\Rules\CreditCardRule;
-use App\Rules\PhoneRule;
-use App\Rules\SanitizeHtml;
-use Stripe\Stripe as Stripe;
-use Stripe\Exception\InvalidRequestException;
-use Stripe\Exception\CardException;
-use Laravel\Cashier\Exceptions\SubscriptionUpdateFailure;
-use App\Events\Office\Subscription\EventSubscriptionCreated;
+use App\Models\System\Office;
 use Exception;
 
 /**
@@ -95,6 +81,7 @@ class OfficesController extends BaseController
     public function add(Request $request)
     {
         $this->checkCompletedProfile();
+        $user = auth()->guard(User::GUARD)->user();
 
         $breadcrumbs = breadcrumbs([
             __('Dashboard') => [
@@ -111,8 +98,12 @@ class OfficesController extends BaseController
             ]
         ]);
 
+        $offices = Office::whereDoesntHave('users', function($query) use($user) {
+            $query->where('id', $user->id);
+        })->get();
+
         return view('user.offices.add',
-            compact('breadcrumbs')
+            compact('breadcrumbs', 'offices')
         );
     }
 
