@@ -247,3 +247,30 @@
     width: rem(350);
     max-width: rem(350);
 }
+
+
+.br-1{
+    border-right: 1px solid #ddd;
+}
+
+.bt-1{
+    border-top: 1px solid #ddd;
+}
+
+.bb-1{
+    border-bottom: 1px solid #ddd;
+}
+
+.input-group.search-holder{
+    position: relative;
+    .input-group-addon{
+        position: absolute;
+        right: 10px;
+        top: 11px;
+        cursor: pointer;
+    }
+    input{
+        border: 0px;
+        padding-right: 30px;
+    }
+}
