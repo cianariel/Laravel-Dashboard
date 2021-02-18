@@ -91,6 +91,20 @@ $routes = [
         'method'        => 'thankyou',
         'name'          => 'setup.complete'
     ],
+    [
+        'path'          => 'offices',
+        'type'          => 'get',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'index',
+        'name'          => 'offices.index'
+    ],
+    [
+        'path'          => 'offices/add',
+        'type'          => 'get',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'add',
+        'name'          => 'offices.add'
+    ],
 ];
 
 Route::domain(config('app.base_domain'))->name('user.')->group(function () use (&$routes) {
