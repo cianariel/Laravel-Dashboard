@@ -55,6 +55,9 @@ class OfficesController extends BaseController
     {
         $this->checkCompletedProfile();
 
+        $user = auth()->guard(User::GUARD)->user();
+        $offices = $user->offices()->get(['uuid', 'name', 'label', 'meta_fields']);
+
         $breadcrumbs = breadcrumbs([
             __('Dashboard') => [
                 'path'      => route('user.dashboard'),
@@ -67,7 +70,7 @@ class OfficesController extends BaseController
         ]);
 
         return view('user.offices.index',
-            compact('breadcrumbs')
+            compact('breadcrumbs', 'offices')
         );
 
     }
@@ -100,11 +103,134 @@ class OfficesController extends BaseController
 
         $offices = Office::whereDoesntHave('users', function($query) use($user) {
             $query->where('id', $user->id);
-        })->get();
+        })
+        ->where('status', Office::ACTIVE)
+        ->get();
 
         return view('user.offices.add',
             compact('breadcrumbs', 'offices')
         );
+    }
+
+    /**
+     * Get an office by UDID
+     */
+    public function getOffice(Request $request, $uuid)
+    {
+        $this->checkCompletedProfile();
+        $user = auth()->guard(User::GUARD)->user();
+        $office = Office::where('uuid', $uuid)->first();
+
+        $breadcrumbs = breadcrumbs([
+            __('Dashboard') => [
+                'path'      => route('user.dashboard'),
+                'active'    => false
+            ],
+            __('Offices')     => [
+                'path'      => route('user.offices.index'),
+                'active'    => false
+            ],
+            __('Add')     => [
+                'path'      => route('user.offices.add'),
+                'active'    => false
+            ],
+            __($office->label)     => [
+                'path'      => '#',
+                'active'    => true
+            ]
+        ]);
+
+
+        return view('user.offices.view',
+            compact('breadcrumbs', 'office')
+        );
+    }
+
+    /**
+     * Add an office to my offices
+     */
+    public function addOffice(Request $request, $uuid)
+    {
+        $this->checkCompletedProfile();
+
+        $user = auth()->guard(User::GUARD)->user();
+        $office = Office::where('uuid', $uuid)->first();
+        
+        // Check if you already have the office
+        if(!$user->offices()->where('uuid', $uuid)->count()){
+            $user->offices()->save($office);
+        }
+
+        flash (__('Successfully added on office to your offices.'));
+        return redirect()->route('user.offices.add');
+    }
+
+    /**
+     * Search non my offices by keyword
+     */
+    public function searchNonMyOffices(Request $request)
+    {
+        $keystring = $request->get('keyword');
+        $keywords = explodeBySpace($keystring);
+        $user = auth()->guard(User::GUARD)->user();
+
+        $offices = Office::whereDoesntHave('users', function($query) use($user) {
+            $query->where('id', $user->id);
+        })
+        ->where('status', Office::ACTIVE);
+        
+        if($keywords){
+            $offices->where(function($query) use($keywords){
+                foreach($keywords as $keyword){
+                    $keyword = strtolower($keyword);
+                    $qeury = $query->orWhere(function($query) use($keyword) {
+                        $query->whereRaw('(json_search(LOWER(offices.meta_fields), \'one\', \'%'. $keyword .'%\', null, \'$.location\')) IS NOT NULL')
+                            ->orWhere("offices.name", "LIKE", "%{$keyword}%");
+                    });
+                }
+            });
+        }
+
+        $offices = $offices->get(['uuid', 'name', 'label', 'meta_fields']);
+
+        return response()->json([
+            'status'    => 200,
+            'message'   => __('success'),
+            'data'    => compact('offices')
+        ]);
+        
+    }
+
+    /**
+     * Search my offices by keyword
+     */
+    public function searchMyOffices(Request $request)
+    {
+        $keystring = $request->get('keyword');
+        $keywords = explodeBySpace($keystring);
+        $user = auth()->guard(User::GUARD)->user();
+
+        $offices = $user->offices()
+                ->where('status', Office::ACTIVE)
+        ;
+        
+        if($keywords){
+            $offices->where(function($query) use($keywords){
+                foreach($keywords as $keyword){
+                    $keyword = strtolower($keyword);
+                    $query->orWhere("offices.name", "LIKE", "%{$keyword}%");
+                }
+            });
+        }
+
+        $offices = $offices->get(['uuid', 'name', 'label', 'meta_fields']);
+
+        return response()->json([
+            'status'    => 200,
+            'message'   => __('success'),
+            'data'    => compact('offices')
+        ]);
+        
     }
 
     
