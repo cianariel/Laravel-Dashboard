@@ -105,6 +105,34 @@ $routes = [
         'method'        => 'add',
         'name'          => 'offices.add'
     ],
+    [
+        'path'          => 'offices/add/details/{uuid}',
+        'type'          => 'get',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'getOffice',
+        'name'          => 'offices.add.details.view'
+    ],
+    [
+        'path'          => 'offices/add/details/{uuid}',
+        'type'          => 'post',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'addOffice',
+        'name'          => 'offices.add.details.add'
+    ],
+    [
+        'path'          => 'offices/ajax/search-non-mine',
+        'type'          => 'get',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'searchNonMyOffices',
+        'name'          => 'offices.ajax.search-non-mine'
+    ],
+    [
+        'path'          => 'offices/ajax/search-mine',
+        'type'          => 'get',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'searchMyOffices',
+        'name'          => 'offices.ajax.search-mine'
+    ],
 ];
 
 Route::domain(config('app.base_domain'))->name('user.')->group(function () use (&$routes) {
