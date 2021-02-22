@@ -2182,3 +2182,20 @@ if (! function_exists('server_cpu_usage')) {
         return $load;
     }
 }
+
+/**
+ * Explode by space
+ *
+ * @author    Taylor <sykestaylor122@gmail.com>
+ * @copyright 2021 MdRepTime, LLC
+ *
+ * @return int|float
+ */
+function explodeBySpace($str) {
+    if(!$str)
+        return [];
+        
+    $parts = preg_split('/\s+/', $str);
+    return $parts;
+}
+
