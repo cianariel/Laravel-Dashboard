@@ -8,6 +8,5 @@
             <i class="fa fa-search search-icon"></i>
         </span>
     </div>
-    {!! $slot !!}
 </div>
 

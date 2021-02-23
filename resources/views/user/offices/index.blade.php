@@ -18,12 +18,11 @@
                     <a id="add-office-btn" href="{{ route('user.offices.add') }}" >
                         <i class="fa fa-plus"></i>
                     </a>
-                    @component('components.elements.search', [
+                    @include('user.partials.search', [
                         'placeholder' => __('Enter office name, address or provider'),
                         'search_id' => 'search-office',
                         'classes'   => ['bt-2 bb-2 pt-1 pb-1']
                     ])
-                    @endcomponent
                     <div class="p-3">
                         @if($offices->count())
                             <div class="row">
