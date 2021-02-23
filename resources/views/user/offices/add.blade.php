@@ -23,13 +23,12 @@
         </div>
         <div class="row no-gutters">
             <div class="col-12">
-                @component('components.elements.search', [
+                @include('user.partials.search', [
                     'description' => __('Add an office to your list'),
                     'placeholder' => __('Enter office name, address or provider'),
                     'search_id' => 'search-office',
                     'classes'   => ['bb-2 pt-1 pb-1']
                 ])
-                @endcomponent
             </div>
         </div>
         <div class="row">
