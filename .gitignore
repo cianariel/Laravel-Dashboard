@@ -30,6 +30,11 @@ Homestead.json
 *.meta.*
 _ide_*
 
+./public/js/*
+./public/css/*
+./public/images/*
+./public/webfonts/*
+
 ### Linux ###
 *~
 
