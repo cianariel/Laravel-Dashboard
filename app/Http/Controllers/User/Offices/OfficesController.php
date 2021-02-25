@@ -185,13 +185,13 @@ class OfficesController extends BaseController
                     $keyword = strtolower($keyword);
                     $qeury = $query->orWhere(function($query) use($keyword) {
                         $query->whereRaw('(json_search(LOWER(offices.meta_fields), \'one\', \'%'. $keyword .'%\', null, \'$.location\')) IS NOT NULL')
-                            ->orWhere("offices.name", "LIKE", "%{$keyword}%");
+                            ->orWhere("offices.label", "LIKE", "%{$keyword}%");
                     });
                 }
             });
         }
 
-        $offices = $offices->orderBy('name')->get(['uuid', 'name', 'label', 'meta_fields']);
+        $offices = $offices->orderBy('label')->get(['uuid', 'name', 'label', 'meta_fields']);
 
         return response()->json([
             'status'    => 200,
@@ -218,12 +218,12 @@ class OfficesController extends BaseController
             $offices->where(function($query) use($keywords){
                 foreach($keywords as $keyword){
                     $keyword = strtolower($keyword);
-                    $query->orWhere("offices.name", "LIKE", "%{$keyword}%");
+                    $query->orWhere("offices.label", "LIKE", "%{$keyword}%");
                 }
             });
         }
 
-        $offices = $offices->orderBy('name')->get(['uuid', 'name', 'label', 'meta_fields']);
+        $offices = $offices->orderBy('label')->get(['uuid', 'name', 'label', 'meta_fields']);
 
         return response()->json([
             'status'    => 200,
