@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\System\User;
 use App\Models\System\Role;
-use Exception;
+use \Exception;
 
 /**
  * RepsController
@@ -68,6 +68,7 @@ class RepsController extends OfficeController
             'office.reps.index',
             compact(
                 'site',
+                'user',
                 'office',
                 'breadcrumbs',
                 'reps',

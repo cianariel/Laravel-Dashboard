@@ -180,6 +180,13 @@ $routes = [
         'name'          => 'ajax.reps.toggle.blocked'
     ],
     [
+        'path'          => 'ajax/messages/username/query',
+        'type'          => 'post',
+        'controller'    => 'Office\Ajax\AjaxController',
+        'method'        => 'queryRepsUsers',
+        'name'          => 'ajax.message.query.reps'
+    ],
+    [
         'path'          => 'ajax/messages/retrieve/single',
         'type'          => 'post',
         'controller'    => 'Office\Ajax\AjaxController',

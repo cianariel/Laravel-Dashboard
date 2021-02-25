@@ -213,6 +213,18 @@ window.dialog = function (title, message) {
     }
 }
 
+// Overlay
+//-----------------------------------------//
+window.mdOverlay = function(show='hide') {
+    let overlay = $('#md-overlay');
+
+    if(show == 'hide') {
+        overlay.fadeOut(500).addClass('hidden');
+    } else {
+        overlay.fadeOut(0).fadeIn(500).removeClass('hidden');
+    }
+}
+
 
 // Pretty Checkbox
 //-----------------------------------------------//
@@ -610,6 +622,7 @@ window.mdConfirmedActionLink = function ($) {
                             response = true;
 
                             if (response == true) {
+                                mdOverlay('show');
                                 MD.redirect(href);
                             }
                         });
@@ -656,6 +669,7 @@ window.mdConfirmedActionForm = function ($) {
                         dialog_modal.modal('hide');
                         btn.prop('disabled', true);
                         confirmed = true;
+                        mdOverlay('show');
                         form.submit();
                     });
 
@@ -829,11 +843,13 @@ window.mdFormInputToggler = function ($) {
 }
 
 // Feather Icons
+//-----------------------------------------//
 window.mdFeatherIcons = function () {
     feather.replace();
 }
 
 // Vertical Tabs
+//-----------------------------------------//
 window.mdVerticalTabs = function ($) {
 
     let nav = $('.md-nav-vertical-tabs');
@@ -870,6 +886,7 @@ window.mdVerticalTabs = function ($) {
         });
     }
 };
+
 
 // Date Picker
 //-----------------------------------------//
