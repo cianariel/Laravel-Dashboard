@@ -178,7 +178,21 @@ $routes = [
         'controller'    => 'Office\Ajax\AjaxController',
         'method'        => 'toggleBlockedUser',
         'name'          => 'ajax.reps.toggle.blocked'
-    ]
+    ],
+    [
+        'path'          => 'ajax/messages/username/query',
+        'type'          => 'post',
+        'controller'    => 'Office\Ajax\AjaxController',
+        'method'        => 'queryRepsUsers',
+        'name'          => 'ajax.message.query.reps'
+    ],
+    [
+        'path'          => 'ajax/messages/retrieve/single',
+        'type'          => 'post',
+        'controller'    => 'Office\Ajax\AjaxController',
+        'method'        => 'retreiveMessage',
+        'name'          => 'ajax.message.retrieve'
+    ],
 ];
 
 Route::domain(config('app.base_domain'))->name('office.')->group(function () use (&$routes) {

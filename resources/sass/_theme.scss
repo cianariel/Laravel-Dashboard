@@ -674,3 +674,21 @@
         cursor: pointer;
     }
 }
+
+//------------------------------//
+// Overlay
+//------------------------------//
+.md-overlay {
+
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba($white, 0.8);
+    top: rem(0);
+    left: rem(0);
+    z-index: 9999;
+
+    .md-overlay-inner {
+
+    }
+}
