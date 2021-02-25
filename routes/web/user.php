@@ -133,6 +133,13 @@ $routes = [
         'method'        => 'searchMyOffices',
         'name'          => 'offices.ajax.search-mine'
     ],
+    [
+        'path'          => 'offices/ajax/partial-info',
+        'type'          => 'get',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'getPartialInfoContent',
+        'name'          => 'offices.ajax.partial-info'
+    ],
 ];
 
 Route::domain(config('app.base_domain'))->name('user.')->group(function () use (&$routes) {
