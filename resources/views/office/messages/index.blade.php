@@ -42,3 +42,44 @@
         </div>
     @endcomponent
 @endsection
+@section('scripts_end')
+<script type="text/javascript">
+<!--
+    jQuery(document).ready(function($){
+
+        let retrieveMessage(id) {
+
+            let url = '{{ route('office.ajax.message.retrieve') }}';
+
+            if(id) {
+
+                let ajaxRequest = MD.post(url, {id: id}, 'json', function(response){
+
+                    let data = response.data;
+
+                    if(data.status == 404) {
+                         dialog('{{ __('Notice') }}', '{{ __('Invaild message reference.') }}');
+                    }
+
+                    if(data.status == 200) {
+                        let message = data.message;
+                    }
+
+                }, function(error){
+
+                    dialog('{{ __('Error') }}', '{{ __('Error occured, please try again.') }}');
+
+                }, function() {
+                    // finally
+
+                }, 5000);
+
+            } else {
+                dialog('{{ __('Notice') }}', '{{ __('Invaild message reference.') }}');
+            }
+        }
+
+    });
+//-->
+</script>
+@endsection
