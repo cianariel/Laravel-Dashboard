@@ -191,7 +191,7 @@ class OfficesController extends BaseController
             });
         }
 
-        $offices = $offices->get(['uuid', 'name', 'label', 'meta_fields']);
+        $offices = $offices->orderBy('name')->get(['uuid', 'name', 'label', 'meta_fields']);
 
         return response()->json([
             'status'    => 200,
@@ -223,7 +223,7 @@ class OfficesController extends BaseController
             });
         }
 
-        $offices = $offices->get(['uuid', 'name', 'label', 'meta_fields']);
+        $offices = $offices->orderBy('name')->get(['uuid', 'name', 'label', 'meta_fields']);
 
         return response()->json([
             'status'    => 200,
@@ -233,5 +233,26 @@ class OfficesController extends BaseController
         
     }
 
-    
+    /**
+     * Return one office's partial info html from UUID by ajax request
+     * 
+     * @param  \Illuminate\Http\Request $request
+     * @param $uuid
+     * @return \Illuminate\Http\Response
+     */
+    public function getPartialInfoContent(Request $request)
+    {
+        $id = $request->get('id');
+        $office = Office::where('uuid', $id)->first();
+        
+        $content = view('user.offices.partial-info',
+            compact('office')
+        )->render();
+        
+        return response()->json([
+            'status'    => 200,
+            'message'   => __('success'),
+            'data'    => compact('content')
+        ]);
+    }
 }
