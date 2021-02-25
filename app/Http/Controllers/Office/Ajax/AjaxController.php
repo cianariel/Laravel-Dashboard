@@ -11,7 +11,8 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\System\Role;
 use App\Models\System\User;
-use Exception;
+use App\Models\System\Message;
+use \Exception;
 
 /**
  * AjaxController
@@ -228,6 +229,59 @@ class AjaxController extends AjaxBaseController
                 'status'    => 500,
                 'message'   => __('Invaild user or inactive.')
             ]);
+        }
+
+        abort(500);
+    }
+
+    /**
+     * Retreive Single Message
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\ResponseJson
+     */
+    public function retreiveMessage(Request $request)
+    {
+        $rules = [
+            'id'    => ['required', 'integer', 'exists:system.messages,id']
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->passes()) {
+
+            $site = site(config('app.base_domain'));
+            $user = auth()->guard(User::GUARD)->user();
+
+            if($message = $user->messages()->where('recipient', $user->id)->first()) {
+
+                $fromUser = $message->users()->whereNot('id', $user->id)->first();
+
+                $data = [
+                    'id'            => $message->id,
+                    'type'          => $message->type,
+                    'from'          => $fromUser->username,
+                    'subject'       => $message->subject,
+                    'body'          => $message->body,
+                    'status'        => $message->subject,
+                    'meta_fields'   => $message->meta_fields,
+                    'read_at'       => $message->read_at,
+                    'sent_at'       => $message->sent_at,
+                    'created_at'    => $message->created_at
+                ];
+
+                return response()->json([
+                    'status'    => 200,
+                    'message'   => $data
+                ]);
+
+            } else {
+
+                return response()->json([
+                    'status'    => 404,
+                    'message'   => __('Message does not exist.')
+                ]);
+            }
         }
 
         abort(500);
