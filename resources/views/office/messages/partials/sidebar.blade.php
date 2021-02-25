@@ -13,9 +13,13 @@
             </div>
             <div class="col-6 text-right">
                 @component('components.elements.link', [
-                    'href'      => route('office.messages.create'),
+                    'href'      => '#office-message-create-modal',
                     'classes'   => [
                         'text-uppercase'
+                    ],
+                    'attrs'     => [
+                        'data-toggle'   => 'modal',
+                        'data-target'   => '#office-message-create-modal'
                     ]
                 ])
                     <i class="far fa-edit"></i> {{ __('New') }}

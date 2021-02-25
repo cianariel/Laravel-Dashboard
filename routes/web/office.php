@@ -142,7 +142,7 @@ $routes = [
         'path'          => 'messages',
         'type'          => 'resource',
         'controller'    => 'Office\Message\MessagesController',
-        'except'        => ['edit', 'update']
+        'except'        => ['create', 'edit', 'update']
     ],
     [
         'path'          => 'reps',

@@ -7,7 +7,7 @@ namespace App\Models\System\Traits;
 use App\Models\System\Message;
 
 /**
- * Has Messages Relations Trait
+ * Has Message Relations Trait
  *
  * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
@@ -16,7 +16,7 @@ use App\Models\System\Message;
 trait HasMessages
 {
     /**
-     * Gets messages
+     * Returns all resources
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      * @access public
@@ -27,7 +27,7 @@ trait HasMessages
     }
 
     /**
-     * Has Messages
+     * Determines if has any resources
      *
      * @return bool
      * @access public
@@ -38,9 +38,10 @@ trait HasMessages
     }
 
     /**
-     * Determines if has the given message
+     * Determines if has a given resource
      *
-     * @param  App\Models\System\Message|int $message
+     * @param App\Models\System\Message|int $message
+     *
      * @return bool
      * @access public
      */
@@ -60,9 +61,10 @@ trait HasMessages
     }
 
     /**
-     * Assign the given message
+     * Assign a given resource
      *
-     * @param  App\Models\System\Message|int $message
+     * @param App\Models\System\Message|int $message
+     *
      * @return bool
      * @access public
      */
@@ -76,7 +78,7 @@ trait HasMessages
             }
 
             if ($message instanceof Message) {
-                return $this->messages()->saveOrFail($message);
+                return ($this->messages()->save($message)) ? true : false;
             } else {
                 return false;
             }
@@ -86,9 +88,10 @@ trait HasMessages
     }
 
     /**
-     * Unassign the given message
+     * Unassign a given resource
      *
-     * @param  App\Models\System\Message|int $message
+     * @param App\Models\System\Message|int $message
+     *
      * @return bool
      * @access public
      */
@@ -104,6 +107,6 @@ trait HasMessages
             }
         }
 
-        return false;
+        return true;
     }
 }
