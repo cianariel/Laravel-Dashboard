@@ -926,7 +926,9 @@ if (! function_exists('user_panel_url')) {
             }
 
             if ($role == Role::GUEST) {
-                return secure_url('office.dashboard');
+                return secure_url(route('office.dashboard'));
+            } elseif($role == Role::OWNER) {
+                return secure_url(route('office.dashboard'));
             } else {
                 return secure_url($role);
             }
@@ -2194,7 +2196,7 @@ if (! function_exists('server_cpu_usage')) {
 function explodeBySpace($str) {
     if(!$str)
         return [];
-        
+
     $parts = preg_split('/\s+/', $str);
     return $parts;
 }

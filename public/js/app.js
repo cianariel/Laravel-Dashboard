@@ -50,7 +50,7 @@ var registerWrapper = function registerWrapper(stripe, startTime) {
 
   stripe._registerWrapper({
     name: 'stripe-js',
-    version: "1.12.1",
+    version: "1.13.0",
     startTime: startTime
   });
 };
@@ -27629,6 +27629,19 @@ window.dialog = function (title, message) {
     dialog_modal.find('#dialog-content').text(message);
     dialog_modal.modal('show');
   }
+}; // Overlay
+//-----------------------------------------//
+
+
+window.mdOverlay = function () {
+  var show = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'hide';
+  var overlay = $('#md-overlay');
+
+  if (show == 'hide') {
+    overlay.fadeOut(500).addClass('hidden');
+  } else {
+    overlay.fadeOut(0).fadeIn(500).removeClass('hidden');
+  }
 }; // Pretty Checkbox
 //-----------------------------------------------//
 
@@ -27988,6 +28001,7 @@ window.mdConfirmedActionLink = function ($) {
               response = true;
 
               if (response == true) {
+                mdOverlay('show');
                 MD.redirect(href);
               }
             });
@@ -28026,6 +28040,7 @@ window.mdConfirmedActionForm = function ($) {
             dialog_modal.modal('hide');
             btn.prop('disabled', true);
             confirmed = true;
+            mdOverlay('show');
             form.submit();
           });
           dialog(title, message);
@@ -28189,11 +28204,13 @@ window.mdFormInputToggler = function ($) {
     });
   }
 }; // Feather Icons
+//-----------------------------------------//
 
 
 window.mdFeatherIcons = function () {
   feather.replace();
 }; // Vertical Tabs
+//-----------------------------------------//
 
 
 window.mdVerticalTabs = function ($) {

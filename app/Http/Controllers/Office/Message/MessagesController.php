@@ -38,6 +38,7 @@ class MessagesController extends BaseController
 
         $messages =  Message::where('recipient', $user->id)
                             ->whereNotIn('status', [Message::DELETED, Message::QUEUE])
+                            ->latest()
                             ->paginate($perPage);
 
         $breadcrumbs = breadcrumbs([

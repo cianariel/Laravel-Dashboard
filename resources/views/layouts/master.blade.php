@@ -3,6 +3,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="no-js">
     @yield('head')
     <body class="body page-@yield('page-class')"@hasSection('page-class') id="page-@yield('page-class')"@endif>
+        @yield('html_after_start')
         @if($js = setting('site_theme_before_scripts', env('APP_DOMAIN'), true))
             {!! $js !!}
         @endif
@@ -37,11 +38,13 @@
         </script>
         {{--[/scripts]--}}
         {{--[global-dialog]--}}@include('partials.dialog'){{--[/global-dialog]--}}
+        @yield('html_before_end')
         @yield('scripts_end')
         @if($js = setting('site_theme_after_scripts', env('APP_DOMAIN'), true))
             @component('components.elements.script')
                 {!! $js !!}
             @endcomponent
         @endif
+        {{--[global-overlay]--}}@include('partials.overlay'){{--[/global-overlay]--}}
     </body>
 </html>
