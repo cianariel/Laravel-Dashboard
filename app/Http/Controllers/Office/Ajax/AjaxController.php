@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 use App\Models\System\Role;
 use App\Models\System\User;
 use App\Models\System\Message;
+use App\Rules\SanitizeHtml;
 use \Exception;
 
 /**
@@ -228,6 +229,71 @@ class AjaxController extends AjaxBaseController
             return response()->json([
                 'status'    => 500,
                 'message'   => __('Invaild user or inactive.')
+            ]);
+        }
+
+        abort(500);
+    }
+
+    /**
+     * Retrieve Query Rep Users
+     */
+    public function queryRepsUsers(Request $request)
+    {
+        $rules = [
+            'q'    => ['required', 'string', 'min:3' , new SanitizeHtml]
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->passes()) {
+
+            $q = $request->input('q');
+
+            $site = site(config('app.base_domain'));
+            $user = auth()->guard(User::GUARD)->user();
+
+            $users = $site->users()->role(Role::USER)->where('status', User::ACTIVE)
+                                           ->orWhere('username', 'like', "%{$q}%")
+                                           ->orWhere('first_name', 'like', "%{$q}%")
+                                           ->orWhere('last_name', 'like', "%{$q}%")
+                                           ->orWhere('company', 'like', "%{$q}%")
+                                           ->orWhere('email', 'like', "%{$q}%")
+                                           ->select([
+                                                'id',
+                                                'username',
+                                                'first_name',
+                                                'last_name',
+                                                'company',
+                                           ])
+                                           ->limit(5)
+                                           ->cursor();
+            if($users->count() !== 0) {
+
+                $receipts = [];
+
+                foreach($users as $receipt) {
+
+                    if($receipt->hasRole(Role::USER)) {
+                        $receipts[] = [
+                            'username'      => $receipt->username,
+                            'first_name'    => $receipt->first_name,
+                            'last_name'     => $receipt->last_name,
+                            'company'       => $receipt->company,
+                            'avator'        => avator($receipt)
+                        ];
+                    }
+                }
+
+                return response()->json([
+                    'status'        => 200,
+                    'recipients'    => $receipts
+                ]);
+            }
+
+            return response()->json([
+                'status'    => 404,
+                'message'   => __('No matches found.')
             ]);
         }
 
