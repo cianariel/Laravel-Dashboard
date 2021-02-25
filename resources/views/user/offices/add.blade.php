@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-md-12" id="offices-search-container">
                 @if($offices->count())
-                    @foreach($offices as $office)
+                    @foreach($offices as $index => $office)
                         <div class="search-result-holder pl-3 pr-3 pt-4 pb-2" data-id="{{$office->uuid}}">
                             <h5>{{ $office->name }}</h5>
                             @php
@@ -86,7 +86,10 @@
                 });
 
                 $('#offices-search-container').on('click', '.search-result-holder', function(){
-                    // Coming soon..
+                    var id = $(this).data('id');
+                    let url = "{{route('user.offices.add.details.view', 'default_url')}}"
+                    url = url.replace("default_url", id);
+                    document.location.href = url;
                 })
             })
         </script>
