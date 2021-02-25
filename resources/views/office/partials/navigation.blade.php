@@ -37,7 +37,7 @@
                         'href'      => route('office.messages.index'),
                         'classes'   => ['nav-link']
                     ])
-                        {{ __('Messages') }} <span class="badge badge-secondary">0</span>
+                        {{ __('Messages') }} <span class="badge badge-secondary">{{ $user->messages()->where('recipient', $user->id)->where('status', App\Models\System\Message::UNREAD)->count() }}</span>
                     @endcomponent
                 </li>
                 <li class="nav-item">
