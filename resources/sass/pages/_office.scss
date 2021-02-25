@@ -3,6 +3,44 @@
 //----------------------------//
 body[id^="page-office"]
 {
+
+    .office-ajax-recipients-results
+    {
+        position: relative;
+        width: 100%;
+        left: rem(0);
+        top: rem(-1);
+        z-index: 99;
+        background: #fff;
+        border: rem(1) solid #ced4da;
+
+        ul {
+            .list-item {
+                padding: rem(10);
+
+                .avator {
+                   width: 100%;
+                   height: auto;
+                   display: block
+                }
+
+                h6 {
+                    font-size: rem(14);
+                    color: $grey-color;
+                }
+
+                h5 {
+                    font-size: rem(12);
+                    color: $black;
+                }
+
+                &:hover {
+                    background: #e1e1e1;
+                }
+            }
+        }
+    }
+
     // Main Body Content
     #office-content-body {
 

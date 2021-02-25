@@ -25,10 +25,14 @@
                                 <p class="card-text text-center">{{ __('No messages found.') }}</p>
                                 <p class="card-text text-center">
                                     @component('components.elements.link', [
-                                        'href'      => route('office.messages.create'),
+                                        'href'      => '#office-message-create-modal',
                                         'classes'   => [
                                             'btn',
                                             'btn-primary'
+                                        ],
+                                        'attrs'     => [
+                                            'data-toggle'   => 'modal',
+                                            'data-target'   => '#office-message-create-modal'
                                         ]
                                     ])
                                         {{ __('Click here to create a new message.') }}
@@ -42,12 +46,15 @@
         </div>
     @endcomponent
 @endsection
+@section('html_before_end')
+    @include('office.messages.partials.new_message')
+@endsection
 @section('scripts_end')
 <script type="text/javascript">
 <!--
     jQuery(document).ready(function($){
 
-        let retrieveMessage(id) {
+        let retrieveMessage = function(id) {
 
             let url = '{{ route('office.ajax.message.retrieve') }}';
 
