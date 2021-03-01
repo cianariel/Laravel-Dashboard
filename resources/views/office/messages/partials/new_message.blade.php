@@ -16,9 +16,9 @@
             <div class="col-12 col-md-12">
                 @component('components.forms.form', [
                     'id'        => 'office-message-create-form',
-                    'action'    => '#',
+                    'action'    => route('office.messages.store'),
                     'method'    => 'POST',
-                    'confirmed' => true
+                    'enctype'   => 'multipart/form-data'
                 ])
                     {{--[recipient]--}}
                     <h5>{{ __('To') }}</h5>
@@ -71,6 +71,21 @@
                         @enderror
                     @endcomponent
                     {{--[/message]--}}
+                    {{--[attachment]--}}
+                    <h5>{{ __('Attachment') }}</h5>
+                    @component('components.forms.file', [
+                        'id'        => 'attachment',
+                        'name'      => 'attachment',
+                        'value'     => '',
+                        'help_text' => 'File Types: (PDF,CSV,Excel,Power Point,PNG,JPG,GIF). 10MB File size limit.'
+                    ])
+                        @error('attachment')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    @endcomponent
+                    {{--[/attachment]--}}
                     {{--[buttons]--}}
                     <div class="form-group row">
                         <div class="col-12 text-right">
