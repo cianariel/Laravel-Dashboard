@@ -30,7 +30,8 @@
                                     'type'      => 'button',
                                     'name'      => ($btn['name']?? $id?? ''),
                                     'value'     => ($btn['value']?? ''),
-                                    'label'     => ($btn['label']?? ''),
+                                    'btn_label' => ($btn['label']?? ''),
+                                    'attrs'     => ($btn['attrs']?? []),
                                     'classes'   => (is_array($btn['classes'])? $btn['classes'] : ['btn', 'btn-primary'])
                                 ])@endcomponent
                             @else
@@ -38,7 +39,8 @@
                                     'type'      => 'button',
                                     'name'      => ($btn['name']?? $id?? ''),
                                     'value'     => ($btn['value']?? ''),
-                                    'label'     => ($btn['label']?? ''),
+                                    'btn_label' => ($btn['label']?? ''),
+                                    'attrs'     => ($btn['attrs']?? []),
                                     'classes'   => (is_array($btn['classes'])? $btn['classes'] : ['btn', 'btn-secondary'])
                                 ])@endcomponent
                             @endif
@@ -48,7 +50,7 @@
                             'type'      => 'button',
                             'name'      => uniqid('md-modal-btn', false),
                             'value'     => $value?? '',
-                            'label'     => $label?? __('Close'),
+                            'btn_label' => $label?? __('Close'),
                             'classes'   => (is_array($button_classes)? $button_classes : ['btn', 'btn-secondary'])
                         ])@endcomponent
                     @endif
