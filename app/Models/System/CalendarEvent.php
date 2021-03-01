@@ -386,6 +386,20 @@ class CalendarEvent extends Model
         return date($format, strtotime(self::CHRISTMAS_DAY . '/' . $year));
     }
 
+
+    /**
+     * @var array SIMPLE_QUERY_SELECT
+     */
+    const SIMPLE_QUERY_SELECT = [
+        'id',
+        'title',
+        'recurring',
+        'status',
+        'meta_fields',
+        'start_at',
+        'ends_at',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
