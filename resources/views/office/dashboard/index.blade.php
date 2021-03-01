@@ -12,34 +12,15 @@
         ])
             <div class="card-body">
                 @component('components.elements.fullcalendar', [
-                    'id'    => 'office-dashboard-calendar'
+                    'id'        => 'office-dashboard-calendar',
+                    'options'   => $calendarOptions??  [
+                        'themeSystem'   => 'bootstrap',
+                        'initialView'   =>'dayGridMonth'
+                    ]
                 ])@endcomponent
             </div>
         @endcomponent
-        @component('components.bootstrap.card', [
-            'id'    => 'office-calendar-sidebar-card'
-        ])
-            <div class="card-body">
-
-            </div>
-        @endcomponent
     @endcomponent
+    @include('office.calendar.partials.add_event')
 @endsection
 {{--[/content]--}}
-{{--[scripts]--}}
-@section('scripts_end')
-<script>
-<!--
-    jQuery(document).ready(function($){
-        let mdOfficeFullCalendarBlock = $('#office-dashboard-calendar');
-        let mdFullCalendar = new FullCalendar.Calendar(mdOfficeFullCalendarBlock[0], {
-            themeSystem: 'bootstrap',
-            initialView: 'dayGridMonth'
-        });
-
-        mdFullCalendar.render();
-    });
-//-->
-</script>
-@endsection
-{{--[/scripts]--}}
