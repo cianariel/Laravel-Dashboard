@@ -207,7 +207,7 @@
                                                 ]
                                             ])
                                                 @component('components.elements.link', [
-                                                    'href'  => route('user.dashboard'),
+                                                    'href'  => route('office.dashboard'),
                                                     'classes'   => [
                                                         'btn',
                                                         'btn-secondary'
