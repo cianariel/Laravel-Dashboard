@@ -78,10 +78,6 @@ try {
     window.moment = require('moment');
 } catch (e) {}
 
-try {
-    require('jquery-number');
-} catch(e) {}
-
 
 // JQuery Extends
 //-----------------------------------------------//
