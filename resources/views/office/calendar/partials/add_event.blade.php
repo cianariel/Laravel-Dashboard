@@ -18,7 +18,6 @@
             ]
         ],
         [
-            'id'        => 'save-btn',
             'name'      => 'save-btn',
             'value'     => '',
             'label'     => __('Save Event'),
@@ -32,14 +31,14 @@
         'backdrop'  => true,
         'keyboard'  => true,
         'focus'     => true,
-        'show'      => (request()->has('errors'))? true : false
+        'show'      => (request()->input('errors'))? true : true
     ]
 ])
     <div class="p-3">
         @component('components.forms.form', [
             'id'        => 'office-add-calendar-events-modal-form',
             'method'    => 'POST',
-            'action'    => route('office.calendar.store'),
+            'action'    => '#',
             'classes'   => [
                 'no-form-update-handler'
             ]
@@ -100,58 +99,62 @@
                     {{--[/section]--}}
                 </div>
                 {{--[date]--}}
-                <div class="col-12 col-md-6">
-                    <h5 class="card-text font-sm-size">{{ __('Date') }}</h5>
-                    @component('components.forms.datepicker', [
-                        'id'            => 'date',
-                        'name'          => 'date',
-                        'value'         => old('date'),
-                        'placeholder'   => 'MM/DD/YY',
-                    ])
-                        @error('date')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    @endcomponent
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h5 class="card-text font-sm-size">{{ __('Date') }}</h5>
+                        @component('components.forms.datepicker', [
+                            'id'            => 'date',
+                            'name'          => 'date',
+                            'value'         => old('date'),
+                            'placeholder'   => 'MM/DD/YY',
+                        ])
+                            @error('date')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        @endcomponent
+                    </div>
                 </div>
                 {{--[date]--}}
-            </div>
-            <div class="row">
-                {{--[start-time]--}}
                 <div class="col-12 col-md-6">
-                    <h5 class="card-text font-sm-size">{{ __('Start Time') }}</h5>
-                    @component('components.forms.timepicker', [
-                        'id'            => 'start-time',
-                        'name'          => 'start_time',
-                        'value'         => old('start_time'),
-                        'placeholder'   => '12:00AM',
-                    ])
-                        @error('start_time')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    @endcomponent
+                    <div class="row">
+                        {{--[start-time]--}}
+                        <div class="col-12 col-md-6">
+                            <h5 class="card-text font-sm-size">{{ __('Start Time') }}</h5>
+                            @component('components.forms.timepicker', [
+                                'id'            => 'start-time',
+                                'name'          => 'start_time',
+                                'value'         => old('start_time'),
+                                'placeholder'   => '12:00AM',
+                            ])
+                                @error('start_time')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            @endcomponent
+                        </div>
+                        {{--[/start-time]--}}
+                        {{--[end-time]--}}
+                        <div class="col-12 col-md-6">
+                            <h5 class="card-text font-sm-size">{{ __('End Time') }}</h5>
+                            @component('components.forms.timepicker', [
+                                'id'            => 'end-time',
+                                'name'          => 'end_time',
+                                'value'         => old('end_time'),
+                                'placeholder'   => '1:00PM',
+                            ])
+                                @error('end_time')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            @endcomponent
+                        </div>
+                        {{--[/end-time]--}}
+                    </div>
                 </div>
-                {{--[/start-time]--}}
-                {{--[end-time]--}}
-                <div class="col-12 col-md-6">
-                    <h5 class="card-text font-sm-size">{{ __('End Time') }}</h5>
-                    @component('components.forms.timepicker', [
-                        'id'            => 'end-time',
-                        'name'          => 'end_time',
-                        'value'         => old('end_time'),
-                        'placeholder'   => '1:00PM',
-                    ])
-                        @error('end_time')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    @endcomponent
-                </div>
-                {{--[/end-time]--}}
             </div>
             <div class="row">
                 <div class="col-12 col-md-6">
@@ -224,18 +227,3 @@
         @endcomponent
     </div>
 @endcomponent
-<script type="text/javascript">
-<!--
-    jQuery(document).ready(function($){
-        let modal = $('#office-add-calendar-events-modal');
-        let form = modal.find('#office-add-calendar-events-modal-form');
-        let btn = modal.find('button');
-
-        btn.on('click touchend', function(e){
-            e.preventDefault();
-
-            form.submit();
-        });
-    });
-//-->
-</script>
