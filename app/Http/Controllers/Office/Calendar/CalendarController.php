@@ -13,8 +13,6 @@ use App\Models\System\User;
 use App\Models\System\Role;
 use App\Models\System\CalendarEvent;
 use App\Models\System\Office;
-use App\Rules\SanitizeHtml;
-use Illuminate\Support\Facades\Validator;
 use Exception;
 
 /**
@@ -81,34 +79,6 @@ class CalendarController extends BaseController
     {
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
-
-        $rules = [
-            'username'      => ['required', 'exists:system.users,username'],
-            'title'         => ['required', 'string', 'max:100', new SanitizeHtml],
-            'section'       => ['required', 'string', Rule::in(CalendarEvent::VISIT_TYPES)],
-            'date'          => ['required', 'string', 'date_format:m/d/Y', 'after_or_equal:today'],
-            'start_time'    => ['required', 'string', 'date_format:g:i A'],
-            'end_time'      => ['nullable', 'string', 'date_format:g:i A'],
-            'recurring'     => ['required', 'string', Rule::in(CalendarEvent::RECURRING_TYPES)],
-            'repeat_type'   => ['nullable', 'string', Rule::in(CalendarEvent::REPEAT_TYPES)],
-            'notes'         => ['nullable', 'string', 'max:250', new SanitizeHtml]
-        ];
-
-        $validator = Validator::make($request->all(), $rules);
-
-        if($validator->passes()) {
-
-            if(!$user->hasRole(Role::OWNER)) {
-                $userOwner = office_owner($user);
-            } else {
-                $userOwner = $user;
-            }
-
-            flash('Successfully added appointment.');
-            return back();
-        }
-
-        return redirect()->route('office.dashboard', ['errors'])->withInput()->withErrors($validator);
     }
 
     /**
