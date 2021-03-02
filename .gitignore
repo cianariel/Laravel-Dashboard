@@ -34,6 +34,14 @@ _ide_*
 ./public/css/*
 ./public/images/*
 ./public/webfonts/*
+./public/mix-manifest.json
+
+public/js/*
+public/css/*
+public/images/*
+public/webfonts/*
+
+public/mix-manifest.json
 
 ### Linux ###
 *~
