@@ -30,7 +30,6 @@ class OfficeController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
         $events = [];
-
         $office = office_owner($user)->offices()->first();
 
         if (

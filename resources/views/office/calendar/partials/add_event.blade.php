@@ -31,7 +31,7 @@
         'backdrop'  => true,
         'keyboard'  => true,
         'focus'     => true,
-        'show'      => (request()->input('errors'))? true : true
+        'show'      => (request()->has('errors'))? true : false
     ]
 ])
     <div class="p-3">

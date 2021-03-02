@@ -79,6 +79,15 @@ class CalendarController extends BaseController
     {
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
+
+        if(!$user->hasRole(Role::OWNER)) {
+            $userOwner = office_owner($user);
+        } else {
+            $userOwner = $user;
+        }
+
+        flash('Successfully added appointment.');
+        return back();
     }
 
     /**
