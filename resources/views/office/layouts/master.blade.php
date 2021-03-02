@@ -28,7 +28,7 @@
     ])
         {{--[breadcrumbs]--}} @include('partials.breadcrumbs') {{--[/breadcrumbs]--}}
     @endcomponent
-    @yield('content-body')
+    @yield('content-body');
 @endsection
 {{--[/content]--}}
 {{--[footer]--}}

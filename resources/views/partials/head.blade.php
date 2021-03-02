@@ -25,7 +25,6 @@
     @component('components.elements.script', ['src' => mix('js/app.js')])@endcomponent
     @component('components.elements.script', ['src' => mix('js/framework.js')])@endcomponent
     @component('components.elements.script', ['src' => mix('js/functions.js')])@endcomponent
-    @component('components.elements.script', ['src' => 'https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.11/jsrender.min.js'])@endcomponent
     {{--[/scripts]--}}
     {{--[prefetch]--}}
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
