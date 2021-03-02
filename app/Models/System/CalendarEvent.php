@@ -37,6 +37,21 @@ class CalendarEvent extends Model
     const INACTIVE = 'inactive';
 
     /**
+     * @var string OPEN
+     */
+    const OPEN = 'opem';
+
+    /**
+     * @var string BOOKED
+     */
+    const BOOKED = 'booked';
+
+    /**
+     * @var string BOOKED
+     */
+    const CONFIRMED = 'confirmed';
+
+    /**
      * @var string OFF_SET_VISIT_TYPE
      */
     const OFF_SET_VISIT_TYPE = 'off_set_visit';
@@ -96,6 +111,15 @@ class CalendarEvent extends Model
     const STATUS_TYPES = [
         self::INACTIVE,
         self::ACTIVE
+    ];
+
+    /**
+     * @var EVENT_STATUSES
+     */
+    const EVENT_STATUSES = [
+        self::OPEN,
+        self::BOOKED,
+        self::CONFIRMED
     ];
 
     /**
