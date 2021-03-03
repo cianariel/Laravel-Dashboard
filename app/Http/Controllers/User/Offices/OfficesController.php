@@ -28,6 +28,7 @@ class OfficesController extends BaseController
      */
     public function __construct()
     {
+        $this->middleware('xss.sanitization');
         $this->middleware('force.https');
         $this->middleware('auth');
         $this->middleware('role:' . Role::USER);
@@ -155,7 +156,7 @@ class OfficesController extends BaseController
 
         $user = auth()->guard(User::GUARD)->user();
         $office = Office::where('uuid', $uuid)->first();
-        
+
         // Check if you already have the office
         if(!$user->offices()->where('uuid', $uuid)->count()){
             $user->offices()->save($office);
@@ -178,7 +179,7 @@ class OfficesController extends BaseController
             $query->where('id', $user->id);
         })
         ->where('status', Office::ACTIVE);
-        
+
         if($keywords){
             $offices->where(function($query) use($keywords){
                 foreach($keywords as $keyword){
@@ -198,7 +199,7 @@ class OfficesController extends BaseController
             'message'   => __('success'),
             'data'    => compact('offices')
         ]);
-        
+
     }
 
     /**
@@ -213,7 +214,7 @@ class OfficesController extends BaseController
         $offices = $user->offices()
                 ->where('status', Office::ACTIVE)
         ;
-        
+
         if($keywords){
             $offices->where(function($query) use($keywords){
                 foreach($keywords as $keyword){
@@ -230,12 +231,12 @@ class OfficesController extends BaseController
             'message'   => __('success'),
             'data'    => compact('offices')
         ]);
-        
+
     }
 
     /**
      * Return one office's partial info html from UUID by ajax request
-     * 
+     *
      * @param  \Illuminate\Http\Request $request
      * @param $uuid
      * @return \Illuminate\Http\Response
@@ -244,11 +245,11 @@ class OfficesController extends BaseController
     {
         $id = $request->get('id');
         $office = Office::where('uuid', $id)->first();
-        
+
         $content = view('user.offices.partial-info',
             compact('office')
         )->render();
-        
+
         return response()->json([
             'status'    => 200,
             'message'   => __('success'),

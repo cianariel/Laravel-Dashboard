@@ -20,6 +20,13 @@ use Illuminate\Validation\Rule;
  */
 class IndexController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('xss.sanitization');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
