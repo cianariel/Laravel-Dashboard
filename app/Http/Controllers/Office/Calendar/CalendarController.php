@@ -104,7 +104,10 @@ class CalendarController extends BaseController
                 $userOwner = $user;
             }
 
-            flash('Successfully added appointment.');
+            $calendarEvent = new CalendarEvent;
+            $calendarEvent->uuid = Str::uuid();
+
+            flash(__('Successfully added appointment.'));
             return back();
         }
 

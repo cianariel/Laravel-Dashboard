@@ -21,6 +21,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Mail\Mailable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\System\CalendarEvent;
 use App\Models\System\Appointment;
 use App\Models\System\TimeZone;
 use App\Models\System\Currency;
