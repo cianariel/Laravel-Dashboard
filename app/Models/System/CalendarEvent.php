@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use App\Models\Shared\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\System\Traits\HasAppointments;
+use App\Models\Shared\Model;
 
 /**
  * CalendarEvent Eloquent Model
@@ -430,6 +431,7 @@ class CalendarEvent extends Model
      * @var array
      */
     protected $fillable = [
+        'reference',
         'title',
         'recurring',
         'meta_fields',
@@ -453,6 +455,7 @@ class CalendarEvent extends Model
     protected $casts = [
         'id'            => 'integer',
         'uuid'          => 'string',
+        'reference'     => 'string',
         'title'         => 'string',
         'recurring'     => 'string',
         'meta_fields'   => 'array',

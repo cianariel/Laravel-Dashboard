@@ -28,6 +28,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         $roles = [Role::ADMIN];
         $this->middleware('force.https');
         $this->middleware('auth');

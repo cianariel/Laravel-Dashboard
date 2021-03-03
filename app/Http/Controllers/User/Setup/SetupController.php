@@ -42,6 +42,7 @@ class SetupController extends BaseController
      */
     public function __construct()
     {
+        $this->middleware('xss.sanitization');
         $this->middleware('force.https');
         $this->middleware('auth');
         $this->middleware('role:' . Role::USER);
