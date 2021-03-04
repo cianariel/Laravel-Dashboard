@@ -25,6 +25,7 @@ class BaseController extends Controller
     public function __construct()
     {
         parent::__construct();
+        $this->middleware('verified');
         $this->middleware('user.subscribed');
         $this->middleware('xss.sanitization');
         $this->middleware('auth');
