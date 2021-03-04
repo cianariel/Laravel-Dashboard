@@ -10,6 +10,8 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use App\Models\System\User;
+use App\Models\System\Role;
 
 /**
  * IndexController
@@ -36,6 +38,21 @@ class IndexController extends Controller
     public function index(Request $request)
     {
         $site = site(config('app.base_domain'));
+        if(\Auth::check())
+        {
+            $user = auth()->guard(User::GUARD)->user();
+
+            // If user is rep, redrects to user.setup.account
+            if ($user->hasRole(Role::USER)) {
+                return redirect()->route('user.setup.account');
+            }
+            
+            // If user is office, redrects to user.setup.account
+            elseif($user->hasRole(Role::OWNER)) {
+                return redirect()->route('office.setup.account');
+            }
+        }
+
 
         return view('frontend.index.index', compact('site'));
     }

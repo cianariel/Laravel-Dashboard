@@ -107,7 +107,7 @@ class RegisterController extends Controller
             $this->redirectTo = route('office.setup.account');
         }
 
-        event(new Registered($user));
+        $user->sendEmailVerificationNotification();
 
         return $user;
     }
