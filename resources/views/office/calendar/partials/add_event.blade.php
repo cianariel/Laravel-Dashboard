@@ -3,31 +3,8 @@
     'id'        => 'office-add-calendar-events-modal',
     'title'     => __('Add Appointent'),
     'size'      => 'modal-lg',
-    'buttons'   => [
-        [
-            'name'      => 'close-btn',
-            'value'     => '',
-            'label'     => __('Cancel'),
-            'attrs'     => [
-                'data-toggle'   => 'modal',
-                'data-target'   => '#ffice-add-calendar-events-modal'
-            ],
-            'classes'   => [
-                'btn',
-                'btn-secondary'
-            ]
-        ],
-        [
-            'id'        => 'save-btn',
-            'name'      => 'save-btn',
-            'value'     => '',
-            'label'     => __('Save Event'),
-            'classes'   => [
-                'btn',
-                'btn-primary'
-            ]
-        ]
-    ],
+    'buttons'   => '<button type="button" class="btn btn-secondary" data-target="#office-add-calendar-events-modal" data-toggle="modal">'.__('Close').'</button>' .
+                   '<button type="button" class="btn btn-primary" id="save-btn">'.__('Save Event').'</button',
     'options'       => [
         'backdrop'  => true,
         'keyboard'  => true,
@@ -235,7 +212,7 @@
     jQuery(document).ready(function($){
         let modal = $('#office-add-calendar-events-modal');
         let form = modal.find('#office-add-calendar-events-modal-form');
-        let btn = modal.find('button');
+        let btn = modal.find('#save-btn');
 
         btn.on('click touchend', function(e){
             e.preventDefault();

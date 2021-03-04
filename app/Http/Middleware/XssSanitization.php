@@ -27,7 +27,7 @@ class XssSanitization
     {
         $input = $request->all();
         array_walk_recursive($input, function(&$input) {
-            if(filled($input)) {
+            if(filled($input) && is_string($input)) {
                 $input = strip_tags($input);
             }
         });
