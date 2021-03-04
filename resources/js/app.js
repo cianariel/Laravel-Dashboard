@@ -927,8 +927,10 @@ window.mdTimePicker = function($) {
 
         timePickers.each(function(index){
             let parent = $(this);
+            let timeFormat = parent.data('time-format');
+
             let options = {
-                    timeFormat: 'h:i A',
+                    timeFormat: (timeFormat? timeFormat : 'h:i A'),
                     interval: 10,
                     dynamic: true,
                     dropdown: true,
