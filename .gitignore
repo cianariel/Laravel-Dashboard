@@ -43,6 +43,9 @@ public/webfonts/*
 
 public/mix-manifest.json
 
+public/mix-manifest.json
+./public/mix-manifest.json
+
 ### Linux ###
 *~
 
