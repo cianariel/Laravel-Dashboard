@@ -36,7 +36,7 @@
                 @if($offices->count())
                     @foreach($offices as $index => $office)
                         <div class="search-result-holder pl-3 pr-3 pt-4 pb-2" data-id="{{$office->uuid}}">
-                            <h5>{{ $office->name }}</h5>
+                            <h5>{{ $office->label }}</h5>
                             @php
                                 $location = $office->getMetaField('location', '');
                             @endphp

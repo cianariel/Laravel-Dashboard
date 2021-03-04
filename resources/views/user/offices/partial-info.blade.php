@@ -1,6 +1,6 @@
 <div id="office-info-container">
     <div class="p-4 mt-2">
-        <h5>{{ $office->name }}</h5>
+        <h5>{{ $office->label }}</h5>
         @php
             $location = $office->getMetaField('location', '');
         @endphp
