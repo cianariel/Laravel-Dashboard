@@ -36,6 +36,12 @@
     ]
 ])
     <div class="p-3">
+        @if(request()->has('dialog_message'))
+            <div class="alert alert-danger" role="alert">
+                {{ request()->input('dialog_message') }}
+            </div>
+            <div class="mb-3"></div>
+        @endif
         @component('components.forms.form', [
             'id'        => 'office-add-calendar-events-modal-form',
             'method'    => 'POST',
