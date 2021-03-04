@@ -190,9 +190,11 @@ if (! function_exists('format_phone')) {
 
     function format_phone($phone)
     {
-        if (preg_match('/^(\d{3})(\d{3})(\d{4})(\d{1,4})?$/', $phone, $matches)) {
-            $ext = !empty($matches[4]) ? " x{$matches[4]}" : '';
-            return '(' . $matches[1] . ') ' . $matches[2] . '-' . $matches[3] . $ext;
+        if(filled($phone)) {
+            if (preg_match('/^(\d{3})(\d{3})(\d{4})(\d{1,4})?$/', $phone, $matches)) {
+                $ext = !empty($matches[4]) ? " x{$matches[4]}" : '';
+                return '(' . $matches[1] . ') ' . $matches[2] . '-' . $matches[3] . $ext;
+            }
         }
 
         return $phone;

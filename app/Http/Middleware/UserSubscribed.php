@@ -6,6 +6,7 @@ namespace App\Http\Middleware;
 
 use App\Models\System\User;
 use App\Models\System\Role;
+use Illuminate\Http\Request;
 use Closure;
 
 class UserSubscribed
@@ -19,8 +20,8 @@ class UserSubscribed
      */
     public function handle($request, Closure $next)
     {
-        if ($request->guard(User::GUARD)->user()) {
-            $user = $request->user();
+        if (auth()->check()) {
+            $user = auth()->guard(User::GUARD)->user();
 
             if ($user->hasRole(Role::USER)) {
                 // Check if user hasn't paid subscription.
@@ -29,8 +30,8 @@ class UserSubscribed
                 }
 
                 // Check if hasn't choose a subscription
-                if ($usre->setup_completed == User::SETUP_INCOMPLETE) {
-                    return redirect('user.setup.account');
+                if ($user->setup_completed == User::SETUP_INCOMPLETE) {
+                    return redirect()->route('user.setup.account');
                 }
             }
         }

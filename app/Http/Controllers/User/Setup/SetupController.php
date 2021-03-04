@@ -60,7 +60,7 @@ class SetupController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if ($user->setup_completed != User::SETUP_COMPLETED) {
+        if (!$user->subscribed('default')) {
             return redirect()->route('user.setup.account.subscription.signup');
         }
 
