@@ -1,4 +1,3 @@
-{{-- Stored in /resources/views/user/account/edit.blade.php --}}
 @extends('user.layouts.master')
 @section('html-title', $office->label)
 @section('page-class', 'user-offices-view')
@@ -11,7 +10,7 @@
     ])
         <div class="row pt-5"">
             <div class="col-md-7">
-                <h5>{{ $office->name }}</h5>
+                <h5>{{ $office->label }}</h5>
                 @php
                     $location = $office->getMetaField('location', '');
                 @endphp
