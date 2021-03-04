@@ -19753,8 +19753,7 @@ body[id^=page-setup] #md-main {
   border: 1px solid #fff;
   border-bottom: 1px solid #ddd;
 }
-
-.search-result-holder:hover {
+.search-result-holder:hover, .search-result-holder.active {
   background: #034ea2;
   color: #fff;
 }
