@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
+use App\Models\System\Traits\HasAppointments;
 use App\Models\System\Traits\HasCalendarEvents;
 use App\Models\System\Traits\HasUsers;
 use App\Models\Shared\Model;
@@ -17,8 +18,9 @@ use App\Models\Shared\Model;
  */
 class Office extends Model
 {
-    use HasCalendarEvents;
-    use HasUsers;
+    use HasCalendarEvents,
+        HasAppointments,
+        HasUsers;
 
     /**
      * The database table used by the model.

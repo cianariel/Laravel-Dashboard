@@ -25,9 +25,9 @@ class CreateAppointmentsTable extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid');
+            $table->string('reference', 40)->unique();
             $table->string('user_id');
             $table->unsignedBigInteger('calendar_event_id')->nullable();
-            $table->string('reference', 40)->unique();
             $table->string('description', 100)->nullable();
             $table->string('status', 40)->default(Appointment::PENDING);
             $table->schemalessAttributes('meta_fields')->nullable();
