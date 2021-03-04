@@ -61,8 +61,7 @@ class SetupController extends BaseController
         $user = auth()->guard(User::GUARD)->user();
 
         if ($user->setup_completed != User::SETUP_COMPLETED) {
-            flash(__('Unauthorized access.'));
-            return redirect('/');
+            return redirect()->route('user.setup.account.subscription.signup');
         }
 
         $breadcrumbs = breadcrumbs([
