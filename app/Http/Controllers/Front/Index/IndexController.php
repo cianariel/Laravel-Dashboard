@@ -39,6 +39,7 @@ class IndexController extends Controller
     public function index(Request $request)
     {
         $site = site(config('app.base_domain'));
+
         if(auth()->check())
         {
             $user = auth()->guard(User::GUARD)->user();
