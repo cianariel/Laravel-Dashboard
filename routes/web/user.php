@@ -140,6 +140,12 @@ $routes = [
         'method'        => 'getPartialInfoContent',
         'name'          => 'offices.ajax.partial-info'
     ],
+    [
+        'path'          => 'messages',
+        'type'          => 'resource',
+        'controller'    => 'User\Message\MessagesController',
+        'except'        => ['create', 'edit', 'update']
+    ],
 ];
 
 Route::domain(config('app.base_domain'))->name('user.')->group(function () use (&$routes) {

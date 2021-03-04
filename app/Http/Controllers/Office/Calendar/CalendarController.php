@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 use App\Models\System\User;
 use App\Models\System\Role;
 use App\Models\System\CalendarEvent;
+use App\Models\System\Appointment;
 use App\Models\System\Office;
 use App\Rules\SanitizeHtml;
 use Illuminate\Support\Facades\Validator;
@@ -88,7 +89,7 @@ class CalendarController extends BaseController
             'section'       => ['required', 'string', Rule::in(CalendarEvent::VISIT_TYPES)],
             'date'          => ['required', 'string', 'date_format:m/d/Y', 'after_or_equal:today'],
             'start_time'    => ['required', 'string', 'date_format:g:i A'],
-            'end_time'      => ['nullable', 'string', 'date_format:g:i A'],
+            'end_time'      => ['nullable', 'string', 'date_format:g:i A', 'different:start_time'],
             'recurring'     => ['required', 'string', Rule::in(CalendarEvent::RECURRING_TYPES)],
             'repeat_type'   => ['required_if:recurring,true', 'string', Rule::in(CalendarEvent::REPEAT_TYPES)],
             'notes'         => ['nullable', 'string', 'max:250', new SanitizeHtml]
@@ -147,19 +148,46 @@ class CalendarController extends BaseController
                     $calendarEvent->uuid = Str::uuid();
                     $calendarEvent->reference = unique_reference('calendar_event');
                     $calendarEvent->title = $request->input('title');
-                    $calendarEvent->date = carbon(strtotime($request->input('date')));
-                    $calendarEvent->section = $request->input('section');
-                    $calendarEvent->start_time = carbon(strtotime($request->input('start_time')));
+                    $calendarEvent->start_at = carbon(strtotime($request->input('start_time')));
 
                     if(filled($request->input('end_time'))) {
-                        $calendarEvent->end_time = carbon(strtotime($request->input('end_time')));
+                        $calendarEvent->ends_at = carbon(strtotime($request->input('end_time')));
                     }
 
                     if($request->input('recurring') == CalendarEvent::RECURRING) {
-
                         $calendarEvent->setMetaField('repeat', $request->input('repeat_type'), false);
                     }
 
+                    $calendarEvent->setMetaField('section', $request->input('section'), false);
+                    $calendarEvent->setMetaField('date', $appointmentDate->format('m/d/Y'), false);
+                    $calendarEvent->setMetaField($request->input('notes'), null);
+
+                    $calendarEvent->save();
+                    $user->assignCalendarEvent($calendarEvent);
+                    $site->assignCalendarEvent($calendarEvent);
+
+                    // Appointment
+                    $appointment = new Appointment;
+                    $appointment->uuid = Str::uuid();
+                    $appointment->reference = unique_reference('appointment');
+                    $appointment->description = $calendarEvent->setMetaField('notes', '');
+                    $appointment->status = Appointment::SCHEDULED;
+                    $appointment->scheduled_on = carbon(strtotime($calendarEvent->getMetaField('date')));
+                    $appointment->setMetaField('rep_username', $repUser->username);
+                    $appointment->setMetaField('created_by_username'.  $user->username);
+                    $appointment->save();
+
+                    $site->assignAppointment($appointment);
+                    $appointment->assignCalendarEvent($calendarEvent);
+                    $appointment->assignUser($repUser);
+                    $appointment->assignOffice($office);
+
+                    if($user->id == $userOwner->id) {
+                        $appointment->assignUser($user);
+                    } else {
+                        $appointment->assignUser($user);
+                        $appointment->assignUser($userOwner);
+                    }
 
                     flash(__('Successfully added appointment.'));
                     return back();

@@ -44,7 +44,7 @@ class UserController extends BaseController
         if (
             $user->setup_completed != User::SETUP_COMPLETED
         ) {
-            return redirect()->route('user.profile.edit');
+            return redirect()->route('user.setup.account');
         } else {
             $breadcrumbs = breadcrumbs([
                 __('Dashboard')     => [
