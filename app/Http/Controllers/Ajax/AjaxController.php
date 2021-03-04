@@ -17,6 +17,7 @@ class AjaxController extends Controller
 {
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('force.https');
         $this->middleware('site.mode');
         $this->middleware('ajax.request');

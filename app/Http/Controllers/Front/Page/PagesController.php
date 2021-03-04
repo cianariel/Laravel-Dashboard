@@ -23,6 +23,14 @@ use App\Models\System\User;
  */
 class PagesController extends Controller
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('xss.sanitization');
+    }
+
+
     /**
      * Display page resource.
      *

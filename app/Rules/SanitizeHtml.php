@@ -10,7 +10,7 @@ use Illuminate\Contracts\Validation\Rule;
  * Rule for removing html tags
  *
  * @author    Antonio Vargas <localhost.80@gmail.com>
- * @copyright 2020 MDRepTime, LLC
+ * @copyright 2020 WorkVision, LLC
  * @package   App\Rules
  */
 class SanitizeHtml implements Rule
@@ -24,7 +24,7 @@ class SanitizeHtml implements Rule
      */
     public function passes($attribute, $value)
     {
-        return (clean($value, $attribute) == $value);
+        return (strip_tags($value?? '') == $value?? '');
     }
 
     /**
