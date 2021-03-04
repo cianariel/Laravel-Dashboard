@@ -30,7 +30,7 @@
                                 <div class="col-md-12" id="offices-search-container">
                                     @foreach($offices as $index =>$office)
                                         <div class="search-result-holder @if($index === 0) active @endif pl-3 pr-3 pt-4 pb-2" data-id="{{$office->uuid}}">
-                                            <h5>{{ $office->name }}</h5>
+                                            <h5>{{ $office->label }}</h5>
                                             @php
                                                 $location = $office->getMetaField('location', '');
                                             @endphp
@@ -95,7 +95,7 @@
                             if(offices.length){
                                 for(let office of offices){
                                     itemHtml += '<div class="search-result-holder'+ (currentOfficeId==office.uuid ? " active " : "") +' pl-3 pr-3 pt-4 pb-2" data-id="'+office.uuid+'">'
-                                        + '<h5>'+ office.name +'</h5>'
+                                        + '<h5>'+ office.label +'</h5>'
                                         + (office.meta_fields && office.meta_fields.location ? ('<div>' + office.meta_fields.location.address + ', ' + office.meta_fields.location.city + ", " + office.meta_fields.location.state + ' ' + office.meta_fields.location.zipcode + '</div>') : '')
                                         + '</div>'
                                     ;
