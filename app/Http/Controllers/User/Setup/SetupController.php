@@ -44,6 +44,7 @@ class SetupController extends BaseController
     {
         $this->middleware('xss.sanitization');
         $this->middleware('force.https');
+        $this->middleware('verified');
         $this->middleware('auth');
         $this->middleware('role:' . Role::USER);
         $this->middleware('user:' . User::GUARD);
@@ -60,7 +61,7 @@ class SetupController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
 
-        if ($user->setup_completed != User::SETUP_COMPLETED) {
+        if (!$user->subscribed('default')) {
             return redirect()->route('user.setup.account.subscription.signup');
         }
 
@@ -347,7 +348,7 @@ class SetupController extends BaseController
                 event(new EventSubscriptionCreated($user, $subscription));
             }
 
-            return redirect()->route('user.setup.complete');
+            return redirect()->route('user.setup.account');
         }
 
         flash(__('Unauthorized access.'));

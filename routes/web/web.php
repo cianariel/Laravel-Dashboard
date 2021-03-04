@@ -21,7 +21,6 @@ $routes = [
         'type'          => 'get',
         'controller'    => 'Front\Index\IndexController',
         'method'        => 'index',
-        'middleware'        => 'verified',
     ],
     [
         'path'          => 'page/{slug}',

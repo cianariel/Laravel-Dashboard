@@ -26,6 +26,7 @@ class IndexController extends Controller
     {
         parent::__construct();
         $this->middleware('xss.sanitization');
+        $this->middleware('user.subscribed');
     }
 
 
@@ -38,7 +39,8 @@ class IndexController extends Controller
     public function index(Request $request)
     {
         $site = site(config('app.base_domain'));
-        if(\Auth::check())
+
+        if(auth()->check())
         {
             $user = auth()->guard(User::GUARD)->user();
 
@@ -46,7 +48,7 @@ class IndexController extends Controller
             if ($user->hasRole(Role::USER)) {
                 return redirect()->route('user.setup.account');
             }
-            
+
             // If user is office, redrects to user.setup.account
             elseif($user->hasRole(Role::OWNER)) {
                 return redirect()->route('office.setup.account');
