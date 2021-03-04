@@ -12,4 +12,10 @@ class Controller extends BaseController
     use AuthorizesRequests;
     use DispatchesJobs;
     use ValidatesRequests;
+
+    public function __construct()
+    {
+        $this->middleware('force.https');
+        $this->middleware('xss.sanitization');
+    }
 }

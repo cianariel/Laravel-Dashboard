@@ -24,7 +24,8 @@ class BaseController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('force.https');
+        parent::__construct();
+        $this->middleware('xss.sanitization');
         $this->middleware('auth');
         $this->middleware('role:' . Role::USER);
         $this->middleware('user:' . User::GUARD);

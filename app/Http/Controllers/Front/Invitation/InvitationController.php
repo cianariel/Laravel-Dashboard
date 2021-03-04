@@ -25,6 +25,13 @@ use Exception;
  */
 class InvitationController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('xss.sanitization');
+    }
+
+
     /**
      * Display a listing of the resource.
      *

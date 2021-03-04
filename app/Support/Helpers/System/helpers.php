@@ -21,6 +21,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Mail\Mailable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\System\CalendarEvent;
 use App\Models\System\Appointment;
 use App\Models\System\TimeZone;
 use App\Models\System\Currency;
@@ -43,6 +44,36 @@ use App\Models\System\Post;
 use App\Jobs\SendMailJob;
 use App\Jobs\SendNotificationJob;
 use Stringy\Stringy;
+
+/**
+ * Shorthand for Carbon Date Class
+ *
+ * @author    Antonio Vargas <localhost.80@gmail.com>
+ * @copyright 2020 MdRepTime, LLC
+ *
+ * @param  mixed $date
+ * @throws \InvaildArgumentException
+ * @return \Carbon\Carbon
+ */
+if(! function_exists('carbon')) {
+
+    function carbon($date): ?Carbon
+    {
+        $carbon = null;
+
+        if(blank($date)) {
+            throw new \InvalidArgumentException('Missing date value.');
+        }
+
+        try {
+            $carbon = Carbon::parse($date);
+        } catch(\Exception $e) {
+            logger($e->getMessage());
+        }
+
+        return $carbon;
+    }
+}
 
 /**
  * Shorthand for Stringy
@@ -1536,7 +1567,7 @@ if (! function_exists('unique_name')) {
  */
 if (! function_exists('unique_reference')) {
 
-    function unique_reference($type, string $prefix = 'MD_')
+    function unique_reference($type, string $prefix = 'MD-')
     {
         if (filled($prefix) && strlen($prefix) !== 3) {
             $prefix = 'MD_';
@@ -1547,6 +1578,11 @@ if (! function_exists('unique_reference')) {
         $reference = $prefix . $suffix;
 
         switch ($type) {
+            case 'calendar_event':
+                while (CalendarEvent::where('reference', $reference)->exists()) {
+                    $suffix = Str::random(37);
+                    $reference = $prefix . $suffix;
+                }
             case 'appointment':
                 while (Appointment::where('reference', $reference)->exists()) {
                     $suffix = Str::random(37);

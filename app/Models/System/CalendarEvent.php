@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use App\Models\Shared\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\System\Traits\HasAppointments;
+use App\Models\Shared\Model;
 
 /**
  * CalendarEvent Eloquent Model
@@ -188,6 +189,8 @@ class CalendarEvent extends Model
     const CHRISTMAS_DAY = '12/25';
 
     /**
+     *  Associative array for holidays
+     *
      * @var array HOLIDAYS
      */
     const HOLIDAYS = [
@@ -204,6 +207,26 @@ class CalendarEvent extends Model
         'veterans_day'      => self::VETERANS_DAY,
         'christmas_eve'     => self::CHRISTMAS_EVE,
         'christmas_day'     => self::CHRISTMAS_DAY,
+    ];
+
+    /**
+     *
+     * @var HOLIDAYS_LIST
+     */
+    const HOLIDAYS_LIST = [
+        self::NEW_YEARS_EVE,
+        self::NEW_YEARS_DAY,
+        self::MLK_DAY,
+        self::EASTER_DAY,
+        self::GOOD_FRIDAY,
+        self::PRESIDENTS_DAY,
+        self::MEMORIAL_DAY,
+        self::INDEPENDENCE_DAY,
+        self::LABOR_DAY,
+        self::COLUMBUS_DAY,
+        self::VETERANS_DAY,
+        self::CHRISTMAS_EVE,
+        self::CHRISTMAS_DAY,
     ];
 
     /**
@@ -430,6 +453,7 @@ class CalendarEvent extends Model
      * @var array
      */
     protected $fillable = [
+        'reference',
         'title',
         'recurring',
         'meta_fields',
@@ -453,6 +477,7 @@ class CalendarEvent extends Model
     protected $casts = [
         'id'            => 'integer',
         'uuid'          => 'string',
+        'reference'     => 'string',
         'title'         => 'string',
         'recurring'     => 'string',
         'meta_fields'   => 'array',
