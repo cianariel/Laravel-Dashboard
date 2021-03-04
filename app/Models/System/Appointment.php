@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
+use App\Models\System\Traits\HasCalendarEvents;
 use App\Models\Shared\Model;
 
 /**
@@ -15,6 +16,8 @@ use App\Models\Shared\Model;
  */
 class Appointment extends Model
 {
+    use HasCalendarEvents;
+
     /**
      * The database table used by the model.
      *
@@ -89,6 +92,7 @@ class Appointment extends Model
     protected $casts = [
         'id'            => 'integer',
         'uuid'          => 'string',
+        'reference'     => 'string',
         'description'   => 'string',
         'status'        => 'string',
         'meta_fields'   => 'array',
