@@ -40,9 +40,9 @@
                         {{ __('Offices') }} 
                     @endcomponent
                 </li>
-                <li class="nav-item @if(Route::getCurrentRoute()->getName() == 'user.messages') active @endif">
+                <li class="nav-item @if(Route::getCurrentRoute()->getName() == 'user.messages.index') active @endif">
                     @component('components.elements.link', [
-                        'href'      => '#',
+                        'href'      => route('user.messages.index'),
                         'classes'   => ['nav-link']
                     ])
                         {{ __('Messages') }} 
