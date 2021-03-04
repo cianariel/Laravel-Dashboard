@@ -90,7 +90,7 @@ class CalendarController extends BaseController
             'start_time'    => ['required', 'string', 'date_format:g:i A'],
             'end_time'      => ['nullable', 'string', 'date_format:g:i A'],
             'recurring'     => ['required', 'string', Rule::in(CalendarEvent::RECURRING_TYPES)],
-            'repeat_type'   => ['nullable', 'string', Rule::in(CalendarEvent::REPEAT_TYPES)],
+            'repeat_type'   => ['required_if:recurring,true', 'string', Rule::in(CalendarEvent::REPEAT_TYPES)],
             'notes'         => ['nullable', 'string', 'max:250', new SanitizeHtml]
         ];
 
@@ -104,8 +104,69 @@ class CalendarController extends BaseController
                 $userOwner = $user;
             }
 
-            flash('Successfully added appointment.');
-            return back();
+            $office = $userOwner->offices()->first();
+            $holidaysClosedList = $office->getMetaField('holidays_closed', []);
+
+            $dialogMessage = '';
+            $appointmentDate = carbon($request->input('date'));
+            $appointmentDateYear = $appointmentDate->format('Y');
+            $currentDate = now();
+
+            $holidays = CalendarEvent::HOLIDAYS;
+
+            if(count($holidaysClosedList) !== 0) {
+
+                foreach($holidaysClosedList as $closedDay => $value ) {
+
+                    if($value == 'on') {
+
+                        if(isset($holidays[$closedDay])) {
+                            $holidayDate = $holidays[$closedDay];
+                            $holidayDate = carbon(strtotime($holidayDate))->format('m/d');
+                            $holidayDate = carbon(strtotime($holidayDate . '/'. $appointmentDateYear));
+                            $closeDayLabel = ucwords(str_replace('_', ' ', $closedDay));
+
+                            if($holidayDate->format('m/d/Y') == $appointmentDate->format('m/d/Y')) {
+                                $dialogMessage = __("Office is closed on {$closeDayLabel}.");
+                                return redirect()->route('office.dashboard', ['errors' => true, 'dialog_message' => $dialogMessage])->withInput()->withErrors($validator);
+                            }
+
+                        }
+                    }
+
+                }
+            }
+
+            if(
+                $repUser = User::role(Role::USER)->where('username', $request->input('username'))
+                                ->where('status', User::ACTIVE)->first()
+            ) {
+
+                if(carbon($appointmentDate)->greaterThanOrEqualTo(now())) {
+                    $calendarEvent = new CalendarEvent;
+                    $calendarEvent->uuid = Str::uuid();
+                    $calendarEvent->reference = unique_reference('calendar_event');
+                    $calendarEvent->title = $request->input('title');
+                    $calendarEvent->date = carbon(strtotime($request->input('date')));
+                    $calendarEvent->section = $request->input('section');
+                    $calendarEvent->start_time = carbon(strtotime($request->input('start_time')));
+
+                    if(filled($request->input('end_time'))) {
+                        $calendarEvent->end_time = carbon(strtotime($request->input('end_time')));
+                    }
+
+                    if($request->input('recurring') == CalendarEvent::RECURRING) {
+
+                        $calendarEvent->setMetaField('repeat', $request->input('repeat_type'), false);
+                    }
+
+
+                    flash(__('Successfully added appointment.'));
+                    return back();
+                } else {
+                    return redirect()->route('office.dashboard', ['errors'])->withInput()->withErrors($validator);
+                }
+            }
         }
 
         return redirect()->route('office.dashboard', ['errors'])->withInput()->withErrors($validator);

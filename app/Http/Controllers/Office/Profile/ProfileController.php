@@ -24,6 +24,13 @@ use App\Rules\PhoneRule;
  */
 class ProfileController extends BaseController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('xss.sanitization');
+    }
+
+
     /**
      * Display the specified resource.
      *
