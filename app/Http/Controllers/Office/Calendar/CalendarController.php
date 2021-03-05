@@ -92,10 +92,13 @@ class CalendarController extends BaseController
             'end_time'      => ['nullable', 'string', 'date_format:g:i A', 'different:start_time'],
             'recurring'     => ['required', 'string', Rule::in(CalendarEvent::RECURRING_TYPES)],
             'repeat_type'   => ['required_if:recurring,true', 'string', Rule::in(CalendarEvent::REPEAT_TYPES)],
-            'notes'         => ['nullable', 'string', 'max:250', new SanitizeHtml]
+            'notes'         => ['nullable', 'string', 'max:250', new SanitizeHtml],
+            'return_url'    => ['required', 'string', 'url']
         ];
 
         $validator = Validator::make($request->all(), $rules);
+
+        $redirectUrl = $request->input('return_url');
 
         if($validator->passes()) {
 
@@ -106,8 +109,9 @@ class CalendarController extends BaseController
             }
 
             $office = $userOwner->offices()->first();
-            $holidaysClosedList = $office->getMetaField('holidays_closed', []);
+            $officeHours = $office->getMetaField('office_hours', '');
 
+            $holidaysClosedList = $office->getMetaField('holidays_closed') ?? [];
             $dialogMessage = '';
             $appointmentDate = carbon($request->input('date'));
             $appointmentDateYear = $appointmentDate->format('Y');
@@ -129,7 +133,7 @@ class CalendarController extends BaseController
 
                             if($holidayDate->format('m/d/Y') == $appointmentDate->format('m/d/Y')) {
                                 $dialogMessage = __("Office is closed on {$closeDayLabel}.");
-                                return redirect()->route('office.dashboard', ['errors' => true, 'dialog_message' => $dialogMessage])->withInput()->withErrors($validator);
+                                return redirect("{$redirectUrl}?errors=true&{$dialogMessage}")->withInput()->withErrors($validator);
                             }
 
                         }
@@ -137,6 +141,60 @@ class CalendarController extends BaseController
 
                 }
             }
+
+            //dump($appointmentDate->format('m/d/Y j:i A')); exit;
+
+            if(filled($officeHours)) {
+                foreach($officeHours as $day => $options) {
+                    $dayName = ucfirst($day);
+
+                    if($appointmentDate->format('l') == $dayName ) {
+                        if(filled($options)) {
+                            if(isset($options['enabled']) && $options['enabled'] == 'off') {
+                                $dialogMessage = __("Office is closed on {$dayName}.");
+                                return redirect("{$redirectUrl}?errors=true&dialog_message={$dialogMessage}")->withInput()->withErrors($validator);
+                            }
+
+                            if(isset($options['enabled']) && $options['enabled'] == 'on') {
+
+                                if(
+                                    isset($options['start_hour']) && filled($options['start_hour']) &&
+                                    isset($options['start_hour_meridiem']) && filled($options['start_hour_meridiem'])
+                                ) {
+                                    $startHourOpened = $options['start_hour'];
+                                    $startHourOpenedMeridiem = strtoupper($options['start_hour_meridiem']);
+                                    $startHourOpen = carbon($appointmentDate->format('m/d/Y') . ' ' . $startHourOpened . ' ' . $startHourOpenedMeridiem);
+
+                                    if($appointmentDate->lt($startHourOpen)) {
+                                        $dialogMessage = __("Office is not open until {$startHourOpen->format('g:i A')} on {$dayName}");
+                                        return redirect("{$redirectUrl}?errors=true&dialog_message={$dialogMessage}")->withInput()->withErrors($validator);
+                                    }
+                                }
+
+                                if(
+                                    isset($options['end_hour']) && filled($options['end_hour']) &&
+                                    isset($options['end_hour_meridiem']) && filled($options['end_hour_meridiem'])
+                                ) {
+                                    $endHourClosed = $options['end_hour'];
+                                    $endHourClosedMeridiem = strtoupper($options['end_hour_meridiem']);
+                                    $endHourClosed = carbon($appointmentDate->format('m/d/Y') . ' ' . $endHourClosed . ' ' . $endHourClosedMeridiem);
+
+                                    if($appointmentDate->gte($endHourClosed) || $appointmentDate->lt($endHourClosed)) {
+                                        $dialogMessage = __("Office is close by {$startHourClosed->format('g:i A')} on {$dayName}");
+                                        return redirect("{$redirectUrl}?errors=true&dialog_message={$dialogMessage}")->withInput()->withErrors($validator);
+                                    }
+                                }
+                            } else {
+                                $dialogMessage = __("Office is close on {$dayName}");
+                                return redirect("{$redirectUrl}?errors=true&dialog_message={$dialogMessage}")->withInput()->withErrors($validator);
+                            }
+                        }
+                    }
+                }
+            }
+
+            exit;
+
 
             if(
                 $repUser = User::role(Role::USER)->where('username', $request->input('username'))
@@ -193,12 +251,13 @@ class CalendarController extends BaseController
                     flash(__('Successfully added appointment.'));
                     return back();
                 } else {
-                    return redirect()->route('office.dashboard', ['errors'])->withInput()->withErrors($validator);
+                    $dialogMessage = "Appointment must greater then current date and time.";
+                    return redirect("{$redirectUrl}?errors=true&dialog_message={$dialogMessage}")->withInput()->withErrors($validator);
                 }
             }
         }
 
-        return redirect()->route('office.dashboard', ['errors'])->withInput()->withErrors($validator);
+        return redirect("{$redirectUrl}?errors=true")->withInput()->withErrors($validator);
     }
 
     /**

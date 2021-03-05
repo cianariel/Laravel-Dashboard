@@ -35,7 +35,15 @@ class OfficeController extends BaseController
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
         $events = [];
-        $office = office_owner($user)->offices()->first();
+
+        if($user->hasRole(Role::OWNER)) {
+            $officeOwner = $user;
+        } else {
+            $officeOwner = office_owner($user);
+        }
+
+        $office = $officeOwner->offices()->first();
+
 
         if (
             $user->setup_completed == User::SETUP_COMPLETED
@@ -68,20 +76,29 @@ class OfficeController extends BaseController
                 }
             }
 
-            $reps = $site->users()->role(Role::USER)->where('status', User::ACTIVE)->cursor();
+            $reps = $site->users()->role(Role::USER)->where('status', User::ACTIVE)->get();
+
             $repUsers = [];
-            $approvedReps = $office->getMetaField('approved_users', []);
 
-            if($reps->count() !== 0) {
-                foreach($reps as $rep) {
-                    if($rep->subscribed('default') === true) {
-                        if(in_array($rep->username, $approvedReps) === true) {
-                            $repUsers[$rep->username] = ('(' . $rep->company?? Str::upper($rep->username)) . ')' . " {$rep->first_name} {$rep->last_name}";
+            if($office->getMetaField('visitation_rules->require_approve_appointments', 'off') == 'on') {
+                $approvedReps = $office->getMetaField('approved_users', []);
+
+                if($reps->count() !== 0 && filled($approvedReps)) {
+                    foreach($reps as $rep) {
+                        if($rep->subscribed('default') === true) {
+                            if(in_array($rep->username, $approvedReps) === true) {
+                                $repUsers[$rep->username] = ('(' . $rep->company?? Str::upper($rep->username)) . ')' . " {$rep->first_name} {$rep->last_name}";
+                            }
+
                         }
-
                     }
                 }
+            } else {
+                foreach($reps as $rep) {
+                    $repUsers[$rep->username] = ('(' . $rep->company?? Str::upper($rep->username)) . ')' . " {$rep->first_name} {$rep->last_name}";
+                }
             }
+
 
             $calendarOptions = [
                 'themeSystem'   => 'bootstrap',
