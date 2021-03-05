@@ -43,7 +43,7 @@ trait HasMetaFields
             $name = str_replace('->', '.', $name);
         }
 
-        return (filled($defaultValue)) ? $this->meta_fields->get($name, $defaultValue) : $this->meta_fields->get($name);
+        return $this->meta_fields->get($name, $defaultValue);
     }
 
     /**
