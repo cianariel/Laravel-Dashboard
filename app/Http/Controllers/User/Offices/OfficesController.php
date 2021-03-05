@@ -58,7 +58,7 @@ class OfficesController extends BaseController
         $this->checkCompletedProfile();
 
         $user = auth()->guard(User::GUARD)->user();
-        $offices = $user->offices()->get(['uuid', 'name', 'label', 'meta_fields']);
+        $offices = $user->offices()->get();
 
         $breadcrumbs = breadcrumbs([
             __('Dashboard') => [
