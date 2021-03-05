@@ -50,7 +50,7 @@ var registerWrapper = function registerWrapper(stripe, startTime) {
 
   stripe._registerWrapper({
     name: 'stripe-js',
-    version: "1.12.1",
+    version: "1.13.1",
     startTime: startTime
   });
 };
@@ -27494,7 +27494,7 @@ try {
 } catch (e) {}
 
 try {
-  __webpack_require__(/*! @stripe/stripe-js */ "./node_modules/@stripe/stripe-js/dist/stripe.esm.js");
+  window.stripe = __webpack_require__(/*! @stripe/stripe-js */ "./node_modules/@stripe/stripe-js/dist/stripe.esm.js");
 } catch (e) {}
 
 try {
