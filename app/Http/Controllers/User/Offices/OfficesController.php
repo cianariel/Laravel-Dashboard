@@ -28,6 +28,7 @@ class OfficesController extends BaseController
      */
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('xss.sanitization');
         $this->middleware('force.https');
         $this->middleware('auth');
@@ -57,7 +58,7 @@ class OfficesController extends BaseController
         $this->checkCompletedProfile();
 
         $user = auth()->guard(User::GUARD)->user();
-        $offices = $user->offices()->get(['uuid', 'name', 'label', 'meta_fields']);
+        $offices = $user->offices()->get();
 
         $breadcrumbs = breadcrumbs([
             __('Dashboard') => [

@@ -218,7 +218,7 @@ class CalendarController extends BaseController
 
                     $calendarEvent->setMetaField('section', $request->input('section'), false);
                     $calendarEvent->setMetaField('date', $appointmentDate->format('m/d/Y'), false);
-                    $calendarEvent->setMetaField($request->input('notes'), null);
+                    $calendarEvent->setMetaField('notes', $request->input('notes'), false);
 
                     $calendarEvent->save();
                     $user->assignCalendarEvent($calendarEvent);
@@ -227,8 +227,9 @@ class CalendarController extends BaseController
                     // Appointment
                     $appointment = new Appointment;
                     $appointment->uuid = Str::uuid();
+                    $appointment->user_id = $repUser->id;
                     $appointment->reference = unique_reference('appointment');
-                    $appointment->description = $calendarEvent->setMetaField('notes', '');
+                    $appointment->description = $calendarEvent->getMetaField('notes', '');
                     $appointment->status = Appointment::SCHEDULED;
                     $appointment->scheduled_on = carbon(strtotime($calendarEvent->getMetaField('date')));
                     $appointment->setMetaField('rep_username', $repUser->username);
