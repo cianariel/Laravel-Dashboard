@@ -25,7 +25,7 @@
                                 <div class="left-panel">
                                     <div class="row">
                                         <div class="col-12">
-                                            <img class="pull-left profile-image" src="{{$profile_img_url}}" />
+                                            <div class="pull-left profile-image" style="background-image:{{$profile_img_url}}"></div>
                                             <div class="pull-left ml-4">
                                                 <h4>{{$user->first_name}} {{$user->last_name}}</h4>
                                                 <div>{{$user->company}} @if($user->getMetaField('drugs')) for @endif {{ is_array($user->getMetaField('drugs')) ? implode(", ", $user->getMetaField('drugs')) : $user->getMetaField('drugs') }}</div>

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Models\System;
 
 use App\Models\System\Traits\HasCalendarEvents;
+use App\Models\System\Traits\HasUsers;
+use App\Models\System\Traits\HasOffices;
 use App\Models\Shared\Model;
 
 /**
@@ -17,6 +19,8 @@ use App\Models\Shared\Model;
 class Appointment extends Model
 {
     use HasCalendarEvents;
+    use HasUsers;
+    use HasOffices;
 
     /**
      * The database table used by the model.

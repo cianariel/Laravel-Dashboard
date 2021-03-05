@@ -26,7 +26,7 @@ class BaseController extends Controller
     {
         parent::__construct();
         $this->middleware('verified');
-        $this->middleware('user.subscribed');
+        $this->middleware('user.subscribed', ['except' => ['selectSubscription']]);
         $this->middleware('xss.sanitization');
         $this->middleware('auth');
         $this->middleware('role:' . Role::USER);

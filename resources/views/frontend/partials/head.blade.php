@@ -18,6 +18,7 @@
     <title>{{ env('APP_NAME') }}@hasSection('html-title') - @endif @yield('html-title', setting('site_title', env('APP_DOMAIN'), true))</title>
     {{--[/title]--}}
     {{--[scripts]--}}
+    @component('components.elements.script', ['src' => 'https://js.stripe.com/v3/'])@endcomponent
     @component('components.elements.script', ['src' => mix('js/manifest.js')])@endcomponent
     @component('components.elements.script', ['src' => mix('js/vendor.js')])@endcomponent
     @component('components.elements.script', ['src' => mix('js/app.js')])@endcomponent
