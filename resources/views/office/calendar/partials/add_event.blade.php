@@ -27,6 +27,11 @@
                 'no-form-update-handler'
             ]
         ])
+            @component('components.forms.hidden', [
+                'id'    => 'return_url',
+                'name'  => 'return_url',
+                'value' => url()->current()
+            ])@endcomponent
             {{--[username]--}}
             <h5 class="card-text font-sm-size">{{ __('Rep') }}</h5>
             @component('components.forms.select', [

@@ -57,8 +57,8 @@
                                             'id'            => 'days.monday.start_hour',
                                             'name'          => 'days[monday][start_hour]',
                                             'value'         => old('days.monday.start_hour')?? $office->getMetaField('office_hours->monday->start_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.monday.start_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -93,8 +93,8 @@
                                             'id'            => 'days-monday-end_hour',
                                             'name'          => 'days[monday][end_hour]',
                                             'value'         => old('days.monday.end_hour')?? $office->getMetaField('office_hours->monday->end_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.monday.end_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -152,8 +152,8 @@
                                             'id'            => 'days-tuesday-start_hour',
                                             'name'          => 'days[tuesday][start_hour]',
                                             'value'         => old('days.tuesday.start_hour')?? $office->getMetaField('office_hours->tuesday->start_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.tuesday.start_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -188,8 +188,8 @@
                                             'id'            => 'days-tuesday-end_hour',
                                             'name'          => 'days[tuesday][end_hour]',
                                             'value'         => old('days.tuesday.end_hour')?? $office->getMetaField('office_hours->tuesday->end_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.tuesday.end_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -247,8 +247,8 @@
                                             'id'            => 'days-wednesday-start_hour',
                                             'name'          => 'days[wednesday][start_hour]',
                                             'value'         => old('days.wednesday.start_hour')?? $office->getMetaField('office_hours->wednesday->start_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.wednesday.start_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -283,8 +283,8 @@
                                             'id'            => 'days-wednesday-end_hour',
                                             'name'          => 'days[wednesday][end_hour]',
                                             'value'         => old('days.wednesday.end_hour')?? $office->getMetaField('office_hours->wednesday->end_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.wednesday.end_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -342,8 +342,8 @@
                                             'id'            => 'days-thursday-start_hour',
                                             'name'          => 'days[thursday][start_hour]',
                                             'value'         => old('days.thursday.start_hour')?? $office->getMetaField('office_hours->thursday->start_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.thursday.start_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -378,8 +378,8 @@
                                             'id'            => 'days-thursday-end_hour',
                                             'name'          => 'days[thursday][end_hour]',
                                             'value'         => old('days.thursday.end_hour')?? $office->getMetaField('office_hours->thursday->end_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.thursday.end_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -437,7 +437,7 @@
                                             'id'            => 'days-friday-start_hour',
                                             'name'          => 'days[friday][start_hour]',
                                             'value'         => old('days.friday.start_hour')?? $office->getMetaField('office_hours->friday->start_hour'),
-                                            'placeholder'   => '00:00',
+                                            'placeholder'   => '0:00',
                                         ])
                                             @error('days.friday.start_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -472,8 +472,8 @@
                                             'id'            => 'days-friday-end_hour',
                                             'name'          => 'days[friday][end_hour]',
                                             'value'         => old('days.friday.end_hour')?? $office->getMetaField('office_hours->friday->end_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.friday.end_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -531,8 +531,8 @@
                                             'id'            => 'days-saturday-start_hour',
                                             'name'          => 'days[saturday][start_hour]',
                                             'value'         => old('days.saturday.start_hour')?? $office->getMetaField('office_hours->saturday->start_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.saturday.start_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -567,8 +567,8 @@
                                             'id'            => 'days-saturday-end_hour',
                                             'name'          => 'days[saturday][end_hour]',
                                             'value'         => old('days.saturday.end_hour')?? $office->getMetaField('office_hours->saturday->end_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.saturday.end_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -626,8 +626,8 @@
                                             'id'            => 'days-sunday-start_hour',
                                             'name'          => 'days[sunday][start_hour]',
                                             'value'         => old('days.sunday.start_hour')?? $office->getMetaField('office_hours->sunday->start_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.sunday.start_hour')
                                                 <span class="font-xxs-size fg-red">
@@ -657,13 +657,13 @@
                             <td>-</td>
                             <td>
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-6">
                                         @component('components.forms.timepicker', [
                                             'id'            => 'days-sunday-end_hour',
                                             'name'          => 'days[sunday][end_hour]',
                                             'value'         => old('days.sunday.end_hour')?? $office->getMetaField('office_hours->sunday->end_hour'),
-                                            'placeholder'   => '00:00',
-                                            'time_format'   => 'h:i',
+                                            'placeholder'   => '0:00',
+                                            'time_format'   => 'g:i',
                                         ])
                                             @error('days.sunday.end_hour')
                                                 <span class="font-xxs-size fg-red">
