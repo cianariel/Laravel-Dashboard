@@ -28,6 +28,7 @@ class OfficesController extends BaseController
      */
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('xss.sanitization');
         $this->middleware('force.https');
         $this->middleware('auth');
