@@ -62,7 +62,7 @@ try {
 } catch (e) {}
 
 try {
-    require('@stripe/stripe-js');
+    window.stripe = require('@stripe/stripe-js');
 } catch (e) {}
 
 try {
