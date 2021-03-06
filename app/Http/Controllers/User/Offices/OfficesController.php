@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 use App\Models\System\Role;
 use App\Models\System\User;
 use App\Models\System\Office;
+use App\Notifications\User\Appointment\ApprovalRequestNotification;
 use Exception;
 
 /**
@@ -58,7 +59,7 @@ class OfficesController extends BaseController
         $this->checkCompletedProfile();
 
         $user = auth()->guard(User::GUARD)->user();
-        $offices = $user->offices()->get();
+        $offices = $user->offices()->withPivot('status')->get();
 
         $breadcrumbs = breadcrumbs([
             __('Dashboard') => [
@@ -168,6 +169,24 @@ class OfficesController extends BaseController
     }
 
     /**
+     * Request approval
+     */
+    public function requestApproval(Request $request)
+    {
+        $office_id = $request->get("office_id");
+        $office = Office::where('uuid', $office_id)->first();
+        $user = auth()->guard(User::GUARD)->user();
+        $owner = $office->getOwner();
+
+        if($owner){
+            $owner->notify((new ApprovalRequestNotification($owner, $user, $office)) );
+        }
+
+        flash (__('Successfully sent an approval request.'));
+        return redirect()->route('user.offices.index');
+    }
+
+    /**
      * Search non my offices by keyword
      */
     public function searchNonMyOffices(Request $request)
@@ -245,7 +264,8 @@ class OfficesController extends BaseController
     public function getPartialInfoContent(Request $request)
     {
         $id = $request->get('id');
-        $office = Office::where('uuid', $id)->first();
+        $user = auth()->guard(User::GUARD)->user();
+        $office = $user->offices()->withPivot('status')->where('uuid', $id)->first();
 
         $content = view('user.offices.partial-info',
             compact('office')

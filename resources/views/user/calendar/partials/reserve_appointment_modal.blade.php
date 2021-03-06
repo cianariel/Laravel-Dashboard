@@ -21,11 +21,17 @@
         @component('components.forms.form', [
             'id'        => 'user-reserve-appointment-modal-form',
             'method'    => 'POST',
-            'action'    => route('office.calendar.store'),
+            'action'    => route('user.calendar.store'),
             'classes'   => [
                 'no-form-update-handler'
             ]
         ])
+            @component('components.forms.hidden', [
+                'id'    => 'return_url',
+                'name'  => 'return_url',
+                'value' => url()->current()
+            ])@endcomponent
+
             <input type="hidden" name="office_uuid" value="{{$office_uuid}}">
             {{--[title]--}}
             <h5 class="card-text font-sm-size">{{ __('Title') }}</h5>
