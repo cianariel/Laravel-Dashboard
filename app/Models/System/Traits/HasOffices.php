@@ -23,7 +23,7 @@ trait HasOffices
      */
     public function offices()
     {
-        return $this->belongsToMany(Office::class)->withPivot('status');
+        return $this->belongsToMany(Office::class);
     }
 
     /**
