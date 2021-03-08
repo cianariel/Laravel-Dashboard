@@ -66,15 +66,29 @@ class OfficeController extends BaseController
                 if($appointments->count() !== 0) {
                     foreach($appointments as $appointment) {
 
-                        $description = ($appointment->description . ' - ' . (carbon($appointment->scheduled_on)->format('g:i A')) . ' to ' . carbon($appointment->scheduled_end)->format('g:i A'));
+                        if(
+                            $repUser = $site->users()
+                                        ->where('id', $appointment->user_id)
+                                        ->where('status', User::ACTIVE)
+                                        ->first()
+                        ) {
 
-                        $events->push( [
-                            'id'        => $appointment->uuid,
-                            'title'     => $description,
-                            'start'     => carbon($appointment->scheduled_on)->format('Y-m-d'),
-                            'end'       => carbon($appointment->scheduled_end)->format('Y-m-d'),
-                            'editable'  => false,
-                        ]);
+                            if($repUser->subscribed('default') === true) {
+
+                                $name = $repUser->company?? "{$repUser->first_name} {$repUser->last_name}";
+
+                                $description = ( $name . ' - ' . (carbon($appointment->scheduled_on)->format('g:i A')) . ' to ' . carbon($appointment->scheduled_end)->format('g:i A'));
+
+                                $events->push( [
+                                    'id'        => $appointment->uuid,
+                                    'title'     => $description,
+                                    'start'     => carbon($appointment->scheduled_on)->format('Y-m-d'),
+                                    'end'       => carbon($appointment->scheduled_end)->format('Y-m-d'),
+                                    'editable'  => false,
+                                ]);
+                            }
+
+                        }
                     }
                 }
             }
