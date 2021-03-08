@@ -73,7 +73,6 @@ class Appointment extends Model
      */
     protected $fillable = [
         'user_id',
-        'calendar_event_id',
         'description',
         'status',
         'meta_fields',
@@ -101,6 +100,7 @@ class Appointment extends Model
         'status'        => 'string',
         'meta_fields'   => 'array',
         'scheduled_on'  => 'datetime',
+        'scheduled_end'  => 'datetime',
         'previous_date' => 'datetime',
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime'

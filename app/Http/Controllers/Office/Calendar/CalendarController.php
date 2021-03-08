@@ -88,8 +88,8 @@ class CalendarController extends BaseController
             'title'         => ['required', 'string', 'max:100', new SanitizeHtml],
             'section'       => ['required', 'string', Rule::in(CalendarEvent::VISIT_TYPES)],
             'date'          => ['required', 'string', 'date_format:m/d/Y', 'after_or_equal:today'],
-            'start_time'    => ['required', 'string', 'date_format:h:i A'],
-            'end_time'      => ['nullable', 'string', 'date_format:h:i A', 'different:start_time'],
+            'start_time'    => ['required', 'string', 'date_format:g:i A'],
+            'end_time'      => ['nullable', 'string', 'date_format:g:i A', 'different:start_time'],
             'recurring'     => ['required', 'string', Rule::in(CalendarEvent::RECURRING_TYPES)],
             'repeat_type'   => ['required_if:recurring,true', 'string', Rule::in(CalendarEvent::REPEAT_TYPES)],
             'notes'         => ['nullable', 'string', 'max:250', new SanitizeHtml],
@@ -164,8 +164,10 @@ class CalendarController extends BaseController
                                     $startHourOpened = $options['start_hour'];
                                     $startHourOpenedMeridiem = strtoupper($options['start_hour_meridiem']);
                                     $startHourOpen = carbon($appointmentDate->format('m/d/Y') . ' ' . $startHourOpened . ' ' . $startHourOpenedMeridiem);
+                                    $appointmentDateStart = carbon($appointmentDate->format('m/d/y') . ' ' . $request->input('start_time'));
 
-                                    if($appointmentDate->lt($startHourOpen)) {
+
+                                    if($startHourOpen->gte($appointmentDateStart)) {
                                         $dialogMessage = __("Office is not open until {$startHourOpen->format('g:i A')} on {$dayName}");
                                         return redirect("{$redirectUrl}?errors=true&dialog_message={$dialogMessage}")->withInput()->withErrors($validator);
                                     }
@@ -178,9 +180,10 @@ class CalendarController extends BaseController
                                     $endHourClosed = $options['end_hour'];
                                     $endHourClosedMeridiem = strtoupper($options['end_hour_meridiem']);
                                     $endHourClosed = carbon($appointmentDate->format('m/d/Y') . ' ' . $endHourClosed . ' ' . $endHourClosedMeridiem);
+                                    $appointmentDateEnd = carbon($appointmentDate->format('m/d/y') . ' ' . $request->input('end_time'));
 
-                                    if($appointmentDate->gte($endHourClosed) || $appointmentDate->lt($endHourClosed)) {
-                                        $dialogMessage = __("Office is close by {$startHourClosed->format('g:i A')} on {$dayName}");
+                                    if($endHourClosed->lt($appointmentDateEnd) && $startHourOpen->lte($appointmentDateEnd)) {
+                                        $dialogMessage = __("Office is close by {$endHourClosed->format('g:i A')} on {$dayName}");
                                         return redirect("{$redirectUrl}?errors=true&dialog_message={$dialogMessage}")->withInput()->withErrors($validator);
                                     }
                                 }
@@ -193,8 +196,17 @@ class CalendarController extends BaseController
                 }
             }
 
-            exit;
+            // Check if a appointment already exists
+            if(
+                $userOwner->appointments()->where('status', Appointment::SCHEDULED)->where('scheduled_on', $appointmentDateStart)->exists() ||
+                $userOwner->appointments()->where('status', Appointment::SCHEDULED)->where('scheduled_end', $appointmentDateStart)->exists()
+            ) {
+                $dialogMessage = __("A appointment already exists between {$appointmentDateStart->format('m/d/y g:i A')} and {$appointmentDateEnd->format('m/d/y g:i A')}");
+                return redirect("{$redirectUrl}?errors=true&dialog_message={$dialogMessage}")->withInput()->withErrors($validator);
+            }
 
+
+            // Create appointment and calendar event
 
             if(
                 $repUser = User::role(Role::USER)->where('username', $request->input('username'))
@@ -206,18 +218,15 @@ class CalendarController extends BaseController
                     $calendarEvent->uuid = Str::uuid();
                     $calendarEvent->reference = unique_reference('calendar_event');
                     $calendarEvent->title = $request->input('title');
-                    $calendarEvent->start_at = carbon(strtotime($request->input('start_time')));
+                    $calendarEvent->start_at = $appointmentDateStart
 
-                    if(filled($request->input('end_time'))) {
-                        $calendarEvent->ends_at = carbon(strtotime($request->input('end_time')));
-                    }
+                    $calendarEvent->ends_at = $appointmentDateEnd;
 
                     if($request->input('recurring') == CalendarEvent::RECURRING) {
                         $calendarEvent->setMetaField('repeat', $request->input('repeat_type'), false);
                     }
 
                     $calendarEvent->setMetaField('section', $request->input('section'), false);
-                    $calendarEvent->setMetaField('date', $appointmentDate->format('m/d/Y'), false);
                     $calendarEvent->setMetaField('notes', $request->input('notes'), false);
 
                     $calendarEvent->save();
@@ -231,12 +240,15 @@ class CalendarController extends BaseController
                     $appointment->reference = unique_reference('appointment');
                     $appointment->description = $calendarEvent->getMetaField('notes', '');
                     $appointment->status = Appointment::SCHEDULED;
-                    $appointment->scheduled_on = carbon(strtotime($calendarEvent->getMetaField('date')));
+                    $appointment->scheduled_on = $appointmentDateStart;
+                    $appointment->scheduled_end = $appointmentDateEnd;
+
                     $appointment->setMetaField('rep_username', $repUser->username);
                     $appointment->setMetaField('created_by_username'.  $user->username);
                     $appointment->save();
 
                     $site->assignAppointment($appointment);
+
                     $appointment->assignCalendarEvent($calendarEvent);
                     $appointment->assignUser($repUser);
                     $appointment->assignOffice($office);
@@ -249,7 +261,7 @@ class CalendarController extends BaseController
                     }
 
                     flash(__('Successfully added appointment.'));
-                    return back();
+                    return redirect("{$redirectUrl}");
                 } else {
                     $dialogMessage = "Appointment must greater then current date and time.";
                     return redirect("{$redirectUrl}?errors=true&dialog_message={$dialogMessage}")->withInput()->withErrors($validator);

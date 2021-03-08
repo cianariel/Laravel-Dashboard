@@ -25,10 +25,7 @@
             </dov>
             @component('components.elements.fullcalendar', [
                 'id'        => 'office-dashboard-calendar',
-                'options'   => $calendarOptions??  [
-                    'themeSystem'   => 'bootstrap',
-                    'initialView'   =>'dayGridMonth'
-                ]
+                'events'    => $events
             ])@endcomponent
         </div>
     @endcomponent
