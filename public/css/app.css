@@ -19741,7 +19741,11 @@ body[id^=page-setup] #md-main {
   color: #fff;
 }
 .page-user-account .left-panel .profile-image {
+  background-image: url(http://mainhost:9910/storage/7/conversions/Maksim-thumb.jpg);
   width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
   border-radius: 50%;
 }
 .page-user-account .right-panel {

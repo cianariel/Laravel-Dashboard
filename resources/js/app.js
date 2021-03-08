@@ -935,7 +935,7 @@ window.mdTimePicker = function($) {
                     dynamic: true,
                     dropdown: true,
                     scrollbar: true,
-                    step: 5
+                    step: 15
             };
             let input = parent.find('input[type="text"]');
             input.timepicker(options);

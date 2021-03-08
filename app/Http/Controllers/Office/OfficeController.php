@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\System\User;
 use App\Models\System\Role;
 use App\Models\System\CalendarEvent;
+use App\Models\System\Appointment;
 
 /**
  * OfficeController
@@ -34,7 +35,7 @@ class OfficeController extends BaseController
     {
         $site = site(config('app.base_domain'));
         $user = auth()->guard(User::GUARD)->user();
-        $events = [];
+        $events = collect([]);
 
         if($user->hasRole(Role::OWNER)) {
             $officeOwner = $user;
@@ -57,21 +58,23 @@ class OfficeController extends BaseController
             ]);
 
             if(
-                $calendarEvents = $office->calendarEvents()
-                                         ->where('status', CalendarEvent::ACTIVE)
-                                         ->whereMonth('start_at', now()->format('m'))
-                                         ->select(CalendarEvent::SIMPLE_QUERY_SELECT)
+                $appointments = $office->appointments()
+                                         ->where('status', Appointment::SCHEDULED)
                                          ->cursor()
             ) {
 
-                if($calendarEvents->count() != 0) {
-                    foreach($calendarEvents as $calendarEvent) {
-                        $events[] = [
-                            'title'     => $calendarEvent->title,
-                            'start'     => carbon($calendarEvent->start_at)->format('Y-m-d'),
-                            'end'       => carbon($calendarEvent->ends_at)->format('Y-m-d'),
+                if($appointments->count() !== 0) {
+                    foreach($appointments as $appointment) {
+
+                        $description = ($appointment->description . ' - ' . (carbon($appointment->scheduled_on)->format('g:i A')) . ' to ' . carbon($appointment->scheduled_end)->format('g:i A'));
+
+                        $events->push( [
+                            'id'        => $appointment->uuid,
+                            'title'     => $description,
+                            'start'     => carbon($appointment->scheduled_on)->format('Y-m-d'),
+                            'end'       => carbon($appointment->scheduled_end)->format('Y-m-d'),
                             'editable'  => false,
-                        ];
+                        ]);
                     }
                 }
             }
@@ -106,7 +109,7 @@ class OfficeController extends BaseController
                 'events'        => $events
             ];
 
-            return view('office.dashboard.index', compact('site', 'user', 'breadcrumbs', 'calendarOptions', 'repUsers'));
+            return view('office.dashboard.index', compact('site', 'user', 'breadcrumbs', 'calendarOptions', 'repUsers', 'events'));
         } else {
             return redirect()->route('office.setup.account');
         }

@@ -28300,7 +28300,7 @@ window.mdTimePicker = function ($) {
         dynamic: true,
         dropdown: true,
         scrollbar: true,
-        step: 5
+        step: 15
       };
       var input = parent.find('input[type="text"]');
       input.timepicker(options);
@@ -28315,6 +28315,16 @@ window.mdHandleDataRedirectHtmlAttr = function ($) {
   elements.on('click touchend', function (e) {
     var element = $(this);
     var url = element.data('redirect-url');
+    window.location.href = url;
+  });
+};
+
+window.mdDataRedirectUrlByClass = function ($) {
+  var elements = $('.md-redirect-url-overlay');
+  elements.on('click touchend', function (e) {
+    e.preventDefault();
+    var url = $(this).attr('href');
+    gbOverlay('show');
     window.location.href = url;
   });
 }; // On Document Ready
@@ -28406,14 +28416,22 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-// import Echo from 'laravel-echo';
-// window.Pusher = require('pusher-js');
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
+
+/*
+import Echo from "laravel-echo"
+
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    wsHost: window.location.hostname,
+    wsPort: process.env.MIX_PUSHER_PORT,
+    wssPort: process.env.MIX_PUSHER_PORT,
+    disableStats: true,
+    cluster: null,
+    encrypted: true,
+});*/
 
 /***/ }),
 
