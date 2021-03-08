@@ -89,4 +89,15 @@ class Office extends Model
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime'
     ];
+
+    public function getOwner()
+    {
+        foreach($this->users()->get() as $user){
+            if($user->hasRole(Role::OWNER)){
+                return $user;
+            }
+        }
+        return false;
+    }
+
 }
