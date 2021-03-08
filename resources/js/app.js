@@ -956,6 +956,18 @@ window.mdHandleDataRedirectHtmlAttr = function($)
     });
 }
 
+window.mdDataRedirectUrlByClass = function($) {
+    let elements = $('.md-redirect-url-overlay');
+
+    elements.on('click touchend', function(e) {
+        e.preventDefault();
+
+        let url = $(this).attr('href');
+        gbOverlay('show');
+        window.location.href = url;
+    });
+}
+
 
 // On Document Ready
 //-----------------------------------------//
