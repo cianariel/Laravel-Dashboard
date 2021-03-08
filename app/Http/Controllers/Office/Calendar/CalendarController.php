@@ -214,11 +214,12 @@ class CalendarController extends BaseController
             ) {
 
                 if(carbon($appointmentDate)->greaterThanOrEqualTo(now())) {
+
                     $calendarEvent = new CalendarEvent;
                     $calendarEvent->uuid = Str::uuid();
                     $calendarEvent->reference = unique_reference('calendar_event');
                     $calendarEvent->title = $request->input('title');
-                    $calendarEvent->start_at = $appointmentDateStart
+                    $calendarEvent->start_at = $appointmentDateStart;
 
                     $calendarEvent->ends_at = $appointmentDateEnd;
 
