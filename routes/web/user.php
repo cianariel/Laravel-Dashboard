@@ -141,6 +141,18 @@ $routes = [
         'name'          => 'offices.ajax.partial-info'
     ],
     [
+        'path'          => 'offices/request/approval',
+        'type'          => 'post',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'requestApproval',
+        'name'          => 'offices.request.approval'
+    ],
+    [
+        'path'          => 'calendar',
+        'type'          => 'resource',
+        'controller'    => 'User\Calendar\CalendarController',
+    ],
+    [
         'path'          => 'messages',
         'type'          => 'resource',
         'controller'    => 'User\Message\MessagesController',
