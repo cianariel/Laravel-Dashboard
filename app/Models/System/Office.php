@@ -4,19 +4,22 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
+use App\Models\System\Traits\HasAppointments;
 use App\Models\System\Traits\HasCalendarEvents;
+use App\Models\System\Traits\HasUsers;
 use App\Models\Shared\Model;
 
 /**
  * Office Eloquent Model
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Models\System
  */
 class Office extends Model
 {
-    use HasCalendarEvents;
+    use HasCalendarEvents,
+        HasAppointments,
+        HasUsers;
 
     /**
      * The database table used by the model.
@@ -85,4 +88,15 @@ class Office extends Model
         'created_at'    => 'datetime',
         'updated_at'    => 'datetime'
     ];
+
+    public function getOwner()
+    {
+        foreach($this->users()->get() as $user){
+            if($user->hasRole(Role::OWNER)){
+                return $user;
+            }
+        }
+        return false;
+    }
+
 }

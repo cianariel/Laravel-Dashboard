@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Office\Setup;
 
-use App\Http\Controllers\Controller;
-
+use App\Http\Controllers\Office\BaseController;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -23,17 +22,17 @@ use Exception;
 /**
  * SetupController
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package App\Http\Controllers\Office\Setup
  */
-class SetupController extends Controller
+class SetupController extends BaseController
 {
     /**
      * Constructor
      */
     public function __construct()
     {
+        $this->middleware('xss.sanitization');
         $this->middleware('force.https');
         $this->middleware('auth');
         $this->middleware('role:' . Role::OWNER);

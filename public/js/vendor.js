@@ -2173,8 +2173,8 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * Bootstrap v4.5.3 (https://getbootstrap.com/)
-  * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Bootstrap v4.6.0 (https://getbootstrap.com/)
+  * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
@@ -2229,7 +2229,7 @@ module.exports = {
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.3): util.js
+   * Bootstrap (v4.6.0): util.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -2408,7 +2408,7 @@ module.exports = {
    */
 
   var NAME = 'alert';
-  var VERSION = '4.5.3';
+  var VERSION = '4.6.0';
   var DATA_KEY = 'bs.alert';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
@@ -2564,7 +2564,7 @@ module.exports = {
    */
 
   var NAME$1 = 'button';
-  var VERSION$1 = '4.5.3';
+  var VERSION$1 = '4.6.0';
   var DATA_KEY$1 = 'bs.button';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
   var DATA_API_KEY$1 = '.data-api';
@@ -2763,7 +2763,7 @@ module.exports = {
    */
 
   var NAME$2 = 'carousel';
-  var VERSION$2 = '4.5.3';
+  var VERSION$2 = '4.6.0';
   var DATA_KEY$2 = 'bs.carousel';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
   var DATA_API_KEY$2 = '.data-api';
@@ -2903,6 +2903,8 @@ module.exports = {
       }
 
       if (this._config.interval && !this._isPaused) {
+        this._updateInterval();
+
         this._interval = setInterval((document.visibilityState ? this.nextWhenVisible : this.next).bind(this), this._config.interval);
       }
     };
@@ -3144,6 +3146,23 @@ module.exports = {
       }
     };
 
+    _proto._updateInterval = function _updateInterval() {
+      var element = this._activeElement || this._element.querySelector(SELECTOR_ACTIVE_ITEM);
+
+      if (!element) {
+        return;
+      }
+
+      var elementInterval = parseInt(element.getAttribute('data-interval'), 10);
+
+      if (elementInterval) {
+        this._config.defaultInterval = this._config.defaultInterval || this._config.interval;
+        this._config.interval = elementInterval;
+      } else {
+        this._config.interval = this._config.defaultInterval || this._config.interval;
+      }
+    };
+
     _proto._slide = function _slide(direction, element) {
       var _this4 = this;
 
@@ -3194,6 +3213,7 @@ module.exports = {
 
       this._setActiveIndicatorElement(nextElement);
 
+      this._activeElement = nextElement;
       var slidEvent = $__default['default'].Event(EVENT_SLID, {
         relatedTarget: nextElement,
         direction: eventDirectionName,
@@ -3206,15 +3226,6 @@ module.exports = {
         Util.reflow(nextElement);
         $__default['default'](activeElement).addClass(directionalClassName);
         $__default['default'](nextElement).addClass(directionalClassName);
-        var nextElementInterval = parseInt(nextElement.getAttribute('data-interval'), 10);
-
-        if (nextElementInterval) {
-          this._config.defaultInterval = this._config.defaultInterval || this._config.interval;
-          this._config.interval = nextElementInterval;
-        } else {
-          this._config.interval = this._config.defaultInterval || this._config.interval;
-        }
-
         var transitionDuration = Util.getTransitionDurationFromElement(activeElement);
         $__default['default'](activeElement).one(Util.TRANSITION_END, function () {
           $__default['default'](nextElement).removeClass(directionalClassName + " " + orderClassName).addClass(CLASS_NAME_ACTIVE$1);
@@ -3351,7 +3362,7 @@ module.exports = {
    */
 
   var NAME$3 = 'collapse';
-  var VERSION$3 = '4.5.3';
+  var VERSION$3 = '4.6.0';
   var DATA_KEY$3 = 'bs.collapse';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
   var DATA_API_KEY$3 = '.data-api';
@@ -3700,7 +3711,7 @@ module.exports = {
    */
 
   var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.5.3';
+  var VERSION$4 = '4.6.0';
   var DATA_KEY$4 = 'bs.dropdown';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
   var DATA_API_KEY$4 = '.data-api';
@@ -3817,7 +3828,7 @@ module.exports = {
 
       if (showEvent.isDefaultPrevented()) {
         return;
-      } // Disable totally Popper.js for Dropdown in Navbar
+      } // Totally disable Popper for Dropdowns in Navbar
 
 
       if (!this._inNavbar && usePopper) {
@@ -3826,7 +3837,7 @@ module.exports = {
          * Popper - https://popper.js.org
          */
         if (typeof Popper__default['default'] === 'undefined') {
-          throw new TypeError('Bootstrap\'s dropdowns require Popper.js (https://popper.js.org/)');
+          throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
         }
 
         var referenceElement = this._element;
@@ -3994,7 +4005,7 @@ module.exports = {
             boundariesElement: this._config.boundary
           }
         }
-      }; // Disable Popper.js if we have a static display
+      }; // Disable Popper if we have a static display
 
       if (this._config.display === 'static') {
         popperConfig.modifiers.applyStyle = {
@@ -4214,7 +4225,7 @@ module.exports = {
    */
 
   var NAME$5 = 'modal';
-  var VERSION$5 = '4.5.3';
+  var VERSION$5 = '4.6.0';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
   var DATA_API_KEY$5 = '.data-api';
@@ -4414,38 +4425,34 @@ module.exports = {
     _proto._triggerBackdropTransition = function _triggerBackdropTransition() {
       var _this3 = this;
 
-      if (this._config.backdrop === 'static') {
-        var hideEventPrevented = $__default['default'].Event(EVENT_HIDE_PREVENTED);
-        $__default['default'](this._element).trigger(hideEventPrevented);
+      var hideEventPrevented = $__default['default'].Event(EVENT_HIDE_PREVENTED);
+      $__default['default'](this._element).trigger(hideEventPrevented);
 
-        if (hideEventPrevented.isDefaultPrevented()) {
-          return;
-        }
+      if (hideEventPrevented.isDefaultPrevented()) {
+        return;
+      }
 
-        var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+      var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+
+      if (!isModalOverflowing) {
+        this._element.style.overflowY = 'hidden';
+      }
+
+      this._element.classList.add(CLASS_NAME_STATIC);
+
+      var modalTransitionDuration = Util.getTransitionDurationFromElement(this._dialog);
+      $__default['default'](this._element).off(Util.TRANSITION_END);
+      $__default['default'](this._element).one(Util.TRANSITION_END, function () {
+        _this3._element.classList.remove(CLASS_NAME_STATIC);
 
         if (!isModalOverflowing) {
-          this._element.style.overflowY = 'hidden';
+          $__default['default'](_this3._element).one(Util.TRANSITION_END, function () {
+            _this3._element.style.overflowY = '';
+          }).emulateTransitionEnd(_this3._element, modalTransitionDuration);
         }
+      }).emulateTransitionEnd(modalTransitionDuration);
 
-        this._element.classList.add(CLASS_NAME_STATIC);
-
-        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._dialog);
-        $__default['default'](this._element).off(Util.TRANSITION_END);
-        $__default['default'](this._element).one(Util.TRANSITION_END, function () {
-          _this3._element.classList.remove(CLASS_NAME_STATIC);
-
-          if (!isModalOverflowing) {
-            $__default['default'](_this3._element).one(Util.TRANSITION_END, function () {
-              _this3._element.style.overflowY = '';
-            }).emulateTransitionEnd(_this3._element, modalTransitionDuration);
-          }
-        }).emulateTransitionEnd(modalTransitionDuration);
-
-        this._element.focus();
-      } else {
-        this.hide();
-      }
+      this._element.focus();
     };
 
     _proto._showElement = function _showElement(relatedTarget) {
@@ -4600,7 +4607,11 @@ module.exports = {
             return;
           }
 
-          _this9._triggerBackdropTransition();
+          if (_this9._config.backdrop === 'static') {
+            _this9._triggerBackdropTransition();
+          } else {
+            _this9.hide();
+          }
         });
 
         if (animate) {
@@ -4824,7 +4835,7 @@ module.exports = {
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.3): tools/sanitizer.js
+   * Bootstrap (v4.6.0): tools/sanitizer.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -4950,7 +4961,7 @@ module.exports = {
    */
 
   var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.5.3';
+  var VERSION$6 = '4.6.0';
   var DATA_KEY$6 = 'bs.tooltip';
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var JQUERY_NO_CONFLICT$6 = $__default['default'].fn[NAME$6];
@@ -4970,6 +4981,7 @@ module.exports = {
     container: '(string|element|boolean)',
     fallbackPlacement: '(string|array)',
     boundary: '(string|element)',
+    customClass: '(string|function)',
     sanitize: 'boolean',
     sanitizeFn: '(null|function)',
     whiteList: 'object',
@@ -4995,6 +5007,7 @@ module.exports = {
     container: false,
     fallbackPlacement: 'flip',
     boundary: 'scrollParent',
+    customClass: '',
     sanitize: true,
     sanitizeFn: null,
     whiteList: DefaultWhitelist,
@@ -5031,7 +5044,7 @@ module.exports = {
   var Tooltip = /*#__PURE__*/function () {
     function Tooltip(element, config) {
       if (typeof Popper__default['default'] === 'undefined') {
-        throw new TypeError('Bootstrap\'s tooltips require Popper.js (https://popper.js.org/)');
+        throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
       } // private
 
 
@@ -5165,7 +5178,8 @@ module.exports = {
 
         $__default['default'](this.element).trigger(this.constructor.Event.INSERTED);
         this._popper = new Popper__default['default'](this.element, tip, this._getPopperConfig(attachment));
-        $__default['default'](tip).addClass(CLASS_NAME_SHOW$4); // If this is a touch-enabled device we add extra
+        $__default['default'](tip).addClass(CLASS_NAME_SHOW$4);
+        $__default['default'](tip).addClass(this.config.customClass); // If this is a touch-enabled device we add extra
         // empty mouseover listeners to the body's immediate children;
         // only needed because of broken event delegation on iOS
         // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
@@ -5663,7 +5677,7 @@ module.exports = {
    */
 
   var NAME$7 = 'popover';
-  var VERSION$7 = '4.5.3';
+  var VERSION$7 = '4.6.0';
   var DATA_KEY$7 = 'bs.popover';
   var EVENT_KEY$7 = "." + DATA_KEY$7;
   var JQUERY_NO_CONFLICT$7 = $__default['default'].fn[NAME$7];
@@ -5843,7 +5857,7 @@ module.exports = {
    */
 
   var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.5.3';
+  var VERSION$8 = '4.6.0';
   var DATA_KEY$8 = 'bs.scrollspy';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
   var DATA_API_KEY$6 = '.data-api';
@@ -6135,7 +6149,7 @@ module.exports = {
    */
 
   var NAME$9 = 'tab';
-  var VERSION$9 = '4.5.3';
+  var VERSION$9 = '4.6.0';
   var DATA_KEY$9 = 'bs.tab';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$7 = '.data-api';
@@ -6361,7 +6375,7 @@ module.exports = {
    */
 
   var NAME$a = 'toast';
-  var VERSION$a = '4.5.3';
+  var VERSION$a = '4.6.0';
   var DATA_KEY$a = 'bs.toast';
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var JQUERY_NO_CONFLICT$a = $__default['default'].fn[NAME$a];
@@ -28977,17 +28991,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery JavaScript Library v3.5.1
+ * jQuery JavaScript Library v3.6.0
  * https://jquery.com/
  *
  * Includes Sizzle.js
  * https://sizzlejs.com/
  *
- * Copyright JS Foundation and other contributors
+ * Copyright OpenJS Foundation and other contributors
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2020-05-04T22:49Z
+ * Date: 2021-03-02T17:08Z
  */
 ( function( global, factory ) {
 
@@ -29054,12 +29068,16 @@ var support = {};
 
 var isFunction = function isFunction( obj ) {
 
-      // Support: Chrome <=57, Firefox <=52
-      // In some browsers, typeof returns "function" for HTML <object> elements
-      // (i.e., `typeof document.createElement( "object" ) === "function"`).
-      // We don't want to classify *any* DOM node as a function.
-      return typeof obj === "function" && typeof obj.nodeType !== "number";
-  };
+		// Support: Chrome <=57, Firefox <=52
+		// In some browsers, typeof returns "function" for HTML <object> elements
+		// (i.e., `typeof document.createElement( "object" ) === "function"`).
+		// We don't want to classify *any* DOM node as a function.
+		// Support: QtWeb <=3.8.5, WebKit <=534.34, wkhtmltopdf tool <=0.12.5
+		// Plus for old WebKit, typeof returns "function" for HTML collections
+		// (e.g., `typeof document.getElementsByTagName("div") === "function"`). (gh-4756)
+		return typeof obj === "function" && typeof obj.nodeType !== "number" &&
+			typeof obj.item !== "function";
+	};
 
 
 var isWindow = function isWindow( obj ) {
@@ -29125,7 +29143,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.5.1",
+	version = "3.6.0",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -29379,7 +29397,7 @@ jQuery.extend( {
 			if ( isArrayLike( Object( arr ) ) ) {
 				jQuery.merge( ret,
 					typeof arr === "string" ?
-					[ arr ] : arr
+						[ arr ] : arr
 				);
 			} else {
 				push.call( ret, arr );
@@ -29474,9 +29492,9 @@ if ( typeof Symbol === "function" ) {
 
 // Populate the class2type map
 jQuery.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
-function( _i, name ) {
-	class2type[ "[object " + name + "]" ] = name.toLowerCase();
-} );
+	function( _i, name ) {
+		class2type[ "[object " + name + "]" ] = name.toLowerCase();
+	} );
 
 function isArrayLike( obj ) {
 
@@ -29496,14 +29514,14 @@ function isArrayLike( obj ) {
 }
 var Sizzle =
 /*!
- * Sizzle CSS Selector Engine v2.3.5
+ * Sizzle CSS Selector Engine v2.3.6
  * https://sizzlejs.com/
  *
  * Copyright JS Foundation and other contributors
  * Released under the MIT license
  * https://js.foundation/
  *
- * Date: 2020-03-14
+ * Date: 2021-02-16
  */
 ( function( window ) {
 var i,
@@ -30086,8 +30104,8 @@ support = Sizzle.support = {};
  * @returns {Boolean} True iff elem is a non-HTML XML node
  */
 isXML = Sizzle.isXML = function( elem ) {
-	var namespace = elem.namespaceURI,
-		docElem = ( elem.ownerDocument || elem ).documentElement;
+	var namespace = elem && elem.namespaceURI,
+		docElem = elem && ( elem.ownerDocument || elem ).documentElement;
 
 	// Support: IE <=8
 	// Assume HTML when documentElement doesn't yet exist, such as inside loading iframes
@@ -32002,9 +32020,9 @@ var rneedsContext = jQuery.expr.match.needsContext;
 
 function nodeName( elem, name ) {
 
-  return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
+	return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
 
-};
+}
 var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
 
 
@@ -32975,8 +32993,8 @@ jQuery.extend( {
 			resolveContexts = Array( i ),
 			resolveValues = slice.call( arguments ),
 
-			// the master Deferred
-			master = jQuery.Deferred(),
+			// the primary Deferred
+			primary = jQuery.Deferred(),
 
 			// subordinate callback factory
 			updateFunc = function( i ) {
@@ -32984,30 +33002,30 @@ jQuery.extend( {
 					resolveContexts[ i ] = this;
 					resolveValues[ i ] = arguments.length > 1 ? slice.call( arguments ) : value;
 					if ( !( --remaining ) ) {
-						master.resolveWith( resolveContexts, resolveValues );
+						primary.resolveWith( resolveContexts, resolveValues );
 					}
 				};
 			};
 
 		// Single- and empty arguments are adopted like Promise.resolve
 		if ( remaining <= 1 ) {
-			adoptValue( singleValue, master.done( updateFunc( i ) ).resolve, master.reject,
+			adoptValue( singleValue, primary.done( updateFunc( i ) ).resolve, primary.reject,
 				!remaining );
 
 			// Use .then() to unwrap secondary thenables (cf. gh-3000)
-			if ( master.state() === "pending" ||
+			if ( primary.state() === "pending" ||
 				isFunction( resolveValues[ i ] && resolveValues[ i ].then ) ) {
 
-				return master.then();
+				return primary.then();
 			}
 		}
 
 		// Multiple arguments are aggregated like Promise.all array elements
 		while ( i-- ) {
-			adoptValue( resolveValues[ i ], updateFunc( i ), master.reject );
+			adoptValue( resolveValues[ i ], updateFunc( i ), primary.reject );
 		}
 
-		return master.promise();
+		return primary.promise();
 	}
 } );
 
@@ -33158,8 +33176,8 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 			for ( ; i < len; i++ ) {
 				fn(
 					elems[ i ], key, raw ?
-					value :
-					value.call( elems[ i ], i, fn( elems[ i ], key ) )
+						value :
+						value.call( elems[ i ], i, fn( elems[ i ], key ) )
 				);
 			}
 		}
@@ -34067,10 +34085,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 }
 
 
-var
-	rkeyEvent = /^key/,
-	rmouseEvent = /^(?:mouse|pointer|contextmenu|drag|drop)|click/,
-	rtypenamespace = /^([^.]*)(?:\.(.+)|)/;
+var rtypenamespace = /^([^.]*)(?:\.(.+)|)/;
 
 function returnTrue() {
 	return true;
@@ -34365,8 +34380,8 @@ jQuery.event = {
 			event = jQuery.event.fix( nativeEvent ),
 
 			handlers = (
-					dataPriv.get( this, "events" ) || Object.create( null )
-				)[ event.type ] || [],
+				dataPriv.get( this, "events" ) || Object.create( null )
+			)[ event.type ] || [],
 			special = jQuery.event.special[ event.type ] || {};
 
 		// Use the fix-ed jQuery.Event rather than the (read-only) native event
@@ -34490,12 +34505,12 @@ jQuery.event = {
 			get: isFunction( hook ) ?
 				function() {
 					if ( this.originalEvent ) {
-							return hook( this.originalEvent );
+						return hook( this.originalEvent );
 					}
 				} :
 				function() {
 					if ( this.originalEvent ) {
-							return this.originalEvent[ name ];
+						return this.originalEvent[ name ];
 					}
 				},
 
@@ -34634,7 +34649,13 @@ function leverageNative( el, type, expectSync ) {
 						// Cancel the outer synthetic event
 						event.stopImmediatePropagation();
 						event.preventDefault();
-						return result.value;
+
+						// Support: Chrome 86+
+						// In Chrome, if an element having a focusout handler is blurred by
+						// clicking outside of it, it invokes the handler synchronously. If
+						// that handler calls `.remove()` on the element, the data is cleared,
+						// leaving `result` undefined. We need to guard against this.
+						return result && result.value;
 					}
 
 				// If this is an inner synthetic event for an event with a bubbling surrogate
@@ -34799,34 +34820,7 @@ jQuery.each( {
 	targetTouches: true,
 	toElement: true,
 	touches: true,
-
-	which: function( event ) {
-		var button = event.button;
-
-		// Add which for key events
-		if ( event.which == null && rkeyEvent.test( event.type ) ) {
-			return event.charCode != null ? event.charCode : event.keyCode;
-		}
-
-		// Add which for click: 1 === left; 2 === middle; 3 === right
-		if ( !event.which && button !== undefined && rmouseEvent.test( event.type ) ) {
-			if ( button & 1 ) {
-				return 1;
-			}
-
-			if ( button & 2 ) {
-				return 3;
-			}
-
-			if ( button & 4 ) {
-				return 2;
-			}
-
-			return 0;
-		}
-
-		return event.which;
-	}
+	which: true
 }, jQuery.event.addProp );
 
 jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateType ) {
@@ -34849,6 +34843,12 @@ jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateTyp
 			leverageNative( this, type );
 
 			// Return non-false to allow normal event-path propagation
+			return true;
+		},
+
+		// Suppress native focus or blur as it's already being fired
+		// in leverageNative.
+		_default: function() {
 			return true;
 		},
 
@@ -35519,6 +35519,10 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		// set in CSS while `offset*` properties report correct values.
 		// Behavior in IE 9 is more subtle than in newer versions & it passes
 		// some versions of this test; make sure not to make it pass there!
+		//
+		// Support: Firefox 70+
+		// Only Firefox includes border widths
+		// in computed dimensions. (gh-4529)
 		reliableTrDimensions: function() {
 			var table, tr, trChild, trStyle;
 			if ( reliableTrDimensionsVal == null ) {
@@ -35526,9 +35530,22 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 				tr = document.createElement( "tr" );
 				trChild = document.createElement( "div" );
 
-				table.style.cssText = "position:absolute;left:-11111px";
+				table.style.cssText = "position:absolute;left:-11111px;border-collapse:separate";
+				tr.style.cssText = "border:1px solid";
+
+				// Support: Chrome 86+
+				// Height set through cssText does not get applied.
+				// Computed height then comes back as 0.
 				tr.style.height = "1px";
 				trChild.style.height = "9px";
+
+				// Support: Android 8 Chrome 86+
+				// In our bodyBackground.html iframe,
+				// display for all div elements is set to "inline",
+				// which causes a problem only in Android 8 Chrome 86.
+				// Ensuring the div is display: block
+				// gets around this issue.
+				trChild.style.display = "block";
 
 				documentElement
 					.appendChild( table )
@@ -35536,7 +35553,9 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 					.appendChild( trChild );
 
 				trStyle = window.getComputedStyle( tr );
-				reliableTrDimensionsVal = parseInt( trStyle.height ) > 3;
+				reliableTrDimensionsVal = ( parseInt( trStyle.height, 10 ) +
+					parseInt( trStyle.borderTopWidth, 10 ) +
+					parseInt( trStyle.borderBottomWidth, 10 ) ) === tr.offsetHeight;
 
 				documentElement.removeChild( table );
 			}
@@ -36000,10 +36019,10 @@ jQuery.each( [ "height", "width" ], function( _i, dimension ) {
 					// Running getBoundingClientRect on a disconnected node
 					// in IE throws an error.
 					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
-						swap( elem, cssShow, function() {
-							return getWidthOrHeight( elem, dimension, extra );
-						} ) :
-						getWidthOrHeight( elem, dimension, extra );
+					swap( elem, cssShow, function() {
+						return getWidthOrHeight( elem, dimension, extra );
+					} ) :
+					getWidthOrHeight( elem, dimension, extra );
 			}
 		},
 
@@ -36062,7 +36081,7 @@ jQuery.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
 					swap( elem, { marginLeft: 0 }, function() {
 						return elem.getBoundingClientRect().left;
 					} )
-				) + "px";
+			) + "px";
 		}
 	}
 );
@@ -36201,7 +36220,7 @@ Tween.propHooks = {
 			if ( jQuery.fx.step[ tween.prop ] ) {
 				jQuery.fx.step[ tween.prop ]( tween );
 			} else if ( tween.elem.nodeType === 1 && (
-					jQuery.cssHooks[ tween.prop ] ||
+				jQuery.cssHooks[ tween.prop ] ||
 					tween.elem.style[ finalPropName( tween.prop ) ] != null ) ) {
 				jQuery.style( tween.elem, tween.prop, tween.now + tween.unit );
 			} else {
@@ -36446,7 +36465,7 @@ function defaultPrefilter( elem, props, opts ) {
 
 			anim.done( function() {
 
-			/* eslint-enable no-loop-func */
+				/* eslint-enable no-loop-func */
 
 				// The final step of a "hide" animation is actually hiding the element
 				if ( !hidden ) {
@@ -36566,7 +36585,7 @@ function Animation( elem, properties, options ) {
 			tweens: [],
 			createTween: function( prop, end ) {
 				var tween = jQuery.Tween( elem, animation.opts, prop, end,
-						animation.opts.specialEasing[ prop ] || animation.opts.easing );
+					animation.opts.specialEasing[ prop ] || animation.opts.easing );
 				animation.tweens.push( tween );
 				return tween;
 			},
@@ -36739,7 +36758,8 @@ jQuery.fn.extend( {
 					anim.stop( true );
 				}
 			};
-			doAnimation.finish = doAnimation;
+
+		doAnimation.finish = doAnimation;
 
 		return empty || optall.queue === false ?
 			this.each( doAnimation ) :
@@ -37379,8 +37399,8 @@ jQuery.fn.extend( {
 				if ( this.setAttribute ) {
 					this.setAttribute( "class",
 						className || value === false ?
-						"" :
-						dataPriv.get( this, "__className__" ) || ""
+							"" :
+							dataPriv.get( this, "__className__" ) || ""
 					);
 				}
 			}
@@ -37395,7 +37415,7 @@ jQuery.fn.extend( {
 		while ( ( elem = this[ i++ ] ) ) {
 			if ( elem.nodeType === 1 &&
 				( " " + stripAndCollapse( getClass( elem ) ) + " " ).indexOf( className ) > -1 ) {
-					return true;
+				return true;
 			}
 		}
 
@@ -37685,9 +37705,7 @@ jQuery.extend( jQuery.event, {
 				special.bindType || type;
 
 			// jQuery handler
-			handle = (
-					dataPriv.get( cur, "events" ) || Object.create( null )
-				)[ event.type ] &&
+			handle = ( dataPriv.get( cur, "events" ) || Object.create( null ) )[ event.type ] &&
 				dataPriv.get( cur, "handle" );
 			if ( handle ) {
 				handle.apply( cur, data );
@@ -37834,7 +37852,7 @@ var rquery = ( /\?/ );
 
 // Cross-browser xml parsing
 jQuery.parseXML = function( data ) {
-	var xml;
+	var xml, parserErrorElem;
 	if ( !data || typeof data !== "string" ) {
 		return null;
 	}
@@ -37843,12 +37861,17 @@ jQuery.parseXML = function( data ) {
 	// IE throws on parseFromString with invalid input.
 	try {
 		xml = ( new window.DOMParser() ).parseFromString( data, "text/xml" );
-	} catch ( e ) {
-		xml = undefined;
-	}
+	} catch ( e ) {}
 
-	if ( !xml || xml.getElementsByTagName( "parsererror" ).length ) {
-		jQuery.error( "Invalid XML: " + data );
+	parserErrorElem = xml && xml.getElementsByTagName( "parsererror" )[ 0 ];
+	if ( !xml || parserErrorElem ) {
+		jQuery.error( "Invalid XML: " + (
+			parserErrorElem ?
+				jQuery.map( parserErrorElem.childNodes, function( el ) {
+					return el.textContent;
+				} ).join( "\n" ) :
+				data
+		) );
 	}
 	return xml;
 };
@@ -37949,16 +37972,14 @@ jQuery.fn.extend( {
 			// Can add propHook for "elements" to filter or add form elements
 			var elements = jQuery.prop( this, "elements" );
 			return elements ? jQuery.makeArray( elements ) : this;
-		} )
-		.filter( function() {
+		} ).filter( function() {
 			var type = this.type;
 
 			// Use .is( ":disabled" ) so that fieldset[disabled] works
 			return this.name && !jQuery( this ).is( ":disabled" ) &&
 				rsubmittable.test( this.nodeName ) && !rsubmitterTypes.test( type ) &&
 				( this.checked || !rcheckableType.test( type ) );
-		} )
-		.map( function( _i, elem ) {
+		} ).map( function( _i, elem ) {
 			var val = jQuery( this ).val();
 
 			if ( val == null ) {
@@ -38011,7 +38032,8 @@ var
 
 	// Anchor tag for parsing the document origin
 	originAnchor = document.createElement( "a" );
-	originAnchor.href = location.href;
+
+originAnchor.href = location.href;
 
 // Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
 function addToPrefiltersOrTransports( structure ) {
@@ -38392,8 +38414,8 @@ jQuery.extend( {
 			// Context for global events is callbackContext if it is a DOM node or jQuery collection
 			globalEventContext = s.context &&
 				( callbackContext.nodeType || callbackContext.jquery ) ?
-					jQuery( callbackContext ) :
-					jQuery.event,
+				jQuery( callbackContext ) :
+				jQuery.event,
 
 			// Deferreds
 			deferred = jQuery.Deferred(),
@@ -38705,8 +38727,10 @@ jQuery.extend( {
 				response = ajaxHandleResponses( s, jqXHR, responses );
 			}
 
-			// Use a noop converter for missing script
-			if ( !isSuccess && jQuery.inArray( "script", s.dataTypes ) > -1 ) {
+			// Use a noop converter for missing script but not if jsonp
+			if ( !isSuccess &&
+				jQuery.inArray( "script", s.dataTypes ) > -1 &&
+				jQuery.inArray( "json", s.dataTypes ) < 0 ) {
 				s.converters[ "text script" ] = function() {};
 			}
 
@@ -39444,12 +39468,6 @@ jQuery.offset = {
 			options.using.call( elem, props );
 
 		} else {
-			if ( typeof props.top === "number" ) {
-				props.top += "px";
-			}
-			if ( typeof props.left === "number" ) {
-				props.left += "px";
-			}
 			curElem.css( props );
 		}
 	}
@@ -39618,8 +39636,11 @@ jQuery.each( [ "top", "left" ], function( _i, prop ) {
 
 // Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
 jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
-	jQuery.each( { padding: "inner" + name, content: type, "": "outer" + name },
-		function( defaultExtra, funcName ) {
+	jQuery.each( {
+		padding: "inner" + name,
+		content: type,
+		"": "outer" + name
+	}, function( defaultExtra, funcName ) {
 
 		// Margin is only for outerHeight, outerWidth
 		jQuery.fn[ funcName ] = function( margin, value ) {
@@ -39704,7 +39725,8 @@ jQuery.fn.extend( {
 	}
 } );
 
-jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
+jQuery.each(
+	( "blur focus focusin focusout resize scroll click dblclick " +
 	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
 	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
 	function( _i, name ) {
@@ -39715,7 +39737,8 @@ jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
 				this.on( name, null, data, fn ) :
 				this.trigger( name );
 		};
-	} );
+	}
+);
 
 
 
@@ -40052,14 +40075,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.20';
+  var VERSION = '4.17.21';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
 
   /** Error message constants. */
   var CORE_ERROR_TEXT = 'Unsupported core-js use. Try https://npms.io/search?q=ponyfill.',
-      FUNC_ERROR_TEXT = 'Expected a function';
+      FUNC_ERROR_TEXT = 'Expected a function',
+      INVALID_TEMPL_VAR_ERROR_TEXT = 'Invalid `variable` option passed into `_.template`';
 
   /** Used to stand-in for `undefined` hash values. */
   var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -40192,10 +40216,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
   var reRegExpChar = /[\\^$.*+?()[\]{}|]/g,
       reHasRegExpChar = RegExp(reRegExpChar.source);
 
-  /** Used to match leading and trailing whitespace. */
-  var reTrim = /^\s+|\s+$/g,
-      reTrimStart = /^\s+/,
-      reTrimEnd = /\s+$/;
+  /** Used to match leading whitespace. */
+  var reTrimStart = /^\s+/;
+
+  /** Used to match a single whitespace character. */
+  var reWhitespace = /\s/;
 
   /** Used to match wrap detail comments. */
   var reWrapComment = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,
@@ -40204,6 +40229,18 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
   /** Used to match words composed of alphanumeric characters. */
   var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+
+  /**
+   * Used to validate the `validate` option in `_.template` variable.
+   *
+   * Forbids characters which could potentially change the meaning of the function argument definition:
+   * - "()," (modification of function parameters)
+   * - "=" (default value)
+   * - "[]{}" (destructuring of function parameters)
+   * - "/" (beginning of a comment)
+   * - whitespace
+   */
+  var reForbiddenIdentifierChars = /[()=,{}\[\]\/\s]/;
 
   /** Used to match backslashes in property paths. */
   var reEscapeChar = /\\(\\)?/g;
@@ -41034,6 +41071,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
   }
 
   /**
+   * The base implementation of `_.trim`.
+   *
+   * @private
+   * @param {string} string The string to trim.
+   * @returns {string} Returns the trimmed string.
+   */
+  function baseTrim(string) {
+    return string
+      ? string.slice(0, trimmedEndIndex(string) + 1).replace(reTrimStart, '')
+      : string;
+  }
+
+  /**
    * The base implementation of `_.unary` without support for storing metadata.
    *
    * @private
@@ -41364,6 +41414,21 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     return hasUnicode(string)
       ? unicodeToArray(string)
       : asciiToArray(string);
+  }
+
+  /**
+   * Used by `_.trim` and `_.trimEnd` to get the index of the last non-whitespace
+   * character of `string`.
+   *
+   * @private
+   * @param {string} string The string to inspect.
+   * @returns {number} Returns the index of the last non-whitespace character.
+   */
+  function trimmedEndIndex(string) {
+    var index = string.length;
+
+    while (index-- && reWhitespace.test(string.charAt(index))) {}
+    return index;
   }
 
   /**
@@ -52534,7 +52599,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       if (typeof value != 'string') {
         return value === 0 ? value : +value;
       }
-      value = value.replace(reTrim, '');
+      value = baseTrim(value);
       var isBinary = reIsBinary.test(value);
       return (isBinary || reIsOctal.test(value))
         ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
@@ -54906,6 +54971,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       if (!variable) {
         source = 'with (obj) {\n' + source + '\n}\n';
       }
+      // Throw an error if a forbidden character was found in `variable`, to prevent
+      // potential command injection attacks.
+      else if (reForbiddenIdentifierChars.test(variable)) {
+        throw new Error(INVALID_TEMPL_VAR_ERROR_TEXT);
+      }
+
       // Cleanup code by stripping empty strings.
       source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
         .replace(reEmptyStringMiddle, '$1')
@@ -55019,7 +55090,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     function trim(string, chars, guard) {
       string = toString(string);
       if (string && (guard || chars === undefined)) {
-        return string.replace(reTrim, '');
+        return baseTrim(string);
       }
       if (!string || !(chars = baseToString(chars))) {
         return string;
@@ -55054,7 +55125,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     function trimEnd(string, chars, guard) {
       string = toString(string);
       if (string && (guard || chars === undefined)) {
-        return string.replace(reTrimEnd, '');
+        return string.slice(0, trimmedEndIndex(string) + 1);
       }
       if (!string || !(chars = baseToString(chars))) {
         return string;
@@ -97991,7 +98062,7 @@ module.exports = tick;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(){"use strict";function e(t){return(e="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(t)}function t(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){for(var i=0;i<t.length;i++){var n=t[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function n(e,t,i){return t in e?Object.defineProperty(e,t,{value:i,enumerable:!0,configurable:!0,writable:!0}):e[t]=i,e}function s(e,t){var i=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),i.push.apply(i,n)}return i}function r(e){for(var t=1;t<arguments.length;t++){var i=null!=arguments[t]?arguments[t]:{};t%2?s(Object(i),!0).forEach((function(t){n(e,t,i[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(i)):s(Object(i)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(i,t))}))}return e}function a(e,t){(null==t||t>e.length)&&(t=e.length);for(var i=0,n=new Array(t);i<t;i++)n[i]=e[i];return n}function o(e){if("undefined"==typeof Symbol||null==e[Symbol.iterator]){if(Array.isArray(e)||(e=function(e,t){if(e){if("string"==typeof e)return a(e,t);var i=Object.prototype.toString.call(e).slice(8,-1);return"Object"===i&&e.constructor&&(i=e.constructor.name),"Map"===i||"Set"===i?Array.from(i):"Arguments"===i||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(i)?a(e,t):void 0}}(e))){var t=0,i=function(){};return{s:i,n:function(){return t>=e.length?{done:!0}:{done:!1,value:e[t++]}},e:function(e){throw e},f:i}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var n,s,r=!0,o=!1;return{s:function(){n=e[Symbol.iterator]()},n:function(){var e=n.next();return r=e.done,e},e:function(e){o=!0,s=e},f:function(){try{r||null==n.return||n.return()}finally{if(o)throw s}}}}var l=function(e,t){if(null===e)return null;if("number"!=typeof t.step)return e;var i=e%(60*t.step);return(i-=(t.minTime||0)%(60*t.step))>=30*t.step?e+=60*t.step-i:e-=i,function(e,t){if(86400==e&&t.show2400)return e;return e%86400}(e,t)};var u,c={appendTo:"body",className:null,closeOnWindowScroll:!1,disableTextInput:!1,disableTimeRanges:[],disableTouchKeyboard:!1,durationTime:null,forceRoundTime:!1,lang:{},listWidth:null,maxTime:null,minTime:null,noneOption:!1,orientation:"l",roundingFunction:l,scrollDefault:null,selectOnBlur:!1,show2400:!1,showDuration:!1,showOn:["click","focus"],showOnFocus:!0,step:30,stopScrollPropagation:!1,timeFormat:"g:ia",typeaheadHighlight:!0,useSelect:!1,wrapHours:!0},m={am:"am",pm:"pm",AM:"AM",PM:"PM",decimal:".",mins:"mins",hr:"hr",hrs:"hrs"},p=function(){function n(e){var i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};t(this,n),this.targetEl=e;var s=n.extractAttrOptions(e,Object.keys(c));this.settings=this.parseSettings(r(r(r({},c),i),s))}var s,a,l;return s=n,l=[{key:"extractAttrOptions",value:function(e,t){var i,n={},s=o(t);try{for(s.s();!(i=s.n()).done;){var r=i.value;r in e.dataset&&(n[r]=e.dataset[r])}}catch(e){s.e(e)}finally{s.f()}return n}},{key:"isVisible",value:function(e){var t=e[0];return t.offsetWidth>0&&t.offsetHeight>0}}],(a=[{key:"_findRow",value:function(e){if(!e&&0!==e)return!1;var t=!1;return e=this.settings.roundingFunction(e,this.settings),!!this.list&&(this.list.find("li").each((function(i,n){var s=Number.parseInt(n.dataset.time);if(!Number.isNaN(s))return s==e?(t=n,!1):void 0})),t)}},{key:"_hideKeyboard",value:function(){return(window.navigator.msMaxTouchPoints||"ontouchstart"in document)&&this.settings.disableTouchKeyboard}},{key:"_setTimeValue",value:function(e,t){if("INPUT"===this.targetEl.nodeName){null===e&&""==this.targetEl.value||(this.targetEl.value=e);var i=this;i.settings.useSelect&&"select"!=t&&i.list&&i.list.val(i._roundAndFormatTime(i.time2int(e)))}var n=new Event("selectTime");if(this.selectedValue!=e){this.selectedValue=e;var s=new Event("changeTime"),r=new CustomEvent("change",{detail:"timepicker"});return"select"==t?(this.targetEl.dispatchEvent(n),this.targetEl.dispatchEvent(s),this.targetEl.dispatchEvent(r)):-1==["error","initial"].indexOf(t)&&this.targetEl.dispatchEvent(s),!0}return-1==["error","initial"].indexOf(t)&&this.targetEl.dispatchEvent(n),!1}},{key:"_getTimeValue",value:function(){return"INPUT"===this.targetEl.nodeName?this.targetEl.value:this.selectedValue}},{key:"_selectValue",value:function(){this.settings;var e=this.list.find(".ui-timepicker-selected");if(e.hasClass("ui-timepicker-disabled"))return!1;if(!e.length)return!0;var t=e.get(0).dataset.time;if(t){var i=Number.parseInt(t);i&&(t=i)}return null!==t&&("string"!=typeof t&&(t=this._int2time(t)),this._setTimeValue(t,"select")),!0}},{key:"time2int",value:function(e){if(""===e||null==e)return null;if(e instanceof Date)return 3600*e.getHours()+60*e.getMinutes()+e.getSeconds();if("string"!=typeof e)return e;"a"!=(e=e.toLowerCase().replace(/[\s\.]/g,"")).slice(-1)&&"p"!=e.slice(-1)||(e+="m");var t=/^(([^0-9]*))?([0-9]?[0-9])(([0-5][0-9]))?(([0-5][0-9]))?(([^0-9]*))$/;e.match(/\W/)&&(t=/^(([^0-9]*))?([0-9]?[0-9])(\W+([0-5][0-9]?))?(\W+([0-5][0-9]))?(([^0-9]*))$/);var i=e.match(t);if(!i)return null;var n=parseInt(1*i[3],10),s=i[2]||i[9],r=n,a=1*i[5]||0,o=1*i[7]||0;if(s||2!=i[3].length||"0"!=i[3][0]||(s="am"),n<=12&&s){var l=(s=s.trim())==this.settings.lang.pm||s==this.settings.lang.PM;r=12==n?l?12:0:n+(l?12:0)}else if(3600*n+60*a+o>=86400+(this.settings.show2400?1:0)){if(!1===this.settings.wrapHours)return null;r=n%24}var u=3600*r+60*a+o;if(n<12&&!s&&this.settings._twelveHourTime&&this.settings.scrollDefault){var c=u-this.settings.scrollDefault();c<0&&c>=-43200&&(u=(u+43200)%86400)}return u}},{key:"parseSettings",value:function(e){var t=this;if(e.lang=r(r({},m),e.lang),this.settings=e,e.minTime&&(e.minTime=this.time2int(e.minTime)),e.maxTime&&(e.maxTime=this.time2int(e.maxTime)),e.listWidth&&(e.listWidth=this.time2int(e.listWidth)),e.durationTime&&"function"!=typeof e.durationTime&&(e.durationTime=this.time2int(e.durationTime)),"now"==e.scrollDefault)e.scrollDefault=function(){return e.roundingFunction(t.time2int(new Date),e)};else if(e.scrollDefault&&"function"!=typeof e.scrollDefault){var i=e.scrollDefault;e.scrollDefault=function(){return e.roundingFunction(t.time2int(i),e)}}else e.minTime&&(e.scrollDefault=function(){return e.roundingFunction(e.minTime,e)});if("string"==typeof e.timeFormat&&e.timeFormat.match(/[gh]/)&&(e._twelveHourTime=!0),!1===e.showOnFocus&&-1!=e.showOn.indexOf("focus")&&e.showOn.splice(e.showOn.indexOf("focus"),1),e.disableTimeRanges||(e.disableTimeRanges=[]),e.disableTimeRanges.length>0){for(var n in e.disableTimeRanges)e.disableTimeRanges[n]=[this.time2int(e.disableTimeRanges[n][0]),this.time2int(e.disableTimeRanges[n][1])];for(e.disableTimeRanges=e.disableTimeRanges.sort((function(e,t){return e[0]-t[0]})),n=e.disableTimeRanges.length-1;n>0;n--)e.disableTimeRanges[n][0]<=e.disableTimeRanges[n-1][1]&&(e.disableTimeRanges[n-1]=[Math.min(e.disableTimeRanges[n][0],e.disableTimeRanges[n-1][0]),Math.max(e.disableTimeRanges[n][1],e.disableTimeRanges[n-1][1])],e.disableTimeRanges.splice(n,1))}return e}},{key:"_disableTextInputHandler",value:function(e){switch(e.keyCode){case 13:case 9:return;default:e.preventDefault()}}},{key:"_int2duration",value:function(e,t){e=Math.abs(e);var i,n,s=Math.round(e/60),r=[];return s<60?r=[s,this.settings.lang.mins]:(i=Math.floor(s/60),n=s%60,30==t&&30==n&&(i+=this.settings.lang.decimal+5),r.push(i),r.push(1==i?this.settings.lang.hr:this.settings.lang.hrs),30!=t&&n&&(r.push(n),r.push(this.settings.lang.mins))),r.join(" ")}},{key:"_roundAndFormatTime",value:function(e){if(null!==(e=this.settings.roundingFunction(e,this.settings)))return this._int2time(e)}},{key:"_int2time",value:function(e){if("number"!=typeof e)return null;var t=parseInt(e%60),i=parseInt(e/60%60),n=parseInt(e/3600%24),s=new Date(1970,0,2,n,i,t,0);if(isNaN(s.getTime()))return null;if("function"==typeof this.settings.timeFormat)return this.settings.timeFormat(s);for(var r,a,o="",l=0;l<this.settings.timeFormat.length;l++)switch(a=this.settings.timeFormat.charAt(l)){case"a":o+=s.getHours()>11?this.settings.lang.pm:this.settings.lang.am;break;case"A":o+=s.getHours()>11?this.settings.lang.PM:this.settings.lang.AM;break;case"g":o+=0==(r=s.getHours()%12)?"12":r;break;case"G":r=s.getHours(),86400===e&&(r=this.settings.show2400?24:0),o+=r;break;case"h":0!=(r=s.getHours()%12)&&r<10&&(r="0"+r),o+=0===r?"12":r;break;case"H":r=s.getHours(),86400===e&&(r=this.settings.show2400?24:0),o+=r>9?r:"0"+r;break;case"i":o+=(i=s.getMinutes())>9?i:"0"+i;break;case"s":o+=(t=s.getSeconds())>9?t:"0"+t;break;case"\\":l++,o+=this.settings.timeFormat.charAt(l);break;default:o+=a}return o}},{key:"_setSelected",value:function(){var e=this.list;e.find("li").removeClass("ui-timepicker-selected");var t=this.time2int(this._getTimeValue());if(null!==t){var i=this._findRow(t);if(i){var n=i.getBoundingClientRect(),s=e.get(0).getBoundingClientRect(),r=n.top-s.top;if(r+n.height>s.height||r<0){var a=e.scrollTop()+(n.top-s.top)-n.height;e.scrollTop(a)}var o=Number.parseInt(i.dataset.time);(this.settings.forceRoundTime||o===t)&&i.classList.add("ui-timepicker-selected")}}}},{key:"_generateNoneElement",value:function(t,i){var n,s,r,a;return"object"==e(t)?(n=t.label,s=t.className,r=t.value):"string"==typeof t?(n=t,r=""):$.error("Invalid noneOption value"),i?(a=document.createElement("option")).value=r:(a=document.createElement("li")).dataset.time=String(r),a.innerText=n,a.classList.add(s),a}}])&&i(s.prototype,a),l&&i(s,l),n}();u=function(t){var i={init:function(e){return this.each((function(){var s=t(this),l=new p(this,e),u=l.settings;if(u.lang,s.data("timepicker-obj",l),s.addClass("ui-timepicker-input"),u.useSelect)n(s);else{if(s.prop("autocomplete","off"),u.showOn)for(var c in u.showOn)s.on(u.showOn[c]+".timepicker",i.show);s.on("change.timepicker",r),s.on("keydown.timepicker",a),s.on("keyup.timepicker",o),u.disableTextInput&&s.on("keydown.timepicker",l._disableTextInputHandler),s.on("cut.timepicker",o),s.on("paste.timepicker",o),r.call(s.get(0),null,"initial")}}))},show:function(e){var r=t(this),a=r.data("timepicker-obj"),o=a.settings;if(e&&e.preventDefault(),o.useSelect)a.list.focus();else{a._hideKeyboard()&&r.blur();var l=a.list;if(!r.prop("readonly")&&(l&&0!==l.length&&"function"!=typeof o.durationTime||(n(r),l=a.list),!p.isVisible(l))){r.is("input")&&(a.selectedValue=r.val()),a._setSelected(),i.hide(),"number"==typeof o.listWidth&&l.width(r.outerWidth()*o.listWidth),l.show();var u={};o.orientation.match(/r/)?u.left=r.offset().left+r.outerWidth()-l.outerWidth()+parseInt(l.css("marginLeft").replace("px",""),10):o.orientation.match(/l/)?u.left=r.offset().left+parseInt(l.css("marginLeft").replace("px",""),10):o.orientation.match(/c/)&&(u.left=r.offset().left+(r.outerWidth()-l.outerWidth())/2+parseInt(l.css("marginLeft").replace("px",""),10)),"t"==(o.orientation.match(/t/)?"t":o.orientation.match(/b/)?"b":r.offset().top+r.outerHeight(!0)+l.outerHeight()>t(window).height()+t(window).scrollTop()?"t":"b")?(l.addClass("ui-timepicker-positioned-top"),u.top=r.offset().top-l.outerHeight()+parseInt(l.css("marginTop").replace("px",""),10)):(l.removeClass("ui-timepicker-positioned-top"),u.top=r.offset().top+r.outerHeight()+parseInt(l.css("marginTop").replace("px",""),10)),l.offset(u);var c=l.find(".ui-timepicker-selected");if(!c.length){var m=a.time2int(a._getTimeValue());null!==m?c=t(a._findRow(m)):o.scrollDefault&&(c=t(a._findRow(o.scrollDefault())))}if(c.length&&!c.hasClass("ui-timepicker-disabled")||(c=l.find("li:not(.ui-timepicker-disabled):first")),c&&c.length){var d=l.scrollTop()+c.position().top-c.outerHeight();l.scrollTop(d)}else l.scrollTop(0);return o.stopScrollPropagation&&t(document).on("wheel.ui-timepicker",".ui-timepicker-wrapper",(function(e){e.preventDefault();var i=t(this).scrollTop();t(this).scrollTop(i+e.originalEvent.deltaY)})),t(document).on("mousedown.ui-timepicker",s),t(window).on("resize.ui-timepicker",s),o.closeOnWindowScroll&&t(document).on("scroll.ui-timepicker",s),r.trigger("showTimepicker"),this}}},hide:function(e){var i=t(this),n=i.data("timepicker-obj");return n&&n.settings&&n.settings.useSelect&&i.blur(),t(".ui-timepicker-wrapper").each((function(){var e=t(this);if(p.isVisible(e)){var i=e.data("timepicker-input"),n=i.data("timepicker-obj");n&&n.settings&&n.settings.selectOnBlur&&n._selectValue(),e.hide(),i.trigger("hideTimepicker")}})),this},option:function(i,s){return"string"==typeof i&&void 0===s?t(this).data("timepicker-obj").settings[i]:this.each((function(){var a=t(this),o=a.data("timepicker-obj"),l=o.settings,u=o.list;"object"==e(i)?l=t.extend(l,i):"string"==typeof i&&(l[i]=s),l=o.parseSettings(l),o.settings=l,r.call(a.get(0),{type:"change"},"initial"),u&&(u.remove(),o.list=null),l.useSelect&&n(a)}))},getSecondsFromMidnight:function(){var e=t(this).data("timepicker-obj");return e.time2int(e._getTimeValue())},getTime:function(e){var i=t(this).data("timepicker-obj"),n=i._getTimeValue();if(!n)return null;var s=i.time2int(n);if(null===s)return null;e||(e=new Date);var r=new Date(e);return r.setHours(s/3600),r.setMinutes(s%3600/60),r.setSeconds(s%60),r.setMilliseconds(0),r},isVisible:function(){var e=this.data("timepicker-obj");return!!(e&&e.list&&p.isVisible(e.list))},setTime:function(e){var t=this.data("timepicker-obj"),i=t.settings;if(i.forceRoundTime)var n=t._roundAndFormatTime(t.time2int(e));else n=t._int2time(t.time2int(e));return e&&null===n&&i.noneOption&&(n=e),t._setTimeValue(n,"initial"),r.call(this.get(0),{type:"change"},"initial"),t&&t.list&&t._setSelected(),this},remove:function(){if(this.hasClass("ui-timepicker-input")){var e=this.data("timepicker-obj"),t=e.settings;return this.removeAttr("autocomplete","off"),this.removeClass("ui-timepicker-input"),this.removeData("timepicker-obj"),this.off(".timepicker"),e.list&&e.list.remove(),t.useSelect&&this.show(),e.list=null,this}}};function n(e){var n=e.data("timepicker-obj"),s=n.list,r=n.settings;if(s&&s.length&&(s.remove(),n.list=null),r.useSelect){s=t("<select />",{class:"ui-timepicker-select"}),e.attr("name")&&s.attr("name","ui-timepicker-"+e.attr("name"));var a=s}else s=t("<ul />",{class:"ui-timepicker-list"}),(a=t("<div />",{class:"ui-timepicker-wrapper",tabindex:-1})).css({display:"none",position:"absolute"}).append(s);if(r.noneOption)if(!0===r.noneOption&&(r.noneOption=r.useSelect?"Time...":"None"),t.isArray(r.noneOption)){for(var o in r.noneOption)if(parseInt(o,10)==o){var u=n._generateNoneElement(r.noneOption[o],r.useSelect);s.append(u)}}else u=n._generateNoneElement(r.noneOption,r.useSelect),s.append(u);r.className&&a.addClass(r.className),null===r.minTime&&null===r.durationTime||!r.showDuration||("function"==typeof r.step||r.step,a.addClass("ui-timepicker-with-duration"),a.addClass("ui-timepicker-step-"+r.step));var c=r.minTime;"function"==typeof r.durationTime?c=n.time2int(r.durationTime()):null!==r.durationTime&&(c=r.durationTime);var m=null!==r.minTime?r.minTime:0,p=null!==r.maxTime?r.maxTime:m+86400-1;p<m&&(p+=86400),86399===p&&"string"===t.type(r.timeFormat)&&r.show2400&&(p=86400);var d=r.disableTimeRanges,f=0,h=d.length,g=r.step;"function"!=typeof g&&(g=function(){return r.step}),o=m;for(var v=0;o<=p;o+=60*g(++v)){var b,k=o,y=n._int2time(k);if(r.useSelect?(b=t("<option />",{value:y})).text(y):((b=t("<li />")).addClass(k%86400<43200?"ui-timepicker-am":"ui-timepicker-pm"),b.attr("data-time",l(k,r)),b.text(y)),(null!==r.minTime||null!==r.durationTime)&&r.showDuration){var T=n._int2duration(o-c,r.step);if(r.useSelect)b.text(b.text()+" ("+T+")");else{var w=t("<span />",{class:"ui-timepicker-duration"});w.text(" ("+T+")"),b.append(w)}}f<h&&(k>=d[f][1]&&(f+=1),d[f]&&k>=d[f][0]&&k<d[f][1]&&(r.useSelect?b.prop("disabled",!0):b.addClass("ui-timepicker-disabled"))),s.append(b)}if(a.data("timepicker-input",e),n.list=a,r.useSelect)e.val()&&s.val(n._roundAndFormatTime(n.time2int(e.val()))),s.on("focus",(function(){t(this).data("timepicker-input").trigger("showTimepicker")})),s.on("blur",(function(){t(this).data("timepicker-input").trigger("hideTimepicker")})),s.on("change",(function(){n._setTimeValue(t(this).val(),"select")})),n._setTimeValue(s.val(),"initial"),e.hide().after(s);else{var O=r.appendTo;"string"==typeof O?O=t(O):"function"==typeof O&&(O=O(e)),O.append(a),n._setSelected(),s.on("mousedown click","li",(function(r){e.off("focus.timepicker"),e.on("focus.timepicker-ie-hack",(function(){e.off("focus.timepicker-ie-hack"),e.on("focus.timepicker",i.show)})),n._hideKeyboard()||e[0].focus(),s.find("li").removeClass("ui-timepicker-selected"),t(this).addClass("ui-timepicker-selected"),n._selectValue()&&(e.trigger("hideTimepicker"),s.on("mouseup.timepicker click.timepicker","li",(function(e){s.off("mouseup.timepicker click.timepicker"),a.hide()})))}))}}function s(e){if(e.target!=window){var n=t(e.target);n.closest(".ui-timepicker-input").length||n.closest(".ui-timepicker-wrapper").length||(i.hide(),t(document).unbind(".ui-timepicker"),t(window).unbind(".ui-timepicker"))}}function r(e,i){if(!e||"timepicker"!=e.detail){var n=t(this),s=n.data("timepicker-obj");if(""!==this.value){if(!n.is(":focus")||e&&"change"==e.type){var r=s.settings,a=s.time2int(this.value);if(null!==a){var o=!1;if(null!==r.minTime&&null!==r.maxTime&&(a<r.minTime||a>r.maxTime)&&(o=!0),t.each(r.disableTimeRanges,(function(){if(a>=this[0]&&a<this[1])return o=!0,!1})),r.forceRoundTime){var l=r.roundingFunction(a,r);l!=a&&(a=l,i=null)}var u=s._int2time(a);o?(s._setTimeValue(u,"error")||e&&"change"==e.type)&&n.trigger("timeRangeError"):s._setTimeValue(u,i)}else n.trigger("timeFormatError")}}else s._setTimeValue(null,i)}}function a(e){var n=t(this),s=n.data("timepicker-obj"),a=s.list;if(!a||!p.isVisible(a)){if(40!=e.keyCode)return!0;i.show.call(n.get(0)),a=s.list,s._hideKeyboard()||n.focus()}switch(e.keyCode){case 13:return s._selectValue()&&(r.call(n.get(0),{type:"change"}),i.hide.apply(this)),e.preventDefault(),!1;case 38:var o=a.find(".ui-timepicker-selected");return o.length?o.is(":first-child")||(o.removeClass("ui-timepicker-selected"),o.prev().addClass("ui-timepicker-selected"),o.prev().position().top<o.outerHeight()&&a.scrollTop(a.scrollTop()-o.outerHeight())):(a.find("li").each((function(e,i){if(t(i).position().top>0)return o=t(i),!1})),o.addClass("ui-timepicker-selected")),!1;case 40:return 0===(o=a.find(".ui-timepicker-selected")).length?(a.find("li").each((function(e,i){if(t(i).position().top>0)return o=t(i),!1})),o.addClass("ui-timepicker-selected")):o.is(":last-child")||(o.removeClass("ui-timepicker-selected"),o.next().addClass("ui-timepicker-selected"),o.next().position().top+2*o.outerHeight()>a.outerHeight()&&a.scrollTop(a.scrollTop()+o.outerHeight())),!1;case 27:a.find("li").removeClass("ui-timepicker-selected"),i.hide();break;case 9:i.hide();break;default:return!0}}function o(e){var i=t(this).data("timepicker-obj"),n=i.list,s=i.settings;if(!n||!p.isVisible(n)||s.disableTextInput)return!0;if("paste"!==e.type&&"cut"!==e.type)switch(e.keyCode){case 96:case 97:case 98:case 99:case 100:case 101:case 102:case 103:case 104:case 105:case 48:case 49:case 50:case 51:case 52:case 53:case 54:case 55:case 56:case 57:case 65:case 77:case 80:case 186:case 8:case 46:s.typeaheadHighlight?i._setSelected():n.hide()}else setTimeout((function(){s.typeaheadHighlight?i._setSelected():n.hide()}),0)}t.fn.timepicker=function(n){return this.length?i[n]?this.hasClass("ui-timepicker-input")?i[n].apply(this,Array.prototype.slice.call(arguments,1)):this:"object"!==e(n)&&n?void t.error("Method "+n+" does not exist on jQuery.timepicker"):i.init.apply(this,arguments):this},t.fn.timepicker.defaults=c},"object"===( false?undefined:e(exports))&&exports&&"object"===( false?undefined:e(module))&&module&&module.exports===exports?u(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")): true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (u),
+/* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(){"use strict";function e(t){return(e="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(t)}function t(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){for(var i=0;i<t.length;i++){var n=t[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function n(e,t,i){return t in e?Object.defineProperty(e,t,{value:i,enumerable:!0,configurable:!0,writable:!0}):e[t]=i,e}function s(e,t){var i=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),i.push.apply(i,n)}return i}function r(e){for(var t=1;t<arguments.length;t++){var i=null!=arguments[t]?arguments[t]:{};t%2?s(Object(i),!0).forEach((function(t){n(e,t,i[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(i)):s(Object(i)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(i,t))}))}return e}function a(e,t){(null==t||t>e.length)&&(t=e.length);for(var i=0,n=new Array(t);i<t;i++)n[i]=e[i];return n}function l(e,t){var i;if("undefined"==typeof Symbol||null==e[Symbol.iterator]){if(Array.isArray(e)||(i=function(e,t){if(e){if("string"==typeof e)return a(e,t);var i=Object.prototype.toString.call(e).slice(8,-1);return"Object"===i&&e.constructor&&(i=e.constructor.name),"Map"===i||"Set"===i?Array.from(e):"Arguments"===i||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(i)?a(e,t):void 0}}(e))||t&&e&&"number"==typeof e.length){i&&(e=i);var n=0,s=function(){};return{s:s,n:function(){return n>=e.length?{done:!0}:{done:!1,value:e[n++]}},e:function(e){throw e},f:s}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var r,l=!0,o=!1;return{s:function(){i=e[Symbol.iterator]()},n:function(){var e=i.next();return l=e.done,e},e:function(e){o=!0,r=e},f:function(){try{l||null==i.return||i.return()}finally{if(o)throw r}}}}var o=86400,u=function(e,t){if(null===e)return null;if("number"!=typeof t.step)return e;var i,n=e%(60*t.step);return(n-=(null!==(i=t.minTime())&&void 0!==i?i:0)%(60*t.step))>=30*t.step?e+=60*t.step-n:e-=n,function(e,t){if(e==o&&t.show2400)return e;return e%o}(e,t)};var c,m={appendTo:"body",className:null,closeOnWindowScroll:!1,disableTextInput:!1,disableTimeRanges:[],disableTouchKeyboard:!1,durationTime:null,forceRoundTime:!1,lang:{},listWidth:null,maxTime:null,minTime:null,noneOption:!1,orientation:"l",roundingFunction:u,scrollDefault:null,selectOnBlur:!1,show2400:!1,showDuration:!1,showOn:["click","focus"],showOnFocus:!0,step:30,stopScrollPropagation:!1,timeFormat:"g:ia",typeaheadHighlight:!0,useSelect:!1,wrapHours:!0},p={am:"am",pm:"pm",AM:"AM",PM:"PM",decimal:".",mins:"mins",hr:"hr",hrs:"hrs"},f={bubbles:!0,cancelable:!1,detail:null},h=function(){function n(e){var i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};t(this,n),this._handleFormatValue=this._handleFormatValue.bind(this),this._handleKeyUp=this._handleKeyUp.bind(this),this.targetEl=e;var s=n.extractAttrOptions(e,Object.keys(m));this.settings=this.parseSettings(r(r(r({},m),i),s))}var s,a,u;return s=n,u=[{key:"extractAttrOptions",value:function(e,t){var i,n={},s=l(t);try{for(s.s();!(i=s.n()).done;){var r=i.value;r in e.dataset&&(n[r]=e.dataset[r])}}catch(e){s.e(e)}finally{s.f()}return n}},{key:"isVisible",value:function(e){var t=e[0];return t.offsetWidth>0&&t.offsetHeight>0}},{key:"hideAll",value:function(){var e,t=l(document.getElementsByClassName("ui-timepicker-input"));try{for(t.s();!(e=t.n()).done;){var i=e.value.timepickerObj;i&&i.hideMe()}}catch(e){t.e(e)}finally{t.f()}}}],(a=[{key:"hideMe",value:function(){if(this.settings.useSelect)this.targetEl.blur();else if(this.list&&n.isVisible(this.list)){this.settings.selectOnBlur&&this._selectValue(),this.list.hide();var e=new CustomEvent("hideTimepicker",f);this.targetEl.dispatchEvent(e)}}},{key:"_findRow",value:function(e){if(!e&&0!==e)return!1;var t=!1;return e=this.settings.roundingFunction(e,this.settings),!!this.list&&(this.list.find("li").each((function(i,n){var s=parseInt(n.dataset.time);if(!isNaN(s))return s==e?(t=n,!1):void 0})),t)}},{key:"_hideKeyboard",value:function(){return(window.navigator.msMaxTouchPoints||"ontouchstart"in document)&&this.settings.disableTouchKeyboard}},{key:"_setTimeValue",value:function(e,t){if("INPUT"===this.targetEl.nodeName){null===e&&""==this.targetEl.value||(this.targetEl.value=e);var i=this;i.settings.useSelect&&"select"!=t&&i.list&&i.list.val(i._roundAndFormatTime(i.anytime2int(e)))}var n=new CustomEvent("selectTime",f);if(this.selectedValue!=e){this.selectedValue=e;var s=new CustomEvent("changeTime",f),r=new CustomEvent("change",Object.assign(f,{detail:"timepicker"}));return"select"==t?(this.targetEl.dispatchEvent(n),this.targetEl.dispatchEvent(s),this.targetEl.dispatchEvent(r)):-1==["error","initial"].indexOf(t)&&this.targetEl.dispatchEvent(s),!0}return-1==["error","initial"].indexOf(t)&&this.targetEl.dispatchEvent(n),!1}},{key:"_getTimeValue",value:function(){return"INPUT"===this.targetEl.nodeName?this.targetEl.value:this.selectedValue}},{key:"_selectValue",value:function(){var e=this;e.settings;var t=e.list.find(".ui-timepicker-selected");if(t.hasClass("ui-timepicker-disabled"))return!1;if(!t.length)return!0;var i=t.get(0).dataset.time;if(i){var n=parseInt(i);isNaN(n)||(i=n)}return null!==i&&("string"!=typeof i&&(i=e._int2time(i)),e._setTimeValue(i,"select")),!0}},{key:"anytime2int",value:function(t){return"number"==typeof t?t:"string"==typeof t?this.time2int(t):"object"===e(t)&&t instanceof Date?3600*t.getHours()+60*t.getMinutes()+t.getSeconds():"function"==typeof t?t():null}},{key:"time2int",value:function(e){if(""===e||null==e)return null;if("now"===e)return this.anytime2int(new Date);if("string"!=typeof e)return e;"a"!=(e=e.toLowerCase().replace(/[\s\.]/g,"")).slice(-1)&&"p"!=e.slice(-1)||(e+="m");var t=/^(([^0-9]*))?([0-9]?[0-9])(([0-5][0-9]))?(([0-5][0-9]))?(([^0-9]*))$/;e.match(/\W/)&&(t=/^(([^0-9]*))?([0-9]?[0-9])(\W+([0-5][0-9]?))?(\W+([0-5][0-9]))?(([^0-9]*))$/);var i=e.match(t);if(!i)return null;var n=parseInt(1*i[3],10),s=i[2]||i[9],r=n,a=1*i[5]||0,l=1*i[7]||0;if(s||2!=i[3].length||"0"!=i[3][0]||(s="am"),n<=12&&s){var u=(s=s.trim())==this.settings.lang.pm||s==this.settings.lang.PM;r=12==n?u?12:0:n+(u?12:0)}else if(3600*n+60*a+l>=o+(this.settings.show2400?1:0)){if(!1===this.settings.wrapHours)return null;r=n%24}var c=3600*r+60*a+l;if(n<12&&!s&&this.settings._twelveHourTime&&this.settings.scrollDefault()){var m=c-this.settings.scrollDefault();m<0&&m>=-43200&&(c=(c+43200)%o)}return c}},{key:"intStringDateOrFunc2func",value:function(e){var t=this;return null==e?function(){return null}:"function"==typeof e?function(){return t.anytime2int(e())}:function(){return t.anytime2int(e)}}},{key:"parseSettings",value:function(e){if(e.lang=r(r({},p),e.lang),this.settings=e,e.listWidth&&(e.listWidth=this.anytime2int(e.listWidth)),e.minTime=this.intStringDateOrFunc2func(e.minTime),e.maxTime=this.intStringDateOrFunc2func(e.maxTime),e.durationTime=this.intStringDateOrFunc2func(e.durationTime),e.scrollDefault?e.scrollDefault=this.intStringDateOrFunc2func(e.scrollDefault):e.scrollDefault=e.minTime,"string"==typeof e.timeFormat&&e.timeFormat.match(/[gh]/)&&(e._twelveHourTime=!0),!1===e.showOnFocus&&-1!=e.showOn.indexOf("focus")&&e.showOn.splice(e.showOn.indexOf("focus"),1),e.disableTimeRanges||(e.disableTimeRanges=[]),e.disableTimeRanges.length>0){for(var t in e.disableTimeRanges)e.disableTimeRanges[t]=[this.anytime2int(e.disableTimeRanges[t][0]),this.anytime2int(e.disableTimeRanges[t][1])];for(e.disableTimeRanges=e.disableTimeRanges.sort((function(e,t){return e[0]-t[0]})),t=e.disableTimeRanges.length-1;t>0;t--)e.disableTimeRanges[t][0]<=e.disableTimeRanges[t-1][1]&&(e.disableTimeRanges[t-1]=[Math.min(e.disableTimeRanges[t][0],e.disableTimeRanges[t-1][0]),Math.max(e.disableTimeRanges[t][1],e.disableTimeRanges[t-1][1])],e.disableTimeRanges.splice(t,1))}return e}},{key:"_disableTextInputHandler",value:function(e){switch(e.keyCode){case 13:case 9:return;default:e.preventDefault()}}},{key:"_int2duration",value:function(e,t){e=Math.abs(e);var i,n,s=Math.round(e/60),r=[];return s<60?r=[s,this.settings.lang.mins]:(i=Math.floor(s/60),n=s%60,30==t&&30==n&&(i+=this.settings.lang.decimal+5),r.push(i),r.push(1==i?this.settings.lang.hr:this.settings.lang.hrs),30!=t&&n&&(r.push(n),r.push(this.settings.lang.mins))),r.join(" ")}},{key:"_roundAndFormatTime",value:function(e){if(null!==(e=this.settings.roundingFunction(e,this.settings)))return this._int2time(e)}},{key:"_int2time",value:function(e){if("number"!=typeof e)return null;var t=parseInt(e%60),i=parseInt(e/60%60),n=parseInt(e/3600%24),s=new Date(1970,0,2,n,i,t,0);if(isNaN(s.getTime()))return null;if("function"==typeof this.settings.timeFormat)return this.settings.timeFormat(s);for(var r,a,l="",u=0;u<this.settings.timeFormat.length;u++)switch(a=this.settings.timeFormat.charAt(u)){case"a":l+=s.getHours()>11?this.settings.lang.pm:this.settings.lang.am;break;case"A":l+=s.getHours()>11?this.settings.lang.PM:this.settings.lang.AM;break;case"g":l+=0==(r=s.getHours()%12)?"12":r;break;case"G":r=s.getHours(),e===o&&(r=this.settings.show2400?24:0),l+=r;break;case"h":0!=(r=s.getHours()%12)&&r<10&&(r="0"+r),l+=0===r?"12":r;break;case"H":r=s.getHours(),e===o&&(r=this.settings.show2400?24:0),l+=r>9?r:"0"+r;break;case"i":l+=(i=s.getMinutes())>9?i:"0"+i;break;case"s":l+=(t=s.getSeconds())>9?t:"0"+t;break;case"\\":u++,l+=this.settings.timeFormat.charAt(u);break;default:l+=a}return l}},{key:"_setSelected",value:function(){var e=this.list;e.find("li").removeClass("ui-timepicker-selected");var t=this.anytime2int(this._getTimeValue());if(null!==t){var i=this._findRow(t);if(i){var n=i.getBoundingClientRect(),s=e.get(0).getBoundingClientRect(),r=n.top-s.top;if(r+n.height>s.height||r<0){var a=e.scrollTop()+(n.top-s.top)-n.height;e.scrollTop(a)}var l=parseInt(i.dataset.time);(this.settings.forceRoundTime||l===t)&&i.classList.add("ui-timepicker-selected")}}}},{key:"_isFocused",value:function(e){return e===document.activeElement}},{key:"_handleFormatValue",value:function(e){e&&"timepicker"==e.detail||this._formatValue(e)}},{key:"_formatValue",value:function(e,t){if(""!==this.targetEl.value){if(!this._isFocused(this.targetEl)||e&&"change"==e.type){var i=this.settings,n=this.anytime2int(this.targetEl.value);if(null!==n){var s=!1;null!==i.minTime&&null!==i.maxTime&&(n<i.minTime()||n>i.maxTime())&&(s=!0);var r,a=l(i.disableTimeRanges);try{for(a.s();!(r=a.n()).done;){var o=r.value;if(n>=o[0]&&n<o[1]){s=!0;break}}}catch(e){a.e(e)}finally{a.f()}if(i.forceRoundTime){var u=i.roundingFunction(n,i);u!=n&&(n=u,t=null)}var c=this._int2time(n);if(s){this._setTimeValue(c);var m=new CustomEvent("timeRangeError",f);this.targetEl.dispatchEvent(m)}else this._setTimeValue(c,t)}else{var p=new CustomEvent("timeFormatError",f);this.targetEl.dispatchEvent(p)}}}else this._setTimeValue(null,t)}},{key:"_generateNoneElement",value:function(t,i){var n,s,r,a;return"object"==e(t)?(n=t.label,s=t.className,r=t.value):"string"==typeof t?(n=t,r=""):$.error("Invalid noneOption value"),i?(a=document.createElement("option")).value=r:(a=document.createElement("li")).dataset.time=String(r),a.innerText=n,a.classList.add(s),a}},{key:"_handleKeyUp",value:function(e){var t=this;if(!this.list||!n.isVisible(this.list)||this.settings.disableTextInput)return!0;if("paste"!==e.type&&"cut"!==e.type)switch(e.keyCode){case 96:case 97:case 98:case 99:case 100:case 101:case 102:case 103:case 104:case 105:case 48:case 49:case 50:case 51:case 52:case 53:case 54:case 55:case 56:case 57:case 65:case 77:case 80:case 186:case 8:case 46:this.settings.typeaheadHighlight?this._setSelected():this.list.hide()}else setTimeout((function(){t.settings.typeaheadHighlight?t._setSelected():t.list.hide()}),0)}}])&&i(s.prototype,a),u&&i(s,u),n}();!function(){if("function"==typeof window.CustomEvent)return!1;window.CustomEvent=function(e,t){t||(t={}),t=Object.assign(f,t);var i=document.createEvent("CustomEvent");return i.initCustomEvent(e,t.bubbles,t.cancelable,t.detail),i}}(),c=function(t){var i={init:function(e){return this.each((function(){var s=t(this),a=new h(this,e),l=a.settings;if(l.lang,this.timepickerObj=a,s.addClass("ui-timepicker-input"),l.useSelect)n(s);else{if(s.prop("autocomplete","off"),l.showOn)for(var o in l.showOn)s.on(l.showOn[o]+".timepicker",i.show);s.on("change.timepicker",a._handleFormatValue),s.on("keydown.timepicker",r),s.on("keyup.timepicker",a._handleKeyUp),l.disableTextInput&&s.on("keydown.timepicker",a._disableTextInputHandler),s.on("cut.timepicker",a._handleKeyUp),s.on("paste.timepicker",a._handleKeyUp),a._formatValue(null,"initial")}}))},show:function(e){var i=t(this),r=i[0].timepickerObj,a=r.settings;if(e&&e.preventDefault(),a.useSelect)r.list.trigger("focus");else{r._hideKeyboard()&&i.trigger("blur");var l=r.list;if(!i.prop("readonly")&&(n(i),l=r.list,!h.isVisible(l))){i.is("input")&&(r.selectedValue=i.val()),r._setSelected(),h.hideAll(),"number"==typeof a.listWidth&&l.width(i.outerWidth()*a.listWidth),l.show();var o={};a.orientation.match(/r/)?o.left=i.offset().left+i.outerWidth()-l.outerWidth()+parseInt(l.css("marginLeft").replace("px",""),10):a.orientation.match(/l/)?o.left=i.offset().left+parseInt(l.css("marginLeft").replace("px",""),10):a.orientation.match(/c/)&&(o.left=i.offset().left+(i.outerWidth()-l.outerWidth())/2+parseInt(l.css("marginLeft").replace("px",""),10)),"t"==(a.orientation.match(/t/)?"t":a.orientation.match(/b/)?"b":i.offset().top+i.outerHeight(!0)+l.outerHeight()>t(window).height()+t(window).scrollTop()?"t":"b")?(l.addClass("ui-timepicker-positioned-top"),o.top=i.offset().top-l.outerHeight()+parseInt(l.css("marginTop").replace("px",""),10)):(l.removeClass("ui-timepicker-positioned-top"),o.top=i.offset().top+i.outerHeight()+parseInt(l.css("marginTop").replace("px",""),10)),l.offset(o);var u=l.find(".ui-timepicker-selected");if(!u.length){var c=r.anytime2int(r._getTimeValue());null!==c?u=t(r._findRow(c)):a.scrollDefault()&&(u=t(r._findRow(a.scrollDefault())))}if(u.length&&!u.hasClass("ui-timepicker-disabled")||(u=l.find("li:not(.ui-timepicker-disabled):first")),u&&u.length){var m=l.scrollTop()+u.position().top-u.outerHeight();l.scrollTop(m)}else l.scrollTop(0);return a.stopScrollPropagation&&t(document).on("wheel.ui-timepicker",".ui-timepicker-wrapper",(function(e){e.preventDefault();var i=t(this).scrollTop();t(this).scrollTop(i+e.originalEvent.deltaY)})),t(document).on("mousedown.ui-timepicker",s),window.addEventListener("resize",s),a.closeOnWindowScroll&&t(document).on("scroll.ui-timepicker",s),i.trigger("showTimepicker"),this}}},hide:function(e){var t=this[0].timepickerObj;return t&&t.hideMe(),h.hideAll(),this},option:function(i,s){return"string"==typeof i&&void 0===s?this[0].timepickerObj.settings[i]:this.each((function(){var r=t(this),a=r[0].timepickerObj,l=a.settings,o=a.list;"object"==e(i)?l=t.extend(l,i):"string"==typeof i&&(l[i]=s),l=a.parseSettings(l),a.settings=l,a._formatValue({type:"change"},"initial"),o&&(o.remove(),a.list=null),l.useSelect&&n(r)}))},getSecondsFromMidnight:function(){var e=this[0].timepickerObj;return e.anytime2int(e._getTimeValue())},getTime:function(e){var t=this[0].timepickerObj,i=t._getTimeValue();if(!i)return null;var n=t.anytime2int(i);if(null===n)return null;e||(e=new Date);var s=new Date(e);return s.setHours(n/3600),s.setMinutes(n%3600/60),s.setSeconds(n%60),s.setMilliseconds(0),s},isVisible:function(){var e=this[0].timepickerObj;return!!(e&&e.list&&h.isVisible(e.list))},setTime:function(e){var t=this[0].timepickerObj,i=t.settings;if(i.forceRoundTime)var n=t._roundAndFormatTime(t.anytime2int(e));else n=t._int2time(t.anytime2int(e));return e&&null===n&&i.noneOption&&(n=e),t._setTimeValue(n,"initial"),t._formatValue({type:"change"},"initial"),t&&t.list&&t._setSelected(),this},remove:function(){var e=this;if(e.hasClass("ui-timepicker-input")){var t=e[0].timepickerObj,i=t.settings;return e.removeAttr("autocomplete","off"),e.removeClass("ui-timepicker-input"),e.removeData("timepicker-obj"),e.off(".timepicker"),t.list&&t.list.remove(),i.useSelect&&e.show(),t.list=null,this}}};function n(e){var n,s,r,a=e[0].timepickerObj,l=a.list,c=a.settings;if(l&&l.length&&(l.remove(),a.list=null),c.useSelect){l=t("<select></select>",{class:"ui-timepicker-select"}),e.attr("name")&&l.attr("name","ui-timepicker-"+e.attr("name"));var m=l}else l=t("<ul></ul>",{class:"ui-timepicker-list"}),(m=t("<div></div>",{class:"ui-timepicker-wrapper",tabindex:-1})).css({display:"none",position:"absolute"}).append(l);if(c.noneOption)if(!0===c.noneOption&&(c.noneOption=c.useSelect?"Time...":"None"),t.isArray(c.noneOption)){for(var p in c.noneOption)if(parseInt(p,10)==p){var f=a._generateNoneElement(c.noneOption[p],c.useSelect);l.append(f)}}else f=a._generateNoneElement(c.noneOption,c.useSelect),l.append(f);c.className&&m.addClass(c.className),null===c.minTime&&null===c.durationTime||!c.showDuration||("function"==typeof c.step||c.step,m.addClass("ui-timepicker-with-duration"),m.addClass("ui-timepicker-step-"+c.step));var h=null!==(n=c.durationTime())&&void 0!==n?n:c.minTime(),d=null!==(s=c.minTime())&&void 0!==s?s:0,g=null!==(r=c.maxTime())&&void 0!==r?r:d+o-1;g<d&&(g+=o),86399===g&&"string"===t.type(c.timeFormat)&&c.show2400&&(g=o);var v=c.disableTimeRanges,y=0,b=v.length,k=c.step;"function"!=typeof k&&(k=function(){return c.step}),p=d;for(var T=0;p<=g;p+=60*k(++T)){var w,O=p,_=a._int2time(O);if(c.useSelect?(w=t("<option></option>",{value:_})).text(_):((w=t("<li></li>")).addClass(O%o<43200?"ui-timepicker-am":"ui-timepicker-pm"),w.attr("data-time",u(O,c)),w.text(_)),(null!==c.minTime()||null!==c.durationTime())&&c.showDuration){var E=a._int2duration(p-h,c.step);if(c.useSelect)w.text(w.text()+" ("+E+")");else{var S=t("<span></span>",{class:"ui-timepicker-duration"});S.text(" ("+E+")"),w.append(S)}}y<b&&(O>=v[y][1]&&(y+=1),v[y]&&O>=v[y][0]&&O<v[y][1]&&(c.useSelect?w.prop("disabled",!0):w.addClass("ui-timepicker-disabled"))),l.append(w)}if(m.data("timepicker-input",e),a.list=m,c.useSelect)e.val()&&l.val(a._roundAndFormatTime(a.anytime2int(e.val()))),l.on("focus",(function(){t(this).data("timepicker-input").trigger("showTimepicker")})),l.on("blur",(function(){t(this).data("timepicker-input").trigger("hideTimepicker")})),l.on("change",(function(){a._setTimeValue(t(this).val(),"select")})),a._setTimeValue(l.val(),"initial"),e.hide().after(l);else{var j=c.appendTo;"string"==typeof j?j=t(j):"function"==typeof j&&(j=j(e)),j.append(m),a._setSelected(),l.on("mousedown click","li",(function(n){e.off("focus.timepicker"),e.on("focus.timepicker-ie-hack",(function(){e.off("focus.timepicker-ie-hack"),e.on("focus.timepicker",i.show)})),a._hideKeyboard()||e[0].focus(),l.find("li").removeClass("ui-timepicker-selected"),t(this).addClass("ui-timepicker-selected"),a._selectValue()&&(e.trigger("hideTimepicker"),l.on("mouseup.timepicker click.timepicker","li",(function(e){l.off("mouseup.timepicker click.timepicker"),m.hide()})))}))}}function s(e){if("focus"!=e.type||e.target!=window){var i=t(e.target);i.closest(".ui-timepicker-input").length||i.closest(".ui-timepicker-wrapper").length||(h.hideAll(),t(document).unbind(".ui-timepicker"),t(window).unbind(".ui-timepicker"))}}function r(e){var n=t(this),s=n[0].timepickerObj,r=s.list;if(!r||!h.isVisible(r)){if(40!=e.keyCode)return!0;i.show.call(n.get(0)),r=s.list,s._hideKeyboard()||n.trigger("focus")}switch(e.keyCode){case 13:return s._selectValue()&&(s._formatValue({type:"change"}),s.hideMe()),e.preventDefault(),!1;case 38:var a=r.find(".ui-timepicker-selected");return a.length?a.is(":first-child")||(a.removeClass("ui-timepicker-selected"),a.prev().addClass("ui-timepicker-selected"),a.prev().position().top<a.outerHeight()&&r.scrollTop(r.scrollTop()-a.outerHeight())):(r.find("li").each((function(e,i){if(t(i).position().top>0)return a=t(i),!1})),a.addClass("ui-timepicker-selected")),!1;case 40:return 0===(a=r.find(".ui-timepicker-selected")).length?(r.find("li").each((function(e,i){if(t(i).position().top>0)return a=t(i),!1})),a.addClass("ui-timepicker-selected")):a.is(":last-child")||(a.removeClass("ui-timepicker-selected"),a.next().addClass("ui-timepicker-selected"),a.next().position().top+2*a.outerHeight()>r.outerHeight()&&r.scrollTop(r.scrollTop()+a.outerHeight())),!1;case 27:r.find("li").removeClass("ui-timepicker-selected"),s.hideMe();break;case 9:s.hideMe();break;default:return!0}}t.fn.timepicker=function(n){return this.length?i[n]?this.hasClass("ui-timepicker-input")?i[n].apply(this,Array.prototype.slice.call(arguments,1)):this:"object"!==e(n)&&n?void t.error("Method "+n+" does not exist on jQuery.timepicker"):i.init.apply(this,arguments):this},t.fn.timepicker.defaults=m},"object"===( false?undefined:e(exports))&&exports&&"object"===( false?undefined:e(module))&&module&&module.exports===exports?c(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")): true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (c),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined}();
@@ -98139,7 +98210,7 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** multi lodash axios popper.js jquery bootstrap js-cookie autosize timepicker daterangepicker owl.carousel parsleyjs summernote dragula inputmask chart.js jquery-match-height jquery-outside-events ***!
   \**********************************************************************************************************************************************************************************************************/

@@ -14,7 +14,6 @@ use App\Models\System\User;
 /**
  * Admin Controller
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
  * @package   App\Http\Controllers\Admin
  */
@@ -28,6 +27,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         $roles = [Role::ADMIN];
         $this->middleware('force.https');
         $this->middleware('auth');

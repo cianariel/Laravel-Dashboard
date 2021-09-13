@@ -1,8 +1,14 @@
 {
+	/*"folders":
+	[
+		{
+			"path": "/Volumes/240GB_RAID/www/dollargeek.com"
+		}
+	]*/
 	"folders":
 	[
 		{
-			"path": "."
+			"path": ".",
 		}
-	]
+	],
 }

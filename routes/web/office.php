@@ -142,7 +142,7 @@ $routes = [
         'path'          => 'messages',
         'type'          => 'resource',
         'controller'    => 'Office\Message\MessagesController',
-        'except'        => ['edit', 'update']
+        'except'        => ['create', 'edit', 'update']
     ],
     [
         'path'          => 'reps',
@@ -150,7 +150,49 @@ $routes = [
         'controller'    => 'Office\Reps\RepsController',
         'method'        => 'index',
         'name'          => 'reps.index'
-    ]
+    ],
+    [
+        'path'          => 'reps/{rep}',
+        'type'          => 'get',
+        'controller'    => 'Office\Reps\RepsController',
+        'method'        => 'show',
+        'name'          => 'reps.show'
+    ],
+    [
+        'path'          => 'ajax/reps/toggle/approved',
+        'type'          => 'post',
+        'controller'    => 'Office\Ajax\AjaxController',
+        'method'        => 'toggleApprovedRepUser',
+        'name'          => 'ajax.reps.toggle.approved'
+    ],
+    [
+        'path'          => 'ajax/reps/toggle/favorite',
+        'type'          => 'post',
+        'controller'    => 'Office\Ajax\AjaxController',
+        'method'        => 'toggleFavoriteUser',
+        'name'          => 'ajax.reps.toggle.favorite'
+    ],
+    [
+        'path'          => 'ajax/reps/toggle/blocked',
+        'type'          => 'post',
+        'controller'    => 'Office\Ajax\AjaxController',
+        'method'        => 'toggleBlockedUser',
+        'name'          => 'ajax.reps.toggle.blocked'
+    ],
+    [
+        'path'          => 'ajax/messages/username/query',
+        'type'          => 'post',
+        'controller'    => 'Office\Ajax\AjaxController',
+        'method'        => 'queryRepsUsers',
+        'name'          => 'ajax.message.query.reps'
+    ],
+    [
+        'path'          => 'ajax/messages/retrieve/single',
+        'type'          => 'post',
+        'controller'    => 'Office\Ajax\AjaxController',
+        'method'        => 'retreiveMessage',
+        'name'          => 'ajax.message.retrieve'
+    ],
 ];
 
 Route::domain(config('app.base_domain'))->name('office.')->group(function () use (&$routes) {

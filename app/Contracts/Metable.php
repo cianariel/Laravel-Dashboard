@@ -10,7 +10,6 @@ use Spatie\SchemalessAttributes\SchemalessAttributes;
 /**
  * Interface Repository
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
  * @package   App\Contracts
  */

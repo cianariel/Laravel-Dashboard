@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 /**
  * Force HTTPS Middleware
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
  * @package   App\Http\Middleware
  */
@@ -25,7 +24,7 @@ class ForceHttps
      */
     public function handle($request, Closure $next)
     {
-        if (env('SSL') === true && !$request->secure()) {
+        if (env('APP_SSL') === true && !$request->secure()) {
             return redirect()->secure($request->getRequestUri());
         }
 

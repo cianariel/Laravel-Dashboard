@@ -6,16 +6,20 @@
         <div class="row">
             <div class="col-6">
                 @component('components.elements.link', [
-                    'href'  => '#'
+                    'href'  => route('office.messages.index', ['sort' => 'recieved'])
                 ])
                     <span><i class="fas fa-ellipsis-v"></i> {{ __('Recieved') }}</span>
                 @endcomponent
             </div>
             <div class="col-6 text-right">
                 @component('components.elements.link', [
-                    'href'      => route('office.messages.create'),
+                    'href'      => '#office-message-create-modal',
                     'classes'   => [
                         'text-uppercase'
+                    ],
+                    'attrs'     => [
+                        'data-toggle'   => 'modal',
+                        'data-target'   => '#office-message-create-modal'
                     ]
                 ])
                     <i class="far fa-edit"></i> {{ __('New') }}
@@ -36,11 +40,21 @@
                             ]
                         ])
                             <div class="row">
-                                @if($fromUser = $message->users()->first())
+                                @if($fromUser = $message->users()->whereNot('id', $user->id)->first())
                                     <div class="col-4">
+                                        <div class="avator mb-2">
+                                            <img src="{{ avator($fromUser) }}" />
+                                        </div>
                                     </div>
                                 @endif
                                 <div class="col-8">
+                                     <h5>
+                                        {{ $fromUser->first_name }} {{ $fromUser->last_name }}
+                                        <span class="pull-right fg-grey">
+                                            {{ Carbon\Carbon::parse($message->created_at)->format('M j') }}
+                                        </span>
+                                    </h5>
+                                    <p class="card-text">{{ __('RE') }}: {{ $message->subject }}</p>
                                 </div>
                             </div>
                         @endcomponent

@@ -8,7 +8,6 @@ use Illuminate\Database\QueryException;
 /**
  * {{ class }} Seeder
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  */
 class {{ class }} extends Seeder

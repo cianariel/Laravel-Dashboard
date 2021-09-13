@@ -8,21 +8,22 @@ use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use App\Models\System\Traits\HasUsers;
 use App\Models\System\Traits\HasFolders;
-use App\Models\System\Traits\HasAttachments;
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use App\Models\Shared\Model;
 
 /**
  * Messages Eloquent Model
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Models\System
  */
-class Message extends Model implements Searchable
+class Message extends Model implements Searchable, HasMedia
 {
     use HasUsers,
         HasFolders,
-        HasAttachments;
+        HasMediaTrait;
 
     /**
      * The database table used by the model.
@@ -31,6 +32,21 @@ class Message extends Model implements Searchable
      * @access protected
      */
     protected $table = 'messages';
+
+    /**
+     * @var string USER
+     */
+    const USER = 'user';
+
+    /**
+     * @var string OFFICE
+     */
+    const OFFICE = 'office';
+
+    /**
+     * @var string GUEST_USER
+     */
+    const GUEST_USER = 'guest_user';
 
     /**
      * Message sent status
@@ -76,6 +92,15 @@ class Message extends Model implements Searchable
         self::READ,
         self::UNREAD,
         self::DELETED
+    ];
+
+    /**
+     * @var array TYPES
+     */
+    const TYPES = [
+        self::USER,
+        self::OFFICE,
+        self::GUEST_USER
     ];
 
     /**

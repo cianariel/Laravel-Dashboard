@@ -3,6 +3,44 @@
 //----------------------------//
 body[id^="page-office"]
 {
+
+    .office-ajax-recipients-results
+    {
+        position: relative;
+        width: 100%;
+        left: rem(0);
+        top: rem(-1);
+        z-index: 99;
+        background: #fff;
+        border: rem(1) solid #ced4da;
+
+        ul {
+            .list-item {
+                padding: rem(10);
+
+                .avator {
+                   width: 100%;
+                   height: auto;
+                   display: block
+                }
+
+                h6 {
+                    font-size: rem(14);
+                    color: $grey-color;
+                }
+
+                h5 {
+                    font-size: rem(12);
+                    color: $black;
+                }
+
+                &:hover {
+                    background: #e1e1e1;
+                }
+            }
+        }
+    }
+
     // Main Body Content
     #office-content-body {
 
@@ -35,6 +73,65 @@ body[id^="page-office"]
                     color: $light-blue-color;
                 }
             }
+        }
+    }
+
+    // Reps
+    #office-reps-database-listing-card {
+
+        .user-avator {
+            width: rem(100);
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    #office-rep-user-profile-header,
+    .office-rep-user-profile-header
+    {
+        background: rgb(244,144,126);
+
+        .user-avator {
+            width: rem(100);
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    #office-reps-profile-toolbar
+    {
+        @include media-breakpoint-up(md)
+        {
+            position: relative;
+
+            min-height: rem(50);
+
+            .buttons
+            {
+                position: absolute;
+                top: rem(-20);
+                left: rem(25);
+
+                li {
+                    a {
+                        background: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    #office-reps-user-sidebar-card
+    {
+        @include media-breakpoint-up(md)
+        {
+            max-width: rem(350);
         }
     }
 }

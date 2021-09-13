@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models\System;
 
-use App\Models\Shared\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\System\Traits\HasAppointments;
+use App\Models\Shared\Model;
 
 /**
  * CalendarEvent Eloquent Model
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Models\System
  */
@@ -35,6 +35,21 @@ class CalendarEvent extends Model
      * @var string INACTIVE
      */
     const INACTIVE = 'inactive';
+
+    /**
+     * @var string OPEN
+     */
+    const OPEN = 'opem';
+
+    /**
+     * @var string BOOKED
+     */
+    const BOOKED = 'booked';
+
+    /**
+     * @var string BOOKED
+     */
+    const CONFIRMED = 'confirmed';
 
     /**
      * @var string OFF_SET_VISIT_TYPE
@@ -96,6 +111,15 @@ class CalendarEvent extends Model
     const STATUS_TYPES = [
         self::INACTIVE,
         self::ACTIVE
+    ];
+
+    /**
+     * @var EVENT_STATUSES
+     */
+    const EVENT_STATUSES = [
+        self::OPEN,
+        self::BOOKED,
+        self::CONFIRMED
     ];
 
     /**
@@ -164,6 +188,8 @@ class CalendarEvent extends Model
     const CHRISTMAS_DAY = '12/25';
 
     /**
+     *  Associative array for holidays
+     *
      * @var array HOLIDAYS
      */
     const HOLIDAYS = [
@@ -180,6 +206,26 @@ class CalendarEvent extends Model
         'veterans_day'      => self::VETERANS_DAY,
         'christmas_eve'     => self::CHRISTMAS_EVE,
         'christmas_day'     => self::CHRISTMAS_DAY,
+    ];
+
+    /**
+     *
+     * @var HOLIDAYS_LIST
+     */
+    const HOLIDAYS_LIST = [
+        self::NEW_YEARS_EVE,
+        self::NEW_YEARS_DAY,
+        self::MLK_DAY,
+        self::EASTER_DAY,
+        self::GOOD_FRIDAY,
+        self::PRESIDENTS_DAY,
+        self::MEMORIAL_DAY,
+        self::INDEPENDENCE_DAY,
+        self::LABOR_DAY,
+        self::COLUMBUS_DAY,
+        self::VETERANS_DAY,
+        self::CHRISTMAS_EVE,
+        self::CHRISTMAS_DAY,
     ];
 
     /**
@@ -386,12 +432,27 @@ class CalendarEvent extends Model
         return date($format, strtotime(self::CHRISTMAS_DAY . '/' . $year));
     }
 
+
+    /**
+     * @var array SIMPLE_QUERY_SELECT
+     */
+    const SIMPLE_QUERY_SELECT = [
+        'id',
+        'title',
+        'recurring',
+        'status',
+        'meta_fields',
+        'start_at',
+        'ends_at',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
+        'reference',
         'title',
         'recurring',
         'meta_fields',
@@ -415,6 +476,7 @@ class CalendarEvent extends Model
     protected $casts = [
         'id'            => 'integer',
         'uuid'          => 'string',
+        'reference'     => 'string',
         'title'         => 'string',
         'recurring'     => 'string',
         'meta_fields'   => 'array',

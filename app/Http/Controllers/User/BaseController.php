@@ -11,7 +11,6 @@ use App\Models\System\User;
 /**
  * BaseController
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Http\Controllers\User
  */
@@ -24,7 +23,10 @@ class BaseController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('force.https');
+        parent::__construct();
+        $this->middleware('verified');
+        $this->middleware('user.subscribed', ['except' => ['selectSubscription']]);
+        $this->middleware('xss.sanitization');
         $this->middleware('auth');
         $this->middleware('role:' . Role::USER);
         $this->middleware('user:' . User::GUARD);

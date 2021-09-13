@@ -11,7 +11,6 @@ use App\Models\System\User;
 /**
  * Office BaseController
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Http\Controllers\Office
  */
@@ -20,10 +19,12 @@ class BaseController extends Controller
     /**
      * Constructor
      *
-     * @return App\Http\Office\BaseController
+     * @return void
      */
     public function __construct()
     {
+        parent::__construct();
+        $this->middleware('xss.sanitization');
         $roles = [Role::OWNER, Role::GUEST];
         $this->middleware('force.https');
         $this->middleware('auth');

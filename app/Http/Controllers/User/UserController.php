@@ -18,12 +18,17 @@ use Exception;
 /**
  * UserController
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Http\Controllers\User
  */
 class UserController extends BaseController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('xss.sanitization');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +43,7 @@ class UserController extends BaseController
         if (
             $user->setup_completed != User::SETUP_COMPLETED
         ) {
-            return redirect()->route('user.profile.edit');
+            return redirect()->route('user.setup.account');
         } else {
             $breadcrumbs = breadcrumbs([
                 __('Dashboard')     => [

@@ -14,6 +14,7 @@ const mix = require('laravel-mix');
 mix.sass('resources/sass/app.scss', 'public/css')
     .js('resources/js/app.js', 'public/js')
     .js('resources/js/framework.js', 'public/js')
+    .js('resources/js/selectize.js', 'public/js')
     .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts')
     .copy('resources/fonts', 'public/webfonts')
     .copy('node_modules/summernote/dist/font', 'public/css/font')

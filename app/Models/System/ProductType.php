@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Product Types Eloquent Model
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright MdRepTime, LLC
  * @package   App\Models\System
  */

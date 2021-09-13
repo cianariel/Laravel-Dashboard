@@ -20,7 +20,7 @@ $routes = [
         'path'          => '/',
         'type'          => 'get',
         'controller'    => 'Front\Index\IndexController',
-        'method'        => 'index'
+        'method'        => 'index',
     ],
     [
         'path'          => 'page/{slug}',

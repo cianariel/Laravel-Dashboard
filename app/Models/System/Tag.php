@@ -11,7 +11,6 @@ use Spatie\Searchable\SearchResult;
 /**
  * Tag Eloquent Model
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Models\System
  */
@@ -69,11 +68,6 @@ class Tag extends Model implements Searchable
      * @var string REFUND
      */
     const REFUND = 'refund';
-
-    /**
-     * @var string TENANT
-     */
-    const TENANT = 'tenant';
 
     /**
      * @var string ORDER

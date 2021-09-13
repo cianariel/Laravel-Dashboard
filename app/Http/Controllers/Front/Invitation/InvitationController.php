@@ -19,12 +19,18 @@ use Exception;
 /**
  * InvitationController
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Http\Controllers\Front\Invitation
  */
 class InvitationController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('xss.sanitization');
+    }
+
+
     /**
      * Display a listing of the resource.
      *

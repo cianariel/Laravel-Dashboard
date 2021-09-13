@@ -9,7 +9,6 @@ use App\Models\Shared\Traits\HasMetaFields;
 /**
  * Base Model
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MedRepTime, LLC
  * @package   App\Models\Shared
  */

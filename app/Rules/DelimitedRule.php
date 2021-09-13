@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 /**
  * Rule for validating delimited values
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
  * @package   App\Rules
  */

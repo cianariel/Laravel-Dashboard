@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'site.mode' => \App\Http\Middleware\SiteMode::class,
         'ajax.disabled' => \App\Http\Middleware\AjaxDisabled::class,
+        'ajax.request'  => \App\Http\Middleware\AjaxRequest::class,
         'user'  => \App\Http\Middleware\CheckUser::class,
         'user.subscription.trial' => \App\Http\Middleware\CheckSubscriptionTrial::class,
         'user.subscribed' => \App\Http\Middleware\UserSubscribed::class,
@@ -72,5 +73,6 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'force.https' => \App\Http\Middleware\ForceHttps::class,
+        'xss.sanitization' => \App\Http\Middleware\XssSanitization::class
     ];
 }

@@ -13,6 +13,8 @@ use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Cashier\Billable;
+use App\Models\System\Traits\HasAppointments;
+use App\Models\System\Traits\HasCalendarEvents;
 use App\Models\System\Traits\HasOrders;
 use App\Models\System\Traits\HasCarts;
 use App\Models\System\Traits\HasPayments;
@@ -30,7 +32,6 @@ use App\Models\Shared\Authenticatable;
 /**
  * User Eloquent Model
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Models\System
  */
@@ -40,6 +41,8 @@ class User extends Authenticatable implements Searchable, HasMedia, MustVerifyEm
     use Billable;
     use HasRoles;
     use HasOffices;
+    use HasAppointments;
+    use HasCalendarEvents;
     use HasOrders;
     use HasCarts;
     use HasPayments;

@@ -18,12 +18,18 @@ use App\Rules\PhoneRule;
 /**
  * ProfileController
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package App\Http\Controllers\User\Profile
  */
 class ProfileController extends BaseController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('xss.sanitization');
+    }
+
+
     /**
      * Display the specified resource.
      *

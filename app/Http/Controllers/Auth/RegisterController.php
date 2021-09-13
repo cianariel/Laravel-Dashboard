@@ -42,6 +42,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('guest');
     }
 
@@ -106,7 +107,7 @@ class RegisterController extends Controller
             $this->redirectTo = route('office.setup.account');
         }
 
-        event(new Registered($user));
+        $user->sendEmailVerificationNotification();
 
         return $user;
     }

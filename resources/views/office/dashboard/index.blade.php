@@ -5,41 +5,30 @@
 {{--[content]--}}
 @section('content-body')
     @component('components.bootstrap.card', [
-        'layout'    => 'card-deck'
+        'id'    => 'office-calendar-card'
     ])
-        @component('components.bootstrap.card', [
-            'id'    => 'office-calendar-card'
-        ])
-            <div class="card-body">
-                @component('components.elements.fullcalendar', [
-                    'id'    => 'office-dashboard-calendar'
-                ])@endcomponent
-            </div>
-        @endcomponent
-        @component('components.bootstrap.card', [
-            'id'    => 'office-calendar-sidebar-card'
-        ])
-            <div class="card-body">
-
-            </div>
-        @endcomponent
+        <div class="card-body">
+            <dov class="row">
+                <div class="col-12">
+                    @include('office.calendar.partials.add_calendar_event_link')
+                    @component('components.elements.link', [
+                        'id'        => 'refresh-page-btn',
+                        'href'      => url()->full(),
+                        'classes'   =>  [
+                            'btn',
+                            'btn-dark'
+                        ]
+                    ])
+                        <i class="fas fa-redo"></i> {{ __('Refresh') }}
+                    @endcomponent
+                </div>
+            </dov>
+            @component('components.elements.fullcalendar', [
+                'id'        => 'office-dashboard-calendar',
+                'events'    => $events
+            ])@endcomponent
+        </div>
     @endcomponent
+    @include('office.calendar.partials.add_event')
 @endsection
 {{--[/content]--}}
-{{--[scripts]--}}
-@section('scripts_end')
-<script>
-<!--
-    jQuery(document).ready(function($){
-        let mdOfficeFullCalendarBlock = $('#office-dashboard-calendar');
-        let mdFullCalendar = new FullCalendar.Calendar(mdOfficeFullCalendarBlock[0], {
-            themeSystem: 'bootstrap',
-            initialView: 'dayGridMonth'
-        });
-
-        mdFullCalendar.render();
-    });
-//-->
-</script>
-@endsection
-{{--[/scripts]--}}

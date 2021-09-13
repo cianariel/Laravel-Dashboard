@@ -9,7 +9,6 @@ use App\Models\System\Note;
 /**
  * Has Notes Relations Trait
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Models\System\Traits
  */
@@ -18,8 +17,7 @@ trait HasNotes
     /**
      * Return give note model relationship
      *
-     * @author    Antonio Vargas <localhost.80@gmail.com>
-     * @copyright 2020 MdRepTime, LLC
+         * @copyright 2020 MdRepTime, LLC
      * @return    \Illuminate\Database\Eloquent\Relations\BelongsToMany
      * @access    public
      */

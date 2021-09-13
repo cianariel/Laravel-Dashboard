@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Office\Staff;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Office\BaseController;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -19,11 +19,10 @@ use Exception;
 /**
  * StaffsController
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Http\Controllers\Office\Staff
  */
-class StaffsController extends Controller
+class StaffsController extends BaseController
 {
     /**
      * Display a listing of the resource.

@@ -24,10 +24,10 @@ class UsersTableSeeder extends Seeder
             $site = Site::where('domain', config('app.base_domain'))->firstOrFail();
 
             // Create admin user.
-            if (!User::where('email', 'localhost.80@gmail.com')->exists()) {
+            if (!User::where('email', 'admin@gmail.com')->exists()) {
                 $user = new User;
                 $user->uuid = Str::uuid();
-                $user->email = 'localhost.80@gmail.com';
+                $user->email = 'admin@gmail.com';
                 $user->username = unique_username(Role::SUPER_ADMIN);
                 $user->password = Hash::make('ax71bzld'); // Hash::make('xiuZ7Lo^p1vighii');
                 $user->company  = 'SolidWolves, LLC';
@@ -54,14 +54,14 @@ class UsersTableSeeder extends Seeder
             }
 
             // Create admin user.
-            if (!User::where('email', 'ian@mdreptime.com')->exists()) {
+            if (!User::where('email', 'admin@mdreptime.com')->exists()) {
                 $user = new User;
                 $user->uuid = Str::uuid();
-                $user->email = 'ian@mdreptime.com';
+                $user->email = 'admin@mdreptime.com';
                 $user->username = unique_username(Role::SUPER_ADMIN);
                 $user->password = Hash::make('xiuZ7Lo^p1vighii');
                 $user->company  = 'MDRepTime, LLC';
-                $user->first_name = 'Ian';
+                $user->first_name = 'Admin';
                 $user->last_name = 'Hutchinson';
                 $user->address = '123 St.';
                 $user->address_2 = '';

@@ -10,7 +10,6 @@ use App\Models\System\CalendarEvent;
 /**
  * AddColumnCalendarEvents Migration Update
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  */
 class AddColumnCalendarEvents extends Migration

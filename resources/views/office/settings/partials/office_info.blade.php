@@ -187,6 +187,7 @@
                             ])@endcomponent
                         </div>
                     </div>
+                    {{--[submit-btn]--}}
                 @endcomponent
             </div>
         </div>

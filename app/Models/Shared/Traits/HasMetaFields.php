@@ -8,7 +8,6 @@ use Spatie\SchemalessAttributes\SchemalessAttributes;
 /**
  * Has Meta Fields Trait
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
  * @package   App\Models\Shared\Traits
  */
@@ -43,7 +42,7 @@ trait HasMetaFields
             $name = str_replace('->', '.', $name);
         }
 
-        return (filled($defaultValue)) ? $this->meta_fields->get($name, $defaultValue) : $this->meta_fields->get($name);
+        return $this->meta_fields->get($name, $defaultValue);
     }
 
     /**

@@ -62,7 +62,7 @@ try {
 } catch (e) {}
 
 try {
-    require('@stripe/stripe-js');
+    window.stripe = require('@stripe/stripe-js');
 } catch (e) {}
 
 try {
@@ -77,6 +77,10 @@ try {
 try {
     window.moment = require('moment');
 } catch (e) {}
+
+try {
+    require('jquery-number');
+} catch(e) {}
 
 
 // JQuery Extends
@@ -210,6 +214,18 @@ window.dialog = function (title, message) {
         dialog_modal.find('#dialog-title').text(title);
         dialog_modal.find('#dialog-content').text(message);
         dialog_modal.modal('show');
+    }
+}
+
+// Overlay
+//-----------------------------------------//
+window.mdOverlay = function(show='hide') {
+    let overlay = $('#md-overlay');
+
+    if(show == 'hide') {
+        overlay.fadeOut(500).addClass('hidden');
+    } else {
+        overlay.fadeOut(0).fadeIn(500).removeClass('hidden');
     }
 }
 
@@ -610,6 +626,7 @@ window.mdConfirmedActionLink = function ($) {
                             response = true;
 
                             if (response == true) {
+                                mdOverlay('show');
                                 MD.redirect(href);
                             }
                         });
@@ -632,12 +649,13 @@ window.mdConfirmedActionForm = function ($) {
         let dialog_modal = $('#dialog-modal');
         let dialog_footer = dialog_modal.find('.modal-footer');
         let html = '';
+        let confirmed = false;
 
-        forms.find('button[type="submit"]').on('click touchend', function (e) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
+        forms.on('submit', function (e) {
+            // e.preventDefault();
+            // e.stopImmediatePropagation();
 
-            let form = $(this).closest('.md-confirm-action-form');
+            let form = $(this);
             let type = form.data('type');
             let title = form.data('dialog-title');
             let message = form.data('dialog-message');
@@ -652,13 +670,21 @@ window.mdConfirmedActionForm = function ($) {
                     let btn = dialog_modal.find('#btn-modal-confirmed');
 
                     btn.on('click touchend', function (e) {
-                            dialog_modal.modal('hide');
-                            btn.prop('disabled', true);
-                            form.submit();
+                        dialog_modal.modal('hide');
+                        btn.prop('disabled', true);
+                        confirmed = true;
+                        mdOverlay('show');
+                        form.submit();
                     });
 
                     dialog(title, message);
                 });
+            }
+            if(confirmed){
+                confirmed = false;
+                return true;
+            }else{
+                return false;
             }
         });
     }
@@ -821,11 +847,13 @@ window.mdFormInputToggler = function ($) {
 }
 
 // Feather Icons
+//-----------------------------------------//
 window.mdFeatherIcons = function () {
     feather.replace();
 }
 
 // Vertical Tabs
+//-----------------------------------------//
 window.mdVerticalTabs = function ($) {
 
     let nav = $('.md-nav-vertical-tabs');
@@ -863,6 +891,7 @@ window.mdVerticalTabs = function ($) {
     }
 };
 
+
 // Date Picker
 //-----------------------------------------//
 window.mdDatePicker = function($) {
@@ -898,19 +927,46 @@ window.mdTimePicker = function($) {
 
         timePickers.each(function(index){
             let parent = $(this);
+            let timeFormat = parent.data('time-format');
+
             let options = {
-                    timeFormat: 'h:i A',
+                    timeFormat: (timeFormat? timeFormat : 'g:i A'),
                     interval: 10,
                     dynamic: true,
                     dropdown: true,
                     scrollbar: true,
-                    step: 5
+                    step: 15
             };
             let input = parent.find('input[type="text"]');
             input.timepicker(options);
         });
     }
 };
+
+// Handle HTML elements with data-redirect attribute
+//----------------------------------------------------//
+window.mdHandleDataRedirectHtmlAttr = function($)
+{
+    let elements = $('[data-redirect-url]');
+
+    elements.on('click touchend', function(e){
+        let element = $(this);
+        let url = element.data('redirect-url');
+        window.location.href = url;
+    });
+}
+
+window.mdDataRedirectUrlByClass = function($) {
+    let elements = $('.md-redirect-url-overlay');
+
+    elements.on('click touchend', function(e) {
+        e.preventDefault();
+
+        let url = $(this).attr('href');
+        gbOverlay('show');
+        window.location.href = url;
+    });
+}
 
 
 // On Document Ready
@@ -952,6 +1008,9 @@ jQuery(document).ready(function ($) {
 
     // Confirmed Dialog
     mdConfirmedActionLink($);
+
+    // Handle inline data redirect attribute
+    mdHandleDataRedirectHtmlAttr($);
 
     // WYSIWYG Editor
     mdEditor($);

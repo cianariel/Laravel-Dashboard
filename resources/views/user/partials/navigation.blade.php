@@ -24,20 +24,38 @@
     <div class="collapse navbar-collapse navbar-frontend-collapse" id="navbar-frontend-collapse">
         <div class="d-block w-100">
             <ul class="navbar-nav mr-auto justify-content-end">
-                <li class="nav-item">
+                <li class="nav-item @if(Route::getCurrentRoute()->getName() == 'user') active @endif">
                     @component('components.elements.link', [
                         'href'      => '#',
                         'classes'   => ['nav-link']
                     ])
-                        {{ __('Calendar') }}
+                        {{ __('My Appointments') }}
                     @endcomponent
                 </li>
-                <li class="nav-item">
+                <li class="nav-item @if(Route::getCurrentRoute()->getName() == 'user.offices.index') active @endif">
                     @component('components.elements.link', [
-                        'href'      => '#',
+                        'href'      => route('user.offices.index'),
                         'classes'   => ['nav-link']
                     ])
-                        {{ __('Messages') }} <span class="badge badge-secondary">0</span>
+                        {{ __('Offices') }} 
+                    @endcomponent
+                </li>
+                <li class="nav-item @if(Route::getCurrentRoute()->getName() == 'user.messages.index') active @endif">
+                    @component('components.elements.link', [
+                        'href'      => route('user.messages.index'),
+                        'classes'   => ['nav-link']
+                    ])
+                        {{ __('Messages') }} 
+                        <span class="badge badge-secondary">0</span>
+                    @endcomponent
+                    
+                </li>
+                <li class="nav-item @if(Route::getCurrentRoute()->getName() == 'user.setup.account') active @endif">
+                    @component('components.elements.link', [
+                        'href'      => route('user.setup.account'),
+                        'classes'   => ['nav-link']
+                    ])
+                        {{ __('Account') }} 
                     @endcomponent
                 </li>
                 <li class="nav-item">
@@ -65,3 +83,17 @@
         </div>
     </div>
 </nav>
+
+@component('components.elements.style', [])
+    nav .nav-item{
+        height: 41px;
+    }
+    @media(min-width: 1030px){
+        nav .nav-item{
+            margin-right: 10px;
+        }
+        nav .nav-item.active, nav .nav-item:hover{
+            border-bottom: 2px solid #034ea2;
+        }
+    }        
+@endcomponent

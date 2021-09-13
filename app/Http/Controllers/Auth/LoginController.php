@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\System\User;
+use APp\Models\System\Role;
 
 class LoginController extends Controller
 {
@@ -35,6 +36,24 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Override redirect logic
+     *
+     * @return \Illuminate\Http\Request
+     * @access protected
+     */
+    protected function redirectTo()
+    {
+        if (auth()->guard(User::GUARD)->check() !== false) {
+            $user = auth()->guard(User::GUARD)->user();
+
+            return user_panel_url($user);
+        }
+
+        return site_url();
     }
 }

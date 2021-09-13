@@ -57,6 +57,20 @@ $routes = [
         'name'          => 'setup.account.profile.store'
     ],
     [
+        'path'          => 'setup/update/status',
+        'type'          => 'post',
+        'controller'    => 'User\Setup\SetupController',
+        'method'        => 'updateUserStatus',
+        'name'          => 'setup.account.status'
+    ],
+    [
+        'path'          => 'setup/change/password',
+        'type'          => 'post',
+        'controller'    => 'User\Setup\SetupController',
+        'method'        => 'changeUserPassword',
+        'name'          => 'setup.account.password.change'
+    ],
+    [
         'path'          => 'setup/subscription',
         'type'          => 'get',
         'controller'    => 'User\Setup\SetupController',
@@ -76,6 +90,73 @@ $routes = [
         'controller'    => 'User\Setup\SetupController',
         'method'        => 'thankyou',
         'name'          => 'setup.complete'
+    ],
+    [
+        'path'          => 'offices',
+        'type'          => 'get',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'index',
+        'name'          => 'offices.index'
+    ],
+    [
+        'path'          => 'offices/add',
+        'type'          => 'get',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'add',
+        'name'          => 'offices.add'
+    ],
+    [
+        'path'          => 'offices/add/details/{uuid}',
+        'type'          => 'get',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'getOffice',
+        'name'          => 'offices.add.details.view'
+    ],
+    [
+        'path'          => 'offices/add/details/{uuid}',
+        'type'          => 'post',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'addOffice',
+        'name'          => 'offices.add.details.add'
+    ],
+    [
+        'path'          => 'offices/ajax/search-non-mine',
+        'type'          => 'get',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'searchNonMyOffices',
+        'name'          => 'offices.ajax.search-non-mine'
+    ],
+    [
+        'path'          => 'offices/ajax/search-mine',
+        'type'          => 'get',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'searchMyOffices',
+        'name'          => 'offices.ajax.search-mine'
+    ],
+    [
+        'path'          => 'offices/ajax/partial-info',
+        'type'          => 'get',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'getPartialInfoContent',
+        'name'          => 'offices.ajax.partial-info'
+    ],
+    [
+        'path'          => 'offices/request/approval',
+        'type'          => 'post',
+        'controller'    => 'User\Offices\OfficesController',
+        'method'        => 'requestApproval',
+        'name'          => 'offices.request.approval'
+    ],
+    [
+        'path'          => 'calendar',
+        'type'          => 'resource',
+        'controller'    => 'User\Calendar\CalendarController',
+    ],
+    [
+        'path'          => 'messages',
+        'type'          => 'resource',
+        'controller'    => 'User\Message\MessagesController',
+        'except'        => ['create', 'edit', 'update']
     ],
 ];
 
