@@ -8,7 +8,6 @@ use Spatie\SchemalessAttributes\SchemalessAttributes;
 /**
  * Has Meta Fields Trait
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
  * @package   App\Models\Shared\Traits
  */

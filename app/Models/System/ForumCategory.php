@@ -11,7 +11,6 @@ use App\Models\Shared\Model;
 /**
  * Forum Category Eloquent Model
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Models\System
  */

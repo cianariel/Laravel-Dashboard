@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 /**
  * {{ class }} Unit
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package {{ namespace }}
  */

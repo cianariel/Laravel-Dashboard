@@ -9,7 +9,6 @@ use Illuminate\Contracts\Validation\Rule;
 /**
  * Rule for domain checking.
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
  * @package   App\Rules
  */

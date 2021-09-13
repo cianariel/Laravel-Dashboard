@@ -10,7 +10,6 @@ use App\Models\System\Office;
 /**
  * CreateOfficesTable Migration
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  */
 class CreateOfficesTable extends Migration

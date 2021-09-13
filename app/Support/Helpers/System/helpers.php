@@ -6,7 +6,6 @@ declare(strict_types=1);
 /**
  * Custom Helpers Functions.
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright MdRepTime, LLC
  */
 
@@ -48,7 +47,6 @@ use Stringy\Stringy;
 /**
  * Shorthand for Carbon Date Class
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  mixed $date
@@ -78,7 +76,6 @@ if(! function_exists('carbon')) {
 /**
  * Shorthand for Stringy
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return string
@@ -94,7 +91,6 @@ if (! function_exists('s')) {
 /**
  * Returns a safe integer Number
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  mixed $value
@@ -117,7 +113,6 @@ if (! function_exists('safe_integer')) {
 /**
  * Returns a safe float number
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  mixed $value
@@ -140,7 +135,6 @@ if (! function_exists('safe_float')) {
 /**
  * Returns a safe double number
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  mixed $value
@@ -163,7 +157,6 @@ if (! function_exists('safe_double')) {
 /**
  * Digits only
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $digits
@@ -180,7 +173,6 @@ if (! function_exists('digits_only')) {
 /**
  * Formats number nicely
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $phone
@@ -203,7 +195,6 @@ if (! function_exists('format_phone')) {
 /**
  * Returns clean phone number
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $phone
@@ -226,7 +217,6 @@ if (! function_exists('clean_phone')) {
 /**
  * Aync and parallel process
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return \Spatie\Async\Pool
@@ -241,7 +231,6 @@ if (! function_exists('pool')) {
 /**
  * Converts USD Dollars to cents
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  float $value dollars amount
@@ -264,7 +253,6 @@ if (! function_exists('cents')) {
 /**
  * Converts cents to USD dollars
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  int $value cents amount
@@ -288,7 +276,6 @@ if (! function_exists('dollars')) {
 /**
  * Returns the current year.
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return string current year
@@ -304,7 +291,6 @@ if (! function_exists('current_year')) {
 /**
  * Returns the current month
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return int current month
@@ -320,7 +306,6 @@ if (! function_exists('current_month')) {
 /**
  * Checks if is leap year
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return bool returns true if leap year else false if not.
@@ -337,7 +322,6 @@ if (! function_exists('leap_year')) {
 /**
  * Months in a year
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $type
@@ -457,7 +441,6 @@ if (! function_exists('years')) {
 /**
  * Gets currently available site lanauges
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @todo   Add more langauges.
@@ -476,7 +459,6 @@ if (! function_exists('site_languages')) {
 /**
  * Returns url to storage resource
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return string|null
@@ -493,7 +475,6 @@ if (! function_exists('storage_url')) {
 /**
  * Returns all the countries from database or cache.
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  bool $cached
@@ -541,7 +522,6 @@ if (! function_exists('countries')) {
 /**
  * Returns country full name from database.
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $code country code
@@ -570,7 +550,6 @@ if (! function_exists('country')) {
 /**
  * Returns all the timezones from database or cache.
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  bool $cached
@@ -606,7 +585,6 @@ if (! function_exists('timezones')) {
 /**
  * Returns all currencies from database or cache
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  bool $cached
@@ -652,7 +630,6 @@ if (! function_exists('currencies')) {
 /**
  * Returns a currency by code
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $code
@@ -680,7 +657,6 @@ if (! function_exists('currency')) {
 /**
  * Formats Currency Amount
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  int $value cents amount
@@ -705,7 +681,6 @@ if (! function_exists('currency_format')) {
 /**
  * Returns all states from database or cache
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $country
@@ -746,7 +721,6 @@ if (! function_exists('states')) {
 /**
  * Returns state from cache
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $country
@@ -771,7 +745,6 @@ if (! function_exists('state')) {
 /**
  * Get user by id. (optiona: columns to select from users table)
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  int $id
@@ -802,7 +775,6 @@ if (! function_exists('user')) {
 /**
  * Checks if office rep user is approved
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  \App\Models\System\Office $office
@@ -826,7 +798,6 @@ if(! function_exists('office_user_approved')) {
 /**
  * Checks if office rep user is favorite
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  \App\Models\System\Office $office
@@ -850,7 +821,6 @@ if(! function_exists('office_user_favorite')) {
 /**
  * Checks if office rep user is blocked
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  \App\Models\System\Office $office
@@ -874,7 +844,6 @@ if(! function_exists('office_user_blocked')) {
 /**
  * Returns office owner
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  \App\Models\System\User|int     $user
@@ -908,7 +877,6 @@ if (! function_exists('office_owner')) {
 /**
  * Get user role shortcut
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  \App\Models\System\User|int
@@ -974,7 +942,6 @@ if (! function_exists('user_panel_url')) {
 /**
  * Returns profile image or placeholder
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  \App\Models\System\User|int $user
@@ -1002,7 +969,6 @@ if (! function_exists('avator')) {
 /**
  * Replaces tenants url media path with systems default path
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $url
@@ -1022,7 +988,6 @@ if (! function_exists('system_media_url')) {
 /**
  * Adds menu class 'active' based on the current url
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $path
@@ -1046,7 +1011,6 @@ if (! function_exists('menu_link_active')) {
 /**
  * Convert byte to megabyte
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  int $size bytes
@@ -1081,7 +1045,6 @@ if (! function_exists('megabyte_convert')) {
 /**
  * Memory Size Conversion
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  int|float
@@ -1128,7 +1091,6 @@ if (! function_exists('bit_convert')) {
 /**
  * Ram Memory Size
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  int|float
@@ -1146,7 +1108,6 @@ if (! function_exists('memory_convert')) {
 /**
  * Determine if all given needles are present in the haystack as array keys.
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  array|string $needles
@@ -1178,7 +1139,6 @@ if (! function_exists('array_keys_exist')) {
 /**
  * Load JSON configuration file
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $path Path to json file
@@ -1205,7 +1165,6 @@ if (! function_exists('load_json')) {
 /**
  * Valid URL
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $url
@@ -1225,7 +1184,6 @@ if (! function_exists('valid_url')) {
 /**
  * Parses URL to retrieve domain and protocol url
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $url
@@ -1246,7 +1204,6 @@ if (! function_exists('parse_host_url')) {
 /**
  * Get Site Model
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  mixed  $cache
@@ -1295,7 +1252,6 @@ if (! function_exists('site')) {
 /**
  * Get Site Settings
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  bool $cached
@@ -1325,7 +1281,6 @@ if (! function_exists('settings')) {
 /**
  * Get site setting by name
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $name
@@ -1361,7 +1316,6 @@ if (! function_exists('setting')) {
 /**
  * Returns site menu by name
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $name
@@ -1399,7 +1353,6 @@ if (! function_exists('menu')) {
 /**
  * Gets all credits accepted.
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return array|null
@@ -1426,7 +1379,6 @@ if (! function_exists('cards_accepted')) {
 /**
  * Generate a unique username
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string
@@ -1477,7 +1429,6 @@ if (! function_exists('unique_username')) {
 /**
  * Returns unique slug
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $type
@@ -1532,7 +1483,6 @@ if (! function_exists('unique_slug')) {
 /**
  * Returns a unique name
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $type
@@ -1562,7 +1512,6 @@ if (! function_exists('unique_name')) {
 /**
  * Returns a unique reference
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return string
@@ -1607,7 +1556,6 @@ if (! function_exists('unique_reference')) {
 /**
  * Get user role shortcut
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return string
@@ -1628,7 +1576,6 @@ if (! function_exists('unique_invite_code')) {
 /**
  * Returns admin secure full url
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $path
@@ -1649,7 +1596,6 @@ if (! function_exists('admin_url')) {
 /**
  * Generates a breadcrumbs
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  array $list
@@ -1705,7 +1651,6 @@ if (! function_exists('send_notification_queued')) {
 /**
  * Shortcut to dispatch emails
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  \App\Models\System\User|int
@@ -1735,7 +1680,6 @@ if (! function_exists('send_email')) {
 /**
  * Log users activity
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $message
@@ -1787,7 +1731,6 @@ if (! function_exists('user_activity')) {
 /**
  * Returns site full url
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $path
@@ -1811,7 +1754,6 @@ if (! function_exists('site_url')) {
 /**
  * Resize image or get path if already resized.
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $path
@@ -1869,7 +1811,6 @@ if (! function_exists('resized_image')) {
 /**
  * Creates a route
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $path
@@ -2067,7 +2008,6 @@ if (! function_exists('create_route')) {
 /**
  * Returns All The Routes
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @param  string $domain
@@ -2128,7 +2068,6 @@ if (! function_exists('routes')) {
 /**
  * Returns Server Operating System
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return string
@@ -2144,7 +2083,6 @@ if (! function_exists('server_os')) {
 /**
  * Server CPU Cores
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return int
@@ -2170,7 +2108,6 @@ if (! function_exists('server_cpu_cores')) {
 /**
  * Server Memory Usage
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return int|float
@@ -2202,7 +2139,6 @@ if (! function_exists('server_memory_usage')) {
 /**
  * Server CPU Usage
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  *
  * @return int|float

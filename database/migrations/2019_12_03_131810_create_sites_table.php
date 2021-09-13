@@ -47,7 +47,6 @@ use App\Models\System\Translation;
 /**
  * Sites Table Seeder
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
  * @package Database\Migrations\Tenant
  *

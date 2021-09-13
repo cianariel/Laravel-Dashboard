@@ -9,7 +9,6 @@ use Illuminate\Contracts\Validation\Rule;
 /**
  * Rule for removing html tags
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 WorkVision, LLC
  * @package   App\Rules
  */

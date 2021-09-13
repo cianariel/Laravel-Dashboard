@@ -18,7 +18,6 @@ use App\Rules\SanitizeHtml;
 /**
  * Admin Blog Posts Controller
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 GeekBidz, LLC
  * @package   App\Http\Controllers\Admin
  */
