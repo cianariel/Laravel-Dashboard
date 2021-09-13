@@ -12,7 +12,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 /*
  |--------------------------------------------------------------------------
  | File:      Framework.js
- | Author:    Antonio Vargas <localhost.80@gmail.com>
  | Copyright: MDRepTime, LLC
  |--------------------------------------------------------------------------
  */

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Schema;
 /**
  * AddColumnsScheduledEndsAppointmentTable Migration Update
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  */
 class AddColumnsScheduledEndsAppointmentTable extends Migration

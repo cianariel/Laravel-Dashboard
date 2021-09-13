@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Schema;
 /**
  * DropCalendarColumnAppointmentTable Migration Update
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  */
 class DropCalendarColumnAppointmentTable extends Migration

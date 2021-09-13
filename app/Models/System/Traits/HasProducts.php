@@ -9,7 +9,6 @@ use App\Models\System\Product;
 /**
  * Has Products Relations Trait
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @product   App\Models\Traits
  */

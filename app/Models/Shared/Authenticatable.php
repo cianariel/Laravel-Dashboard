@@ -9,7 +9,6 @@ use App\Models\Shared\Traits\HasMetaFields;
 /**
  * Authenticatable
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDReptTime, LLC
  * @package   App\Models\Shared
  */

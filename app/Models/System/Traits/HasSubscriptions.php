@@ -9,7 +9,6 @@ use App\Models\System\Subscription;
 /**
  * Has Subscriptions Relations Trait
  *
- * @author       Antonio Vargas <localhost.80@gmail.com>
  * @copyright    2020 MdRepTime, LLC
  * @subscription App\Models\Traits
  */

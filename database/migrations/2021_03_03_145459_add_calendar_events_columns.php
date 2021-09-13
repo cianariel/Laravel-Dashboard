@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Schema;
 /**
  * AddCalendarEventsColumns Migration Update
  *
- * @author Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  */
 class AddCalendarEventsColumns extends Migration

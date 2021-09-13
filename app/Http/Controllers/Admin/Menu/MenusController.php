@@ -14,7 +14,6 @@ use App\Rules\SanitizeHtml;
 /**
  * Admin Menu Resource Controller
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MDRepTime, LLC
  * @package   App\Http\Controllers\Admin\Menu
  */

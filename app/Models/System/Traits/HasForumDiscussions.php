@@ -9,7 +9,6 @@ use App\Models\System\ForumDiscussion;
 /**
  * Has Forum Discuissions Relation Trait
  *
- * @author    Antonio Vargas <localhost.80@gmail.com>
  * @copyright 2020 MdRepTime, LLC
  * @package   App\Models\System\Traits
  */
